@@ -1,4 +1,5 @@
 FROM openjdk:17
-ADD target/music-tonic.jar music-tonic.jar
-ENTRYPOINT ["java", "-jar","music-tonic.jar"]
+ARG JAR_FILE=target/*.jar
+COPY ${JAR_FILE} app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]
 EXPOSE 8080

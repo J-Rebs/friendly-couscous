@@ -15,7 +15,12 @@ public class MusicTonicApplication {
 
     @RequestMapping("/")
     public String home() {
-        return "Hello Docker World";
+        return "cs is awesome like really the best...";
+    }
+
+    @RequestMapping("/test")
+    public String test() {
+        return "test...";
     }
     public static void main(String[] args) {
         SpringApplication.run(MusicTonicApplication.class, args);

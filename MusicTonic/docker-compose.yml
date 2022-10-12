@@ -2,9 +2,10 @@ version: '2'
 
 services:
   app:
-    image: 'music-tonic:latest'
+    image: 'music-tonic.jar:latest'
     build:
       context: .
+      dockerfile: Dockerfile
     container_name: app
     depends_on:
       - PostgresSQL

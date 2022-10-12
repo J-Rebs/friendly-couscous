@@ -54,7 +54,6 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
-        <finalName>music-tonic</finalName>
     </build>
 
 </project>
