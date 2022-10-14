@@ -15,14 +15,9 @@ public class UserController {
     @Autowired
     private UserRepository userRepo;
 
-    @RequestMapping("/totalUsers")
-    public ResponseEntity<?> users() {
-        try{
-            List<User> listStudents = userRepo.findAll();
-            return new ResponseEntity<>(listStudents, HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @RequestMapping("/users")
+    public String users() {
+        return userRepo.findAll().toString();
     }
 
 }
