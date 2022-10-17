@@ -14,7 +14,7 @@
     <name>MusicTonic</name>
     <description>MusicTonic</description>
     <properties>
-        <java.version>10</java.version>
+        <java.version>17</java.version>
     </properties>
     <dependencies>
         <dependency>
