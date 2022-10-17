@@ -11,11 +11,11 @@ jobs:
     # You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # Be sure to update the Docker image tag below to openjdk version of your application.
     # A list of available CircleCI Docker Convenience Images are available here: https://circleci.com/developer/images/image/cimg/openjdk
+    working_directory: ~/friendly-couscous/MusicTonic 
     docker:
       - image: cimg/openjdk:17.0
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
-    working_directory: ~/friendly-couscous/MusicTonic
     steps:
       # Checkout the code as the first step.
       - checkout:
