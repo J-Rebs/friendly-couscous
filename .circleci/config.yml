@@ -15,10 +15,11 @@ jobs:
       - image: cimg/openjdk:17.0
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
-    working_directory: ~/friendly-couscous/MusicTonic 
+    working_directory: ~/friendly-couscous/MusicTonic
     steps:
       # Checkout the code as the first step.
-      - checkout
+      - checkout:
+          path: ~/friendly-couscous
       # Use mvn clean and package as the standard maven build phase
       - run:
           name: Build
