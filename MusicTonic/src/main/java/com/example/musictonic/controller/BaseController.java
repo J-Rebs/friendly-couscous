@@ -8,7 +8,7 @@ public class BaseController {
 
     @RequestMapping("/")
     public String home() {
-        return "Music is tonic for the soul <3 (it's a heart not a < 3)";
+        return "See here's a new message.";
     }
 
 }
