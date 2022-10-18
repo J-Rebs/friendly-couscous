@@ -8,7 +8,7 @@ public class BaseController {
 
     @RequestMapping("/")
     public String home() {
-        return "See here's a new message.";
+        return "I'm a software engineer";
     }
 
 }
