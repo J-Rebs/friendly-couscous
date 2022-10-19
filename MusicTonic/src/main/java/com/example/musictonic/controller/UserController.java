@@ -26,7 +26,7 @@ public class UserController {
         this.repository = repository;
     }
 
-    @CrossOrigin
+
     @RequestMapping("/users")
     // Src of method: https://github.com/rcoppy/demo-persistent-data-api/blob/main/src/main/java/com/alexrupp/persistentdataapi/controllers/ChatUserController.java
     List<String> all() {
