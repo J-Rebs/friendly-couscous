@@ -19,7 +19,7 @@ public class MusicTonicApplication {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**").allowedOrigins("https://music-tonic.herokuapp.com/");
+                registry.addMapping("/**").allowedOrigins("https://music-tonic.herokuapp.com/","https://music-tonic.herokuapp.com/favicon.ico");
             }
         };
     }
