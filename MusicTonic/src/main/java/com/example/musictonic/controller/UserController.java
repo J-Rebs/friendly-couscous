@@ -2,6 +2,7 @@ package com.example.musictonic.controller;
 
 import com.example.musictonic.model.User;
 import com.example.musictonic.repository.UserRepository;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,6 +26,7 @@ public class UserController {
         this.repository = repository;
     }
 
+    @CrossOrigin
     @RequestMapping("/users")
     // Src of method: https://github.com/rcoppy/demo-persistent-data-api/blob/main/src/main/java/com/alexrupp/persistentdataapi/controllers/ChatUserController.java
     List<String> all() {
