@@ -5,54 +5,99 @@ import javax.persistence.*;
 @Table(name = "users")
 public class User {
 
+    // definition of entity
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(columnDefinition = "serial")
-    private Long user_UID;
+    private Long userId;
 
+    // column names can have format word_word
+    // but spring may get confused if you do the same with the Java variable
+    // instead do db has "real_name", Java has variable "realName"
     @Column(name = "real_name")
-    private String real_name;
+    private String realName;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL) // see: https://www.baeldung.com/jpa-persisting-enums-in-jpa
     @Column(name = "user_type")
-    private UserType user_type;
+    private UserType userType;
 
     @Column(name = "main_genre")
-    private String main_genre;
+    private String mainGenre;
 
     @Column(name = "age")
     private Integer age;
 
-    public User()
-    {
+    // constructors
+    // add default constructor for sake of JPA
+    protected User() {}
 
+    // public constructor for use
+
+    public User(Long userId, String realName, UserType userType, String mainGenre, Integer age) {
+        this.userId = userId;
+        this.realName = realName;
+        this.userType = userType;
+        this.mainGenre = mainGenre;
+        this.age = age;
     }
 
-    public Long getUser_UID() {
-        return user_UID;
+    // getters and setters
+
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUser_UID(Long user_UID) {
-        this.user_UID = user_UID;
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public String getRealName() {
+        return realName;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName;
+    }
+
+    public UserType getUserType() {
+        return userType;
+    }
+
+    public void setUserType(UserType userType) {
+        this.userType = userType;
+    }
+
+    public String getMainGenre() {
+        return mainGenre;
+    }
+
+    public void setMainGenre(String mainGenre) {
+        this.mainGenre = mainGenre;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public void setUser_UID(Long userId) {
+        this.userId = userId;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "user_UID=" + user_UID +
-                ", real_name='" + real_name + '\'' +
-                ", user_type=" + user_type +
-                ", main_genre='" + main_genre + '\'' +
+                "user_UID=" + userId +
+                ", real_name='" + realName + '\'' +
+                ", user_type=" + userType +
+                ", main_genre='" + mainGenre + '\'' +
                 ", age=" + age +
                 '}';
     }
 
-    public User(String real_name, UserType userType, String main_genre, Integer age){
-        this.real_name = real_name;
-        this.user_type = userType;
-        this.main_genre = main_genre;
-        this.age = age;
-    }
 
 }
 
