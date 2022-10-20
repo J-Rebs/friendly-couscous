@@ -7,21 +7,6 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: app
-    depends_on:
-      - PostgresSQL
-    environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://PostgresSQL:5432/postgres
-      - SPRING_DATASOURCE_USERNAME=postgres
-      - SPRING_DATASOURCE_PASSWORD=password
-      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
     ports:
       - "8080:8080"
 
-  PostgresSQL:
-    image: 'postgres:latest'
-    ports:
-      - "5432:5432"
-    environment:
-      - POSTGRES_PASSWORD=password
-      - POSTGRES_USER=postgres
-      - POSTGRES_DB=postgres
