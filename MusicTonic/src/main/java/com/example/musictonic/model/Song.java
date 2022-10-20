@@ -6,88 +6,98 @@ import javax.persistence.*;
 @Table(name = "songs")
 public class Song {
 
+    // definition of entity
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(columnDefinition = "serial")
-    private Long song_UID;
+    private Long songId;
 
     @Column(name = "song_name")
-    private String song_name;
+    private String songName;
 
     @Column(name = "song_duration")
-    private Long song_duration;
+    private UserType songDuration;
 
     @Column(name = "song_artist")
-    private String song_artist;
+    private String songArtist;
 
     @Column(name = "song_lyrics")
-    private String song_lyrics;
+    private String songLyrics;
 
     @Column(name = "song_likes_count")
-    private int song_likes_count;
+    private Integer songLikesCount;
 
-    public String getSong_name() {
-        return song_name;
+    // constructors
+    protected Song() {
     }
 
-    public void setSong_name(String song_name) {
-        this.song_name = song_name;
+    public Song(String songName, UserType songDuration, String songArtist, String songLyrics, Integer songLikesCount) {
+        this.songName = songName;
+        this.songDuration = songDuration;
+        this.songArtist = songArtist;
+        this.songLyrics = songLyrics;
+        this.songLikesCount = songLikesCount;
     }
 
-    public Long getSong_duration() {
-        return song_duration;
+    // getters and setters
+    public Long getSongId() {
+        return songId;
     }
 
-    public void setSong_duration(Long song_duration) {
-        this.song_duration = song_duration;
+    public void setSongId(Long songId) {
+        this.songId = songId;
     }
 
-    public String getSong_artist() {
-        return song_artist;
+    public String getSongName() {
+        return songName;
     }
 
-    public void setSong_artist(String song_artist) {
-        this.song_artist = song_artist;
+    public void setSongName(String songName) {
+        this.songName = songName;
     }
 
-    public String getSong_lyrics() {
-        return song_lyrics;
+    public UserType getSongDuration() {
+        return songDuration;
     }
 
-    public void setSong_lyrics(String song_lyrics) {
-        this.song_lyrics = song_lyrics;
+    public void setSongDuration(UserType songDuration) {
+        this.songDuration = songDuration;
     }
 
-    public int getSong_likes_count() {
-        return song_likes_count;
+    public String getSongArtist() {
+        return songArtist;
     }
 
-    public void setSong_likes_count(int song_likes_count) {
-        this.song_likes_count = song_likes_count;
+    public void setSongArtist(String songArtist) {
+        this.songArtist = songArtist;
     }
 
-    public Song() {
+    public String getSongLyrics() {
+        return songLyrics;
+    }
 
+    public void setSongLyrics(String songLyrics) {
+        this.songLyrics = songLyrics;
+    }
+
+    public Integer getSongLikesCount() {
+        return songLikesCount;
+    }
+
+    public void setSongLikesCount(Integer songLikesCount) {
+        this.songLikesCount = songLikesCount;
     }
 
     @Override
     public String toString() {
         return "Song{" +
-                "song_UID=" + song_UID +
-                ", song_name='" + song_name + '\'' +
-                ", song_duration=" + song_duration +
-                ", song_artist='" + song_artist + '\'' +
-                ", song_lyrics='" + song_lyrics + '\'' +
-                ", song_likes_count=" + song_likes_count +
+                "songId=" + songId +
+                ", songName='" + songName + '\'' +
+                ", songDuration=" + songDuration +
+                ", songArtist='" + songArtist + '\'' +
+                ", songLyrics='" + songLyrics + '\'' +
+                ", songLikesCount=" + songLikesCount +
                 '}';
     }
-
-    public Song(String song_name, Long song_duration, String song_artist, String song_lyrics, int song_likes_count) {
-        this.song_name = song_name;
-        this.song_duration = song_duration;
-        this.song_artist = song_artist;
-        this.song_lyrics = song_lyrics;
-        this.song_likes_count = song_likes_count;
-    }
-
 }
+
