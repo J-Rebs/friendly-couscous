@@ -28,7 +28,7 @@ public class UserController {
 
 
     @RequestMapping("/users")
-    // Src of method: https://github.com/rcoppy/demo-persistent-data-api/blob/main/src/main/java/com/alexrupp/persistentdataapi/controllers/ChatUserController.java
+        // Src of method: https://github.com/rcoppy/demo-persistent-data-api/blob/main/src/main/java/com/alexrupp/persistentdataapi/controllers/ChatUserController.java
     List<String> all() {
         List<String> l = new ArrayList<String>();
 
@@ -37,6 +37,11 @@ public class UserController {
         }
 
         return l;
+    }
+
+    @RequestMapping("/test2")
+    String test() {
+        return "this is a test route";
     }
 
 }
