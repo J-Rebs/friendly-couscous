@@ -29,12 +29,6 @@ public class User {
     @Column(name = "age")
     private Integer age;
 
-    // @ManyToOne
-    // private Group groups;
-
-    // @ManyToOne
-    // private Playlist playlist;
-
     @OneToMany(mappedBy = "user")
     private Set<PlaylistToSubscriber> playlistToSubscriber;
 
