@@ -32,6 +32,9 @@ public class User {
     @ManyToOne
     private Group groups;
 
+    @ManyToOne
+    private Playlist playlist;
+
     // constructors
     protected User() {
     }
