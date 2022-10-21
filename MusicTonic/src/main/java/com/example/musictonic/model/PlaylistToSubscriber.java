@@ -26,6 +26,17 @@ public class PlaylistToSubscriber implements Serializable {
     @JoinColumn(name = "playlistId", nullable = true)
     private Playlist playlist;
 
+    protected PlaylistToSubscriber() {
+
+    }
+
+    public PlaylistToSubscriber(Long userId, Long playlistId, User user, Playlist playlist) {
+        this.userId = userId;
+        this.playlistId = playlistId;
+        this.user = user;
+        this.playlist = playlist;
+    }
+
     public Long getUserId() {
         return userId;
     }

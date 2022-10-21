@@ -5,27 +5,26 @@ import java.io.Serializable;
 
 
 @Entity
-@Table(name = "analytics_user")
-public class AnalyticsUser implements Serializable {
+@Table(name = "analytics_group")
+public class ClientUser implements Serializable {
 
     @Id
     Long id;
 
     @ManyToOne
-    @JoinColumn(name = "analyticsId")
-    private Analytics analytics;
+    @JoinColumn(name = "clientId")
+    private Client client;
 
     @ManyToOne
     @JoinColumn(name = "userId")
     private User user;
 
-    protected AnalyticsUser() {
-
+    protected ClientUser() {
     }
 
-    public AnalyticsUser(Long id, Analytics analytics, User user) {
+    public ClientUser(Long id, Client client, User user) {
         this.id = id;
-        this.analytics = analytics;
+        this.client = client;
         this.user = user;
     }
 
@@ -37,12 +36,12 @@ public class AnalyticsUser implements Serializable {
         this.id = id;
     }
 
-    public Analytics getAnalytics() {
-        return analytics;
+    public Client getClient() {
+        return client;
     }
 
-    public void setAnalytics(Analytics analytics) {
-        this.analytics = analytics;
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     public User getUser() {
@@ -55,10 +54,11 @@ public class AnalyticsUser implements Serializable {
 
     @Override
     public String toString() {
-        return "AnalyticsUser{" +
+        return "ClientUser{" +
                 "id=" + id +
-                ", analytics=" + analytics +
+                ", client=" + client +
                 ", user=" + user +
                 '}';
     }
+
 }

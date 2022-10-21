@@ -26,6 +26,16 @@ public class PlaylistToSongs implements Serializable {
     @JoinColumn(name = "playlistId", nullable = true)
     private Playlist playlist;
 
+    protected PlaylistToSongs() {
+    }
+
+    public PlaylistToSongs(Long playlistId, Long songId, Song song, Playlist playlist) {
+        this.playlistId = playlistId;
+        this.songId = songId;
+        this.song = song;
+        this.playlist = playlist;
+    }
+
     public Long getPlaylistId() {
         return playlistId;
     }
@@ -67,5 +77,5 @@ public class PlaylistToSongs implements Serializable {
                 ", playlist=" + playlist +
                 '}';
     }
-    
+
 }

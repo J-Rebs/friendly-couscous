@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 
 @Entity
-@Table(name = "analytics_song")
+@Table(name = "analytics_group")
 public class AnalyticsGroup implements Serializable {
 
     @Id
@@ -18,4 +18,14 @@ public class AnalyticsGroup implements Serializable {
     @ManyToOne
     @JoinColumn(name = "groupId")
     private Group group;
+
+    protected AnalyticsGroup() {
+
+    }
+
+    public AnalyticsGroup(Long id, Analytics analytics, Group group) {
+        this.id = id;
+        this.analytics = analytics;
+        this.group = group;
+    }
 }

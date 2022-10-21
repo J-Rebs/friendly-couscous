@@ -26,6 +26,16 @@ public class UserToGroupMember implements Serializable {
     @JoinColumn(name = "groupId", nullable = true)
     private Group group;
 
+    protected UserToGroupMember() {
+    }
+
+    public UserToGroupMember(Long userId, Long groupId, User user, Group group) {
+        this.userId = userId;
+        this.groupId = groupId;
+        this.user = user;
+        this.group = group;
+    }
+
     public Long getUserId() {
         return userId;
     }
