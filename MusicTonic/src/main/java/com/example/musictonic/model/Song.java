@@ -1,6 +1,7 @@
 package com.example.musictonic.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "songs")
@@ -16,7 +17,7 @@ public class Song {
     private String songName;
 
     @Column(name = "song_duration")
-    private UserType songDuration;
+    private Integer songDuration;
 
     @Column(name = "song_artist")
     private String songArtist;
@@ -27,11 +28,15 @@ public class Song {
     @Column(name = "song_likes_count")
     private Integer songLikesCount;
 
+    @OneToMany(mappedBy = "song")
+    private Set<PlaylistToSongs> playlistToSongs;
+
+
     // constructors
     protected Song() {
     }
 
-    public Song(String songName, UserType songDuration, String songArtist, String songLyrics, Integer songLikesCount) {
+    public Song(String songName, Integer songDuration, String songArtist, String songLyrics, Integer songLikesCount) {
         this.songName = songName;
         this.songDuration = songDuration;
         this.songArtist = songArtist;
@@ -56,11 +61,11 @@ public class Song {
         this.songName = songName;
     }
 
-    public UserType getSongDuration() {
+    public Integer getSongDuration() {
         return songDuration;
     }
 
-    public void setSongDuration(UserType songDuration) {
+    public void setSongDuration(Integer songDuration) {
         this.songDuration = songDuration;
     }
 

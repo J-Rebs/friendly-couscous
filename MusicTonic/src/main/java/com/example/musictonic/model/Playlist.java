@@ -26,12 +26,8 @@ public class Playlist {
     @OneToMany(mappedBy = "playlist")
     private Set<PlaylistToSubscriber> playlistToSubscriber;
 
-    /**
-     * Double check how OneToMany should work, route breaking for users if have this
-     * think need to add mapping
-     **/
-    // @OneToMany
-    // private List<User> users;
+    @OneToMany(mappedBy = "playlist")
+    private Set<PlaylistToSongs> playlistToSongs;
 
     // constructors
     // add default constructor for sake of JPA
