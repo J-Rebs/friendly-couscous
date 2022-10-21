@@ -37,6 +37,7 @@ public class PlaylistToSubscriber implements Serializable {
         this.playlist = playlist;
     }
 
+
     public Long getUserId() {
         return userId;
     }
