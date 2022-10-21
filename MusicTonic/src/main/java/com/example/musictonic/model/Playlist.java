@@ -1,6 +1,7 @@
 package com.example.musictonic.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "playlists")
@@ -20,6 +21,9 @@ public class Playlist {
 
     @Column(name = "isDefault")
     private Boolean isDefault;
+
+    @OneToMany
+    private List<User> users;
 
     // constructors
     // add default constructor for sake of JPA

@@ -1,5 +1,7 @@
 package com.example.musictonic.model;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -7,7 +9,7 @@ public class User {
 
     // definition of entity
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(columnDefinition = "serial")
     private Long userId;
 
@@ -27,9 +29,12 @@ public class User {
     @Column(name = "age")
     private Integer age;
 
+    @ManyToOne
+    private Group groups;
+
     // constructors
-    // add default constructor for sake of JPA
-    protected User() {}
+    protected User() {
+    }
 
     // public constructor for use
 
