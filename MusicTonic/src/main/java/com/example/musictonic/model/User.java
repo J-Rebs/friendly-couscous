@@ -29,11 +29,11 @@ public class User {
     @Column(name = "age")
     private Integer age;
 
-    @ManyToOne
-    private Group groups;
+    // @ManyToOne
+    // private Group groups;
 
-    @ManyToOne
-    private Playlist playlist;
+    // @ManyToOne
+    // private Playlist playlist;
 
     // constructors
     protected User() {

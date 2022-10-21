@@ -21,9 +21,13 @@ public class Group {
     @Column(name = "description")
     private String description;
 
-    @OneToMany
-    private List<User> users;
-    
+    /****
+     *
+     *  Good idea to add these! Think we need to add the mapping part or it might break from a quick google?
+     */
+    // @OneToMany
+    // private List<User> users;
+
     // constructors
     protected Group() {
     }

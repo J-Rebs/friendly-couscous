@@ -22,8 +22,12 @@ public class Playlist {
     @Column(name = "isDefault")
     private Boolean isDefault;
 
-    @OneToMany
-    private List<User> users;
+    /**
+     * Double check how OneToMany should work, route breaking for users if have this
+     * think need to add mapping
+     **/
+    // @OneToMany
+    // private List<User> users;
 
     // constructors
     // add default constructor for sake of JPA
