@@ -25,7 +25,7 @@ public class Group {
      *
      *  Good idea to add these! Think we need to add the mapping part or it might break from a quick google?
      */
-    // @OneToMany
+    // @OneToMany(mappedBy="")
     // private List<User> users;
 
     // constructors

@@ -1,7 +1,7 @@
 package com.example.musictonic.model;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -34,6 +34,9 @@ public class User {
 
     // @ManyToOne
     // private Playlist playlist;
+
+    @OneToMany(mappedBy = "user")
+    private Set<PlaylistToSubscriber> playlistToSubscriber;
 
     // constructors
     protected User() {
@@ -91,14 +94,14 @@ public class User {
         this.age = age;
     }
 
-    public void setUser_UID(Long userId) {
+    public void setUser_id(Long userId) {
         this.userId = userId;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "user_UID=" + userId +
+                "user_id=" + userId +
                 ", real_name='" + realName + '\'' +
                 ", user_type=" + userType +
                 ", main_genre='" + mainGenre + '\'' +

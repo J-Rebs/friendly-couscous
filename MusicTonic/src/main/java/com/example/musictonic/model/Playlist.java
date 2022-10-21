@@ -11,7 +11,7 @@ public class Playlist {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(columnDefinition = "serial")
-    private Long PlaylistId;
+    private Long playlistId;
 
     @Column(name = "owner")
     private String owner;
@@ -35,7 +35,7 @@ public class Playlist {
     }
 
     public Playlist(Long playlistId, String owner, String name, Boolean isDefault) {
-        PlaylistId = playlistId;
+        playlistId = playlistId;
         this.owner = owner;
         this.name = name;
         this.isDefault = isDefault;
@@ -43,11 +43,11 @@ public class Playlist {
 
     // getters and setters
     public Long getPlaylistId() {
-        return PlaylistId;
+        return playlistId;
     }
 
     public void setPlaylistId(Long playlistId) {
-        PlaylistId = playlistId;
+        playlistId = playlistId;
     }
 
     public String getOwner() {
@@ -77,7 +77,7 @@ public class Playlist {
     @Override
     public String toString() {
         return "Playlist{" +
-                "PlaylistId=" + PlaylistId +
+                "PlaylistId=" + playlistId +
                 ", owner='" + owner + '\'' +
                 ", name='" + name + '\'' +
                 ", isDefault=" + isDefault +
