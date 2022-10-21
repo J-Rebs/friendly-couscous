@@ -10,13 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * "To wrap your repository with a web layer, you must turn to Spring MVC.
  * Thanks to Spring Boot, there is little in infrastructure to code. Instead, we can focus on actions[.]"
  * SRC: https://spring.io/guides/tutorials/rest/
- *
- * */
-@RestController // " indicates that the data returned by each method will be written straight into the response body instead of rendering a template. " (Same src as above)
+ */
+@RestController
+// " indicates that the data returned by each method will be written straight into the response body instead of rendering a template. " (Same src as above)
 public class UserController {
 
     private final UserRepository repository;
@@ -39,9 +38,15 @@ public class UserController {
         return l;
     }
 
-    @RequestMapping("/test2")
-    String test() {
-        return "this is a test route";
+    @RequestMapping("/usersbymaingenre")
+    List<String> findUsersByMainGenre() {
+        List<String> l = new ArrayList<String>();
+
+        for (User u : repository.findAllByMainGenre("country")) {
+            l.add(u.getRealName());
+        }
+
+        return l;
     }
 
 }

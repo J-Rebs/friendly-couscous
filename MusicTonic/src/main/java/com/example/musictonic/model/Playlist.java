@@ -2,6 +2,7 @@ package com.example.musictonic.model;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "playlists")
@@ -21,6 +22,9 @@ public class Playlist {
 
     @Column(name = "isDefault")
     private Boolean isDefault;
+
+    @OneToMany(mappedBy = "playlist")
+    private Set<PlaylistToSubscriber> playlistToSubscriber;
 
     /**
      * Double check how OneToMany should work, route breaking for users if have this

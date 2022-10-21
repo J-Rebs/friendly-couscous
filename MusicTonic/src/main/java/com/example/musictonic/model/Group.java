@@ -2,6 +2,7 @@ package com.example.musictonic.model;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "groups")
@@ -21,13 +22,9 @@ public class Group {
     @Column(name = "description")
     private String description;
 
-    /****
-     *
-     *  Good idea to add these! Think we need to add the mapping part or it might break from a quick google?
-     */
-    // @OneToMany(mappedBy="")
-    // private List<User> users;
-
+    @OneToMany(mappedBy = "group")
+    private Set<UserToGroupMember> userToGroupMembers;
+    
     // constructors
     protected Group() {
     }

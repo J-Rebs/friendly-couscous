@@ -32,6 +32,9 @@ public class User {
     @OneToMany(mappedBy = "user")
     private Set<PlaylistToSubscriber> playlistToSubscriber;
 
+    @OneToMany(mappedBy = "user")
+    private Set<UserToGroupMember> userToGroupMember;
+
     // constructors
     protected User() {
     }

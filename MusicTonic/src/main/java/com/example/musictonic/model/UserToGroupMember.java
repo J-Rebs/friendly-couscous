@@ -5,8 +5,8 @@ import java.io.Serializable;
 
 
 @Entity
-@Table(name = "playlist_to_subscriber")
-public class PlaylistToSubscriber implements Serializable {
+@Table(name = "user_to_group_member")
+public class UserToGroupMember implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,15 +16,15 @@ public class PlaylistToSubscriber implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(columnDefinition = "serial")
-    private Long playlistId;
+    private Long groupId;
 
     @ManyToOne
     @JoinColumn(name = "userId", nullable = true)
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "playlistId", nullable = true)
-    private Playlist playlist;
+    @JoinColumn(name = "groupId", nullable = true)
+    private Group group;
 
     public Long getUserId() {
         return userId;
@@ -34,19 +34,19 @@ public class PlaylistToSubscriber implements Serializable {
         this.userId = userId;
     }
 
-    public Long getPlaylistId() {
-        return playlistId;
+    public Long getGroupId() {
+        return groupId;
     }
 
-    public void setPlaylistId(Long playlistId) {
-        this.playlistId = playlistId;
+    public void setGroupId(Long groupId) {
+        this.groupId = groupId;
     }
 
     @Override
     public String toString() {
-        return "PlaylistToSubscriber{" +
+        return "UserToGroupMember{" +
                 "userId=" + userId +
-                ", playlistId=" + playlistId +
+                ", groupId=" + groupId +
                 '}';
     }
 
