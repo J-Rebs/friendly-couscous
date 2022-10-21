@@ -31,6 +31,9 @@ public class Song {
     @OneToMany(mappedBy = "song")
     private Set<PlaylistToSongs> playlistToSongs;
 
+    @OneToMany(mappedBy = "song")
+    private Set<AnalyticsSong> analyticsSongs;
+
 
     // constructors
     protected Song() {

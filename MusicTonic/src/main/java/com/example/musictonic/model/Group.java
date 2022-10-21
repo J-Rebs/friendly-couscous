@@ -24,7 +24,10 @@ public class Group {
 
     @OneToMany(mappedBy = "group")
     private Set<UserToGroupMember> userToGroupMembers;
-    
+
+    @OneToMany(mappedBy = "group")
+    private Set<AnalyticsGroup> analyticsGroups;
+
     // constructors
     protected Group() {
     }

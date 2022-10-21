@@ -29,6 +29,10 @@ public class Playlist {
     @OneToMany(mappedBy = "playlist")
     private Set<PlaylistToSongs> playlistToSongs;
 
+    @OneToMany(mappedBy = "playlist")
+    private Set<AnalyticsPlaylist> analyticsPlaylists;
+
+
     // constructors
     // add default constructor for sake of JPA
     protected Playlist() {

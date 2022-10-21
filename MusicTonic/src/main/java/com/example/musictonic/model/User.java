@@ -35,6 +35,9 @@ public class User {
     @OneToMany(mappedBy = "user")
     private Set<UserToGroupMember> userToGroupMember;
 
+    @OneToMany(mappedBy = "user")
+    private Set<AnalyticsUser> analyticsUser;
+
     // constructors
     protected User() {
     }
