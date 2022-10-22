@@ -1,5 +1,12 @@
 package com.example.musictonic.services;
 
+import com.example.musictonic.repository.AnalyticsRepository;
+import com.example.musictonic.repository.SongRepository;
+import com.example.musictonic.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+
 /*
  *
  *  WANT TO HAVE:
@@ -17,5 +24,14 @@ package com.example.musictonic.services;
  *  Johnny playing a song ~ in postman to doing a post route for a song
  *
  * */
+@Service
 public class Client1Service {
+    // Repositories - analytics, song, user
+    @Autowired
+    UserRepository userRepo;
+    @Autowired
+    AnalyticsRepository analyticsRepo;
+    @Autowired
+    SongRepository songRepo;
+
 }
