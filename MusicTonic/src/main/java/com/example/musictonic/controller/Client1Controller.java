@@ -35,7 +35,7 @@ public class Client1Controller {
         return "PLACEHOLDER FOR GET";
     }
 
-    @PostMapping("/playsong/{userID}")
+    @PostMapping("/playsong/userID?{userID}")
     public String /*ResponseEntity<Analytics>*/ createAnalyticalSongs(@PathVariable("userID") long userID, @RequestBody Analytics analytic) {
         /*try {
             Analytics analytics = client1Service.playSong(userID);
@@ -44,5 +44,11 @@ public class Client1Controller {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }*/
         return "123";
+    }
+
+    @PostMapping("/api/userId")
+    @ResponseBody
+    public String createSongs(@RequestParam(name = "userid") String userID, @RequestParam String name) {
+        return "ID: " + userID + " Name: " + name;
     }
 }
