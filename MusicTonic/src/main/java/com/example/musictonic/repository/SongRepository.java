@@ -1,6 +1,7 @@
 package com.example.musictonic.repository;
 
 import com.example.musictonic.model.Song;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
@@ -18,7 +19,7 @@ import java.util.List;
  * */
 
 
-public interface SongRepository extends CrudRepository<Song, Long> {
+public interface SongRepository extends JpaRepository<Song, Long> {
 
     //Note: your naming conventions must match how you establish the entity
     //e.g., code will fail if you write findByReal_Name;

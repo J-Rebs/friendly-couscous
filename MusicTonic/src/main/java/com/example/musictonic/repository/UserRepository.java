@@ -1,9 +1,11 @@
 package com.example.musictonic.repository;
 
+import com.example.musictonic.model.Analytics;
 import com.example.musictonic.model.User;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 
 /*
@@ -19,7 +21,7 @@ import org.springframework.data.repository.CrudRepository;
  * */
 
 
-public interface UserRepository extends CrudRepository<User, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
     //Note: your naming conventions must match how you establish the entity
     //e.g., code will fail if you write findByReal_Name;
@@ -30,4 +32,5 @@ public interface UserRepository extends CrudRepository<User, Long> {
     User findByUserId(Long userId);
 
     List<User> findAllByMainGenre(String mainGenre);
+
 }

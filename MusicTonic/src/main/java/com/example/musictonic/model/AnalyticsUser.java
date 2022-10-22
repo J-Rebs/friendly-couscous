@@ -1,5 +1,7 @@
 package com.example.musictonic.model;
 
+import com.example.musictonic.repository.UserRepository;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -27,6 +29,11 @@ public class AnalyticsUser implements Serializable {
 
     public AnalyticsUser(Long id, Analytics analytics, User user) {
         this.id = id;
+        this.analytics = analytics;
+        this.user = user;
+    }
+
+    public AnalyticsUser(Analytics analytics, User user) {
         this.analytics = analytics;
         this.user = user;
     }
