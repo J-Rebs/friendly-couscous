@@ -1,10 +1,12 @@
 package com.example.musictonic.services;
 
-import com.example.musictonic.repository.AnalyticsRepository;
-import com.example.musictonic.repository.SongRepository;
-import com.example.musictonic.repository.UserRepository;
+import com.example.musictonic.model.Analytics;
+import com.example.musictonic.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /*
@@ -31,7 +33,29 @@ public class Client1Service {
     UserRepository userRepo;
     @Autowired
     AnalyticsRepository analyticsRepo;
+
+    @Autowired
+    AnalyticsSongRepository analyticsSongRepository;
+
+    @Autowired
+    AnalyticsUserRepository analyticsUserRepository;
+
+    @Autowired
+    AnalyticsPlaylistRepository analyticsPlaylistRepository;
+
     @Autowired
     SongRepository songRepo;
 
+    // post operation -- play songs
+    public List<Analytics> playSong(Integer songID, Integer userID, Integer playListID) {
+        // insert into analytics
+
+        // insert into analytics song
+
+        // insert into analytics user
+
+        // insert into analytics playlist
+        List<Analytics> ls = new ArrayList<>();
+        return ls;
+    }
 }
