@@ -35,18 +35,18 @@ public class Client1Controller {
         return "PLACEHOLDER FOR GET";
     }
 
-    @PostMapping("/playsong/userID?{userID}")
-    public String /*ResponseEntity<Analytics>*/ createAnalyticalSongs(@PathVariable("userID") long userID, @RequestBody Analytics analytic) {
-        /*try {
-            Analytics analytics = client1Service.playSong(userID);
+    @PostMapping("/playsong/userid")
+    @ResponseBody
+    public ResponseEntity<Analytics> createAnalyticalSongs(@RequestParam(name = "userid") String userID) {
+        try {
+            Analytics analytics = client1Service.playSong(Long.parseLong(userID));
             return new ResponseEntity<>(analytics, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }*/
-        return "123";
+        }
     }
 
-    @PostMapping("/api/userId")
+    @GetMapping("/playsong/id")
     @ResponseBody
     public String createSongs(@RequestParam(name = "userid") String userID, @RequestParam String name) {
         return "ID: " + userID + " Name: " + name;
