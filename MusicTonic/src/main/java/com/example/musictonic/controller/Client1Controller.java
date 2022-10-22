@@ -45,10 +45,4 @@ public class Client1Controller {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
-    @GetMapping("/playsong/id")
-    @ResponseBody
-    public String createSongs(@RequestParam(name = "userid") String userID, @RequestParam String name) {
-        return "ID: " + userID + " Name: " + name;
-    }
 }
