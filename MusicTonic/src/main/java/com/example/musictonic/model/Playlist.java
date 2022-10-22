@@ -39,7 +39,7 @@ public class Playlist {
     }
 
     public Playlist(Long playlistId, String owner, String name, Boolean isDefault) {
-        playlistId = playlistId;
+        this.playlistId = playlistId;
         this.owner = owner;
         this.name = name;
         this.isDefault = isDefault;

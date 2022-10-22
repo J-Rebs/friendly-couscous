@@ -11,12 +11,8 @@ public class PlaylistToSongs implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(columnDefinition = "serial")
-    private Long playlistId;
+    private Long id;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(columnDefinition = "serial")
-    private Long songId;
 
     @ManyToOne
     @JoinColumn(name = "songId", nullable = true)
@@ -29,27 +25,18 @@ public class PlaylistToSongs implements Serializable {
     protected PlaylistToSongs() {
     }
 
-    public PlaylistToSongs(Long playlistId, Long songId, Song song, Playlist playlist) {
-        this.playlistId = playlistId;
-        this.songId = songId;
+    public PlaylistToSongs(Long id, Song song, Playlist playlist) {
+        this.id = id;
         this.song = song;
         this.playlist = playlist;
     }
 
-    public Long getPlaylistId() {
-        return playlistId;
+    public Long getId() {
+        return this.id;
     }
 
-    public void setPlaylistId(Long playlistId) {
-        this.playlistId = playlistId;
-    }
-
-    public Long getSongId() {
-        return songId;
-    }
-
-    public void setSongId(Long songId) {
-        this.songId = songId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Song getSong() {
@@ -71,11 +58,9 @@ public class PlaylistToSongs implements Serializable {
     @Override
     public String toString() {
         return "PlaylistToSongs{" +
-                "playlistId=" + playlistId +
-                ", songId=" + songId +
+                "id=" + id +
                 ", song=" + song +
                 ", playlist=" + playlist +
                 '}';
     }
-
 }

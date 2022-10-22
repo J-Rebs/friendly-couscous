@@ -9,6 +9,8 @@ import java.io.Serializable;
 public class AnalyticsSong implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(columnDefinition = "serial")
     Long id;
 
     @ManyToOne
