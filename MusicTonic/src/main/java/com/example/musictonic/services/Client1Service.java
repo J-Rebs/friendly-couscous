@@ -50,19 +50,20 @@ public class Client1Service {
 
     // post operation -- play songs
     public Analytics playSong(Long userID) {
+
         // insert into analytics (or returns the id)
+        Date date = new Date();
+        Timestamp timestamp = new Timestamp(date.getTime());
+
+        Analytics a = analyticsRepo.save(new Analytics(timestamp));
 
         // insert into analytics song with the parameters of song id and new analytics id
 
         // insert into analytics user with the parameters of song id and new analytics id
 
         // insert into analytics playlist with the parameters of song id and new analytics id
-        List<Analytics> ls = analyticsRepo.insertIntoAnalytics();
 
-        Date date = new Date();
-        Timestamp timestamp = new Timestamp(date.getTime());
-
-        Analytics a = analyticsRepo.save(new Analytics(timestamp));
         return a;
     }
+
 }
