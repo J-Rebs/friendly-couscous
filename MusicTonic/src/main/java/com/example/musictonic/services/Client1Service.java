@@ -48,13 +48,13 @@ public class Client1Service {
 
     // post operation -- play songs
     public List<Analytics> playSong(Integer songID, Integer userID, Integer playListID) {
-        // insert into analytics
+        // insert into analytics (or returns the id)
 
-        // insert into analytics song
+        // insert into analytics song with the parameters of song id and new analytics id
 
-        // insert into analytics user
+        // insert into analytics user with the parameters of song id and new analytics id
 
-        // insert into analytics playlist
+        // insert into analytics playlist with the parameters of song id and new analytics id
         List<Analytics> ls = new ArrayList<>();
         return ls;
     }
