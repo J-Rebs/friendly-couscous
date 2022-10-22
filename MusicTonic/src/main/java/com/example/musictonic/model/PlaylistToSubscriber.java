@@ -25,8 +25,9 @@ public class PlaylistToSubscriber implements Serializable {
 
     }
 
-
-
-
-
+    public PlaylistToSubscriber(Long id, User user, Playlist playlist) {
+        this.id = id;
+        this.user = user;
+        this.playlist = playlist;
+    }
 }
