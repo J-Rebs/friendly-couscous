@@ -55,7 +55,8 @@ public class Client1Service {
         // insert into analytics user with the parameters of song id and new analytics id
 
         // insert into analytics playlist with the parameters of song id and new analytics id
-        List<Analytics> ls = new ArrayList<>();
+        List<Analytics> ls = analyticsRepo.insertIntoAnalytics();
+
         return ls;
     }
 }

@@ -1,7 +1,11 @@
 package com.example.musictonic.repository;
 
 import com.example.musictonic.model.Analytics;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+
+import java.util.List;
 
 /*
  * "Spring Data JPA focuses on using JPA to store data in a relational database.
@@ -21,5 +25,9 @@ public interface AnalyticsRepository extends CrudRepository<Analytics, Long> {
     //Note: your naming conventions must match how you establish the entity
     //e.g., code will fail if you write findByReal_Name;
 
+//    @Modifying
+//    @Query(value = "INSERT INTO analytics (timestamp) VALUES (NOW())", nativeQuery = true)
+    @Query(value = "SELECT * FROM analytics", nativeQuery = true)
+    List<Analytics> insertIntoAnalytics();
 
 }
