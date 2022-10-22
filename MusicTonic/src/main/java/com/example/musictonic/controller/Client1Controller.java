@@ -36,12 +36,13 @@ public class Client1Controller {
     }
 
     @PostMapping("/playsong/{userID}")
-    public ResponseEntity<Analytics> createAnalyticalSongs(@PathVariable("userID") long userID, @RequestBody Analytics analytic) {
-        try {
+    public String /*ResponseEntity<Analytics>*/ createAnalyticalSongs(@PathVariable("userID") long userID, @RequestBody Analytics analytic) {
+        /*try {
             Analytics analytics = client1Service.playSong(userID);
             return new ResponseEntity<>(analytics, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        }*/
+        return "123";
     }
 }
