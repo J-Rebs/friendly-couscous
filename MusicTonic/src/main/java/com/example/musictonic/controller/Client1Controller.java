@@ -35,8 +35,8 @@ public class Client1Controller {
         return "PLACEHOLDER FOR GET";
     }
 
-    @PostMapping("/playsong")
-    public ResponseEntity<Analytics> createAnalyticalSongs(@RequestBody Long userID) {
+    @PostMapping("/playsong/{userID}")
+    public ResponseEntity<Analytics> createAnalyticalSongs(@PathVariable("userID") long userID, @RequestBody Analytics analytic) {
         try {
             Analytics analytics = client1Service.playSong(userID);
             return new ResponseEntity<>(analytics, HttpStatus.CREATED);
