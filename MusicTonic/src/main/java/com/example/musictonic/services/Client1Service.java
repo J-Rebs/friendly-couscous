@@ -5,7 +5,9 @@ import com.example.musictonic.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -47,7 +49,7 @@ public class Client1Service {
     SongRepository songRepo;
 
     // post operation -- play songs
-    public List<Analytics> playSong(Integer songID, Integer userID, Integer playListID) {
+    public Analytics playSong(Long userID) {
         // insert into analytics (or returns the id)
 
         // insert into analytics song with the parameters of song id and new analytics id
@@ -57,6 +59,10 @@ public class Client1Service {
         // insert into analytics playlist with the parameters of song id and new analytics id
         List<Analytics> ls = analyticsRepo.insertIntoAnalytics();
 
-        return ls;
+        Date date = new Date();
+        Timestamp timestamp = new Timestamp(date.getTime());
+
+        Analytics a = analyticsRepo.save(new Analytics(timestamp));
+        return a;
     }
 }

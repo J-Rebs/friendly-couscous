@@ -42,6 +42,10 @@ public class Analytics {
         this.analyticsGroup = analyticsGroup;
     }
 
+    public Analytics(Timestamp timestamp) {
+        this.timestamp = timestamp;
+    }
+
     public Long getAnalyticsId() {
         return analyticsId;
     }

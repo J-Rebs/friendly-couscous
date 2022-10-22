@@ -4,10 +4,10 @@ import com.example.musictonic.model.Analytics;
 import com.example.musictonic.model.Song;
 import com.example.musictonic.services.Client1Service;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 //import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +23,7 @@ public class Client1Controller {
     @Autowired
     Client1Service client1Service;
 
+
 //    private final HttpServletRequest request;
 
     // Default constructor for Client1Controller
@@ -30,24 +31,17 @@ public class Client1Controller {
 
     //    @PostMapping(value = "/playsong")
     @GetMapping(value = "/playsong")
-//    List<Long> playSong() {
-//        List<Analytics> l = client1Service.playSong(1,1,1);
-//        List<Long> result = new ArrayList<>();
-//
-//        for (Analytics a : l) {
-//            result.add(a.getAnalyticsId());
-//        }
-//
-//        return result;
-//    }
-    List<Long> playSong() {
-        List<Analytics> l = client1Service.playSong(1,1,1);
-        List<Long> result = new ArrayList<>();
+    String playSong(){
+        return "PLACEHOLDER FOR GET";
+    }
 
-        for (Analytics a : l) {
-            result.add(a.getAnalyticsId());
+    @PostMapping("/playsong")
+    public ResponseEntity<Analytics> createAnalyticalSongs(@RequestBody Long userID) {
+        try {
+            Analytics analytics = client1Service.playSong(userID);
+            return new ResponseEntity<>(analytics, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
-        return result;
     }
 }
