@@ -11,7 +11,7 @@ public class AnalyticsGroup implements Serializable {
     @Id
     Long id;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "analyticsId")
     private Analytics analytics;
 

@@ -13,7 +13,7 @@ public class AnalyticsSong implements Serializable {
     @Column(columnDefinition = "serial")
     Long id;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "analyticsId")
     private Analytics analytics;
 

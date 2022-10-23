@@ -17,23 +17,23 @@ public class Analytics {
     @Column(name = "timestamp")
     private java.sql.Timestamp timestamp;
 
-    @OneToMany(mappedBy = "analytics")
-    private Set<AnalyticsSong> analyticsSong;
+    @OneToOne(mappedBy = "analytics")
+    private AnalyticsSong analyticsSong;
 
-    @OneToMany(mappedBy = "analytics")
-    private Set<AnalyticsPlaylist> analyticsPlaylist;
+    @OneToOne(mappedBy = "analytics")
+    private AnalyticsPlaylist analyticsPlaylist;
 
-    @OneToMany(mappedBy = "analytics")
-    private Set<AnalyticsUser> analyticsUser;
+    @OneToOne(mappedBy = "analytics")
+    private AnalyticsUser analyticsUser;
 
-    @OneToMany(mappedBy = "analytics")
-    private Set<AnalyticsGroup> analyticsGroup;
+    @OneToOne(mappedBy = "analytics")
+    private AnalyticsGroup analyticsGroup;
 
     // constructors
     protected Analytics() {
     }
 
-    public Analytics(Long analyticsId, Timestamp timestamp, Set<AnalyticsSong> analyticsSong, Set<AnalyticsPlaylist> analyticsPlaylist, Set<AnalyticsUser> analyticsUser, Set<AnalyticsGroup> analyticsGroup) {
+    public Analytics(Long analyticsId, Timestamp timestamp, AnalyticsSong analyticsSong, AnalyticsPlaylist analyticsPlaylist, AnalyticsUser analyticsUser, AnalyticsGroup analyticsGroup) {
         this.analyticsId = analyticsId;
         this.timestamp = timestamp;
         this.analyticsSong = analyticsSong;
@@ -62,35 +62,35 @@ public class Analytics {
         this.timestamp = timestamp;
     }
 
-    public Set<AnalyticsSong> getAnalyticsSong() {
+    public AnalyticsSong getAnalyticsSong() {
         return analyticsSong;
     }
 
-    public void setAnalyticsSong(Set<AnalyticsSong> analyticsSong) {
+    public void setAnalyticsSong(AnalyticsSong analyticsSong) {
         this.analyticsSong = analyticsSong;
     }
 
-    public Set<AnalyticsPlaylist> getAnalyticsPlaylist() {
+    public AnalyticsPlaylist getAnalyticsPlaylist() {
         return analyticsPlaylist;
     }
 
-    public void setAnalyticsPlaylist(Set<AnalyticsPlaylist> analyticsPlaylist) {
+    public void setAnalyticsPlaylist(AnalyticsPlaylist analyticsPlaylist) {
         this.analyticsPlaylist = analyticsPlaylist;
     }
 
-    public Set<AnalyticsUser> getAnalyticsUser() {
+    public AnalyticsUser getAnalyticsUser() {
         return analyticsUser;
     }
 
-    public void setAnalyticsUser(Set<AnalyticsUser> analyticsUser) {
+    public void setAnalyticsUser(AnalyticsUser analyticsUser) {
         this.analyticsUser = analyticsUser;
     }
 
-    public Set<AnalyticsGroup> getAnalyticsGroup() {
+    public AnalyticsGroup getAnalyticsGroup() {
         return analyticsGroup;
     }
 
-    public void setAnalyticsGroup(Set<AnalyticsGroup> analyticsGroup) {
+    public void setAnalyticsGroup(AnalyticsGroup analyticsGroup) {
         this.analyticsGroup = analyticsGroup;
     }
 
