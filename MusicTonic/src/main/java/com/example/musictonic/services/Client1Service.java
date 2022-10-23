@@ -75,6 +75,8 @@ public class Client1Service {
         AnalyticsPlaylist analyticsPlaylist = new AnalyticsPlaylist(a, playlist);
         analyticsPlaylistRepo.save(analyticsPlaylist);
 
+        a.setAnalyticsUser(analyticsUser);
+
         return a;
     }
 }
