@@ -33,12 +33,12 @@ public class Client1Controller {
     // reference: https://www.baeldung.com/spring-request-param
     @PostMapping("/playsong/userid")
     @ResponseBody
-    public ResponseEntity<Analytics> createAnalyticalSongs(@RequestParam(name = "userid") String userId,
+    public ResponseEntity<Long> createAnalyticalSongs(@RequestParam(name = "userid") String userId,
                                                            @RequestParam(name = "songid") String songId,
                                                            @RequestParam(name = "playlistid") String playlistId) {
         try {
-            Analytics analytics = client1Service.playSong(Long.parseLong(userId), Long.parseLong(songId), Long.parseLong(playlistId));
-            return new ResponseEntity<>(analytics, HttpStatus.CREATED);
+            Long analyticsId = client1Service.playSong(Long.parseLong(userId), Long.parseLong(songId), Long.parseLong(playlistId));
+            return new ResponseEntity<>(analyticsId, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
