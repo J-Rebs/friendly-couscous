@@ -31,4 +31,8 @@ public class AnalyticsPlaylist implements Serializable {
         this.playlist = playlist;
     }
 
+    public AnalyticsPlaylist(Analytics a, Playlist playlist) {
+        this.analytics = a;
+        this.playlist = playlist;
+    }
 }

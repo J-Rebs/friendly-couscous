@@ -48,8 +48,11 @@ public class Client1Service {
     @Autowired
     SongRepository songRepo;
 
+    @Autowired
+    PlaylistRepository playlistRepo;
+
     // post operation -- play songs
-    public Analytics playSong(Long userID, Long songId) {
+    public Analytics playSong(Long userId, Long songId, Long playlistId) {
 
         // insert into analytics (or returns the id)
         Date date = new Date();
@@ -62,15 +65,16 @@ public class Client1Service {
         AnalyticsSong analyticsSong = new AnalyticsSong(a, song);
         analyticsSongRepo.save(analyticsSong);
 
-
         // insert into analytics user with the parameters of user id and new analytics id
-        User user = userRepo.findByUserId(userID);
+        User user = userRepo.findByUserId(userId);
         AnalyticsUser analyticsUser = new AnalyticsUser(a, user);
         analyticsUserRepo.save(analyticsUser);
 
         // insert into analytics playlist with the parameters of playlist id and new analytics id
+        Playlist playlist = playlistRepo.findByPlaylistId(playlistId);
+        AnalyticsPlaylist analyticsPlaylist = new AnalyticsPlaylist(a, playlist);
+        analyticsPlaylistRepo.save(analyticsPlaylist);
 
         return a;
     }
-
 }
