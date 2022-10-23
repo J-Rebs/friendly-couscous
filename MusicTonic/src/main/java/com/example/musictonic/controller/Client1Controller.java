@@ -1,16 +1,15 @@
 package com.example.musictonic.controller;
 
+import com.example.musictonic.Utils.PlaySongReturn;
 import com.example.musictonic.model.Analytics;
-import com.example.musictonic.model.Song;
 import com.example.musictonic.services.Client1Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+//import org.springframework.boot.configurationprocessor.json;
 //import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequestMapping("client1-rest")
@@ -33,12 +32,13 @@ public class Client1Controller {
     // reference: https://www.baeldung.com/spring-request-param
     @PostMapping("/playsong/userid")
     @ResponseBody
-    public ResponseEntity<Long> createAnalyticalSongs(@RequestParam(name = "userid") String userId,
-                                                           @RequestParam(name = "songid") String songId,
-                                                           @RequestParam(name = "playlistid") String playlistId) {
+    public ResponseEntity<PlaySongReturn> createAnalyticalSongs(@RequestParam(name = "userid") String userId,
+                                                                @RequestParam(name = "songid") String songId,
+                                                                @RequestParam(name = "playlistid") String playlistId) {
         try {
-            Long analyticsId = client1Service.playSong(Long.parseLong(userId), Long.parseLong(songId), Long.parseLong(playlistId));
-            return new ResponseEntity<>(analyticsId, HttpStatus.CREATED);
+            Analytics analytics = client1Service.playSong(Long.parseLong(userId), Long.parseLong(songId), Long.parseLong(playlistId));
+            PlaySongReturn response = new PlaySongReturn(analytics.getAnalyticsId(), analytics.getTimestamp());
+            return new ResponseEntity<>(response, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
