@@ -19,27 +19,24 @@ public class Client1Controller {
     // Autowired client1Controller
     // Implement routes
         // POST request for playing song
-        // POST request for subscribing to a playlist
+    // POST request for subscribing to a playlist
     @Autowired
     Client1Service client1Service;
 
 
-//    private final HttpServletRequest request;
-
-    // Default constructor for Client1Controller
-//    public Client1Controller(HttpServletRequest request) { this.request = request; }
-
-    //    @PostMapping(value = "/playsong")
     @GetMapping(value = "/playsong")
-    String playSong(){
+    String playSong() {
         return "PLACEHOLDER FOR GET";
     }
 
+
+    // reference: https://www.baeldung.com/spring-request-param
     @PostMapping("/playsong/userid")
     @ResponseBody
-    public ResponseEntity<Analytics> createAnalyticalSongs(@RequestParam(name = "userid") String userID) {
+    public ResponseEntity<Analytics> createAnalyticalSongs(@RequestParam(name = "userid") String userID,
+                                                           @RequestParam(name = "songid") String songId) {
         try {
-            Analytics analytics = client1Service.playSong(Long.parseLong(userID));
+            Analytics analytics = client1Service.playSong(Long.parseLong(userID), Long.parseLong(songId));
             return new ResponseEntity<>(analytics, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

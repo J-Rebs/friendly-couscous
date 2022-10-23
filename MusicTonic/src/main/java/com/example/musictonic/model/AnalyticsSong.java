@@ -31,4 +31,8 @@ public class AnalyticsSong implements Serializable {
         this.song = song;
     }
 
+    public AnalyticsSong(Analytics a, Song song) {
+        this.analytics = a;
+        this.song = song;
+    }
 }

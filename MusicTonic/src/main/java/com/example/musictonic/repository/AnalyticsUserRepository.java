@@ -1,9 +1,7 @@
 package com.example.musictonic.repository;
 
-import com.example.musictonic.model.Analytics;
 import com.example.musictonic.model.AnalyticsUser;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.CrudRepository;
 
 /*
  * "Spring Data JPA focuses on using JPA to store data in a relational database.

@@ -1,8 +1,6 @@
 package com.example.musictonic.services;
 
-import com.example.musictonic.model.Analytics;
-import com.example.musictonic.model.AnalyticsUser;
-import com.example.musictonic.model.User;
+import com.example.musictonic.model.*;
 import com.example.musictonic.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,7 +49,7 @@ public class Client1Service {
     SongRepository songRepo;
 
     // post operation -- play songs
-    public Analytics playSong(Long userID) {
+    public Analytics playSong(Long userID, Long songId) {
 
         // insert into analytics (or returns the id)
         Date date = new Date();
@@ -60,13 +58,17 @@ public class Client1Service {
         Analytics a = analyticsRepo.save(new Analytics(timestamp));
 
         // insert into analytics song with the parameters of song id and new analytics id
+        Song song = songRepo.findBySongId(songId);
+        AnalyticsSong analyticsSong = new AnalyticsSong(a, song);
+        analyticsSongRepo.save(analyticsSong);
+
 
         // insert into analytics user with the parameters of user id and new analytics id
         User user = userRepo.findByUserId(userID);
         AnalyticsUser analyticsUser = new AnalyticsUser(a, user);
         analyticsUserRepo.save(analyticsUser);
 
-        // insert into analytics playlist with the parameters of song id and new analytics id
+        // insert into analytics playlist with the parameters of playlist id and new analytics id
 
         return a;
     }
