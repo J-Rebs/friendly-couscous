@@ -11,6 +11,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /* SRC: https://stackoverflow.com/questions/44200720/difference-between-mock-mockbean-and-mockito-mock */
@@ -32,6 +33,12 @@ class Client1ControllerTest {
     }
 
     @Test
-    void createAnalyticalSongs() {
+    void createAnalyticalSongs() throws Exception {
+        mvc.perform(post("https://music-tonic.herokuapp.com/client1-rest/playsong?userid=1&songid=1&playlistid=1"))
+                .andExpect(status().isOk());
+
+        mvc.perform(post("https://music-tonic.herokuapp.com/client1-rest/playsong?userid=123&songid=123&playlistid=123"))
+                .andExpect(status().isBadRequest());
     }
+
 }
