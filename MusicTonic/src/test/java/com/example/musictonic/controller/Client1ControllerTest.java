@@ -37,8 +37,7 @@ class Client1ControllerTest {
         mvc.perform(post("https://music-tonic.herokuapp.com/client1-rest/playsong?userid=1&songid=1&playlistid=1"))
                 .andExpect(status().isOk());
 
-        mvc.perform(post("https://music-tonic.herokuapp.com/client1-rest/playsong?userid=123&songid=123&playlistid=123"))
-                .andExpect(status().isBadRequest());
+        
     }
 
 }
