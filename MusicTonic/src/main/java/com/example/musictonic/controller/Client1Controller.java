@@ -30,7 +30,7 @@ public class Client1Controller {
 
 
     // reference: https://www.baeldung.com/spring-request-param
-    @PostMapping("/playsong/post")
+    @PostMapping("/playsong/userid")
     @ResponseBody
     public ResponseEntity<PlaySongReturn> createAnalyticalSongs(@RequestParam(name = "userid") String userId,
                                                                 @RequestParam(name = "songid") String songId,
