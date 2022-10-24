@@ -27,16 +27,15 @@ class Client1ControllerTest {
     Client1Service client1Service;
 
     @Test
-    void playSong() throws Exception {
+    void playSongGood() throws Exception {
         mvc.perform(get("/client1-rest/playsong"))
                 .andExpect(status().isOk());
     }
 
-//    @Test
-//    void createAnalyticalSongs() throws Exception {
-//        mvc.perform(post("https://music-tonic.herokuapp.com/client1-rest/playsong?userid=1&songid=1&playlistid=1"))
-//                .andExpect(status().isOk());
-//
-//    }
+    @Test
+    void playSongBad() throws Exception {
+        mvc.perform(get("/client1-rest/playsong?userid=1&songid=1&playlistid=1"))
+                .andExpect(status().isBadRequest());
+    }
 
 }
