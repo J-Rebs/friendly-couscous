@@ -6,6 +6,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -20,6 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(Client1Controller.class)
+@ActiveProfiles("test")
 class Client1ControllerTest {
 
     @Autowired
@@ -34,10 +36,10 @@ class Client1ControllerTest {
                 .andExpect(status().isOk());
     }
 
- /*   @Test
+    @Test
     void playSongBad() throws Exception {
-        mvc.perform(get("/client1-rest/playsong?userid=1234234&songid=1&playlistid=1").header("User-Agent", "PostmanRuntime/7.6.0"))
+        mvc.perform(post("/client1-rest/playsong?userid=1234234&songid=1&playlistid=1").header("User-Agent", "PostmanRuntime/7.6.0"))
                 .andExpect(status().isBadRequest());
     }
-*/
+
 }
