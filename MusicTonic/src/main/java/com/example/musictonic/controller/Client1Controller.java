@@ -40,7 +40,7 @@ public class Client1Controller {
             PlaySongReturn response = new PlaySongReturn(analytics.getAnalyticsId(), analytics.getTimestamp());
             return new ResponseEntity<>(response, HttpStatus.CREATED);
         } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }
 }
