@@ -32,12 +32,11 @@ class Client1ControllerTest {
                 .andExpect(status().isOk());
     }
 
-    @Test
-    void createAnalyticalSongs() throws Exception {
-        mvc.perform(post("https://music-tonic.herokuapp.com/client1-rest/playsong?userid=1&songid=1&playlistid=1"))
-                .andExpect(status().isOk());
-
-        
-    }
+//    @Test
+//    void createAnalyticalSongs() throws Exception {
+//        mvc.perform(post("https://music-tonic.herokuapp.com/client1-rest/playsong?userid=1&songid=1&playlistid=1"))
+//                .andExpect(status().isOk());
+//
+//    }
 
 }
