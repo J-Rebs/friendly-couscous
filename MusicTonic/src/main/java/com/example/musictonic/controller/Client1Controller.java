@@ -17,7 +17,7 @@ public class Client1Controller {
     // [1.1, 1.2] Import our service - business functionality - playSong, subscribeToPlaylist
     // Autowired client1Controller
     // Implement routes
-        // POST request for playing song
+    // POST request for playing song
     // POST request for subscribing to a playlist
     @Autowired
     Client1Service client1Service;
@@ -30,7 +30,7 @@ public class Client1Controller {
 
 
     // reference: https://www.baeldung.com/spring-request-param
-    @PostMapping("/playsong/userid")
+    @PostMapping("/playsong")
     @ResponseBody
     public ResponseEntity<PlaySongReturn> createAnalyticalSongs(@RequestParam(name = "userid") String userId,
                                                                 @RequestParam(name = "songid") String songId,
