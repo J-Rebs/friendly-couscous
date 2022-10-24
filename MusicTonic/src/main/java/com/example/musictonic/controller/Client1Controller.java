@@ -7,7 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.example.musictonic.exceptions.BadRequestException;
+//import org.springframework.boot.configurationprocessor.json;
+//import org.springframework.web.bind.annotation.PostMapping;
 
 
 @RestController
@@ -39,7 +40,7 @@ public class Client1Controller {
             PlaySongReturn response = new PlaySongReturn(analytics.getAnalyticsId(), analytics.getTimestamp());
             return new ResponseEntity<>(response, HttpStatus.CREATED);
         } catch (Exception e) {
-            throw new BadRequestException("Bad request");
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }
 }

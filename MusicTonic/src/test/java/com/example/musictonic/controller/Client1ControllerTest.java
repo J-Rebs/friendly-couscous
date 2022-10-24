@@ -14,6 +14,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+
+
 /* SRC: https://stackoverflow.com/questions/44200720/difference-between-mock-mockbean-and-mockito-mock */
 
 @RunWith(SpringRunner.class)
@@ -32,10 +34,10 @@ class Client1ControllerTest {
                 .andExpect(status().isOk());
     }
 
-    @Test
+ /*   @Test
     void playSongBad() throws Exception {
-        mvc.perform(get("/client1-rest/playsong?userid=1234234&songid=1&playlistid=1"))
+        mvc.perform(get("/client1-rest/playsong?userid=1234234&songid=1&playlistid=1").header("User-Agent", "PostmanRuntime/7.6.0"))
                 .andExpect(status().isBadRequest());
     }
-
+*/
 }
