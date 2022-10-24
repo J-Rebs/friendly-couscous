@@ -34,7 +34,7 @@ class Client1ControllerTest {
 
     @Test
     void playSongBad() throws Exception {
-        mvc.perform(get("/client1-rest/playsong?userid=1&songid=1&playlistid=1"))
+        mvc.perform(get("/client1-rest/playsong?userid=1234234&songid=1&playlistid=1"))
                 .andExpect(status().isBadRequest());
     }
 
