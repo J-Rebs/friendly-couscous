@@ -7,6 +7,9 @@ Joseph Rebagliati [jr4162], Yuhao Dong [yd2626], Madison Thantu [mgt2143]
 
 ## 1. Documented API
 
+- `/client1/rest/playsong`
+- `/client1/rest/playsong?userid={id}?`
+
 ## 2. System Tests Corresponding to API
 
 ## 3. Unit Tests
