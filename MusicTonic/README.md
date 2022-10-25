@@ -7,7 +7,7 @@ Joseph Rebagliati [jr4162], Yuhao Dong [yd2626], Madison Thantu [mgt2143]
 
 ## 1. Documented API
 
-###CLIENT 1###
+### CLIENT 1 ###
 - TYPE OF REQUEST: `GET` 
   - ROUTE: `/client1/rest/playsong` 
   - PURPOSE: Gets users available who can play song
@@ -17,9 +17,9 @@ Joseph Rebagliati [jr4162], Yuhao Dong [yd2626], Madison Thantu [mgt2143]
 -   PURPOSE: Registers a song played in the analytics relation for a given user, song, and playlist 
 -   FUTURE Development: implementation of authentication layer for a client
 
-###CLIENT 2###
+### CLIENT 2 ###
 
-###CLIENT 3###
+### CLIENT 3 ###
 
 ## 2. System Tests Corresponding to API
 
