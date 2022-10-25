@@ -40,9 +40,14 @@ We are using CheckStyle in Intelli-J to check our style compliance.
 
 ## 5. Build, Run, Test Instructions
 
-To run the project, we recommend downloading IntelliJ, see [here](https://www.jetbrains.com/idea/). From here deployment can be done by click `run` on MusicTonic.application. Below is a screenshot to show this in IntelliJ. 
+To run the project, we recommend downloading IntelliJ, see [here](https://www.jetbrains.com/idea/). From here deployment can be done by click `run` on MusicTonicApplication. This will build and run the application. Tests can be run independently of build, but they are included in the prior instruction by default for unit testing. To run tests independently, you can use the Maven Tool Window and run Maven Tests. Below are screenshots to show this in IntelliJ. 
+
+### Build and Run in IntelliJ
 
 ![image](https://user-images.githubusercontent.com/84640075/197676982-2d11ce27-ec65-4ad3-bf0e-e516858d6eaa.png)
 
+### Test in IntelliJ
+
+![image](https://user-images.githubusercontent.com/84640075/197677593-b653a00f-21d8-45eb-8775-ffed29003ab1.png)
 
 
