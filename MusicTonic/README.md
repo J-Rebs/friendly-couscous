@@ -41,7 +41,8 @@ We are using CheckStyle in Intelli-J to check our style compliance.
 ## 5. Build, Run, Test Instructions
 
 To run the project, we recommend downloading IntelliJ, see [here](https://www.jetbrains.com/idea/). From here deployment can be done by click `run` on MusicTonic.application.
-![image](https://user-images.githubusercontent.com/84640075/197676982-2d11ce27-ec65-4ad3-bf0e-e516858d6eaa.png)
+
+![image](https://user-images.githubusercontent.com/84640075/197676982-2d11ce27-ec65-4ad3-bf0e-e516858d6eaa.png | width=100)
 
 
 
