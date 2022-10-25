@@ -2,6 +2,8 @@
 
 ## Final Project: MusicTonic Service
 
+## Public Access Point: https://music-tonic.herokuapp.com/
+
 ### Team Members  
 
 Ryan Soeyadi [rs4163], Joseph Rebagliati [jr4162], Yuhao Dong [yd2626], Madison Thantu [mgt2143]
@@ -24,7 +26,7 @@ Ryan Soeyadi [rs4163], Joseph Rebagliati [jr4162], Yuhao Dong [yd2626], Madison 
 
 ## 2. Unit Tests
 
-The routes above are tested at the controller and service layer where applicable. Tests are run using J-Unit and can be run by executive the maven tests command in Intelli-J. Whenever our application deploys to Heroku, it builds and deploys the Maven project with all unit tests run as well. 
+The routes above are tested at the controller and service layer where applicable. Tests are run using J-Unit and can be run by executive the maven tests command in IntelliJ. Whenever our application deploys to Heroku, it builds and deploys the Maven project with all unit tests run as well. 
 
 Future development will add higher levels of coverage for our service.
 
@@ -37,5 +39,9 @@ To view our tests look [here]('https://github.com/J-Rebs/friendly-couscous/tree/
 We are using CheckStyle in Intelli-J to check our style compliance.
 
 ## 5. Build, Run, Test Instructions
+
+To run the project, we recommend downloading IntelliJ, see [here](https://www.jetbrains.com/idea/). From here deployment can be done by click `run` on MusicTonic.application.
+![image](https://user-images.githubusercontent.com/84640075/197676982-2d11ce27-ec65-4ad3-bf0e-e516858d6eaa.png)
+
 
 
