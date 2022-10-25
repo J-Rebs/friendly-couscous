@@ -21,10 +21,16 @@ Joseph Rebagliati [jr4162], Yuhao Dong [yd2626], Madison Thantu [mgt2143]
 
 ### CLIENT 3 ###
 
-## 2. System Tests Corresponding to API
+## 2. Unit Tests
 
-## 3. Unit Tests
+The routes above are tested at the controller and service layer where applicable. Tests are run using J-Unit and can be run by executive the maven tests command in Intelli-J. Whenever our application deploys to Heroku, it builds and deploys the Maven project with all unit tests run as well. 
+
+To view our tests look [here]('https://github.com/J-Rebs/friendly-couscous/tree/main/MusicTonic/src/test/java/com/example/musictonic')
+
+## 3. Integration Tests
 
 ## 4. Style Compliant
+
+We are using CheckStyle in Intelli-J to check our style compliance.
 
 ## 5. Build, Run, Test Instructions
