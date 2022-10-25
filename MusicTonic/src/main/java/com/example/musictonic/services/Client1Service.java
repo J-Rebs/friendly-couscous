@@ -75,7 +75,13 @@ public class Client1Service {
         AnalyticsPlaylist analyticsPlaylist = new AnalyticsPlaylist(a, playlist);
         analyticsPlaylistRepo.save(analyticsPlaylist);
 
-        a.setAnalyticsUser(analyticsUser);
+        try {
+            a.setAnalyticsUser(analyticsUser);
+            a.setAnalyticsSong(analyticsSong);
+            a.setAnalyticsPlaylist(analyticsPlaylist);
+        } catch (Exception e) {
+            return a;
+        }
 
         return a;
     }
