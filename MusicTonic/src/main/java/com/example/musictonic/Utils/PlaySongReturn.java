@@ -6,7 +6,10 @@ public class PlaySongReturn {
     private Long id;
     private Timestamp timestamp;
 
-    protected PlaySongReturn() { };
+    protected PlaySongReturn() {
+    }
+
+    ;
 
     public PlaySongReturn(Long id, Timestamp timestamp) {
         this.id = id;

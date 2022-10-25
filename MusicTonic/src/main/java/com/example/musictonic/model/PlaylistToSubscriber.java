@@ -1,33 +1,40 @@
 package com.example.musictonic.model;
 
-import javax.persistence.*;
 import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 
 @Entity
 @Table(name = "playlist_to_subscriber")
 public class PlaylistToSubscriber implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(columnDefinition = "serial")
-    Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  @Column(columnDefinition = "serial")
+  Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "userId", nullable = true)
-    private User user;
+  @ManyToOne
+  @JoinColumn(name = "userId", nullable = true)
+  private User user;
 
-    @ManyToOne
-    @JoinColumn(name = "playlistId", nullable = true)
-    private Playlist playlist;
+  @ManyToOne
+  @JoinColumn(name = "playlistId", nullable = true)
+  private Playlist playlist;
 
-    protected PlaylistToSubscriber() {
+  protected PlaylistToSubscriber() {
 
-    }
+  }
 
-    public PlaylistToSubscriber(Long id, User user, Playlist playlist) {
-        this.id = id;
-        this.user = user;
-        this.playlist = playlist;
-    }
+  public PlaylistToSubscriber(Long id, User user, Playlist playlist) {
+    this.id = id;
+    this.user = user;
+    this.playlist = playlist;
+  }
 }

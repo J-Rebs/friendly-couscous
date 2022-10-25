@@ -1,37 +1,42 @@
 package com.example.musictonic.model;
 
-import javax.persistence.*;
 import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "clients")
 public class Client {
 
-    // definition of entity
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(columnDefinition = "serial")
-    private Long clientId;
+  // definition of entity
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  @Column(columnDefinition = "serial")
+  private Long clientId;
 
-    @Column(name = "clientName")
-    private String clientName;
+  @Column(name = "clientName")
+  private String clientName;
 
-    @OneToMany(mappedBy = "client")
-    private Set<ClientSong> clientSong;
+  @OneToMany(mappedBy = "client")
+  private Set<ClientSong> clientSong;
 
-    @OneToMany(mappedBy = "client")
-    private Set<ClientPlaylist> clientPlaylist;
+  @OneToMany(mappedBy = "client")
+  private Set<ClientPlaylist> clientPlaylist;
 
-    @OneToMany(mappedBy = "client")
-    private Set<ClientUser> clientUser;
+  @OneToMany(mappedBy = "client")
+  private Set<ClientUser> clientUser;
 
-    @OneToMany(mappedBy = "client")
-    private Set<ClientGroup> clientGroup;
+  @OneToMany(mappedBy = "client")
+  private Set<ClientGroup> clientGroup;
 
-    // constructors
-    protected Client() {
-    }
+  // constructors
+  protected Client() {
+  }
 
 
 }
-

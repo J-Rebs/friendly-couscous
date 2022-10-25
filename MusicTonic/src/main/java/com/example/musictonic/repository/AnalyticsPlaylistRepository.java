@@ -18,8 +18,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AnalyticsPlaylistRepository extends JpaRepository<AnalyticsPlaylist, Long> {
 
-    //Note: your naming conventions must match how you establish the entity
-    //e.g., code will fail if you write findByReal_Name;
+  //Note: your naming conventions must match how you establish the entity
+  //e.g., code will fail if you write findByReal_Name;
 
 
 }

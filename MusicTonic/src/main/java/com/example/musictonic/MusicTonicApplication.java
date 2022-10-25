@@ -7,8 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class MusicTonicApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(MusicTonicApplication.class, args);
-    }
+  public static void main(String[] args) {
+    SpringApplication.run(MusicTonicApplication.class, args);
+  }
 
 }

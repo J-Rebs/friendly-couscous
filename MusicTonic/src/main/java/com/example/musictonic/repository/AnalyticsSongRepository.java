@@ -2,7 +2,6 @@ package com.example.musictonic.repository;
 
 import com.example.musictonic.model.AnalyticsSong;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.CrudRepository;
 
 /*
  * "Spring Data JPA focuses on using JPA to store data in a relational database.
@@ -19,8 +18,8 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface AnalyticsSongRepository extends JpaRepository<AnalyticsSong, Long> {
 
-    //Note: your naming conventions must match how you establish the entity
-    //e.g., code will fail if you write findByReal_Name;
+  //Note: your naming conventions must match how you establish the entity
+  //e.g., code will fail if you write findByReal_Name;
 
 
 }

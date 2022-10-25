@@ -1,86 +1,90 @@
 package com.example.musictonic.model;
 
-import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "groups")
 public class Group {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(columnDefinition = "serial")
-    private Long groupId;
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  @Column(columnDefinition = "serial")
+  private Long groupId;
 
-    @Column(name = "admin")
-    private String admin;
+  @Column(name = "admin")
+  private String admin;
 
-    @Column(name = "group_name")
-    private String groupName;
+  @Column(name = "group_name")
+  private String groupName;
 
-    @Column(name = "description")
-    private String description;
+  @Column(name = "description")
+  private String description;
 
-    @OneToMany(mappedBy = "group")
-    private Set<UserToGroupMember> userToGroupMembers;
+  @OneToMany(mappedBy = "group")
+  private Set<UserToGroupMember> userToGroupMembers;
 
-    @OneToMany(mappedBy = "group")
-    private Set<AnalyticsGroup> analyticsGroups;
+  @OneToMany(mappedBy = "group")
+  private Set<AnalyticsGroup> analyticsGroups;
 
-    // constructors
-    protected Group() {
-    }
+  // constructors
+  protected Group() {
+  }
 
-    public Group(Long groupId, String admin, String groupName, String description) {
-        this.groupId = groupId;
-        this.admin = admin;
-        this.groupName = groupName;
-        this.description = description;
-    }
+  public Group(Long groupId, String admin, String groupName, String description) {
+    this.groupId = groupId;
+    this.admin = admin;
+    this.groupName = groupName;
+    this.description = description;
+  }
 
 
-    // getters and setters
-    public Long getGroupId() {
-        return groupId;
-    }
+  // getters and setters
+  public Long getGroupId() {
+    return groupId;
+  }
 
-    public void setGroupId(Long groupId) {
-        this.groupId = groupId;
-    }
+  public void setGroupId(Long groupId) {
+    this.groupId = groupId;
+  }
 
-    public String getAdmin() {
-        return admin;
-    }
+  public String getAdmin() {
+    return admin;
+  }
 
-    public void setAdmin(String admin) {
-        this.admin = admin;
-    }
+  public void setAdmin(String admin) {
+    this.admin = admin;
+  }
 
-    public String getGroupName() {
-        return groupName;
-    }
+  public String getGroupName() {
+    return groupName;
+  }
 
-    public void setGroupName(String groupName) {
-        this.groupName = groupName;
-    }
+  public void setGroupName(String groupName) {
+    this.groupName = groupName;
+  }
 
-    public String getDescription() {
-        return description;
-    }
+  public String getDescription() {
+    return description;
+  }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+  public void setDescription(String description) {
+    this.description = description;
+  }
 
-    @Override
-    public String toString() {
-        return "Group{" +
-                "groupId=" + groupId +
-                ", admin='" + admin + '\'' +
-                ", groupName='" + groupName + '\'' +
-                ", description='" + description + '\'' +
-                '}';
-    }
+  @Override
+  public String toString() {
+    return "Group{"
+        + "groupId=" + groupId
+        + ", admin='" + admin + '\''
+        + ", groupName='" + groupName + '\''
+        + ", description='" + description + '\''
+        + '}';
+  }
 }
-

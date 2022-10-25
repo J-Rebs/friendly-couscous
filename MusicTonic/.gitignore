@@ -41,3 +41,6 @@ src/main/java/com/.DS_Store
 src/main/java/com/example/.DS_Store
 src/test/.DS_Store
 ../.DS_Store
+/bin/
+.classpath
+.project
