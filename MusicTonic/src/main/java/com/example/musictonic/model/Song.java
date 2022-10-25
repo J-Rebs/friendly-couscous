@@ -47,6 +47,14 @@ public class Song {
         this.songLikesCount = songLikesCount;
     }
 
+    public Song(Long songId, String songName, Integer songDuration, String songArtist, String songLyrics, Integer songLikesCount) {
+        this.songName = songName;
+        this.songDuration = songDuration;
+        this.songArtist = songArtist;
+        this.songLyrics = songLyrics;
+        this.songLikesCount = songLikesCount;
+    }
+
     // getters and setters
     public Long getSongId() {
         return songId;

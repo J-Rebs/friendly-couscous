@@ -2,11 +2,16 @@ package com.example.musictonic.controller;
 
 import com.example.musictonic.Utils.PlaySongReturn;
 import com.example.musictonic.model.Analytics;
+import com.example.musictonic.model.User;
+import com.example.musictonic.repository.UserRepository;
 import com.example.musictonic.services.Client1Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 //import org.springframework.boot.configurationprocessor.json;
 //import org.springframework.web.bind.annotation.PostMapping;
 
@@ -22,10 +27,22 @@ public class Client1Controller {
     @Autowired
     Client1Service client1Service;
 
+    @Autowired
+    UserRepository userRepo;
 
+
+    // Src: https://github.com/rcoppy/demo-persistent-data-api/blob/main/src/main/java/com/alexrupp/persistentdataapi/controllers/ChatUserController.java
+    // Purpose: check if users are present before testing post routes
     @GetMapping(value = "/playsong")
-    String playSong() {
-        return "PLACEHOLDER FOR GET";
+    List<String> playSong() {
+
+        List<String> l = new ArrayList<>();
+
+        for (User u : userRepo.findAll()) {
+            l.add(u.getRealName());
+        }
+
+        return l;
     }
 
 
