@@ -36,7 +36,7 @@ To view our tests look [here]('https://github.com/J-Rebs/friendly-couscous/tree/
 
 ## 4. Style Compliant
 
-We are using CheckStyle in Intelli-J to check our style compliance.
+We are using CheckStyle in Intelli-J to check our style compliance. To view a compliance report, you can run the Maven Site lifecyle command in IntelliJ. It should also be possible to do from the command line, for which we will add instructions later.
 
 ## 5. Build, Run, Test Instructions
 
