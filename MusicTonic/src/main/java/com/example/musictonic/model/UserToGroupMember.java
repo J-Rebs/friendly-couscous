@@ -11,6 +11,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
+/**
+ * <h3>This is the user to group member entity.</h3>
+ * Note: required for compliance with checkstyle
+ */
 @Entity
 @Table(name = "user_to_group_member")
 public class UserToGroupMember implements Serializable {

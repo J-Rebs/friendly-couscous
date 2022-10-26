@@ -11,6 +11,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
+/**
+ * <h3>This is the client user entity.</h3>
+ * Note: required for compliance with checkstyle
+ */
 @Entity
 @Table(name = "client_user")
 public class ClientUser implements Serializable {

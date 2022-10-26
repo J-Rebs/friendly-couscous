@@ -9,6 +9,10 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
+/**
+ * <h3>This is the analytics group entity.</h3>
+ * Note: required for compliance with checkstyle
+ */
 @Entity
 @Table(name = "analytics_group")
 public class AnalyticsGroup implements Serializable {

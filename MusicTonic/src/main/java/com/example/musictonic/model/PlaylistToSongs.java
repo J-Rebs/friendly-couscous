@@ -11,6 +11,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
+/**
+ * <h3>This is the playlist to songs entity.</h3>
+ * Note: required for compliance with checkstyle
+ */
+
 @Entity
 @Table(name = "playlist_to_songs")
 public class PlaylistToSongs implements Serializable {

@@ -10,6 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+/**
+ * <h3>This is the analytics entity.</h3>
+ * Note: required for compliance with checkstyle
+ */
 @Entity
 @Table(name = "analytics")
 public class Analytics {
@@ -39,6 +43,9 @@ public class Analytics {
   protected Analytics() {
   }
 
+  /*
+   *
+   * */
   public Analytics(Long analyticsId, Timestamp timestamp, AnalyticsSong analyticsSong,
                    AnalyticsPlaylist analyticsPlaylist, AnalyticsUser analyticsUser,
                    AnalyticsGroup analyticsGroup) {

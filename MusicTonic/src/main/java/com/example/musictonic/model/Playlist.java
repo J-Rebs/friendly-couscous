@@ -9,6 +9,11 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+
+/**
+ * <h3>This is the playlist entity.</h3>
+ * Note: required for compliance with checkstyle
+ */
 @Entity
 @Table(name = "playlists")
 public class Playlist {
