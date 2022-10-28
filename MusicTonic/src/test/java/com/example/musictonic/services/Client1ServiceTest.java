@@ -109,4 +109,11 @@ class Client1ServiceTest {
         assertThat(aReturn.getTimestamp()).isEqualTo(timestamp);
     }
 
+    @Test
+    @DisplayName("playSong() FAILS, as expected")
+    void playSongBad() {
+        Analytics aReturn = client1Service.playSong(1L, 1L, 1L);
+        assertNull(aReturn);
+    }
+
 }
