@@ -14,8 +14,10 @@ import com.example.musictonic.repository.AnalyticsUserRepository;
 import com.example.musictonic.repository.PlaylistRepository;
 import com.example.musictonic.repository.SongRepository;
 import com.example.musictonic.repository.UserRepository;
+
 import java.sql.Timestamp;
 import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,59 +41,69 @@ import org.springframework.stereotype.Service;
  * */
 @Service
 public class Client1Service {
-  // Repositories - analytics, song, user
-  @Autowired
-  UserRepository userRepo;
-  @Autowired
-  AnalyticsRepository analyticsRepo;
+    // Repositories - analytics, song, user
+    @Autowired
+    UserRepository userRepo;
+    @Autowired
+    AnalyticsRepository analyticsRepo;
 
-  @Autowired
-  AnalyticsSongRepository analyticsSongRepo;
+    @Autowired
+    AnalyticsSongRepository analyticsSongRepo;
 
-  @Autowired
-  AnalyticsUserRepository analyticsUserRepo;
+    @Autowired
+    AnalyticsUserRepository analyticsUserRepo;
 
-  @Autowired
-  AnalyticsPlaylistRepository analyticsPlaylistRepo;
+    @Autowired
+    AnalyticsPlaylistRepository analyticsPlaylistRepo;
 
-  @Autowired
-  SongRepository songRepo;
+    @Autowired
+    SongRepository songRepo;
 
-  @Autowired
-  PlaylistRepository playlistRepo;
+    @Autowired
+    PlaylistRepository playlistRepo;
 
-  // post operation -- play songs
-  public Analytics playSong(Long userId, Long songId, Long playlistId) {
-
-    // insert into analytics (or returns the id)
-    Date date = new Date();
-    Timestamp timestamp = new Timestamp(date.getTime());
-
-    Analytics a = analyticsRepo.save(new Analytics(timestamp));
-
-    // insert into analytics song with the parameters of song id and new analytics id
-    Song song = songRepo.findBySongId(songId);
-    AnalyticsSong analyticsSong = new AnalyticsSong(a, song);
-    analyticsSongRepo.save(analyticsSong);
-
-    // insert into analytics user with the parameters of user id and new analytics id
-    User user = userRepo.findByUserId(userId);
-    AnalyticsUser analyticsUser = new AnalyticsUser(a, user);
-    analyticsUserRepo.save(analyticsUser);
-
-    // insert into analytics playlist with the parameters of playlist id and new analytics id
-    Playlist playlist = playlistRepo.findByPlaylistId(playlistId);
-    AnalyticsPlaylist analyticsPlaylist = new AnalyticsPlaylist(a, playlist);
-    analyticsPlaylistRepo.save(analyticsPlaylist);
-
-    try {
-      a.setAnalyticsUser(analyticsUser);
-      a.setAnalyticsSong(analyticsSong);
-      a.setAnalyticsPlaylist(analyticsPlaylist);
-    } catch (Exception e) {
-      return a;
+    public Integer likeSong(Long userId, Long songId) {
+        Song song = songRepo.findBySongId(songId);
+        Integer songLikesCount = song.getSongLikesCount();
+        songLikesCount += 1;
+        song.setSongLikesCount(songLikesCount);
+        songRepo.save(song);
+        return songLikesCount;
     }
 
-    return a;
-  }
+
+    // post operation -- play songs
+    public Analytics playSong(Long userId, Long songId, Long playlistId) {
+
+        // insert into analytics (or returns the id)
+        Date date = new Date();
+        Timestamp timestamp = new Timestamp(date.getTime());
+
+        Analytics a = analyticsRepo.save(new Analytics(timestamp));
+
+        // insert into analytics song with the parameters of song id and new analytics id
+        Song song = songRepo.findBySongId(songId);
+        AnalyticsSong analyticsSong = new AnalyticsSong(a, song);
+        analyticsSongRepo.save(analyticsSong);
+
+        // insert into analytics user with the parameters of user id and new analytics id
+        User user = userRepo.findByUserId(userId);
+        AnalyticsUser analyticsUser = new AnalyticsUser(a, user);
+        analyticsUserRepo.save(analyticsUser);
+
+        // insert into analytics playlist with the parameters of playlist id and new analytics id
+        Playlist playlist = playlistRepo.findByPlaylistId(playlistId);
+        AnalyticsPlaylist analyticsPlaylist = new AnalyticsPlaylist(a, playlist);
+        analyticsPlaylistRepo.save(analyticsPlaylist);
+
+        try {
+            a.setAnalyticsUser(analyticsUser);
+            a.setAnalyticsSong(analyticsSong);
+            a.setAnalyticsPlaylist(analyticsPlaylist);
+        } catch (Exception e) {
+            return a;
+        }
+
+        return a;
+    }
 }
