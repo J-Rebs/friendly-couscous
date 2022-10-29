@@ -33,6 +33,13 @@ public class UserToGroupMember implements Serializable {
   protected UserToGroupMember() {
   }
 
+  /**
+   * Parameterized constructor for UserToGroupMember.
+   *
+   * @param id - the unique ID for this UserToGroupMember object
+   * @param user - the User object associated with this UserToGroupMember
+   * @param group - the Group object asssociated with this UserToGroupMember
+   */
   public UserToGroupMember(Long id, User user, Group group) {
     this.id = id;
     this.user = user;

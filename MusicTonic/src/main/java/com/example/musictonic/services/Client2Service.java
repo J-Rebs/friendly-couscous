@@ -22,6 +22,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * Class for Client2Service.
+ */
 @Service
 public class Client2Service {
   @Autowired
@@ -33,6 +36,11 @@ public class Client2Service {
   @Autowired
   PlaylistToSongRepository playlistToSongRepo;
 
+  /**
+   * Method to return the top three most popular songs.
+   *
+   * @return ArrayList consisting of the top three most popular songs
+   */
   public PopularSongsReturn getMostPopularSongs() {
     // get all songs in order of popularity
     List<Song> allSongs = songRepo.findTop3ByOrderBySongLikesCountDesc();

@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * Request handler for client type 2 (e.g., aggregated data metrics).
+ */
 @RestController
 @RequestMapping("client2-rest")
 public class Client2Controller {
@@ -17,6 +20,12 @@ public class Client2Controller {
   @Autowired
   Client2Service client2Service;
 
+  /**
+   * Function to get the top three most popular songs.
+   *
+   * @return  if OK, a ResponseEntity consisting of an ArrayList of top three most popular songs;
+   *          else BAD_REQUEST
+   */
   @GetMapping("/top3songs")
   public ResponseEntity<PopularSongsReturn> getTopThreeSongs() {
     try {

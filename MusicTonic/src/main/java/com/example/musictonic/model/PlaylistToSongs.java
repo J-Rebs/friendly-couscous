@@ -14,7 +14,6 @@ import javax.persistence.Table;
  * <h3>This is the playlist to songs entity.</h3>
  * Note: required for compliance with checkstyle
  */
-
 @Entity
 @Table(name = "playlist_to_songs")
 public class PlaylistToSongs implements Serializable {
@@ -35,6 +34,13 @@ public class PlaylistToSongs implements Serializable {
   protected PlaylistToSongs() {
   }
 
+  /**
+   * Parameterized constructor for PlaylistToSongs.
+   *
+   * @param id - the unique ID for this PlaylistToSongs entry
+   * @param song - the song ID for this PlaylistToSongs entry
+   * @param playlist -  the playlist ID for this PlaylistToSongs entry
+   */
   public PlaylistToSongs(Long id, Song song, Playlist playlist) {
     this.id = id;
     this.song = song;

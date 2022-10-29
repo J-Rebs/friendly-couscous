@@ -30,6 +30,10 @@ import org.springframework.stereotype.Service;
  *  - authorization how to
  *
  * */
+
+/**
+ * Class for Client1Service.
+ */
 @Service
 public class Client3Service {
 
@@ -45,7 +49,13 @@ public class Client3Service {
   @Autowired
   AnalyticsRepository analyticsRepo;
 
-
+  /**
+   * Get and return information (i.e., playlists and analytics history) for this client.
+   *
+   * @param userId - the unique ID for this client (i.e., user)
+   * @return  a UserExportReturn object containing the playlists and analytics history
+   *          for this client
+   */
   public UserExportReturn getUserInformation(Long userId) {
 
     User user = userRepo.findByUserId(userId);
@@ -62,8 +72,8 @@ public class Client3Service {
       for (Analytics a : analytics) {
         Long id = a.getAnalyticsId();
         String entryTimestamp = a.getTimestamp();
-        AnalyticsUser entryAU = a.getAnalyticsUser();
-        User entryUser = entryAU.getUser();
+        AnalyticsUser entryAu = a.getAnalyticsUser();
+        User entryUser = entryAu.getUser();
         AnalyticsInfoBasic entry = new AnalyticsInfoBasic(id, entryTimestamp, entryUser);
         analyticsInfoList.add(entry);
       }

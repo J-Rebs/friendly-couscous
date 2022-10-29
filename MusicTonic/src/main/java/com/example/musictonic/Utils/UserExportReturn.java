@@ -6,6 +6,9 @@ import com.example.musictonic.model.User;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Class for UserExportReturn.
+ */
 public class UserExportReturn {
   private User user;
   private List<Playlist> playlistList;
@@ -15,6 +18,13 @@ public class UserExportReturn {
 
   }
 
+  /**
+   * Parameterized constructor for UserExportReturn object.
+   *
+   * @param user - the user object that this object is being generated for
+   * @param playlistList - list of playlists associated with this user
+   * @param analyticsList - list of analytics associated with this user
+   */
   public UserExportReturn(User user, List<Playlist> playlistList,
                           List<AnalyticsInfoBasic> analyticsList) {
     this.user = user;
@@ -48,11 +58,11 @@ public class UserExportReturn {
 
   @Override
   public String toString() {
-    return "UserExportReturn{" +
-        "user=" + user +
-        ", playlistList=" + playlistList +
-        ", analyticsList=" + analyticsList +
-        '}';
+    return "UserExportReturn{"
+        + "user=" + user
+        + ", playlistList=" + playlistList
+        + ", analyticsList=" + analyticsList
+        + '}';
   }
 
 }

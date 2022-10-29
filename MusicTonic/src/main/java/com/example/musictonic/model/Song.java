@@ -49,6 +49,15 @@ public class Song {
   protected Song() {
   }
 
+  /**
+   * Parameterized constructor for Song object.
+   *
+   * @param songName - Name of song
+   * @param songDuration - Duration of song
+   * @param songArtist - Artist of song
+   * @param songLyrics - Lyrics of song
+   * @param songLikesCount - Number of users that like this song
+   */
   public Song(String songName, Integer songDuration, String songArtist, String songLyrics,
               Integer songLikesCount) {
     this.songName = songName;
@@ -58,6 +67,16 @@ public class Song {
     this.songLikesCount = songLikesCount;
   }
 
+  /**
+   * Parameterized constructor for Song object.
+   *
+   * @param songId - the unique ID for this Song object
+   * @param songName - Name of song
+   * @param songDuration - Duration of song
+   * @param songArtist - Artist of song
+   * @param songLyrics - Lyrics of song
+   * @param songLikesCount - Number of users that like this song
+   */
   public Song(Long songId, String songName, Integer songDuration, String songArtist,
               String songLyrics, Integer songLikesCount) {
     this.songName = songName;

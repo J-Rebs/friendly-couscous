@@ -3,6 +3,9 @@ package com.example.musictonic.Utils;
 import com.example.musictonic.model.Song;
 import java.util.List;
 
+/**
+ * Class for PopularSongsReturn.
+ */
 public class PopularSongsReturn {
   private List<Song> popularSongs;
 
@@ -13,6 +16,12 @@ public class PopularSongsReturn {
 
   }
 
+  /**
+   * Parameterized constructor for PopularSongsReturn.
+   *
+   * @param popularSongs - list of Songs consisting of popular songs
+   * @param averageNumberPlaylists - the average number of playlists that these songs are on
+   */
   public PopularSongsReturn(List<Song> popularSongs, Double averageNumberPlaylists) {
     this.popularSongs = popularSongs;
     this.averageNumberPlaylists = averageNumberPlaylists;

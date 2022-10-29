@@ -56,6 +56,15 @@ public class User {
 
   // public constructor for use
 
+  /**
+   * Parameterized constructor for user object.
+   *
+   * @param userId - the unique ID for this User object
+   * @param realName - the name associated with this user
+   * @param userType - the user type
+   * @param mainGenre - the main genre that this user interacts with
+   * @param age - the age of this user
+   */
   public User(Long userId, String realName, UserType userType, String mainGenre, Integer age) {
     this.userId = userId;
     this.realName = realName;

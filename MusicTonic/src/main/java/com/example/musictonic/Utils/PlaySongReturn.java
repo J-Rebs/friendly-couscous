@@ -1,5 +1,8 @@
 package com.example.musictonic.Utils;
 
+/**
+ * Class for PlaySongReturn.
+ */
 public class PlaySongReturn {
   private Long id;
   private String timestamp;

@@ -33,6 +33,13 @@ public class ClientPlaylist implements Serializable {
   protected ClientPlaylist() {
   }
 
+  /**
+   * Parameterized constructor for ClientPlaylist.
+   *
+   * @param id - the unique ID for this ClientPlaylist entry
+   * @param client - the Client object
+   * @param playlist - the Playlist object
+   */
   public ClientPlaylist(Long id, Client client, Playlist playlist) {
     this.id = id;
     this.client = client;

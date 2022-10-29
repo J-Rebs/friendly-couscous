@@ -33,6 +33,13 @@ public class ClientGroup implements Serializable {
   protected ClientGroup() {
   }
 
+  /**
+   * Parameterized constructor for ClientGroup.
+   *
+   * @param id - the unique ID for this ClientGroup entry
+   * @param client - the Client object
+   * @param group - the Group object
+   */
   public ClientGroup(Long id, Client client, Group group) {
     this.id = id;
     this.client = client;

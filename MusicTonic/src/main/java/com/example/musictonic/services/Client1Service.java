@@ -26,7 +26,8 @@ import org.springframework.stereotype.Service;
 /*
  *
  *  WANT TO HAVE:
- *  - ability to modify and retrieve (e.g., registering users, making groups, etc. etc.) from database as well as a function to:
+ *  - ability to modify and retrieve (e.g., registering users, making groups, etc. etc.) from
+ *    database as well as a function to:
  *  - like a song (creates if not exists default playlist by user and adds to that),
  *  - play a song (triggers an entry in analytics)
  *  - maybe nice to have authorization in round 2 if we have time
@@ -40,6 +41,10 @@ import org.springframework.stereotype.Service;
  *  Johnny playing a song ~ in postman to doing a post route for a song
  *
  * */
+
+/**
+ * Class for Client1Service.
+ */
 @Service
 public class Client1Service {
   // Repositories - analytics, song, user
@@ -82,7 +87,9 @@ public class Client1Service {
     if (defaultPlaylist == null) {
       defaultPlaylist = new Playlist(userId, "DefaultPlaylist", true);
       // save the playlist to the appropriate table
-      // NOTE: not saving to playlistToSubscribers because by default owner is not subscriber for simplicity
+      /* NOTE: not saving to playlistToSubscribers because by default owner is not subscriber
+       * for simplicity
+       */
       playlistRepo.save(defaultPlaylist);
 
 
@@ -91,6 +98,14 @@ public class Client1Service {
     return defaultPlaylist;
   }
 
+  /**
+   * Method to like a song.
+   *
+   * @param userId - the unique ID for this client (i.e., user)
+   * @param songId - the unique ID for this song
+   * @return the count of liked songs
+   * @throws IllegalAccessException if the song is null (i.e., not in the database)
+   */
   public Integer likeSong(Long userId, Long songId) throws IllegalAccessException {
     // try fetching the requested song
     Song likedSong = songRepo.findBySongId(songId);
@@ -102,12 +117,11 @@ public class Client1Service {
     Playlist defaultPlaylist = subscribeDefaultPlaylist(userId);
 
     // register the song-playlist combination if it doesn't already exist
-    if (playlistToSongsRepo.findBySong(likedSong) == null &&
-        playlistToSongsRepo.findByPlaylist(defaultPlaylist) == null) {
+    if (playlistToSongsRepo.findBySong(likedSong) == null
+        && playlistToSongsRepo.findByPlaylist(defaultPlaylist) == null) {
       PlaylistToSongs registeredSong = new PlaylistToSongs(likedSong, defaultPlaylist);
       playlistToSongsRepo.save(registeredSong);
     }
-
 
     // increment like count on song
     Integer songLikesCount = likedSong.getSongLikesCount();
@@ -119,7 +133,14 @@ public class Client1Service {
     return songLikesCount;
   }
 
-
+  /**
+   * Method to play a song.
+   *
+   * @param userId - the unique ID for this client (i.e., user)
+   * @param songId - the unique ID for this song
+   * @param playlistId - the unique ID for this playlist
+   * @return the Analytics entry/object that was created and added to the Analytics table
+   */
   // post operation -- play songs
   public Analytics playSong(Long userId, Long songId, Long playlistId) {
 
