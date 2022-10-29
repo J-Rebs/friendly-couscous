@@ -61,12 +61,10 @@ public class Client2ServiceTest {
 
     playlist = new Playlist(1L, "TheBEST", false);
     playpop1 = new PlaylistToSongs(song1, playlist);
-    playpop2 = new PlaylistToSongs(song2, playlist);
-    playpop3 = new PlaylistToSongs(song3, playlist);
 
+    // only need 1 entry because simulating as if each song was in the same playlist
     popularPlaylists.add(playpop1);
-    popularPlaylists.add(playpop2);
-    popularPlaylists.add(playpop3);
+
 
   }
 
@@ -79,7 +77,7 @@ public class Client2ServiceTest {
     PopularSongsReturn res = client2Service.getMostPopularSongs();
     assertNotNull(res);
     assertThat(res.getPopularSongs()).isEqualTo(top3);
-    assertThat(res.getAverageNumberPlaylists()).isEqualTo(3);
+    assertThat(res.getAverageNumberPlaylists()).isEqualTo(1);
 
   }
 
@@ -92,7 +90,7 @@ public class Client2ServiceTest {
     PopularSongsReturn res = client2Service.getMostPopularSongs();
     assertNotNull(res);
     assertThat(res.getPopularSongs()).isNotEqualTo(top3);
-    assertThat(res.getAverageNumberPlaylists()).isNotEqualTo(3);
+    assertThat(res.getAverageNumberPlaylists()).isNotEqualTo(1);
 
   }
 
