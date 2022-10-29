@@ -19,8 +19,10 @@ import com.example.musictonic.model.Playlist;
 import com.example.musictonic.model.Song;
 import com.example.musictonic.model.User;
 import com.example.musictonic.model.UserType;
+import com.example.musictonic.repository.SongRepository;
 import com.example.musictonic.repository.UserRepository;
 import com.example.musictonic.services.Client1Service;
+import com.example.musictonic.services.Client2Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -47,10 +49,17 @@ class Client1ControllerTest {
   private ObjectMapper objectMapper;
 
   @MockBean
-  private UserRepository userRepo;
+  private SongRepository songRepo;
+
+  @MockBean
+  private Client2Service client2Service;
 
   @MockBean
   private Client1Service client1Service;
+
+  @MockBean
+  private UserRepository userRepo;
+
 
   private User user;
   private Song song;
