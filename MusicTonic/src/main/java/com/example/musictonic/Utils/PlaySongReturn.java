@@ -7,7 +7,6 @@ public class PlaySongReturn {
   protected PlaySongReturn() {
   }
 
-  ;
 
   public PlaySongReturn(Long id, String timestamp) {
     this.id = id;

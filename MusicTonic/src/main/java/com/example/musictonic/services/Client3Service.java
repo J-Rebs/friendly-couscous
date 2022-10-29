@@ -1,5 +1,6 @@
 package com.example.musictonic.services;
 
+import com.example.musictonic.Utils.AnalyticsInfoBasic;
 import com.example.musictonic.Utils.PopularSongsReturn;
 import com.example.musictonic.Utils.UserExportReturn;
 import com.example.musictonic.model.Analytics;
@@ -12,7 +13,9 @@ import com.example.musictonic.repository.AnalyticsUserRepository;
 import com.example.musictonic.repository.PlaylistRepository;
 import com.example.musictonic.repository.UserRepository;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -49,12 +52,22 @@ public class Client3Service {
     List<Playlist> playlists = playlistRepo.findAllByOwner(userId);
     List<AnalyticsUser> analyticsUserList = analyticsUserRepo.findByUser(user);
     List<Analytics> analytics = new ArrayList<>();
+    List<AnalyticsInfoBasic> analyticsInfoList = new ArrayList<>();
+
     if (analyticsUserList.size() == 0) {
     } else {
       AnalyticsUser analyticsUser = analyticsUserList.get(0);
       analytics = analyticsRepo.findAllByAnalyticsUser(analyticsUser);
-    }
 
-    return new UserExportReturn(user, playlists, analytics);
+      for (Analytics a : analytics) {
+        Long id = a.getAnalyticsId();
+        String entryTimestamp = a.getTimestamp();
+        AnalyticsUser entryAU = a.getAnalyticsUser();
+        User entryUser = entryAU.getUser();
+        AnalyticsInfoBasic entry = new AnalyticsInfoBasic(id, entryTimestamp, entryUser);
+        analyticsInfoList.add(entry);
+      }
+    }
+    return new UserExportReturn(user, playlists, analyticsInfoList);
   }
 }

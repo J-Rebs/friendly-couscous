@@ -4,17 +4,19 @@ import com.example.musictonic.model.Analytics;
 import com.example.musictonic.model.Playlist;
 import com.example.musictonic.model.User;
 import java.util.List;
+import java.util.Set;
 
 public class UserExportReturn {
   private User user;
   private List<Playlist> playlistList;
-  private List<Analytics> analyticsList;
+  private List<AnalyticsInfoBasic> analyticsList;
 
   protected UserExportReturn() {
 
   }
 
-  public UserExportReturn(User user, List<Playlist> playlistList, List<Analytics> analyticsList) {
+  public UserExportReturn(User user, List<Playlist> playlistList,
+                          List<AnalyticsInfoBasic> analyticsList) {
     this.user = user;
     this.playlistList = playlistList;
     this.analyticsList = analyticsList;
@@ -36,11 +38,11 @@ public class UserExportReturn {
     this.playlistList = playlistList;
   }
 
-  public List<Analytics> getAnalyticsList() {
+  public List<AnalyticsInfoBasic> getAnalyticsList() {
     return analyticsList;
   }
 
-  public void setAnalyticsList(List<Analytics> analyticsList) {
+  public void setAnalyticsList(List<AnalyticsInfoBasic> analyticsList) {
     this.analyticsList = analyticsList;
   }
 
