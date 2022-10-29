@@ -25,7 +25,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 public class Client2ServiceTest {
 
-
   @Mock
   SongRepository songRepo;
 
@@ -71,9 +70,8 @@ public class Client2ServiceTest {
   @Test
   @DisplayName("getMostPopularSongs() WORKS")
   void getMostPopularSongsGood() {
-    when(songRepo.findAllByOrderBySongLikesCountDesc()).thenReturn(top3);
+    when(songRepo.findTop3ByOrderBySongLikesCountDesc()).thenReturn(top3);
     when(playlistToSongRepo.findAllBySong(any(Song.class))).thenReturn(popularPlaylists);
-
     PopularSongsReturn res = client2Service.getMostPopularSongs();
     assertNotNull(res);
     assertThat(res.getPopularSongs()).isEqualTo(top3);
@@ -85,13 +83,11 @@ public class Client2ServiceTest {
   @DisplayName("getMostPopularSongs() FAILS, as expected")
   void getMostPopularSongsBad() {
     List<Song> blankList = new ArrayList<>();
-    when(songRepo.findAllByOrderBySongLikesCountDesc()).thenReturn(blankList);
-
+    when(songRepo.findTop3ByOrderBySongLikesCountDesc()).thenReturn(blankList);
     PopularSongsReturn res = client2Service.getMostPopularSongs();
     assertNotNull(res);
     assertThat(res.getPopularSongs()).isNotEqualTo(top3);
     assertThat(res.getAverageNumberPlaylists()).isNotEqualTo(1);
-
   }
 
 

@@ -35,7 +35,7 @@ public class Client2Service {
 
   public PopularSongsReturn getMostPopularSongs() {
     // get all songs in order of popularity
-    List<Song> allSongs = songRepo.findAllByOrderBySongLikesCountDesc();
+    List<Song> allSongs = songRepo.findTop3ByOrderBySongLikesCountDesc();
     // keep only the top 3
     List<Song> top3Songs = new ArrayList<>();
     for (int i = 0; i < 3; i++) {
