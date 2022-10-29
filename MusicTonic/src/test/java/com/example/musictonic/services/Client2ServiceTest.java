@@ -81,6 +81,18 @@ public class Client2ServiceTest {
     assertThat(res.getPopularSongs()).isEqualTo(top3);
     assertThat(res.getAverageNumberPlaylists()).isEqualTo(3);
 
+  }
+
+  @Test
+  @DisplayName("getMostPopularSongs() FAILS, as expected")
+  void getMostPopularSongsBad() {
+    List<Song> blankList = new ArrayList<>();
+    when(songRepo.findSongBySongLikesCountOrderBySongLikesCount()).thenReturn(blankList);
+
+    PopularSongsReturn res = client2Service.getMostPopularSongs();
+    assertNotNull(res);
+    assertThat(res.getPopularSongs()).isNotEqualTo(top3);
+    assertThat(res.getAverageNumberPlaylists()).isNotEqualTo(3);
 
   }
 
