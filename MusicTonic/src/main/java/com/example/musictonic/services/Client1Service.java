@@ -70,7 +70,7 @@ public class Client1Service {
   PlaylistToSongRepository playlistToSongsRepo;
 
 
-  public Playlist subscribeDefaultPlaylist(Long userId) {
+  private Playlist subscribeDefaultPlaylist(Long userId) {
 
     // see if the user has a default playlist
     Playlist defaultPlaylist = null;

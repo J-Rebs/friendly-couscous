@@ -3,6 +3,7 @@ package com.example.musictonic.repository;
 import com.example.musictonic.model.Playlist;
 import com.example.musictonic.model.PlaylistToSongs;
 import com.example.musictonic.model.Song;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /*
@@ -25,5 +26,7 @@ public interface PlaylistToSongRepository extends JpaRepository<PlaylistToSongs,
   PlaylistToSongs findByPlaylist(Playlist playlist);
 
   PlaylistToSongs findBySong(Song song);
+
+  List<PlaylistToSongs> findAllBySong(Song s);
 
 }

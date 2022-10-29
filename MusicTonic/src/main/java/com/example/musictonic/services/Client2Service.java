@@ -11,5 +11,48 @@ package com.example.musictonic.services;
  *  - having functional database
  *  - loading some example data
  * */
+
+import com.example.musictonic.Utils.PopularSongsReturn;
+import com.example.musictonic.model.Song;
+import com.example.musictonic.repository.PlaylistToSongRepository;
+import com.example.musictonic.repository.SongRepository;
+import com.example.musictonic.repository.UserRepository;
+import java.util.ArrayList;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
 public class Client2Service {
+  @Autowired
+  SongRepository songRepo;
+
+  @Autowired
+  UserRepository userRepo;
+
+  @Autowired
+  PlaylistToSongRepository playlistToSongRepo;
+
+  public PopularSongsReturn getMostPopularSongs() {
+    // get all songs in order of popularity
+    List<Song> allSongs = songRepo.findSongBySongLikesCountOrderBySongLikesCount();
+    // keep only the top 3
+    List<Song> top3Songs = new ArrayList<>();
+    for (int i = 0; i < 3; i++) {
+      if (i < allSongs.size()) {
+        top3Songs.add(allSongs.get(i));
+      }
+    }
+    // for each song count how many playlists they appear in, return the average
+    Double totalCount = 0.0;
+    for (Song s : top3Songs) {
+      totalCount += playlistToSongRepo.findAllBySong(s).size();
+    }
+
+    Double averagePlaylists = totalCount / 3;
+
+    return new PopularSongsReturn(top3Songs, averagePlaylists);
+  }
+
+
 }
