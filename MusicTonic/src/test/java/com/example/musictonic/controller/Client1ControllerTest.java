@@ -31,6 +31,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -58,7 +59,7 @@ class Client1ControllerTest {
   private AnalyticsPlaylist analyticsPlaylist;
 
   private Timestamp timestamp;
-
+  private PlaySongReturn response;
 
   @BeforeEach
   void init() {
@@ -75,6 +76,8 @@ class Client1ControllerTest {
     DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
     String timestampString = formatter.format(timestamp.toLocalDateTime());
     a = new Analytics(timestampString);
+    response =
+        new PlaySongReturn(a.getAnalyticsId(), a.getTimestamp());
 
   }
 
@@ -82,10 +85,12 @@ class Client1ControllerTest {
   @DisplayName("/client1-rest/playsong POST route WORKS, as expected")
   void createAnalyticalSongGood() throws Exception {
     when(client1Service.playSong(any(Long.class), any(Long.class), any(Long.class))).thenReturn(a);
-    mvc.perform(post("/client1-rest/playsong?userid=1&songid=1&playlistid=1"))
+    mvc.perform(post("/client1-rest/playsong?userid=1&songid=1&playlistid=1")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(objectMapper.writeValueAsString(response)))
         .andExpect(status().isCreated())
-        .andExpect(jsonPath("$.id", is(a.getAnalyticsId())))
-        .andExpect(jsonPath("$.timestamp", is(a.getTimestamp())));
+        .andExpect(jsonPath("$.id", is(response.getId())))
+        .andExpect(jsonPath("$.timestamp", is(response.getTimestamp())));
   }
 
   @Test
