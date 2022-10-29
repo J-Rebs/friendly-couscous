@@ -18,6 +18,8 @@ import com.example.musictonic.repository.SongRepository;
 import com.example.musictonic.repository.UserRepository;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import org.hibernate.engine.jdbc.spi.SqlExceptionHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -127,8 +129,11 @@ public class Client1Service {
     // insert into analytics (or returns the id)
     Date date = new Date();
     Timestamp timestamp = new Timestamp(date.getTime());
+    // Src: https://www.baeldung.com/java-string-to-timestamp
+    DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
+    String timestampString = formatter.format(timestamp.toLocalDateTime());
 
-    Analytics a = analyticsRepo.save(new Analytics(timestamp));
+    Analytics a = analyticsRepo.save(new Analytics(timestampString));
 
     // insert into analytics song with the parameters of song id and new analytics id
     Song song = songRepo.findBySongId(songId);

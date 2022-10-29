@@ -21,6 +21,8 @@ import com.example.musictonic.repository.UserRepository;
 import com.example.musictonic.services.Client1Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -70,7 +72,9 @@ class Client1ControllerTest {
 
     Date date = new Date();
     timestamp = new Timestamp(date.getTime());
-    a = new Analytics(timestamp);
+    DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
+    String timestampString = formatter.format(timestamp.toLocalDateTime());
+    a = new Analytics(timestampString);
 
   }
 
@@ -80,8 +84,8 @@ class Client1ControllerTest {
     when(client1Service.playSong(any(Long.class), any(Long.class), any(Long.class))).thenReturn(a);
     mvc.perform(post("/client1-rest/playsong?userid=1&songid=1&playlistid=1"))
         .andExpect(status().isCreated())
-        .andExpect(jsonPath("$.id", is(a.getAnalyticsId())));
-    //.andExpect(jsonPath("$.timestamp",is(a.getTimestamp())));
+        .andExpect(jsonPath("$.id", is(a.getAnalyticsId())))
+        .andExpect(jsonPath("$.timestamp", is(a.getTimestamp())));
   }
 
   @Test

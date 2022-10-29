@@ -4,14 +4,14 @@ import java.sql.Timestamp;
 
 public class PlaySongReturn {
   private Long id;
-  private Timestamp timestamp;
+  private String timestamp;
 
   protected PlaySongReturn() {
   }
 
   ;
 
-  public PlaySongReturn(Long id, Timestamp timestamp) {
+  public PlaySongReturn(Long id, String timestamp) {
     this.id = id;
     this.timestamp = timestamp;
   }
@@ -24,11 +24,11 @@ public class PlaySongReturn {
     this.id = id;
   }
 
-  public Timestamp getTimestamp() {
+  public String getTimestamp() {
     return timestamp;
   }
 
-  public void setTimestamp(Timestamp timestamp) {
+  public void setTimestamp(String timestamp) {
     this.timestamp = timestamp;
   }
 }

@@ -16,6 +16,7 @@ import com.example.musictonic.model.UserType;
 import com.example.musictonic.repository.*;
 
 import java.sql.Timestamp;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -91,7 +92,9 @@ class Client1ServiceTest {
 
         Date date = new Date();
         timestamp = new Timestamp(date.getTime());
-        a = new Analytics(timestamp);
+        DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
+        String timestampString = formatter.format(timestamp.toLocalDateTime());
+        a = new Analytics(timestampString);
 
     }
 

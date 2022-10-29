@@ -25,7 +25,7 @@ public class Analytics {
   private Long analyticsId;
 
   @Column(name = "timestamp")
-  private java.sql.Timestamp timestamp;
+  private String timestamp;
 
   @OneToOne(mappedBy = "analytics")
   private AnalyticsSong analyticsSong;
@@ -46,7 +46,7 @@ public class Analytics {
   /*
    *
    * */
-  public Analytics(Long analyticsId, Timestamp timestamp, AnalyticsSong analyticsSong,
+  public Analytics(Long analyticsId, String timestamp, AnalyticsSong analyticsSong,
                    AnalyticsPlaylist analyticsPlaylist, AnalyticsUser analyticsUser,
                    AnalyticsGroup analyticsGroup) {
     this.analyticsId = analyticsId;
@@ -57,7 +57,7 @@ public class Analytics {
     this.analyticsGroup = analyticsGroup;
   }
 
-  public Analytics(Timestamp timestamp) {
+  public Analytics(String timestamp) {
     this.timestamp = timestamp;
   }
 
@@ -69,11 +69,11 @@ public class Analytics {
     this.analyticsId = analyticsId;
   }
 
-  public Timestamp getTimestamp() {
+  public String getTimestamp() {
     return timestamp;
   }
 
-  public void setTimestamp(Timestamp timestamp) {
+  public void setTimestamp(String timestamp) {
     this.timestamp = timestamp;
   }
 
