@@ -111,7 +111,7 @@ class Client1ServiceTest {
 
         Analytics aReturn = client1Service.playSong(1L, 1L, 1L);
         assertNotNull(aReturn);
-        assertThat(aReturn.getTimestamp()).isEqualTo(timestamp);
+        assertThat(aReturn.getTimestamp()).isEqualTo(a.getTimestamp());
     }
 
     @Test
