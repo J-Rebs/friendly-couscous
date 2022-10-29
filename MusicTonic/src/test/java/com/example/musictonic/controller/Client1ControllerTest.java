@@ -21,18 +21,15 @@ import com.example.musictonic.repository.UserRepository;
 import com.example.musictonic.services.Client1Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
 @WebMvcTest
@@ -79,8 +76,6 @@ class Client1ControllerTest {
     a = new Analytics(timestampString);
     response =
         new PlaySongReturn(a.getAnalyticsId(), a.getTimestamp());
-
-    formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
 
   }
 
