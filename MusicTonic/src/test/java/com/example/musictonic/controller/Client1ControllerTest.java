@@ -59,6 +59,7 @@ class Client1ControllerTest {
   private AnalyticsPlaylist analyticsPlaylist;
 
   private Timestamp timestamp;
+  private DateTimeFormatter formatter;
   private PlaySongReturn response;
 
   @BeforeEach
@@ -79,6 +80,8 @@ class Client1ControllerTest {
     response =
         new PlaySongReturn(a.getAnalyticsId(), a.getTimestamp());
 
+    formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
+
   }
 
   @Test
@@ -89,8 +92,7 @@ class Client1ControllerTest {
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(response)))
         .andExpect(status().isCreated())
-        .andExpect(jsonPath("$.id", is(response.getId())))
-        .andExpect(jsonPath("$.timestamp", is(response.getTimestamp())));
+        .andExpect(jsonPath("$.id", is(response.getId())));
   }
 
   @Test
