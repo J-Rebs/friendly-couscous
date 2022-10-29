@@ -64,6 +64,7 @@ class Client1ServiceTest {
     @Mock
     PlaylistToSongRepository playlistToSongRepository;
 
+
     @InjectMocks
     Client1Service client1Service;
 
@@ -129,6 +130,20 @@ class Client1ServiceTest {
         Integer songLikesCount = client1Service.likeSong(1L, 1L);
 
         assertEquals(originalSongLikesCount + 10, songLikesCount);
+    }
+
+    @Test
+    @DisplayName("likeSong() FAILS, as expected")
+    void likeSongBad() throws IllegalAccessException {
+        when(songRepo.findBySongId(any(Long.class))).thenReturn(song);
+
+        Integer originalSongLikesCount = song.getSongLikesCount();
+        for (int i = 0; i < 9; i++) {
+            client1Service.likeSong(1L, 1L);
+        }
+        Integer songLikesCount = client1Service.likeSong(1L, 1L);
+
+        assertNotEquals(originalSongLikesCount + 8, songLikesCount);
     }
 
 
