@@ -24,7 +24,8 @@ public interface SongRepository extends JpaRepository<Song, Long> {
 
   Song findBySongId(Long songId);
 
-  List<Song> findSongBySongLikesCountOrderBySongLikesCount();
+
+  List<Song> findAllByOrderBySongLikesCountDesc();
 
 
 }

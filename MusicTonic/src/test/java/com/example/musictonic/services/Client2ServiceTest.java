@@ -71,7 +71,7 @@ public class Client2ServiceTest {
   @Test
   @DisplayName("getMostPopularSongs() WORKS")
   void getMostPopularSongsGood() {
-    when(songRepo.findSongBySongLikesCountOrderBySongLikesCount()).thenReturn(top3);
+    when(songRepo.findAllByOrderBySongLikesCountDesc()).thenReturn(top3);
     when(playlistToSongRepo.findAllBySong(any(Song.class))).thenReturn(popularPlaylists);
 
     PopularSongsReturn res = client2Service.getMostPopularSongs();
@@ -85,7 +85,7 @@ public class Client2ServiceTest {
   @DisplayName("getMostPopularSongs() FAILS, as expected")
   void getMostPopularSongsBad() {
     List<Song> blankList = new ArrayList<>();
-    when(songRepo.findSongBySongLikesCountOrderBySongLikesCount()).thenReturn(blankList);
+    when(songRepo.findAllByOrderBySongLikesCountDesc()).thenReturn(blankList);
 
     PopularSongsReturn res = client2Service.getMostPopularSongs();
     assertNotNull(res);
