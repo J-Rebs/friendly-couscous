@@ -20,8 +20,7 @@ public class Song {
 
   // definition of entity
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  @Column(columnDefinition = "serial")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long songId;
 
   @Column(name = "song_name")

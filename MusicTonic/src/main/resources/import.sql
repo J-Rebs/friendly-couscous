@@ -15,8 +15,8 @@ INSERT INTO users (age, main_genre, real_name, user_type) VALUES (46, 'country',
 INSERT INTO users (age, main_genre, real_name, user_type) VALUES (40, 'classical', 'Alexandra', 2);
 
 /* playlist generation */
-INSERT INTO playlists (is_default, name, owner) VALUES (False, 'CS4LYFELoFI','Joe');
-INSERT INTO playlists (is_default, name, owner) VALUES (False, 'ASE Stress Reliever','Josephina');
+INSERT INTO playlists (is_default, name, owner) VALUES (False, 'CS4LYFELoFI',1);
+INSERT INTO playlists (is_default, name, owner) VALUES (False, 'ASE Stress Reliever',2);
 
 INSERT INTO playlist_to_subscriber (playlist_id, user_id) VALUES (1,1);
 INSERT INTO songs (song_artist, song_duration, song_likes_count, song_lyrics, song_name) VALUES ('Chief Keef', 150, 100000, 'love sosa', 'love sosa');

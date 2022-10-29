@@ -19,8 +19,7 @@ import javax.persistence.Table;
 public class Group {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  @Column(columnDefinition = "serial")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long groupId;
 
   @Column(name = "admin")

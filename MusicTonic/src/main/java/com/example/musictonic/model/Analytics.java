@@ -19,9 +19,9 @@ import javax.persistence.Table;
 public class Analytics {
 
   // definition of entity
+  // Why we use GenerationType.Identity and don't specify serial further: https://stackoverflow.com/questions/55300370/postgresql-serial-vs-identity
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  @Column(columnDefinition = "serial")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long analyticsId;
 
   @Column(name = "timestamp")

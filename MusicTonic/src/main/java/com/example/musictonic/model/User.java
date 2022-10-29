@@ -22,8 +22,7 @@ public class User {
 
   // definition of entity
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  @Column(columnDefinition = "serial")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long userId;
 
   // column names can have format word_word

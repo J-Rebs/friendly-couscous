@@ -18,10 +18,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface SongRepository extends JpaRepository<Song, Long> {
 
-    Song findBySongId(Long songId);
+  Song findBySongId(Long songId);
 
-    //Note: your naming conventions must match how you establish the entity
-    //e.g., code will fail if you write findByReal_Name;
+  //Note: your naming conventions must match how you establish the entity
+  //e.g., code will fail if you write findByReal_Name;
 
 
 }

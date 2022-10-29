@@ -67,4 +67,18 @@ public class Client1Controller {
       return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
     }
   }
+
+  @PostMapping("/likeSong")
+  @ResponseBody
+  public ResponseEntity<Integer> likeSong(
+      @RequestParam(name = "userid") String userId,
+      @RequestParam(name = "songid") String songId) {
+    try {
+      Integer likedSongCount =
+          client1Service.likeSong(Long.parseLong(userId), Long.parseLong(songId));
+      return new ResponseEntity<>(likedSongCount, HttpStatus.CREATED);
+    } catch (Exception e) {
+      return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+    }
+  }
 }

@@ -1,6 +1,7 @@
 package com.example.musictonic.repository;
 
 import com.example.musictonic.model.Playlist;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /*
@@ -22,5 +23,7 @@ public interface PlaylistRepository extends JpaRepository<Playlist, Long> {
     //e.g., code will fail if you write findByReal_Name;
 
     Playlist findByPlaylistId(Long playlistId);
+
+    List<Playlist> findAllByOwner(Long ownerId);
 
 }

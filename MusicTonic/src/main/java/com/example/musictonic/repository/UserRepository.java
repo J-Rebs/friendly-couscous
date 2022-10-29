@@ -21,6 +21,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
   //Note: your naming conventions must match how you establish the entity
   //e.g., code will fail if you write findByReal_Name;
+
   List<User> findByRealName(String realName);
 
   List<User> findByAge(Integer age);

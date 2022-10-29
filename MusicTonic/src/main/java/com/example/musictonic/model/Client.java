@@ -20,8 +20,7 @@ public class Client {
 
   // definition of entity
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  @Column(columnDefinition = "serial")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long clientId;
 
   @Column(name = "clientName")

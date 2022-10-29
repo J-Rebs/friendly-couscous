@@ -20,12 +20,11 @@ public class Playlist {
 
   // definition of entity
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  @Column(columnDefinition = "serial")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long playlistId;
 
   @Column(name = "owner")
-  private String owner;
+  private Long owner;
 
   @Column(name = "name")
   private String name;
@@ -48,8 +47,14 @@ public class Playlist {
   protected Playlist() {
   }
 
-  public Playlist(Long playlistId, String owner, String name, Boolean isDefault) {
+  public Playlist(Long playlistId, Long owner, String name, Boolean isDefault) {
     this.playlistId = playlistId;
+    this.owner = owner;
+    this.name = name;
+    this.isDefault = isDefault;
+  }
+
+  public Playlist(Long owner, String name, Boolean isDefault) {
     this.owner = owner;
     this.name = name;
     this.isDefault = isDefault;
@@ -64,11 +69,11 @@ public class Playlist {
     playlistId = playlistId;
   }
 
-  public String getOwner() {
+  public Long getOwner() {
     return owner;
   }
 
-  public void setOwner(String owner) {
+  public void setOwner(Long owner) {
     this.owner = owner;
   }
 

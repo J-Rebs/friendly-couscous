@@ -21,8 +21,7 @@ import javax.persistence.Table;
 public class PlaylistToSongs implements Serializable {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  @Column(columnDefinition = "serial")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
 
@@ -39,6 +38,11 @@ public class PlaylistToSongs implements Serializable {
 
   public PlaylistToSongs(Long id, Song song, Playlist playlist) {
     this.id = id;
+    this.song = song;
+    this.playlist = playlist;
+  }
+
+  public PlaylistToSongs(Song song, Playlist playlist) {
     this.song = song;
     this.playlist = playlist;
   }

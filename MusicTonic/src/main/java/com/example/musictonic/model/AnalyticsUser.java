@@ -21,8 +21,7 @@ import javax.persistence.Table;
 public class AnalyticsUser implements Serializable {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  @Column(columnDefinition = "serial")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   Long id;
 
   @OneToOne
