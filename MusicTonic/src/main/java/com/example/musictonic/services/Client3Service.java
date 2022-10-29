@@ -47,8 +47,13 @@ public class Client3Service {
 
     User user = userRepo.findByUserId(userId);
     List<Playlist> playlists = playlistRepo.findAllByOwner(userId);
-    AnalyticsUser analyticsUser = analyticsUserRepo.findByUser(user);
-    List<Analytics> analytics = analyticsRepo.findAllByAnalyticsUser(analyticsUser);
+    List<AnalyticsUser> analyticsUserList = analyticsUserRepo.findByUser(user);
+    List<Analytics> analytics = new ArrayList<>();
+    if (analyticsUserList.size() == 0) {
+    } else {
+      AnalyticsUser analyticsUser = analyticsUserList.get(0);
+      analytics = analyticsRepo.findAllByAnalyticsUser(analyticsUser);
+    }
 
     return new UserExportReturn(user, playlists, analytics);
   }

@@ -1,12 +1,10 @@
 package com.example.musictonic.controller;
 
 import static org.hamcrest.core.Is.is;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -23,12 +21,11 @@ import com.example.musictonic.repository.SongRepository;
 import com.example.musictonic.repository.UserRepository;
 import com.example.musictonic.services.Client1Service;
 import com.example.musictonic.services.Client2Service;
+import com.example.musictonic.services.Client3Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
-import org.hibernate.exception.ConstraintViolationException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -50,6 +47,9 @@ class Client1ControllerTest {
 
   @MockBean
   private SongRepository songRepo;
+
+  @MockBean
+  private Client3Service client3Service;
 
   @MockBean
   private Client2Service client2Service;

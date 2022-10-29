@@ -16,12 +16,9 @@ import com.example.musictonic.repository.PlaylistRepository;
 import com.example.musictonic.repository.PlaylistToSongRepository;
 import com.example.musictonic.repository.SongRepository;
 import com.example.musictonic.repository.UserRepository;
-import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
-import org.hibernate.engine.jdbc.spi.SqlExceptionHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

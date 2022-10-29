@@ -2,6 +2,7 @@ package com.example.musictonic.repository;
 
 import com.example.musictonic.model.AnalyticsUser;
 import com.example.musictonic.model.User;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /*
@@ -24,6 +25,6 @@ public interface AnalyticsUserRepository extends JpaRepository<AnalyticsUser, Lo
   //Note: your naming conventions must match how you establish the entity
   //e.g., code will fail if you write findByReal_Name;
 
-  AnalyticsUser findByUser(User user);
+  List<AnalyticsUser> findByUser(User user);
 
 }

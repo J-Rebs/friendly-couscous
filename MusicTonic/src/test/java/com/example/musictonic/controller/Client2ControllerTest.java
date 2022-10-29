@@ -1,13 +1,8 @@
 package com.example.musictonic.controller;
 
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -19,20 +14,18 @@ import com.example.musictonic.repository.SongRepository;
 import com.example.musictonic.repository.UserRepository;
 import com.example.musictonic.services.Client1Service;
 import com.example.musictonic.services.Client2Service;
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.example.musictonic.services.Client3Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultActions;
 
 @WebMvcTest
 public class Client2ControllerTest {
@@ -46,6 +39,8 @@ public class Client2ControllerTest {
   @MockBean
   private SongRepository songRepo;
 
+  @MockBean
+  private Client3Service client3Service;
   @MockBean
   private Client2Service client2Service;
 
