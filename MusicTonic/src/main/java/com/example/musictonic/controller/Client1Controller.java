@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -68,7 +69,7 @@ public class Client1Controller {
     }
   }
 
-  @PostMapping("/likeSong")
+  @PutMapping("/likeSong")
   @ResponseBody
   public ResponseEntity<Integer> likeSong(
       @RequestParam(name = "userid") String userId,
@@ -76,7 +77,7 @@ public class Client1Controller {
     try {
       Integer likedSongCount =
           client1Service.likeSong(Long.parseLong(userId), Long.parseLong(songId));
-      return new ResponseEntity<>(likedSongCount, HttpStatus.CREATED);
+      return new ResponseEntity<>(likedSongCount, HttpStatus.OK);
     } catch (Exception e) {
       return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
     }

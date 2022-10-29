@@ -1,9 +1,11 @@
 package com.example.musictonic.controller;
 
 import static org.hamcrest.core.Is.is;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -20,9 +22,11 @@ import com.example.musictonic.model.UserType;
 import com.example.musictonic.repository.UserRepository;
 import com.example.musictonic.services.Client1Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import org.hibernate.exception.ConstraintViolationException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -31,6 +35,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
 
 @WebMvcTest
 class Client1ControllerTest {
@@ -80,7 +85,7 @@ class Client1ControllerTest {
   }
 
   @Test
-  @DisplayName("/client1-rest/playsong POST route WORKS, as expected")
+  @DisplayName("/client1-rest/playsong POST route WORKS")
   void createAnalyticalSongGood() throws Exception {
     when(client1Service.playSong(any(Long.class), any(Long.class), any(Long.class))).thenReturn(a);
     mvc.perform(post("/client1-rest/playsong?userid=1&songid=1&playlistid=1")
@@ -96,5 +101,28 @@ class Client1ControllerTest {
     mvc.perform(post("/client1-rest/playsong?userid=1&songid=1&playlistid=1"))
         .andExpect(status().isBadRequest());
   }
+
+  @Test
+  @DisplayName("/client1-rest/likesong PUT route WORKS")
+  void likeSongGood() throws Exception {
+    Integer check = song.getSongLikesCount() + 1;
+    when(client1Service.likeSong(any(Long.class), any(Long.class))).thenReturn(
+        song.getSongLikesCount() + 1);
+    mvc.perform(put("/client1-rest/likeSong?userid=1&songid=1")
+            .contentType(MediaType.APPLICATION_JSON))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$", is(check)));
+  }
+
+  @Test
+  @DisplayName("/client1-rest/likesong PUT route FAILS, as expected")
+  void likeSongBad() throws Exception {
+    IllegalArgumentException exception = new IllegalArgumentException();
+    when(client1Service.likeSong(any(Long.class), any(Long.class))).thenThrow(exception);
+    ResultActions result = mvc.perform(put("/client1-rest/likeSong?userid=1&songid=100")
+            .contentType(MediaType.APPLICATION_JSON))
+        .andExpect(status().isBadRequest());
+  }
+
 
 }
