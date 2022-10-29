@@ -1,6 +1,8 @@
 package com.example.musictonic.repository;
 
+import com.example.musictonic.model.Playlist;
 import com.example.musictonic.model.PlaylistToSongs;
+import com.example.musictonic.model.Song;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /*
@@ -20,5 +22,8 @@ public interface PlaylistToSongRepository extends JpaRepository<PlaylistToSongs,
 
   //Note: your naming conventions must match how you establish the entity
   //e.g., code will fail if you write findByReal_Name;
+  PlaylistToSongs findByPlaylist(Playlist playlist);
+
+  PlaylistToSongs findBySong(Song song);
 
 }

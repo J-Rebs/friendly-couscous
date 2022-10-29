@@ -102,9 +102,13 @@ public class Client1Service {
     // otherwise fetch or create the default playlist
     Playlist defaultPlaylist = subscribeDefaultPlaylist(userId);
 
-    // register the song-playlist combination
-    PlaylistToSongs registeredSong = new PlaylistToSongs(likedSong, defaultPlaylist);
-    playlistToSongsRepo.save(registeredSong);
+    // register the song-playlist combination if it doesn't already exist
+    if (playlistToSongsRepo.findBySong(likedSong) == null &&
+        playlistToSongsRepo.findByPlaylist(defaultPlaylist) == null) {
+      PlaylistToSongs registeredSong = new PlaylistToSongs(likedSong, defaultPlaylist);
+      playlistToSongsRepo.save(registeredSong);
+    }
+
 
     // increment like count on song
     Integer songLikesCount = likedSong.getSongLikesCount();
