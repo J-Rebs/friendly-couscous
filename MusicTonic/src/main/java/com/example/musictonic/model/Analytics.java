@@ -42,9 +42,16 @@ public class Analytics {
   protected Analytics() {
   }
 
-  /*
+  /**
+   * Parameterized constructor for the class Analytics.
    *
-   * */
+   * @param analyticsId - the unique ID for the analytics entry
+   * @param timestamp - timestamp of analytics entry
+   * @param analyticsSong - the corresponding entity for AnalyticsSong
+   * @param analyticsPlaylist - the corresponding entity for AnalyticsPlaylist
+   * @param analyticsUser - the corresponding entity for AnalyticsUser
+   * @param analyticsGroup - the corresponding entity for AnalyticsGroup
+   */
   public Analytics(Long analyticsId, String timestamp, AnalyticsSong analyticsSong,
                    AnalyticsPlaylist analyticsPlaylist, AnalyticsUser analyticsUser,
                    AnalyticsGroup analyticsGroup) {

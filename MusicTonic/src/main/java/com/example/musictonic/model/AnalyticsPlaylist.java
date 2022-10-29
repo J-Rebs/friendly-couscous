@@ -35,6 +35,13 @@ public class AnalyticsPlaylist implements Serializable {
 
   }
 
+  /**
+   * Parameterized constructor for the class AnalyticsPlaylist.
+   *
+   * @param id - the unique ID for this AnalyticsPlaylist entry
+   * @param analytics - the corresponding entity for Analytics
+   * @param playlist - the corresponding entity for Playlist
+   */
   public AnalyticsPlaylist(Long id, Analytics analytics, Playlist playlist) {
     this.id = id;
     this.analytics = analytics;

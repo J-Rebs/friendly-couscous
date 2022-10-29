@@ -21,7 +21,9 @@ import org.springframework.web.bind.annotation.RestController;
 //import org.springframework.boot.configurationprocessor.json;
 //import org.springframework.web.bind.annotation.PostMapping;
 
-
+/**
+ * Request handler for client type 1 (e.g., CRUD functionality).
+ */
 @RestController
 @RequestMapping("client1-rest")
 public class Client1Controller {
@@ -51,8 +53,17 @@ public class Client1Controller {
     return l;
   }
 
-
   // reference: https://www.baeldung.com/spring-request-param
+
+  /**
+   * This method is called when the client "plays a song," such that it invokes the client1Service
+   * method playSong(...) and returns the associated analyticsId.
+   *
+   * @param userId - the unique ID for this client (i.e., user)
+   * @param songId - the unique ID for this song
+   * @param playlistId - the unique ID for this song
+   * @return a PlaySongReturn object, which consists of the analyticsId and the timestamp
+   */
   @PostMapping("/playsong")
   @ResponseBody
   public ResponseEntity<PlaySongReturn> createAnalyticalSongs(
@@ -70,6 +81,15 @@ public class Client1Controller {
     }
   }
 
+  /**
+   * This method is invoked when the client "likes a song," such that it adds the corresponding
+   * song to the client's default "likes" playlist (to be implemented) and returns the (updated)
+   * number of liked songs associated with this client.
+   *
+   * @param userId - the unique ID for this client (i.e., user)
+   * @param songId - the unique ID for this song
+   * @return - if OK, then the number of liked songs; else, BAD_REQUEST
+   */
   @PutMapping("/likeSong")
   @ResponseBody
   public ResponseEntity<Integer> likeSong(

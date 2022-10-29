@@ -36,6 +36,13 @@ public class AnalyticsUser implements Serializable {
 
   }
 
+  /**
+   * Parameterized constructor for the class AnalyticsUser.
+   *
+   * @param id - the unique ID for this AnalyticsUser entry
+   * @param analytics - the corresponding entity for Analytics entry
+   * @param user - the corresponding entity for User
+   */
   public AnalyticsUser(Long id, Analytics analytics, User user) {
     this.id = id;
     this.analytics = analytics;

@@ -35,6 +35,13 @@ public class AnalyticsSong implements Serializable {
 
   }
 
+  /**
+   * Parameterized constructor for the class AnalyticsSong.
+   *
+   * @param id - the unique ID for this AnalyticsSong entry
+   * @param analytics - the corresponding entity for Analytics entry
+   * @param song - the corresponding entity for Song
+   */
   public AnalyticsSong(Long id, Analytics analytics, Song song) {
     this.id = id;
     this.analytics = analytics;
