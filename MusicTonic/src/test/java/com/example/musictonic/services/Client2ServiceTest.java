@@ -44,9 +44,9 @@ public class Client2ServiceTest {
   private PlaylistToSongs playpop2;
   private PlaylistToSongs playpop3;
 
-  List<PlaylistToSongs> popularPlaylists = new ArrayList<>();
+  private List<PlaylistToSongs> popularPlaylists = new ArrayList<>();
 
-  List<Song> top3 = new ArrayList<>();
+  private List<Song> top3 = new ArrayList<>();
 
   @BeforeEach
   void init() {
