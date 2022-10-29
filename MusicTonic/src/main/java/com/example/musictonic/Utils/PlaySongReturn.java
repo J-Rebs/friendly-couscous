@@ -1,7 +1,5 @@
 package com.example.musictonic.Utils;
 
-import java.sql.Timestamp;
-
 public class PlaySongReturn {
   private Long id;
   private String timestamp;
