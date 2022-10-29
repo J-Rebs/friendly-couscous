@@ -54,10 +54,10 @@ public class Client3Service {
     List<Analytics> analytics = new ArrayList<>();
     List<AnalyticsInfoBasic> analyticsInfoList = new ArrayList<>();
 
-    if (analyticsUserList.size() == 0) {
-    } else {
-      AnalyticsUser analyticsUser = analyticsUserList.get(0);
-      analytics = analyticsRepo.findAllByAnalyticsUser(analyticsUser);
+    if (analyticsUserList.size() > 0) {
+      for (AnalyticsUser au : analyticsUserList) {
+        analytics.add(analyticsRepo.findByAnalyticsUser(au));
+      }
 
       for (Analytics a : analytics) {
         Long id = a.getAnalyticsId();

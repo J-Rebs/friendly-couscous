@@ -22,6 +22,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * Interface for AnalyticsRepository.
  */
 public interface AnalyticsRepository extends JpaRepository<Analytics, Long> {
-  List<Analytics> findAllByAnalyticsUser(AnalyticsUser analyticsUser);
+  Analytics findByAnalyticsUser(AnalyticsUser analyticsUser);
 
 }
