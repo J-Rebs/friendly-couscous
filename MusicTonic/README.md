@@ -55,6 +55,9 @@ See CheckStyle Report from October 30th, 2022
 To run the project, we recommend downloading IntelliJ, see [here](https://www.jetbrains.com/idea/). From here deployment can be done by click `run` on MusicTonicApplication. This will build and run the application. Tests can be run
 independently of build, but they are included in the prior instruction by default for unit testing. To run tests independently, you can use the Maven Tool Window and run Maven Tests. Below are screenshots to show this in IntelliJ.
 
+To run this project from the command line from a Mac, make sure that you have maven installed locally. Then, from the terminal, run the following code:
+`mvn spring-boot:run`.
+
 ### Build and Run in IntelliJ
 
 ![image](https://user-images.githubusercontent.com/84640075/197676982-2d11ce27-ec65-4ad3-bf0e-e516858d6eaa.png)
