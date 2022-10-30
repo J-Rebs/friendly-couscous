@@ -50,17 +50,24 @@ Ryan Soeyadi [rs4163], Joseph Rebagliati [jr4162], Yuhao Dong [yd2626], Madison 
   - FUTURE Development: N/A
 ## 2. Unit Tests
 
-The routes above are tested at the controller and service layer where applicable. Tests are run using J-Unit and can be run by executive the maven tests command in IntelliJ. Whenever our application deploys to Heroku, it builds and deploys
+The routes above are tested at the controller and service layer where applicable. Tests are run using J-Unit and can be
+run by executive the maven tests command in IntelliJ. Whenever our application deploys to Heroku, it builds and deploys
 the Maven project with all unit tests run as well.
 
 Future development will add higher levels of coverage for our service.
 
-To view our tests look [here](https://github.com/J-Rebs/friendly-couscous/tree/main/MusicTonic/src/test/java/com/example/musictonic).
+To view our tests
+look [here](https://github.com/J-Rebs/friendly-couscous/tree/main/MusicTonic/src/test/java/com/example/musictonic).
 
 ## 3. Integration Tests
 
 ### Postman Tests
-![](../../../Desktop/Screenshot 2022-10-30 at 2.03.54 PM.png)![](../../../Desktop/Screenshot 2022-10-30 at 2.02.48 PM.png)![](../../../Desktop/Screenshot 2022-10-30 at 2.01.58 PM.png)![](../../../Desktop/Screenshot 2022-10-30 at 2.00.38 PM.png)![](../../../Desktop/Screenshot 2022-10-30 at 2.00.02 PM.png)
+
+![image](PostmanScreenshots/Screenshot_2022-10-30_at_2.00.02_PM.png)
+![image](PostmanScreenshots/Screenshot_2022-10-30_at_2.00.38_PM.png)
+![image](PostmanScreenshots/Screenshot_2022-10-30_at_2.01.58_PM.png)
+![image](PostmanScreenshots/Screenshot_2022-10-30_at_2.02.48_PM.png)
+![image](PostmanScreenshots/Screenshot_2022-10-30_at_2.03.54_PM.png)
 
 ## 4. Style Compliant
 
@@ -69,7 +76,8 @@ See CheckStyle Report from October 30th, 2022
 
 ## 5. Build, Run, Test Instructions
 
-To run the project, we recommend downloading IntelliJ, see [here](https://www.jetbrains.com/idea/). From here deployment can be done by click `run` on MusicTonicApplication. This will build and run the application. Tests can be run
+To run the project, we recommend downloading IntelliJ, see [here](https://www.jetbrains.com/idea/). From here deployment
+can be done by click `run` on MusicTonicApplication. This will build and run the application. Tests can be run
 independently of build, but they are included in the prior instruction by default for unit testing. To run tests independently, you can use the Maven Tool Window and run Maven Tests. Below are screenshots to show this in IntelliJ.
 
 To run this project from the command line from a Mac, make sure that you have maven installed locally. Then, from the terminal, run the following code:
