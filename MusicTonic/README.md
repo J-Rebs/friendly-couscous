@@ -64,4 +64,6 @@ independently of build, but they are included in the prior instruction by defaul
 ![image](https://user-images.githubusercontent.com/84640075/197677593-b653a00f-21d8-45eb-8775-ffed29003ab1.png)
 
 ## By Team Grey Orange
-![img.png](img.png)
+<p align="center">
+  <img max-width="500" max-height="500" src="img.png">
+</p>
