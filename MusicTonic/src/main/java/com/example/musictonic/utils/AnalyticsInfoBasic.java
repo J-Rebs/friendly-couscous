@@ -1,4 +1,4 @@
-package com.example.musictonic.Utils;
+package com.example.musictonic.utils;
 
 import com.example.musictonic.model.User;
 

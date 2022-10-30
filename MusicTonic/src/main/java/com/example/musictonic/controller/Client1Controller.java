@@ -1,10 +1,10 @@
 package com.example.musictonic.controller;
 
-import com.example.musictonic.Utils.PlaySongReturn;
 import com.example.musictonic.model.Analytics;
 import com.example.musictonic.model.User;
 import com.example.musictonic.repository.UserRepository;
 import com.example.musictonic.services.Client1Service;
+import com.example.musictonic.utils.PlaySongReturn;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+
 //import org.springframework.boot.configurationprocessor.json;
 //import org.springframework.web.bind.annotation.PostMapping;
 

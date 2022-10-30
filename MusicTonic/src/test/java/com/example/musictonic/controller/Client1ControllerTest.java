@@ -8,7 +8,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.example.musictonic.Utils.PlaySongReturn;
+import com.example.musictonic.utils.PlaySongReturn;
 import com.example.musictonic.model.Analytics;
 import com.example.musictonic.model.AnalyticsPlaylist;
 import com.example.musictonic.model.AnalyticsSong;

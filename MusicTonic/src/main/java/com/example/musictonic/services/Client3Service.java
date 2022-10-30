@@ -1,21 +1,18 @@
 package com.example.musictonic.services;
 
-import com.example.musictonic.Utils.AnalyticsInfoBasic;
-import com.example.musictonic.Utils.PopularSongsReturn;
-import com.example.musictonic.Utils.UserExportReturn;
+
 import com.example.musictonic.model.Analytics;
 import com.example.musictonic.model.AnalyticsUser;
 import com.example.musictonic.model.Playlist;
-import com.example.musictonic.model.Song;
 import com.example.musictonic.model.User;
 import com.example.musictonic.repository.AnalyticsRepository;
 import com.example.musictonic.repository.AnalyticsUserRepository;
 import com.example.musictonic.repository.PlaylistRepository;
 import com.example.musictonic.repository.UserRepository;
+import com.example.musictonic.utils.AnalyticsInfoBasic;
+import com.example.musictonic.utils.UserExportReturn;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

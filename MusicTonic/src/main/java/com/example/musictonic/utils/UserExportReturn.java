@@ -1,10 +1,8 @@
-package com.example.musictonic.Utils;
+package com.example.musictonic.utils;
 
-import com.example.musictonic.model.Analytics;
 import com.example.musictonic.model.Playlist;
 import com.example.musictonic.model.User;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Class for UserExportReturn.

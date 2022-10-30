@@ -12,11 +12,11 @@ package com.example.musictonic.services;
  *  - loading some example data
  * */
 
-import com.example.musictonic.Utils.PopularSongsReturn;
 import com.example.musictonic.model.Song;
 import com.example.musictonic.repository.PlaylistToSongRepository;
 import com.example.musictonic.repository.SongRepository;
 import com.example.musictonic.repository.UserRepository;
+import com.example.musictonic.utils.PopularSongsReturn;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
