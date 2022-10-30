@@ -13,14 +13,17 @@ Ryan Soeyadi [rs4163], Joseph Rebagliati [jr4162], Yuhao Dong [yd2626], Madison 
 ### MUSIC PLATFORM SERVICES (Client type one in our proposal)
 
 - TYPE OF REQUEST: `GET`
-    - ROUTE: `/client1/rest/playsong`
+    - ROUTE: `/client1-rest/playsong`
     - PURPOSE: Gets users available who can play song
     - FUTURE Development: N/A
 - TYPE OF REQUEST: `POST`
-    - ROUTE: `/client1/rest/playsong?userid={id}&songid={id}&playlistid={id}`
+    - ROUTE: `/client1-rest/playsong?userid={id}&songid={id}&playlistid={id}`
     - PURPOSE: Registers a song played in the analytics relation for a given user, song, and playlist
     - FUTURE Development: implementation of authentication layer for a client
-
+- TYPE OF REQUEST: `PUT`
+    - ROUTE: `/client1-rest/likesong?userid={id}&songid={id}`
+    - PURPOSE: 
+    - FUTURE Development: 
 ### MUSIC ANALYTICS SERVICES (Client type two in our proposal)
 
 ### DATA SHARING SERVICES  (Client type three in our proposal)
