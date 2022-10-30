@@ -32,7 +32,7 @@ the Maven project with all unit tests run as well.
 
 Future development will add higher levels of coverage for our service.
 
-To view our tests look [here]('https://github.com/J-Rebs/friendly-couscous/tree/main/MusicTonic/src/test/java/com/example/musictonic').
+To view our tests look [here](https://github.com/J-Rebs/friendly-couscous/tree/main/MusicTonic/src/test/java/com/example/musictonic).
 
 ## 3. Integration Tests
 
