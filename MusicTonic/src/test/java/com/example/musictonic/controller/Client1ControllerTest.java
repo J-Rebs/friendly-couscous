@@ -36,6 +36,11 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
+/***
+ * Our testing framework is based on: https://github.com/scbushan05/spring-boot-jpa-unit-testing
+ *                 The tutorial link: https://youtu.be/pHTr3IMuRh0
+ */
+
 @WebMvcTest
 class Client1ControllerTest {
 
