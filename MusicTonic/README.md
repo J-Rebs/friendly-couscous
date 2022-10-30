@@ -15,15 +15,15 @@ Ryan Soeyadi [rs4163], Joseph Rebagliati [jr4162], Yuhao Dong [yd2626], Madison 
 - TYPE OF REQUEST: `GET`
     - ROUTE: `/client1-rest/playsong`
     - PURPOSE: Gets users available who can play song
-    - FUTURE Development: N/A
+    - FUTURE Development: Add Client Authentication
 - TYPE OF REQUEST: `POST`
     - ROUTE: `/client1-rest/playsong?userid={id}&songid={id}&playlistid={id}`
     - PURPOSE: Registers a song played in the analytics relation for a given user, song, and playlist
-    - FUTURE Development: implementation of authentication layer for a client
+    - FUTURE Development: Add Client Authentication
 - TYPE OF REQUEST: `PUT`
     - ROUTE: `/client1-rest/likesong?userid={id}&songid={id}`
-    - PURPOSE: 
-    - FUTURE Development: 
+    - PURPOSE: registers songs to a default playlist for a user, creates default playlist if it does not exist, and increments and returns the like count for a song.
+    - FUTURE Development: Add Client Authentication
 ### MUSIC ANALYTICS SERVICES (Client type two in our proposal)
 
 ### DATA SHARING SERVICES  (Client type three in our proposal)
