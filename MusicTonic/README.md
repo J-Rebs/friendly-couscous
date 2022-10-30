@@ -59,6 +59,9 @@ To view our tests look [here](https://github.com/J-Rebs/friendly-couscous/tree/m
 
 ## 3. Integration Tests
 
+### Postman Tests
+![](../../../Desktop/Screenshot 2022-10-30 at 2.03.54 PM.png)![](../../../Desktop/Screenshot 2022-10-30 at 2.02.48 PM.png)![](../../../Desktop/Screenshot 2022-10-30 at 2.01.58 PM.png)![](../../../Desktop/Screenshot 2022-10-30 at 2.00.38 PM.png)![](../../../Desktop/Screenshot 2022-10-30 at 2.00.02 PM.png)
+
 ## 4. Style Compliant
 
 See CheckStyle Report from October 30th, 2022
