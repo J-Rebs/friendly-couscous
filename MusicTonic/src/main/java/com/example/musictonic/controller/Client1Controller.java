@@ -124,7 +124,8 @@ public class Client1Controller {
           @RequestParam(name = "maingenre") String mainGenre,
           @RequestParam(name = "age") String age){
     try {
-      User user = userRepo.save(new User(Long.parseLong(userId), realName, userType, mainGenre, Integer.parseInt(age)));
+      UserType type = UserType.valueOf(userType);
+      User user = userRepo.save(new User(Long.parseLong(userId), realName, type, mainGenre, Integer.parseInt(age)));
       return new ResponseEntity<>(user, HttpStatus.CREATED);
     } catch (Exception e) {
       return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
