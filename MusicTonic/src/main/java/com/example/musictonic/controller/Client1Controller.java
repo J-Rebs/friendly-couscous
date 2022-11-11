@@ -178,6 +178,6 @@ public class Client1Controller {
       return new ResponseEntity<>(toDelete, HttpStatus.CREATED);
     } catch (Exception e) {
       return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-    } */
-  }
+    }
+  }*/
 }
