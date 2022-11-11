@@ -104,4 +104,20 @@ public class Client1Controller {
       return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
     }
   }
+
+  @PostMapping("/createUser")
+  @ResponseBody
+  public ResponseEntity<User> createUser(
+          @RequestParam(name = "userid") Long userId,
+          @RequestParam(name = "realname") String realName,
+          @RequestParam(name = "usertype") UserType userType,
+          @RequestParam(name = "maingenre") String mainGenre,
+          @RequestParam(name = "age") Integer age){
+    try {
+      User user = userRepo.save(new User(userId, realName, userType, mainGenre, age));
+      return new ResponseEntity<>(user, HttpStatus.CREATED);
+    } catch (Exception e) {
+      return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+    }
+  }
 }
