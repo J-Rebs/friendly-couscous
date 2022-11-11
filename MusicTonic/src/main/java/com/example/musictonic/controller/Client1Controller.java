@@ -110,7 +110,7 @@ public class Client1Controller {
   List<String> listUsers() {
     List<User> l = new ArrayList<>();
     for (User u : userRepo.findAll()) {
-      l.add(u());
+      l.add(u);
     }
     return l;
   }
