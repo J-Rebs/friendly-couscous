@@ -32,4 +32,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
   List<User> findAllByMainGenre(String mainGenre);
 
+  Long deleteByUserId(Long userId);
 }

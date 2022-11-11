@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -144,6 +145,23 @@ public class Client1Controller {
       UserType type = UserType.valueOf(userType);
       User user = userRepo.save(new User(realName, type, mainGenre, Integer.parseInt(age)));
       return new ResponseEntity<>(user, HttpStatus.CREATED);
+    } catch (Exception e) {
+      return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+    }
+  }
+
+  @DeleteMapping("/deleteUser")
+  @ResponseBody
+  public ResponseEntity<User> deleteUser(
+          @RequestParam(name = "id") String userId) {
+    try {
+      Long id = Long.parseLong(userId);
+      User toDelete = userRepo.findByUserId(id);
+      if(toDelete = null){
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+      }
+      userRepo.deleteByUserId(id);
+      return new ResponseEntity<>(toDelete, HttpStatus.CREATED);
     } catch (Exception e) {
       return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
     }
