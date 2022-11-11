@@ -106,7 +106,7 @@ public class Client1Controller {
   }
 
   // for testing - list all users
-  @GetMapping(value = "/listUsers")
+  @GetMapping("/listUsers")
   List<User> listUsers() {
     List<User> l = new ArrayList<>();
     for (User u : userRepo.findAll()) {
@@ -118,13 +118,13 @@ public class Client1Controller {
   @PostMapping("/createUser")
   @ResponseBody
   public ResponseEntity<User> createUser(
-          @RequestParam(name = "userid") Long userId,
+          @RequestParam(name = "userid") String userId,
           @RequestParam(name = "realname") String realName,
-          @RequestParam(name = "usertype") UserType userType,
+          @RequestParam(name = "usertype") String userType,
           @RequestParam(name = "maingenre") String mainGenre,
-          @RequestParam(name = "age") Integer age){
+          @RequestParam(name = "age") String age){
     try {
-      User user = userRepo.save(new User(userId, realName, userType, mainGenre, age));
+      User user = userRepo.save(new User(Long.parseLong(userId), realName, userType, mainGenre, Integer.parseInt(age)));
       return new ResponseEntity<>(user, HttpStatus.CREATED);
     } catch (Exception e) {
       return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
