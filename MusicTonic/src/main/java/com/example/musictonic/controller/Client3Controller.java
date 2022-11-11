@@ -1,6 +1,7 @@
 package com.example.musictonic.controller;
 
-
+import com.example.musictonic.model.Song;
+import com.example.musictonic.repository.SongRepository;
 import com.example.musictonic.services.Client3Service;
 import com.example.musictonic.utils.UserExportReturn;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,20 +12,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
 /**
  * Request handler for client type 3 (e.g., raw data dump).
  */
 @RestController
 @RequestMapping("client3-rest")
 public class Client3Controller {
-
   @Autowired
   Client3Service client3Service;
 
+  @Autowired
+  SongRepository songRepo;
   /**
    * Method to get and return user (i.e., type 1 client) information.
-   *
    * @param userId - the unique ID for this client (i.e., user)
    * @return the analytics history for this client
    */
@@ -38,5 +38,14 @@ public class Client3Controller {
     } catch (Exception e) {
       return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
     }
+  }
+
+  @GetMapping("/listSongs")
+  List<Song> listSongs() {
+    List<Song> l = new ArrayList<>();
+    for (Song s : songRepo.findAll()) {
+      l.add(s);
+    }
+    return l;
   }
 }
