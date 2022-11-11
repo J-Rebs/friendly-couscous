@@ -157,9 +157,6 @@ public class Client1Controller {
     try {
       Long id = Long.parseLong(userId);
       User toDelete = userRepo.findByUserId(id);
-      if(toDelete = null){
-        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-      }
       userRepo.deleteByUserId(id);
       return new ResponseEntity<>(toDelete, HttpStatus.CREATED);
     } catch (Exception e) {
