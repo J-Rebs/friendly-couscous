@@ -157,10 +157,27 @@ public class Client1Controller {
     try {
       Long id = Long.parseLong(userId);
       User toDelete = userRepo.findByUserId(id);
-      userRepo.deleteByUserId(id);
-      return new ResponseEntity<>(toDelete, HttpStatus.CREATED);
+      userRepo.delete(toDelete);
+      return new ResponseEntity<>(toDelete, HttpStatus.ACCEPTED);
     } catch (Exception e) {
       return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
     }
+  }
+
+  /*
+  @DeleteMapping("/deleteUser")
+  @ResponseBody
+  public ResponseEntity<User> deleteUser(
+          @RequestParam(name = "id") String userId) {
+    try {
+      Long id = Long.parseLong(userId);
+      User toDelete = userRepo.findByUserId(id);
+      // what if toDelete = null?
+      // cannot do if(toDelete == null) -- incompatible type
+      Long deleteUser = userRepo.deleteByUserId(id);
+      return new ResponseEntity<>(toDelete, HttpStatus.CREATED);
+    } catch (Exception e) {
+      return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+    } */
   }
 }
