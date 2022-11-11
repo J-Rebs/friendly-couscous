@@ -2,6 +2,7 @@ package com.example.musictonic.controller;
 
 import com.example.musictonic.model.Analytics;
 import com.example.musictonic.model.User;
+import com.example.musictonic.model.UserType;
 import com.example.musictonic.repository.UserRepository;
 import com.example.musictonic.services.Client1Service;
 import com.example.musictonic.utils.PlaySongReturn;
@@ -115,9 +116,9 @@ public class Client1Controller {
     return l;
   }
 
-  @PostMapping("/createUser")
+  @PostMapping("/createUserWithId")
   @ResponseBody
-  public ResponseEntity<User> createUser(
+  public ResponseEntity<User> createUserWithId(
           @RequestParam(name = "userid") String userId,
           @RequestParam(name = "realname") String realName,
           @RequestParam(name = "usertype") String userType,
@@ -126,6 +127,22 @@ public class Client1Controller {
     try {
       UserType type = UserType.valueOf(userType);
       User user = userRepo.save(new User(Long.parseLong(userId), realName, type, mainGenre, Integer.parseInt(age)));
+      return new ResponseEntity<>(user, HttpStatus.CREATED);
+    } catch (Exception e) {
+      return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+    }
+  }
+
+  @PostMapping("/createUser")
+  @ResponseBody
+  public ResponseEntity<User> createUser(
+          @RequestParam(name = "realname") String realName,
+          @RequestParam(name = "usertype") String userType,
+          @RequestParam(name = "maingenre") String mainGenre,
+          @RequestParam(name = "age") String age){
+    try {
+      UserType type = UserType.valueOf(userType);
+      User user = userRepo.save(new User(realName, type, mainGenre, Integer.parseInt(age)));
       return new ResponseEntity<>(user, HttpStatus.CREATED);
     } catch (Exception e) {
       return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);

@@ -73,6 +73,13 @@ public class User {
     this.age = age;
   }
 
+  public User(String realName, UserType userType, String mainGenre, Integer age) {
+    this.realName = realName;
+    this.userType = userType;
+    this.mainGenre = mainGenre;
+    this.age = age;
+  }
+
   // getters and setters
 
   public Long getUserId() {
