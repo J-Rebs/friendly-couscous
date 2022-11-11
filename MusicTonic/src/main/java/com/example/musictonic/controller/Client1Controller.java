@@ -105,6 +105,16 @@ public class Client1Controller {
     }
   }
 
+  // for testing - list all users
+  @GetMapping(value = "/listUsers")
+  List<String> listUsers() {
+    List<User> l = new ArrayList<>();
+    for (User u : userRepo.findAll()) {
+      l.add(u());
+    }
+    return l;
+  }
+
   @PostMapping("/createUser")
   @ResponseBody
   public ResponseEntity<User> createUser(
