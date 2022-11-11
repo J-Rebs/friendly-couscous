@@ -19,8 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
-
 //import org.springframework.boot.configurationprocessor.json;
 //import org.springframework.web.bind.annotation.PostMapping;
 
@@ -163,21 +161,4 @@ public class Client1Controller {
       return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
     }
   }
-
-  /*
-  @DeleteMapping("/deleteUser")
-  @ResponseBody
-  public ResponseEntity<User> deleteUser(
-          @RequestParam(name = "id") String userId) {
-    try {
-      Long id = Long.parseLong(userId);
-      User toDelete = userRepo.findByUserId(id);
-      // what if toDelete = null?
-      // cannot do if(toDelete == null) -- incompatible type
-      Long deleteUser = userRepo.deleteByUserId(id);
-      return new ResponseEntity<>(toDelete, HttpStatus.CREATED);
-    } catch (Exception e) {
-      return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-    }
-  }*/
 }
