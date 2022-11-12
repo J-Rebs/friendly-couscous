@@ -13,7 +13,7 @@ Ryan Soeyadi [rs4163], Joseph Rebagliati [jr4162], Yuhao Dong [yd2626], Madison 
 ### MUSIC PLATFORM SERVICES (Client type one in our proposal)
 
 - TYPE OF REQUEST: `GET`
-    - ROUTE: `/client1-rest/playsong`
+    - ROUTE: `/client1-rest/listUsers`
     - PURPOSE: Gets users available who can play song
     - RETURN TYPES:
       - `List<String>` if succeeds
