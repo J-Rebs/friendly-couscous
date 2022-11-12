@@ -26,28 +26,36 @@ Ryan Soeyadi [rs4163], Joseph Rebagliati [jr4162], Yuhao Dong [yd2626], Madison 
       - `400 bad request` if fails
     - FUTURE Development: Add Client Authentication
 - TYPE OF REQUEST: `PUT`
-    - ROUTE: `/client1-rest/likesong?userid={id}&songid={id}`
-    - PURPOSE: registers songs to a default playlist for a user, creates default playlist if it does not exist, and increments and returns the like count for a song.
-    - RETURN TYPES:
-      - `200 OK` if succeeds
-      - `400 bad request` if fails
-    - FUTURE Development: Add Client Authentication
+  - ROUTE: `/client1-rest/likesong?userid={id}&songid={id}`
+  - PURPOSE: registers songs to a default playlist for a user, creates default playlist if it does not exist, and
+    increments and returns the like count for a song.
+  - RETURN TYPES:
+    - `200 OK` if succeeds
+    - `400 bad request` if fails
+  - FUTURE Development: Add Client Authentication
+
 ### MUSIC ANALYTICS SERVICES (Client type two in our proposal)
+
 - TYPE OF REQUEST: `GET`
   - ROUTE: `/client2-rest/top3songs`
-  - PURPOSE: gets the top 3 songs by like count, and it calculates the average # of playlists that the songs occur in overall.
+  - PURPOSE: gets the top 3 songs by like count, and it calculates the average # of playlists that the songs occur in
+    overall.
   - RETURN TYPES:
     - `200 OK` if succeeds
     - `400 bad request` if fails
   - FUTURE Development: N/A
+
 ### DATA SHARING SERVICES  (Client type three in our proposal)
+
 - TYPE OF REQUEST: `GET`
   - ROUTE: `/client3-rest/userexport`
-  - PURPOSE: provides an export of user data including the user and associated fields, the playlists the user owns, and all analytics entries for that user.
+  - PURPOSE: provides an export of user data including the user and associated fields, the playlists the user owns,
+    and all analytics entries for that user.
   - RETURN TYPES:
     - `200 OK` if succeeds
     - `400 bad request` if fails
   - FUTURE Development: N/A
+
 ## 2. Unit Tests
 
 The routes above are tested at the controller and service layer where applicable. Tests are run using J-Unit and can be
@@ -78,9 +86,11 @@ See CheckStyle Report from October 30th, 2022
 
 To run the project, we recommend downloading IntelliJ, see [here](https://www.jetbrains.com/idea/). From here deployment
 can be done by click `run` on MusicTonicApplication. This will build and run the application. Tests can be run
-independently of build, but they are included in the prior instruction by default for unit testing. To run tests independently, you can use the Maven Tool Window and run Maven Tests. Below are screenshots to show this in IntelliJ.
+independently of build, but they are included in the prior instruction by default for unit testing. To run tests
+independently, you can use the Maven Tool Window and run Maven Tests. Below are screenshots to show this in IntelliJ.
 
-To run this project from the command line from a Mac, make sure that you have maven installed locally. Then, from the terminal, run the following code:
+To run this project from the command line from a Mac, make sure that you have maven installed locally. Then, from the
+terminal, run the following code:
 `mvn spring-boot:run`.
 
 ### Build and Run in IntelliJ
@@ -92,6 +102,7 @@ To run this project from the command line from a Mac, make sure that you have ma
 ![image](https://user-images.githubusercontent.com/84640075/197677593-b653a00f-21d8-45eb-8775-ffed29003ab1.png)
 
 ## By Team Grey Orange
+
 <p align="center">
   <img max-width="500" max-height="500" src="img.png">
 </p>

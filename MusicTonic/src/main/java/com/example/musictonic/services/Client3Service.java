@@ -50,8 +50,7 @@ public class Client3Service {
    * Get and return information (i.e., playlists and analytics history) for this client.
    *
    * @param userId - the unique ID for this client (i.e., user)
-   * @return  a UserExportReturn object containing the playlists and analytics history
-   *          for this client
+   * @return a UserExportReturn object containing the playlists and analytics history
    */
   public UserExportReturn getUserInformation(Long userId) {
 

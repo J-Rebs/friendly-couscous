@@ -38,9 +38,9 @@ public class AnalyticsGroup implements Serializable {
   /**
    * Parameterized constructor for the class AnalyticsGroup.
    *
-   * @param id - the unique ID for this AnalyticsGroup entry
+   * @param id        - the unique ID for this AnalyticsGroup entry
    * @param analytics - the corresponding entity for Analytics
-   * @param group - the corresponding entity for Group
+   * @param group     - the corresponding entity for Group
    */
   public AnalyticsGroup(Long id, Analytics analytics, Group group) {
     this.id = id;

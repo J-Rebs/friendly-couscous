@@ -17,9 +17,9 @@ public class AnalyticsInfoBasic {
   /**
    * Parameterized constructor for AnalyticsInfoBasic.
    *
-   * @param analyticsId - the unique ID for the analytics entry
+   * @param analyticsId     - the unique ID for the analytics entry
    * @param timestampString - the timestamp of the analytics entry
-   * @param user - the User object corresponding to the Analytics entry
+   * @param user            - the User object corresponding to the Analytics entry
    */
   public AnalyticsInfoBasic(Long analyticsId, String timestampString, User user) {
     this.analyticsId = analyticsId;

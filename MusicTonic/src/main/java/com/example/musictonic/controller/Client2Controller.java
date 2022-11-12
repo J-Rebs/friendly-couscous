@@ -23,8 +23,7 @@ public class Client2Controller {
   /**
    * Function to get the top three most popular songs.
    *
-   * @return  if OK, a ResponseEntity consisting of an ArrayList of top three most popular songs;
-   *          else BAD_REQUEST
+   * @return if OK, ArrayList of top three most popular songs else BAD_REQUEST.
    */
   @GetMapping("/top3songs")
   public ResponseEntity<PopularSongsReturn> getTopThreeSongs() {

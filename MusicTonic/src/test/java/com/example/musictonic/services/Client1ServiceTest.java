@@ -1,7 +1,10 @@
 package com.example.musictonic.services;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -13,12 +16,17 @@ import com.example.musictonic.model.Playlist;
 import com.example.musictonic.model.Song;
 import com.example.musictonic.model.User;
 import com.example.musictonic.model.UserType;
-import com.example.musictonic.repository.*;
-
+import com.example.musictonic.repository.AnalyticsPlaylistRepository;
+import com.example.musictonic.repository.AnalyticsRepository;
+import com.example.musictonic.repository.AnalyticsSongRepository;
+import com.example.musictonic.repository.AnalyticsUserRepository;
+import com.example.musictonic.repository.PlaylistRepository;
+import com.example.musictonic.repository.PlaylistToSongRepository;
+import com.example.musictonic.repository.SongRepository;
+import com.example.musictonic.repository.UserRepository;
 import java.sql.Timestamp;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,8 +34,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import static java.lang.Integer.valueOf;
 
 @ExtendWith(MockitoExtension.class)
 class Client1ServiceTest {

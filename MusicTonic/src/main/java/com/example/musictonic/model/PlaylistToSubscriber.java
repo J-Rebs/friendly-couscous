@@ -37,8 +37,8 @@ public class PlaylistToSubscriber implements Serializable {
   /**
    * Parameterized constructor for PlaylistToSubscriber.
    *
-   * @param id - the unique ID for this PlaylistToSubscriber entry
-   * @param user - the user ID for this PlaylistToSubscriber entry
+   * @param id       - the unique ID for this PlaylistToSubscriber entry
+   * @param user     - the user ID for this PlaylistToSubscriber entry
    * @param playlist -  the playlist ID for this PlaylistToSubscriber entry
    */
   public PlaylistToSubscriber(Long id, User user, Playlist playlist) {

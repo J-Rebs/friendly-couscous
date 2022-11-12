@@ -59,11 +59,11 @@ public class User {
   /**
    * Parameterized constructor for user object.
    *
-   * @param userId - the unique ID for this User object
-   * @param realName - the name associated with this user
-   * @param userType - the user type
+   * @param userId    - the unique ID for this User object
+   * @param realName  - the name associated with this user
+   * @param userType  - the user type
    * @param mainGenre - the main genre that this user interacts with
-   * @param age - the age of this user
+   * @param age       - the age of this user
    */
   public User(Long userId, String realName, UserType userType, String mainGenre, Integer age) {
     this.userId = userId;
@@ -72,6 +72,15 @@ public class User {
     this.mainGenre = mainGenre;
     this.age = age;
   }
+
+  /**
+   * Parameterized constructor for user object.
+   *
+   * @param realName  - the name associated with this user
+   * @param userType  - the user type
+   * @param mainGenre - the main genre that this user interacts with
+   * @param age       - the age of this user
+   */
 
   public User(String realName, UserType userType, String mainGenre, Integer age) {
     this.realName = realName;

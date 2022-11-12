@@ -36,9 +36,9 @@ public class ClientUser implements Serializable {
   /**
    * Parameterized constructor for ClientUser.
    *
-   * @param id - the unique ID for this ClientUser entry
+   * @param id     - the unique ID for this ClientUser entry
    * @param client - the Client object
-   * @param user - the User object
+   * @param user   - the User object
    */
   public ClientUser(Long id, Client client, User user) {
     this.id = id;

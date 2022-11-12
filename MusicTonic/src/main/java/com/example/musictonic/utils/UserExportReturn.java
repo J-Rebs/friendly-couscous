@@ -19,8 +19,8 @@ public class UserExportReturn {
   /**
    * Parameterized constructor for UserExportReturn object.
    *
-   * @param user - the user object that this object is being generated for
-   * @param playlistList - list of playlists associated with this user
+   * @param user          - the user object that this object is being generated for
+   * @param playlistList  - list of playlists associated with this user
    * @param analyticsList - list of analytics associated with this user
    */
   public UserExportReturn(User user, List<Playlist> playlistList,

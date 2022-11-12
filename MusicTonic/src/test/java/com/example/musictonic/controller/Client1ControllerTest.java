@@ -8,7 +8,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.example.musictonic.utils.PlaySongReturn;
 import com.example.musictonic.model.Analytics;
 import com.example.musictonic.model.AnalyticsPlaylist;
 import com.example.musictonic.model.AnalyticsSong;
@@ -22,6 +21,7 @@ import com.example.musictonic.repository.UserRepository;
 import com.example.musictonic.services.Client1Service;
 import com.example.musictonic.services.Client2Service;
 import com.example.musictonic.services.Client3Service;
+import com.example.musictonic.utils.PlaySongReturn;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.sql.Timestamp;
 import java.time.format.DateTimeFormatter;

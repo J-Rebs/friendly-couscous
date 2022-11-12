@@ -36,9 +36,9 @@ public class ClientSong implements Serializable {
   /**
    * Parameterized constructor for ClientSong.
    *
-   * @param id - the unique ID for this ClientSong entry
+   * @param id     - the unique ID for this ClientSong entry
    * @param client - the Client object
-   * @param song - the Song object
+   * @param song   - the Song object
    */
   public ClientSong(Long id, Client client, Song song) {
     this.id = id;

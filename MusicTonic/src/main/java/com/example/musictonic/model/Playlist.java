@@ -51,9 +51,9 @@ public class Playlist {
    * Parameterized constructor for Playlist.
    *
    * @param playlistId - the unique ID for this groupId
-   * @param owner - the userId corresponding to the owner of this Playlist
-   * @param name - the name of this playlist
-   * @param isDefault - true if this playlist is the default "likes" playlist, else false
+   * @param owner      - the userId corresponding to the owner of this Playlist
+   * @param name       - the name of this playlist
+   * @param isDefault  - true if this playlist is the default "likes" playlist, else false
    */
   public Playlist(Long playlistId, Long owner, String name, Boolean isDefault) {
     this.playlistId = playlistId;
@@ -65,8 +65,8 @@ public class Playlist {
   /**
    * Parameterized constructor for Playlist.
    *
-   * @param owner - the userId corresponding to the owner of this Playlist
-   * @param name - the name of this playlist
+   * @param owner     - the userId corresponding to the owner of this Playlist
+   * @param name      - the name of this playlist
    * @param isDefault - true if this playlist is the default "likes" playlist, else false
    */
   public Playlist(Long owner, String name, Boolean isDefault) {

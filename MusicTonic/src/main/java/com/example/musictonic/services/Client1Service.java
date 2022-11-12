@@ -8,6 +8,7 @@ import com.example.musictonic.model.Playlist;
 import com.example.musictonic.model.PlaylistToSongs;
 import com.example.musictonic.model.Song;
 import com.example.musictonic.model.User;
+import com.example.musictonic.model.UserType;
 import com.example.musictonic.repository.AnalyticsPlaylistRepository;
 import com.example.musictonic.repository.AnalyticsRepository;
 import com.example.musictonic.repository.AnalyticsSongRepository;
@@ -18,7 +19,9 @@ import com.example.musictonic.repository.SongRepository;
 import com.example.musictonic.repository.UserRepository;
 import java.sql.Timestamp;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -136,8 +139,8 @@ public class Client1Service {
   /**
    * Method to play a song.
    *
-   * @param userId - the unique ID for this client (i.e., user)
-   * @param songId - the unique ID for this song
+   * @param userId     - the unique ID for this client (i.e., user)
+   * @param songId     - the unique ID for this song
    * @param playlistId - the unique ID for this playlist
    * @return the Analytics entry/object that was created and added to the Analytics table
    */
@@ -177,5 +180,56 @@ public class Client1Service {
     }
 
     return a;
+  }
+
+
+  /**
+   * Method to return a list of all users.
+   *
+   * @return a list of all users
+   */
+
+  // Src: https://github.com/rcoppy/demo-persistent-data-api/blob/main/src/main/java/com/alexrupp/persistentdataapi/controllers/ChatUserController.java
+  public List<User> getAllUsers() {
+    List<User> l = new ArrayList<>();
+    for (User u : userRepo.findAll()) {
+      l.add(u);
+    }
+    return l;
+  }
+
+  /**
+   * Method to create a user.
+   *
+   * @param realName  - the name of the user (i.e., Sam)
+   * @param type      - user is one of the following types: ARTIST, LISTENER, ADMIN, SCIENTIST
+   * @param mainGenre - The main genre for a user, (i.e., country, pop, rap, etc...)
+   * @param age       - the age of the user
+   * @return the newly created User object that was added to the User table
+   */
+
+  public User createUser(String realName, UserType type, String mainGenre, Integer age) {
+    try {
+      User user = userRepo.save(new User(realName, type, mainGenre, age));
+      return user;
+    } catch (Exception e) {
+      return null;
+    }
+  }
+
+  /**
+   * Method to delete a user.
+   *
+   * @param userId - the Id of the user to be deleted
+   * @return the User object corresponding to the deleted entry in the User table
+   */
+  public User deleteUser(Long userId) {
+    try {
+      User toDelete = userRepo.findByUserId(userId);
+      userRepo.delete(toDelete);
+      return toDelete;
+    } catch (Exception e) {
+      return null;
+    }
   }
 }

@@ -37,8 +37,8 @@ public class PlaylistToSongs implements Serializable {
   /**
    * Parameterized constructor for PlaylistToSongs.
    *
-   * @param id - the unique ID for this PlaylistToSongs entry
-   * @param song - the song ID for this PlaylistToSongs entry
+   * @param id       - the unique ID for this PlaylistToSongs entry
+   * @param song     - the song ID for this PlaylistToSongs entry
    * @param playlist -  the playlist ID for this PlaylistToSongs entry
    */
   public PlaylistToSongs(Long id, Song song, Playlist playlist) {

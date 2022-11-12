@@ -2,8 +2,6 @@ package com.example.musictonic.repository;
 
 import com.example.musictonic.model.Analytics;
 import com.example.musictonic.model.AnalyticsUser;
-import java.util.List;
-import java.util.Set;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /*

@@ -44,9 +44,9 @@ public class Group {
   /**
    * Parameterized constructor for Group.
    *
-   * @param groupId - the unique ID for this groupId
-   * @param admin - the admin of this group
-   * @param groupName - the name of this group
+   * @param groupId     - the unique ID for this groupId
+   * @param admin       - the admin of this group
+   * @param groupName   - the name of this group
    * @param description - description of this group
    */
   public Group(Long groupId, String admin, String groupName, String description) {
