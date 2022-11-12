@@ -26,6 +26,7 @@ import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 /*
@@ -230,6 +231,8 @@ public class Client1Service {
    * @param userId - the Id of the user to be deleted
    * @return the User object corresponding to the deleted entry in the User table
    */
+  @Transactional
+  // Src: https://stackoverflow.com/questions/32269192/spring-no-entitymanager-with-actual-transaction-available-for-current-thread
   public User deleteUser(Long userId) {
     try {
       // get user to be deleted
@@ -242,11 +245,13 @@ public class Client1Service {
         // then get the analytics entity for all entries found
         Analytics a = au.getAnalytics();
         // try to delete analyticsUser
-        analyticsUserRepo.deleteByAnalytics(a);
+        analyticsUserRepo.delete(au);
         // try to delete analyticsPlaylist
-        analyticsPlaylistRepo.deleteByAnalytics(a);
+        AnalyticsPlaylist ap = analyticsPlaylistRepo.findByAnalytics(a);
+        analyticsPlaylistRepo.delete(ap);
         // try to delete analyticsSong
-        analyticsSongRepo.deleteByAnalytics(a);
+        AnalyticsSong as = analyticsSongRepo.findByAnalytics(a);
+        analyticsSongRepo.delete(as);
         // then delete analytics entry
         analyticsRepo.delete(a);
       }
@@ -291,7 +296,7 @@ public class Client1Service {
       userRepo.delete(toDelete);
       return toDelete;
     } catch (Exception e) {
-      return null;
+      throw e;
     }
   }
 }

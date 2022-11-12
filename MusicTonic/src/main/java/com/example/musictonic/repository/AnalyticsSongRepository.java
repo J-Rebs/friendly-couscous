@@ -27,7 +27,5 @@ public interface AnalyticsSongRepository extends JpaRepository<AnalyticsSong, Lo
   //Note: your naming conventions must match how you establish the entity
   //e.g., code will fail if you write findByReal_Name;
 
-  AnalyticsSong deleteByAnalytics(Analytics a);
-
-
+  AnalyticsSong findByAnalytics(Analytics a);
 }

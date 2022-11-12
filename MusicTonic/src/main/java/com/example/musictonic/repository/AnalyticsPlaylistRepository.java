@@ -28,8 +28,7 @@ public interface AnalyticsPlaylistRepository extends JpaRepository<AnalyticsPlay
   //Note: your naming conventions must match how you establish the entity
   //e.g., code will fail if you write findByReal_Name;
 
-  AnalyticsPlaylist deleteByAnalytics(Analytics a);
-
-
   List<AnalyticsPlaylist> findAllByPlaylist(Playlist p);
+
+  AnalyticsPlaylist findByAnalytics(Analytics a);
 }
