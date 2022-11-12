@@ -19,12 +19,12 @@ Ryan Soeyadi [rs4163], Joseph Rebagliati [jr4162], Yuhao Dong [yd2626], Madison 
       - `List<String>` if succeeds
     - FUTURE Development: Add Client Authentication and HTTP response
 - TYPE OF REQUEST: `POST`
-    - ROUTE: `/client1-rest/playsong?userid={id}&songid={id}&playlistid={id}`
-    - PURPOSE: Registers a song played in the analytics relation for a given user, song, and playlist
-    - RETURN TYPES:
-      - `201 created` if succeeds
-      - `400 bad request` if fails
-    - FUTURE Development: Add Client Authentication
+  - ROUTE: `/client1-rest/playsong?userid={id}&songid={id}&playlistid={id}`
+  - PURPOSE: Registers a song played in the analytics relation for a given user, song, and playlist
+  - RETURN TYPES:
+    - `201 created` if succeeds
+    - `400 bad request` if fails
+  - FUTURE Development: Add Client Authentication
 - TYPE OF REQUEST: `PUT`
   - ROUTE: `/client1-rest/likesong?userid={id}&songid={id}`
   - PURPOSE: registers songs to a default playlist for a user, creates default playlist if it does not exist, and

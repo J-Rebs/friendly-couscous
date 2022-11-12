@@ -138,7 +138,9 @@ public class Client1Controller {
 
 
   /**
-   * This method deletes a user.
+   * Method to delete a user. Also deletes all playlists where user is owner, removes
+   * user as subscriber from playlists where not owner and deletes all analytics entries
+   * for said user.
    *
    * @return - if OK, User corresponding to deleted User entry in table; else, BAD_REQUEST
    */

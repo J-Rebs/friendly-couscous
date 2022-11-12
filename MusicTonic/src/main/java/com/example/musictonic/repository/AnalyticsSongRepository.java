@@ -1,6 +1,10 @@
 package com.example.musictonic.repository;
 
+import com.example.musictonic.model.Analytics;
 import com.example.musictonic.model.AnalyticsSong;
+import com.example.musictonic.model.AnalyticsUser;
+import com.example.musictonic.model.Song;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /*
@@ -22,6 +26,8 @@ public interface AnalyticsSongRepository extends JpaRepository<AnalyticsSong, Lo
 
   //Note: your naming conventions must match how you establish the entity
   //e.g., code will fail if you write findByReal_Name;
+
+  AnalyticsSong deleteByAnalytics(Analytics a);
 
 
 }

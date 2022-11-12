@@ -31,4 +31,6 @@ public interface PlaylistToSongRepository extends JpaRepository<PlaylistToSongs,
 
   List<PlaylistToSongs> findAllBySong(Song s);
 
+  List<PlaylistToSongs> findAllByPlaylist(Playlist p);
+
 }

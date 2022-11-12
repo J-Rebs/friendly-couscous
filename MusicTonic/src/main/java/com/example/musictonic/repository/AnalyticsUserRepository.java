@@ -1,5 +1,6 @@
 package com.example.musictonic.repository;
 
+import com.example.musictonic.model.Analytics;
 import com.example.musictonic.model.AnalyticsUser;
 import com.example.musictonic.model.User;
 import java.util.List;
@@ -26,5 +27,7 @@ public interface AnalyticsUserRepository extends JpaRepository<AnalyticsUser, Lo
   //e.g., code will fail if you write findByReal_Name;
 
   List<AnalyticsUser> findByUser(User user);
+
+  AnalyticsUser deleteByAnalytics(Analytics a);
 
 }

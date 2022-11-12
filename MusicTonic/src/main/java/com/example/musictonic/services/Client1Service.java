@@ -6,6 +6,7 @@ import com.example.musictonic.model.AnalyticsSong;
 import com.example.musictonic.model.AnalyticsUser;
 import com.example.musictonic.model.Playlist;
 import com.example.musictonic.model.PlaylistToSongs;
+import com.example.musictonic.model.PlaylistToSubscriber;
 import com.example.musictonic.model.Song;
 import com.example.musictonic.model.User;
 import com.example.musictonic.model.UserType;
@@ -15,6 +16,7 @@ import com.example.musictonic.repository.AnalyticsSongRepository;
 import com.example.musictonic.repository.AnalyticsUserRepository;
 import com.example.musictonic.repository.PlaylistRepository;
 import com.example.musictonic.repository.PlaylistToSongRepository;
+import com.example.musictonic.repository.PlaylistToSubscriberRepository;
 import com.example.musictonic.repository.SongRepository;
 import com.example.musictonic.repository.UserRepository;
 import java.sql.Timestamp;
@@ -73,6 +75,9 @@ public class Client1Service {
 
   @Autowired
   PlaylistToSongRepository playlistToSongsRepo;
+
+  @Autowired
+  PlaylistToSubscriberRepository playlistToSubscriberRepo;
 
 
   private Playlist subscribeDefaultPlaylist(Long userId) {
@@ -218,14 +223,71 @@ public class Client1Service {
   }
 
   /**
-   * Method to delete a user.
+   * Method to delete a user. Also deletes all playlists where user is owner, removes
+   * user as subscriber from playlists where not owner and deletes all analytics entries
+   * for said user.
    *
    * @param userId - the Id of the user to be deleted
    * @return the User object corresponding to the deleted entry in the User table
    */
   public User deleteUser(Long userId) {
     try {
+      // get user to be deleted
       User toDelete = userRepo.findByUserId(userId);
+
+      // find and delete all corresponding entries for user related to analytics
+      // first, get a list of all analyticsUser entries
+      List<AnalyticsUser> analyticsUserList = analyticsUserRepo.findByUser(toDelete);
+      for (AnalyticsUser au : analyticsUserList) {
+        // then get the analytics entity for all entries found
+        Analytics a = au.getAnalytics();
+        // try to delete analyticsUser
+        analyticsUserRepo.deleteByAnalytics(a);
+        // try to delete analyticsPlaylist
+        analyticsPlaylistRepo.deleteByAnalytics(a);
+        // try to delete analyticsSong
+        analyticsSongRepo.deleteByAnalytics(a);
+        // then delete analytics entry
+        analyticsRepo.delete(a);
+      }
+
+
+      // find and delete all corresponding entries for a user related to playlistToSubscriber
+      List<PlaylistToSubscriber> playlistToSubscriberList =
+          playlistToSubscriberRepo.findAllByUser(toDelete);
+      for (PlaylistToSubscriber ps : playlistToSubscriberList) {
+        playlistToSubscriberRepo.delete(ps);
+      }
+
+      // find and delete all playlists where user is the owner
+      List<Playlist> userOwnedPlaylists = playlistRepo.findAllByOwner(userId);
+      for (Playlist p : userOwnedPlaylists) {
+        // also need to remove all the songs in the playlist, along with any subscriber entries,
+        // AND all analytics entries
+        // subscribers
+        List<PlaylistToSubscriber> subscriberList =
+            playlistToSubscriberRepo.findAllByPlaylist(p);
+
+        for (PlaylistToSubscriber ps : subscriberList) {
+          playlistToSubscriberRepo.delete(ps);
+        }
+        // songs
+        List<PlaylistToSongs> songList =
+            playlistToSongsRepo.findAllByPlaylist(p);
+        for (PlaylistToSongs ps : songList) {
+          playlistToSongsRepo.delete(ps);
+        }
+        // analytics
+        List<AnalyticsPlaylist> analyticsList =
+            analyticsPlaylistRepo.findAllByPlaylist(p);
+        for (AnalyticsPlaylist ap : analyticsList) {
+          analyticsPlaylistRepo.delete(ap);
+        }
+        // the can delete the playlist itself
+        playlistRepo.delete(p);
+      }
+
+      // delete the user from database and return the deleted user object
       userRepo.delete(toDelete);
       return toDelete;
     } catch (Exception e) {
