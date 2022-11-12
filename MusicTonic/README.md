@@ -14,7 +14,7 @@ Ryan Soeyadi [rs4163], Joseph Rebagliati [jr4162], Yuhao Dong [yd2626], Madison 
 
 - TYPE OF REQUEST: `GET`
     - ROUTE: `/client1-rest/listUsers`
-    - PURPOSE: Gets users available who can play song
+    - PURPOSE: Gets list of users
     - RETURN TYPES:
       - `List<String>` if succeeds
     - FUTURE Development: Add Client Authentication and HTTP response
