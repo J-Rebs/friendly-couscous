@@ -2,6 +2,7 @@ package com.example.musictonic.security;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.oauth2.core.DelegatingOAuth2TokenValidator;
@@ -28,12 +29,11 @@ public class SecurityConfig {
         an OAuth2 Resource Server, using JWT validation.
         */
     http.authorizeRequests()
-        .mvcMatchers("/").permitAll()
-        .mvcMatchers("/client1-rest/playsong").permitAll()
-        .mvcMatchers("/api/test-private-scoped").permitAll()
-        .mvcMatchers("/api/public").permitAll()
-        .mvcMatchers("/api/private").permitAll()
-        .mvcMatchers("/api/private-scoped").permitAll()
+        .mvcMatchers(HttpMethod.GET, "/").authenticated()
+//        .mvcMatchers(HttpMethod.GET, "client1-rest/listUsers").authenticated()
+//        .mvcMatchers(HttpMethod.GET, "/").permitAll()
+//        .mvcMatchers(HttpMethod.POST, "/playsong").permitAll()
+//        .mvcMatchers("/client1-rest/**").permitAll()
         .and().cors()
         .and().oauth2ResourceServer().jwt();
     return http.build();
