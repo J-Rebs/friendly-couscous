@@ -9,6 +9,10 @@ import org.springframework.security.oauth2.core.DelegatingOAuth2TokenValidator;
 import org.springframework.security.oauth2.core.OAuth2TokenValidator;
 import org.springframework.security.oauth2.jwt.*;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import java.util.List;
 
 /**
  * Configures our application with Spring Security to restrict access to our API endpoints.
@@ -32,12 +36,26 @@ public class SecurityConfig {
         .mvcMatchers(HttpMethod.GET, "/").permitAll()
         .mvcMatchers(HttpMethod.GET, "/authorized").authenticated()
         .mvcMatchers(HttpMethod.GET, "/client1-rest/listUsers").hasAuthority("SCOPE_get:users")
+        .mvcMatchers(HttpMethod.POST, "/client1-rest/likeSong").permitAll()
 //        .mvcMatchers(HttpMethod.GET, "/").permitAll()
-//        .mvcMatchers(HttpMethod.POST, "/playsong").permitAll()
 //        .mvcMatchers("/client1-rest/**").permitAll()
-        .and().cors()
+        .and().cors().configurationSource(corsConfigurationSource())
         .and().oauth2ResourceServer().jwt();
     return http.build();
+  }
+
+  CorsConfigurationSource corsConfigurationSource() {
+    CorsConfiguration configuration = new CorsConfiguration();
+    configuration.setAllowedMethods(List.of(
+        HttpMethod.GET.name(),
+        HttpMethod.PUT.name(),
+        HttpMethod.POST.name(),
+        HttpMethod.DELETE.name()
+    ));
+
+    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    source.registerCorsConfiguration("/**", configuration.applyPermitDefaultValues());
+    return source;
   }
 
   @Bean
