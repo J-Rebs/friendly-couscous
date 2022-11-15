@@ -177,4 +177,22 @@ class Client1ServiceTest {
     List<User> returnedList = client1Service.getAllUsers();
     assertNotEquals(returnedList, list);
   }
+
+  @Test
+  @DisplayName("createUser() WORKS")
+  void createUserGood() throws IllegalAccessException {
+    when(userRepo.save(any(User.class))).thenReturn(user);
+    User returnedUser = client1Service.createUser("Cool Guy", UserType.ARTIST, "country", 27);
+    assertEquals(user, returnedUser);
+  }
+
+  @Test
+  @DisplayName("createUser() FAILS, as expected")
+  void createUserBad() throws IllegalAccessException {
+    when(userRepo.save(any(User.class))).thenReturn(null);
+    User returnedUser = client1Service.createUser("Cool Guy", UserType.ARTIST, "country", 27);
+    assertNotEquals(user, returnedUser);
+  }
+
+
 }
