@@ -29,8 +29,9 @@ public class SecurityConfig {
         an OAuth2 Resource Server, using JWT validation.
         */
     http.authorizeRequests()
-        .mvcMatchers(HttpMethod.GET, "/").authenticated()
-//        .mvcMatchers(HttpMethod.GET, "client1-rest/listUsers").authenticated()
+        .mvcMatchers(HttpMethod.GET, "/").permitAll()
+        .mvcMatchers(HttpMethod.GET, "/authorized").authenticated()
+        .mvcMatchers(HttpMethod.GET, "/client1-rest/listUsers").hasAuthority("SCOPE_get:users")
 //        .mvcMatchers(HttpMethod.GET, "/").permitAll()
 //        .mvcMatchers(HttpMethod.POST, "/playsong").permitAll()
 //        .mvcMatchers("/client1-rest/**").permitAll()

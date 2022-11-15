@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Request handler for client type 1 (e.g., CRUD functionality).
  */
-@CrossOrigin(origins = "http://localhost:8080", maxAge = 3600)
+//@CrossOrigin(origins = "http://localhost:8080", maxAge = 3600)
 @RestController
 @RequestMapping("client1-rest")
 public class Client1Controller {
