@@ -1,11 +1,18 @@
 package com.example.musictonic.services;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+//import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.verifyNoInteractions;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
 import com.example.musictonic.model.Analytics;
@@ -13,6 +20,7 @@ import com.example.musictonic.model.AnalyticsPlaylist;
 import com.example.musictonic.model.AnalyticsSong;
 import com.example.musictonic.model.AnalyticsUser;
 import com.example.musictonic.model.Playlist;
+import com.example.musictonic.model.PlaylistToSubscriber;
 import com.example.musictonic.model.Song;
 import com.example.musictonic.model.User;
 import com.example.musictonic.model.UserType;
@@ -22,6 +30,7 @@ import com.example.musictonic.repository.AnalyticsSongRepository;
 import com.example.musictonic.repository.AnalyticsUserRepository;
 import com.example.musictonic.repository.PlaylistRepository;
 import com.example.musictonic.repository.PlaylistToSongRepository;
+import com.example.musictonic.repository.PlaylistToSubscriberRepository;
 import com.example.musictonic.repository.SongRepository;
 import com.example.musictonic.repository.UserRepository;
 import java.sql.Timestamp;
@@ -29,16 +38,23 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import org.hibernate.ObjectNotFoundException;
+import org.junit.Rule;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.rules.ExpectedException;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
 class Client1ServiceTest {
+
+  //@Rule
+  //public final ExpectedException exception = ExpectedException.none();
 
   @Mock
   AnalyticsRepository analyticsRepo;
@@ -51,6 +67,9 @@ class Client1ServiceTest {
 
   @Mock
   AnalyticsPlaylistRepository analyticsPlaylistRepo;
+
+  @Mock
+  PlaylistToSubscriberRepository playlistToSubscriberRepo;
 
   @Mock
   UserRepository userRepo;
@@ -194,5 +213,31 @@ class Client1ServiceTest {
     assertNotEquals(user, returnedUser);
   }
 
+  @Test
+  @DisplayName("deleteUser() WORKS")
+  void deleteUserGood() throws IllegalAccessException {
+    when(userRepo.findByUserId(any(Long.class))).thenReturn(user);
+
+    List<AnalyticsUser> list1 = new ArrayList<>();
+    when(analyticsUserRepo.findByUser(any(User.class))).thenReturn(list1);
+
+    List<PlaylistToSubscriber> list2 = new ArrayList<>();
+    when(playlistToSubscriberRepo.findAllByUser(any(User.class))).thenReturn(list2);
+
+    List<Playlist> list3 = new ArrayList<>();
+    when(playlistRepo.findAllByOwner(any(Long.class))).thenReturn(list3);
+
+    client1Service.deleteUser(1L);
+    verify(userRepo, times(1)).delete(user);
+  }
+
+  @Test
+  @DisplayName("deleteUser() FAILS, as expected")
+  void deleteUserBad() throws ObjectNotFoundException {
+    when(userRepo.findByUserId(any(Long.class))).thenReturn(null);
+
+    User user1 = client1Service.deleteUser(1L);
+    assertNotEquals(user1, user);
+  }
 
 }
