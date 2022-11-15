@@ -26,7 +26,9 @@ import com.example.musictonic.repository.SongRepository;
 import com.example.musictonic.repository.UserRepository;
 import java.sql.Timestamp;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -80,6 +82,8 @@ class Client1ServiceTest {
   private Playlist playlist;
   private Analytics a;
 
+  private List<User> list = new ArrayList<>();
+
   private AnalyticsUser analyticsUser;
   private AnalyticsSong analyticsSong;
   private AnalyticsPlaylist analyticsPlaylist;
@@ -91,6 +95,8 @@ class Client1ServiceTest {
     user = new User(1L, "Cool Guy", UserType.ARTIST, "country", 27);
     song = new Song(1L, "SongySongyPopPop", 2, "CoolestArtist", "YaYaMerchMakesYou COOL", 10);
     playlist = new Playlist(1L, 1L, "TheBEST", false);
+
+    list.add(user);
 
     analyticsUser = new AnalyticsUser(a, user);
     analyticsSong = new AnalyticsSong(a, song);
@@ -155,5 +161,20 @@ class Client1ServiceTest {
     assertNotEquals(originalSongLikesCount + 8, songLikesCount);
   }
 
+  @Test
+  @DisplayName("getAllUsers() WORKS")
+  void getAllUsersGood() throws IllegalAccessException {
+    when(userRepo.findAll()).thenReturn(list);
+    List<User> returnedList = client1Service.getAllUsers();
+    assertEquals(returnedList, list);
+  }
 
+  @Test
+  @DisplayName("getAllUsers() FAILS, as expected")
+  void getAllUsersBad() throws IllegalAccessException {
+    List<User> fakeList = new ArrayList<>();
+    when(userRepo.findAll()).thenReturn(fakeList);
+    List<User> returnedList = client1Service.getAllUsers();
+    assertNotEquals(returnedList, list);
+  }
 }
