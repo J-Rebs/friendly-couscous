@@ -36,9 +36,13 @@ public class SecurityConfig {
         .mvcMatchers(HttpMethod.GET, "/").permitAll()
         .mvcMatchers(HttpMethod.GET, "/authorized").authenticated()
         .mvcMatchers(HttpMethod.GET, "/client1-rest/listUsers").hasAuthority("SCOPE_get:users")
-        .mvcMatchers(HttpMethod.POST, "/client1-rest/likeSong").permitAll()
-//        .mvcMatchers(HttpMethod.GET, "/").permitAll()
-//        .mvcMatchers("/client1-rest/**").permitAll()
+        .mvcMatchers(HttpMethod.PUT, "/client1-rest/likeSong").hasAuthority("SCOPE_like:song")
+        .mvcMatchers(HttpMethod.POST, "/client1-rest/playSong").hasAuthority("SCOPE_play:song")
+        .mvcMatchers(HttpMethod.POST, "/client1-rest/createUser").hasAuthority("SCOPE_add:newUser")
+        .mvcMatchers(HttpMethod.DELETE, "/client1-rest/deleteUser").hasAuthority("SCOPE_delete:user")
+        .mvcMatchers(HttpMethod.GET, "/client2-rest/top3songs").hasAuthority("SCOPE_read:top3songs")
+        .mvcMatchers(HttpMethod.GET, "/client3-rest/userExport").hasAuthority("SCOPE_get:userExport")
+        .mvcMatchers(HttpMethod.GET, "/client3-rest/listSongs").hasAuthority("SCOPE_list:allSongs")
         .and().cors().configurationSource(corsConfigurationSource())
         .and().oauth2ResourceServer().jwt();
     return http.build();
@@ -61,8 +65,8 @@ public class SecurityConfig {
   @Bean
   JwtDecoder jwtDecoder() {
         /*
-        By default, Spring Security does not validate the "aud" claim of the token, to ensure that this token is
-        indeed intended for our app. Adding our own validator is easy to do:
+        By default, Spring Security does not validate the "aud" claim of the token, to ensure that
+        this token is indeed intended for our app.
         */
 
     NimbusJwtDecoder jwtDecoder = (NimbusJwtDecoder)
