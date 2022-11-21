@@ -4,6 +4,8 @@
 
 ## Public Access Point: https://music-tonic.herokuapp.com/
 
+## Demo Client: https://mean-rice.vercel.app/
+
 ### Team Members
 
 Ryan Soeyadi [rs4163], Joseph Rebagliati [jr4162], Yuhao Dong [yd2626], Madison Thantu [mgt2143]
