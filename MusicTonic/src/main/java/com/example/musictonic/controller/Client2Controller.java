@@ -6,6 +6,7 @@ import com.example.musictonic.utils.PopularSongsReturn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Request handler for client type 2 (e.g., aggregated data metrics).
  */
+@CrossOrigin
 @RestController
 @RequestMapping("client2-rest")
 public class Client2Controller {
