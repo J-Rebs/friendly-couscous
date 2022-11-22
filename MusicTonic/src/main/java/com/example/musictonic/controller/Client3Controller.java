@@ -33,7 +33,7 @@ public class Client3Controller {
    * @param userId - the unique ID for this client (i.e., user)
    * @return the analytics history for this client
    */
-  @GetMapping("/userExport")
+  @GetMapping("/userexport")
   @ResponseBody
   public ResponseEntity<UserExportReturn> getUserInformation(
       @RequestParam(name = "userid") String userId) {

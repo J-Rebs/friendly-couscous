@@ -10,7 +10,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,16 +18,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+//import org.springframework.boot.configurationprocessor.json;
+//import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  * Request handler for client type 1 (e.g., CRUD functionality).
  */
-/* The @PreAuthorize annotation holds a Spring Expression Language (SpEL) expression which must be
-satisfied before the method is executed. hasAuthority will check if the permission/argument is in
-the list of granted authorities.
-Src: https://auth0.com/blog/spring-boot-authorization-tutorial-secure-an-api-java/
- */
-//@CrossOrigin(origins = "http://localhost:8080", maxAge = 3600)
 @RestController
 @RequestMapping("client1-rest")
 public class Client1Controller {
@@ -55,7 +50,7 @@ public class Client1Controller {
    * @param playlistId - the unique ID for this song
    * @return a PlaySongReturn object, which consists of the analyticsId and the timestamp
    */
-  @PostMapping("/playSong")
+  @PostMapping("/playsong")
   @ResponseBody
   public ResponseEntity<PlaySongReturn> createAnalyticalSongs(
       @RequestParam(name = "userid") String userId,
@@ -82,7 +77,6 @@ public class Client1Controller {
    * @return - if OK, then the number of liked songs; else, BAD_REQUEST
    */
   @PutMapping("/likeSong")
-//  @PreAuthorize("hasAuthority('like:song')")
   @ResponseBody
   public ResponseEntity<Integer> likeSong(
       @RequestParam(name = "userid") String userId,

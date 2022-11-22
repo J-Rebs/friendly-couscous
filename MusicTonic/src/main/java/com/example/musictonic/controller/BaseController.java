@@ -14,9 +14,4 @@ public class BaseController {
     return "I'm a software engineer";
   }
 
-  @RequestMapping("/authorized")
-  public String homeAuthorized() {
-    return "I'm an AUTHORIZED software engineer";
-  }
-
 }
