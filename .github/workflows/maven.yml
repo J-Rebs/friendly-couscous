@@ -27,8 +27,6 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: report
-        path: ./MusicTonic/output/report.xml
+        path: ./MusicTonic/output/report.txt
     - name: Download the report
       uses: actions/download-artifact@v3
-      with:
-        name: report
