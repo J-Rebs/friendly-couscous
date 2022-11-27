@@ -79,6 +79,7 @@ public class Song {
    */
   public Song(Long songId, String songName, Integer songDuration, String songArtist,
               String songLyrics, Integer songLikesCount) {
+    this.songId = songId;
     this.songName = songName;
     this.songDuration = songDuration;
     this.songArtist = songArtist;

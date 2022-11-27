@@ -141,7 +141,9 @@ public class Client1Service {
     // check that song exists for client; else throw exception
     boolean songClientMatch = false;
     for (ClientSong cs : songsForClient) {
-      if (cs.getSong().getSongId() == songId && cs.getClient().getClientId() == clientId) {
+      Long csIdSong = cs.getSong().getSongId();
+      Long csIdClient = cs.getClient().getClientId();
+      if (csIdSong == songId && csIdClient == clientId) {
         songClientMatch = true;
         break;
       }
@@ -349,7 +351,7 @@ public class Client1Service {
         return user;
       }
     } catch (Exception e) {
-      throw new Exception("failure detected in createUser");
+      throw new IllegalAccessException("failure detected in createUser");
     }
   }
 

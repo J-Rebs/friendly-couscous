@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -171,17 +172,23 @@ class Client1ServiceTest {
     when(analyticsUserRepo.save(any(AnalyticsUser.class))).thenReturn(analyticsUser);
     when(analyticsSongRepo.save(any(AnalyticsSong.class))).thenReturn(analyticsSong);
     when(analyticsPlaylistRepo.save(any(AnalyticsPlaylist.class))).thenReturn(analyticsPlaylist);
+    when(songRepo.findBySongId(any(Long.class))).thenReturn(song);
+    when(clientRepo.findByClientId(any(Long.class))).thenReturn(client);
+    when(userRepo.findByUserId(any(Long.class))).thenReturn(user);
+    when(clientUserRepo.findAllByClient(any(Client.class))).thenReturn(clientUserList);
+    when(clientSongRepo.findAllByClient(any(Client.class))).thenReturn(clientSongList);
+    when(clientPlaylistRepo.findAllByClient(any(Client.class))).thenReturn(clientPlaylistList);
 
     Analytics aReturn = client1Service.playSong(1L, 1L, 1L, 1L);
     assertNotNull(aReturn);
     assertThat(aReturn.getTimestamp()).isEqualTo(a.getTimestamp());
   }
 
+  // Syntax for assertThrows src: https://junit.org/junit5/docs/current/user-guide/#extensions-exception-handling
   @Test
   @DisplayName("playSong() FAILS, as expected")
   void playSongBad() throws IllegalAccessException {
-    Analytics aReturn = client1Service.playSong(1L, 1L, 1L, 1L);
-    assertNull(aReturn);
+    assertThrows(IllegalAccessException.class, () -> client1Service.playSong(1L, 1L, 1L, 1L));
   }
 
   @Test
@@ -190,7 +197,7 @@ class Client1ServiceTest {
     when(songRepo.findBySongId(any(Long.class))).thenReturn(song);
     when(clientRepo.findByClientId(any(Long.class))).thenReturn(client);
     when(userRepo.findByUserId(any(Long.class))).thenReturn(user);
-    when(clientUserRepo.findAllByUser(user)).thenReturn(clientUserList);
+    when(clientUserRepo.findAllByClient(any(Client.class))).thenReturn(clientUserList);
     when(clientSongRepo.findAllByClient(any(Client.class))).thenReturn(clientSongList);
 
 
@@ -209,7 +216,7 @@ class Client1ServiceTest {
     when(songRepo.findBySongId(any(Long.class))).thenReturn(song);
     when(clientRepo.findByClientId(any(Long.class))).thenReturn(client);
     when(userRepo.findByUserId(any(Long.class))).thenReturn(user);
-    when(clientUserRepo.findAllByUser(user)).thenReturn(clientUserList);
+    when(clientUserRepo.findAllByClient(any(Client.class))).thenReturn(clientUserList);
     when(clientSongRepo.findAllByClient(any(Client.class))).thenReturn(clientSongList);
 
 
@@ -225,7 +232,8 @@ class Client1ServiceTest {
   @Test
   @DisplayName("getAllUsers() WORKS")
   void getAllUsersGood() throws IllegalAccessException {
-    when(userRepo.findAll()).thenReturn(list);
+    when(clientRepo.findByClientId(any(Long.class))).thenReturn(client);
+    when(clientUserRepo.findAllByClient(any(Client.class))).thenReturn(clientUserList);
     List<User> returnedList = client1Service.getAllUsers(1L);
     assertEquals(returnedList, list);
   }
@@ -234,7 +242,7 @@ class Client1ServiceTest {
   @DisplayName("getAllUsers() FAILS, as expected")
   void getAllUsersBad() throws IllegalAccessException {
     List<User> fakeList = new ArrayList<>();
-    when(userRepo.findAll()).thenReturn(fakeList);
+    // when(userRepo.findAll()).thenReturn(fakeList);
     List<User> returnedList = client1Service.getAllUsers(1L);
     assertNotEquals(returnedList, list);
   }
@@ -243,6 +251,7 @@ class Client1ServiceTest {
   @DisplayName("createUser() WORKS")
   void createUserGood() throws Exception {
     when(userRepo.save(any(User.class))).thenReturn(user);
+    when(clientRepo.findByClientId(any(Long.class))).thenReturn(client);
     User returnedUser = client1Service.createUser("Cool Guy", UserType.ARTIST, "country", 27, 1L);
     assertEquals(user, returnedUser);
   }
@@ -250,9 +259,8 @@ class Client1ServiceTest {
   @Test
   @DisplayName("createUser() FAILS, as expected")
   void createUserBad() throws Exception {
-    when(userRepo.save(any(User.class))).thenReturn(null);
-    User returnedUser = client1Service.createUser("Cool Guy", UserType.ARTIST, "country", 27, 1L);
-    assertNotEquals(user, returnedUser);
+    assertThrows(IllegalAccessException.class,
+        () -> client1Service.createUser("Cool Guy", UserType.ARTIST, "country", 27, 1L));
   }
 
   @Test
