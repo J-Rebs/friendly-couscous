@@ -34,4 +34,20 @@ public class IntegrationTest {
 
     assertEquals(HttpStatus.OK, response.getStatusCode());
   }
+
+  @Test
+  public void getUsers_testing() {
+    String url = "https://music-tonic.herokuapp.com/client1-rest/listUsers";
+
+    UriComponents builder = UriComponentsBuilder.fromHttpUrl(url).build();
+    // if we need input parameter
+    // UriComponents builder = UriComponentsBuilder.fromHttpUrl(url).queryParam("param", "key").build();
+    HttpEntity<String> req = new HttpEntity<>(null, null);
+    ResponseEntity<String> response =
+        testRestTemplate.exchange(builder.toString(), HttpMethod.GET, req, String.class);
+
+    System.out.println(response.getBody());
+
+    assertEquals(HttpStatus.OK, response.getStatusCode());
+  }
 }
