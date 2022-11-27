@@ -4,6 +4,10 @@ import com.example.musictonic.model.Analytics;
 import com.example.musictonic.model.AnalyticsPlaylist;
 import com.example.musictonic.model.AnalyticsSong;
 import com.example.musictonic.model.AnalyticsUser;
+import com.example.musictonic.model.Client;
+import com.example.musictonic.model.ClientPlaylist;
+import com.example.musictonic.model.ClientSong;
+import com.example.musictonic.model.ClientUser;
 import com.example.musictonic.model.Playlist;
 import com.example.musictonic.model.PlaylistToSongs;
 import com.example.musictonic.model.PlaylistToSubscriber;
@@ -14,6 +18,10 @@ import com.example.musictonic.repository.AnalyticsPlaylistRepository;
 import com.example.musictonic.repository.AnalyticsRepository;
 import com.example.musictonic.repository.AnalyticsSongRepository;
 import com.example.musictonic.repository.AnalyticsUserRepository;
+import com.example.musictonic.repository.ClientPlaylistRepository;
+import com.example.musictonic.repository.ClientRepository;
+import com.example.musictonic.repository.ClientSongRepository;
+import com.example.musictonic.repository.ClientUserRepository;
 import com.example.musictonic.repository.PlaylistRepository;
 import com.example.musictonic.repository.PlaylistToSongRepository;
 import com.example.musictonic.repository.PlaylistToSubscriberRepository;
@@ -80,19 +88,113 @@ public class Client1Service {
   @Autowired
   PlaylistToSubscriberRepository playlistToSubscriberRepo;
 
+  @Autowired
+  ClientRepository clientRepo;
 
-  private Playlist subscribeDefaultPlaylist(Long userId) {
+  @Autowired
+  ClientUserRepository clientUserRepo;
+
+  @Autowired
+  ClientSongRepository clientSongRepo;
+
+  @Autowired
+  ClientPlaylistRepository clientPlaylistRepo;
+
+  // helper method, tested within used methods
+
+  /**
+   * Note:
+   * <p>
+   * Our service requires a client to register that it has access to a user, playlist, and song
+   * independently of anything else. That means a client must have access to both a user and a song to like a song
+   * or play a song.
+   * <p>
+   * Furthermore, a user, song, or playlist can in theory belong to multiple clients from a data model perspective.
+   * That means for example a user could exist for two separate clients, but only one client may have access to the songs a user wants to play. However, in our implementation,
+   * we assume a client will have to create its own unique user entry for a given individual (see createUser method). In other words, Johnny might be one person, but he will exist as separate
+   * user entries for each client that has him as a user. Also, for testing, we instantiate a single song library (a few songs) accessible to all clients,
+   * but this is done by registering all songs with all test clients in an import.sql file.
+   * <p>
+   * If this system were put into production, this approach could be kept or modified.
+   */
+  private boolean validUserSong(Long userId, Long songId, Long clientId)
+      throws IllegalAccessException {
+    // client information
+    Client client = clientRepo.findByClientId(clientId);
+
+    // user information
+    User user = userRepo.findByUserId(userId);
+    List<ClientUser> usersForClient = clientUserRepo.findAllByClient(client);
+
+    // song information
+    Song song = songRepo.findBySongId(songId);
+    List<ClientSong> songsForClient = clientSongRepo.findAllByClient(client);
+
+    // check that user exists for client; else throw exception
+    boolean clientUserMatch = false;
+    for (ClientUser cl : usersForClient) {
+      if (cl.getUser().getUserId() == userId && cl.getClient().getClientId() == clientId) {
+        clientUserMatch = true;
+        break;
+      }
+    }
+    // check that song exists for client; else throw exception
+    boolean songClientMatch = false;
+    for (ClientSong cs : songsForClient) {
+      if (cs.getSong().getSongId() == songId && cs.getClient().getClientId() == clientId) {
+        songClientMatch = true;
+        break;
+      }
+    }
+
+    // if haven't matched either song or user to client, throw exception
+    if (!clientUserMatch) {
+      throw new IllegalAccessException("user not matched to client");
+    }
+
+    if (!songClientMatch) {
+      throw new IllegalAccessException("song not matched to client");
+    }
+
+    // otherwise return true
+
+    return true;
+  }
+
+  // helper method, in methods used in
+  private boolean validPlaylist(Long playlistId, Long clientId) throws IllegalAccessException {
+    boolean clientPlaylistMatch = false;
+    Client client = clientRepo.findByClientId(clientId);
+    List<ClientPlaylist> playlistsForClient = clientPlaylistRepo.findAllByClient(client);
+
+    for (ClientPlaylist cp : playlistsForClient) {
+      if (cp.getPlaylist().getPlaylistId() == playlistId &&
+          cp.getClient().getClientId() == clientId) {
+        clientPlaylistMatch = true;
+        break;
+      }
+    }
+
+    if (!clientPlaylistMatch) {
+      throw new IllegalAccessException("playlist not available for this client");
+    }
+
+    return true;
+  }
+
+  // helper method, tested within used methods
+  private Playlist subscribeDefaultPlaylist(Long userId, Client client) {
 
     // see if the user has a default playlist
     Playlist defaultPlaylist = null;
     for (Playlist p : playlistRepo.findAllByOwner(userId)) {
       if (p.getDefault()) {
+        // assume that if user has playlist as owner, then client has access
         defaultPlaylist = p;
-        break;
       }
     }
 
-    // if the user doesn't have a default playlist, make one, otherwise return the default playlist
+    // if the user doesn't have a default playlist under the client in question, make one, otherwise return the default playlist
     if (defaultPlaylist == null) {
       defaultPlaylist = new Playlist(userId, "DefaultPlaylist", true);
       // save the playlist to the appropriate table
@@ -100,8 +202,8 @@ public class Client1Service {
        * for simplicity
        */
       playlistRepo.save(defaultPlaylist);
-
-
+      ClientPlaylist cpDefault = new ClientPlaylist(client, defaultPlaylist);
+      clientPlaylistRepo.save(cpDefault);
     }
 
     return defaultPlaylist;
@@ -110,20 +212,28 @@ public class Client1Service {
   /**
    * Method to like a song.
    *
-   * @param userId - the unique ID for this client (i.e., user)
-   * @param songId - the unique ID for this song
+   * @param userId   - the unique ID for this client (i.e., user)
+   * @param songId   - the unique ID for this song
+   * @param clientId - song and user should be available to client
    * @return the count of liked songs
    * @throws IllegalAccessException if the song is null (i.e., not in the database)
    */
-  public Integer likeSong(Long userId, Long songId) throws IllegalAccessException {
-    // try fetching the requested song
-    Song likedSong = songRepo.findBySongId(songId);
-    // if the song doesn't exist thrown an exception
-    if (likedSong == null) {
-      throw new IllegalAccessException("song cannot be null");
+  public Integer likeSong(Long userId, Long songId, Long clientId) throws IllegalAccessException {
+
+    // try getting the client, if it doesn't exist, then nothing to do
+    Client client = clientRepo.findByClientId(clientId);
+    if (client == null) {
+      throw new IllegalAccessException("client does not exist");
     }
-    // otherwise fetch or create the default playlist
-    Playlist defaultPlaylist = subscribeDefaultPlaylist(userId);
+
+    // validate user and song for client -- otherwise throw an exception
+    validUserSong(userId, songId, clientId);
+
+    // if validated user and song as available to client, proceed with liking song
+    Song likedSong = songRepo.findBySongId(songId);
+
+    // get the appropriate playlist (note already verified user belongs to client at this point)
+    Playlist defaultPlaylist = subscribeDefaultPlaylist(userId, client);
 
     // register the song-playlist combination if it doesn't already exist
     if (playlistToSongsRepo.findBySong(likedSong) == null
@@ -148,11 +258,16 @@ public class Client1Service {
    * @param userId     - the unique ID for this client (i.e., user)
    * @param songId     - the unique ID for this song
    * @param playlistId - the unique ID for this playlist
+   * @param clientId   - song, user, and playlist should be available to client
    * @return the Analytics entry/object that was created and added to the Analytics table
    */
   // post operation -- play songs
-  public Analytics playSong(Long userId, Long songId, Long playlistId) {
+  public Analytics playSong(Long userId, Long songId, Long playlistId, Long clientId)
+      throws IllegalAccessException {
 
+    // validate client has access to user, song, playlist
+    validUserSong(userId, songId, clientId);
+    validPlaylist(playlistId, clientId);
     // insert into analytics (or returns the id)
     Date date = new Date();
     Timestamp timestamp = new Timestamp(date.getTime());
@@ -192,14 +307,17 @@ public class Client1Service {
   /**
    * Method to return a list of all users.
    *
-   * @return a list of all users
+   * @param clientId - the client for which a user list will be retrieved
+   * @return a list of all users for a client
    */
 
   // Src: https://github.com/rcoppy/demo-persistent-data-api/blob/main/src/main/java/com/alexrupp/persistentdataapi/controllers/ChatUserController.java
-  public List<User> getAllUsers() {
+  public List<User> getAllUsers(Long clientId) {
+    Client client = clientRepo.findByClientId(clientId);
     List<User> l = new ArrayList<>();
-    for (User u : userRepo.findAll()) {
-      l.add(u);
+    List<ClientUser> cuList = clientUserRepo.findAllByClient(client);
+    for (ClientUser cu : cuList) {
+      l.add(cu.getUser());
     }
     return l;
   }
@@ -211,15 +329,27 @@ public class Client1Service {
    * @param type      - user is one of the following types: ARTIST, LISTENER, ADMIN, SCIENTIST
    * @param mainGenre - The main genre for a user, (i.e., country, pop, rap, etc...)
    * @param age       - the age of the user
-   * @return the newly created User object that was added to the User table
+   * @param clientId  -  client for which the user will be created
+   * @return the newly created User object that was added to the User table. Method assumes client
+   * will only to try to create a new user when appropriate. Clients don't have knowledge of other clients' users,
+   * so a client may create another user entry for the same individual real user but which contains information for only this client.
    */
 
-  public User createUser(String realName, UserType type, String mainGenre, Integer age) {
+  public User createUser(String realName, UserType type, String mainGenre, Integer age,
+                         Long clientId) throws Exception {
     try {
-      User user = userRepo.save(new User(realName, type, mainGenre, age));
-      return user;
+      // validate client exists to create user for
+      if (clientRepo.findByClientId(clientId) == null) {
+        throw new IllegalAccessException("Bad request will be returned in controller");
+      } else {
+        // create user and client relationship
+        Client client = clientRepo.findByClientId(clientId);
+        User user = userRepo.save(new User(realName, type, mainGenre, age));
+        clientUserRepo.save(new ClientUser(client, user));
+        return user;
+      }
     } catch (Exception e) {
-      return null;
+      throw new Exception("failure detected in createUser");
     }
   }
 
@@ -228,15 +358,25 @@ public class Client1Service {
    * user as subscriber from playlists where not owner and deletes all analytics entries
    * for said user.
    *
-   * @param userId - the Id of the user to be deleted
+   * @param userId   - the Id of the user to be deleted
+   * @param clientId - the Id for which we want to remove a user
    * @return the User object corresponding to the deleted entry in the User table
    */
   @Transactional
   // Src: https://stackoverflow.com/questions/32269192/spring-no-entitymanager-with-actual-transaction-available-for-current-thread
-  public User deleteUser(Long userId) {
+  public User deleteUser(Long userId, Long clientId) {
     try {
       // get user to be deleted
       User toDelete = userRepo.findByUserId(userId);
+
+      // dereference user for client
+      List<ClientUser> clientUserList = clientUserRepo.findAllByUser(toDelete);
+      // check only removing for client in question
+      for (ClientUser cu : clientUserList) {
+        if (cu.getClient().getClientId() == clientId) {
+          clientUserRepo.delete(cu);
+        }
+      }
 
       // find and delete all corresponding entries for user related to analytics
       // first, get a list of all analyticsUser entries
@@ -287,6 +427,13 @@ public class Client1Service {
             analyticsPlaylistRepo.findAllByPlaylist(p);
         for (AnalyticsPlaylist ap : analyticsList) {
           analyticsPlaylistRepo.delete(ap);
+        }
+        // remove references for playlist in client
+        List<ClientPlaylist> clientPlaylistList = clientPlaylistRepo.findAllByPlaylist(p);
+        for (ClientPlaylist cp : clientPlaylistList) {
+          if (cp.getClient().getClientId() == clientId) {
+            clientPlaylistRepo.delete(cp);
+          }
         }
         // the can delete the playlist itself
         playlistRepo.delete(p);

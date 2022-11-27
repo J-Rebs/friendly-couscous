@@ -57,10 +57,11 @@ public class Client1Controller {
   public ResponseEntity<PlaySongReturn> createAnalyticalSongs(
       @RequestParam(name = "userid") String userId,
       @RequestParam(name = "songid") String songId,
-      @RequestParam(name = "playlistid") String playlistId) {
+      @RequestParam(name = "playlistid") String playlistId,
+      @RequestParam(name = "clientid") String clientId) {
     try {
       Analytics analytics = client1Service.playSong(Long.parseLong(userId), Long.parseLong(songId),
-          Long.parseLong(playlistId));
+          Long.parseLong(playlistId), Long.parseLong(clientId));
       PlaySongReturn response =
           new PlaySongReturn(analytics.getAnalyticsId(), analytics.getTimestamp());
       return new ResponseEntity<>(response, HttpStatus.CREATED);
@@ -74,18 +75,21 @@ public class Client1Controller {
    * song to the client's default "likes" playlist (to be implemented) and returns the (updated)
    * number of liked songs associated with this client.
    *
-   * @param userId - the unique ID for this client (i.e., user)
-   * @param songId - the unique ID for this song
+   * @param userId   - the unique ID for this client (i.e., user)
+   * @param songId   - the unique ID for this song
+   * @param clientId - the ID for the client in question
    * @return - if OK, then the number of liked songs; else, BAD_REQUEST
    */
   @PutMapping("/likeSong")
   @ResponseBody
   public ResponseEntity<Integer> likeSong(
       @RequestParam(name = "userid") String userId,
-      @RequestParam(name = "songid") String songId) {
+      @RequestParam(name = "songid") String songId,
+      @RequestParam(name = "clientid") String clientId) {
     try {
       Integer likedSongCount =
-          client1Service.likeSong(Long.parseLong(userId), Long.parseLong(songId));
+          client1Service.likeSong(Long.parseLong(userId), Long.parseLong(songId),
+              Long.parseLong(clientId));
       return new ResponseEntity<>(likedSongCount, HttpStatus.OK);
     } catch (Exception e) {
       return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
@@ -95,13 +99,15 @@ public class Client1Controller {
   /**
    * This method is invoked to return a list of all Users.
    *
-   * @return - if OK, then a list of all users; else, BAD_REQUEST
+   * @param clientId - the ID for the client in question
+   * @return - if OK, then a list of all users for a given client; else, BAD_REQUEST
    */
   // for testing - list all users
   @GetMapping("/listUsers")
-  public ResponseEntity<List<User>> listUsers() {
+  public ResponseEntity<List<User>> listUsers(@RequestParam(name = "clientid") String clientId) {
     try {
-      List<User> userList = client1Service.getAllUsers();
+      Long id = Long.parseLong(clientId);
+      List<User> userList = client1Service.getAllUsers(id);
       return new ResponseEntity<>(userList, HttpStatus.OK);
     } catch (Exception e) {
       return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
@@ -118,6 +124,7 @@ public class Client1Controller {
    * @param userType  - user is one of the following types: ARTIST, LISTENER, ADMIN, SCIENTIST
    * @param mainGenre - The main genre for a user, (i.e., country, pop, rap, etc...)
    * @param age       - the age of the user
+   * @param clientId  - the ID for the client in question
    * @return - if Created, then return new User; else, BAD_REQUEST
    */
 
@@ -127,11 +134,13 @@ public class Client1Controller {
       @RequestParam(name = "realname") String realName,
       @RequestParam(name = "usertype") String userType,
       @RequestParam(name = "maingenre") String mainGenre,
-      @RequestParam(name = "age") String age) {
+      @RequestParam(name = "age") String age,
+      @RequestParam(name = "clientid") String clientId) {
     try {
       UserType type = UserType.valueOf(userType);
       Integer ageInt = Integer.parseInt(age);
-      User user = client1Service.createUser(realName, type, mainGenre, ageInt);
+      Long clientIdLong = Long.parseLong(clientId);
+      User user = client1Service.createUser(realName, type, mainGenre, ageInt, clientIdLong);
       return new ResponseEntity<>(user, HttpStatus.CREATED);
     } catch (Exception e) {
       return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
@@ -144,16 +153,20 @@ public class Client1Controller {
    * user as subscriber from playlists where not owner and deletes all analytics entries
    * for said user.
    *
+   * @param userId   - the ID for the user to be deleted
+   * @param clientId - the ID for the client from which the user will be deleted
    * @return - if OK, User corresponding to deleted User entry in table; else, BAD_REQUEST
    */
 
   @DeleteMapping("/deleteUser")
   @ResponseBody
   public ResponseEntity<User> deleteUser(
-      @RequestParam(name = "id") String userId) {
+      @RequestParam(name = "id") String userId,
+      @RequestParam(name = "clientId") String clientId) {
     try {
       Long id = Long.parseLong(userId);
-      User toDelete = client1Service.deleteUser(id);
+      Long clientIdLong = Long.parseLong(clientId);
+      User toDelete = client1Service.deleteUser(id, clientIdLong);
       return new ResponseEntity<>(toDelete, HttpStatus.OK);
     } catch (Exception e) {
       return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);

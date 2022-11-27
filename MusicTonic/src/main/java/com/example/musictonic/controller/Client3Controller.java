@@ -32,15 +32,18 @@ public class Client3Controller {
   /**
    * Method to get and return user (i.e., type 1 client) information.
    *
-   * @param userId - the unique ID for this client (i.e., user)
+   * @param userId   - the unique ID for this user
+   * @param clientId - the ID for the client in question
    * @return the analytics history for this client
    */
   @GetMapping("/userexport")
   @ResponseBody
   public ResponseEntity<UserExportReturn> getUserInformation(
-      @RequestParam(name = "userid") String userId) {
+      @RequestParam(name = "userid") String userId,
+      @RequestParam(name = "clientid") String clientId) {
     try {
-      UserExportReturn response = client3Service.getUserInformation(Long.parseLong(userId));
+      UserExportReturn response =
+          client3Service.getUserInformation(Long.parseLong(userId), Long.parseLong(clientId));
       return new ResponseEntity<>(response, HttpStatus.OK);
     } catch (Exception e) {
       return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);

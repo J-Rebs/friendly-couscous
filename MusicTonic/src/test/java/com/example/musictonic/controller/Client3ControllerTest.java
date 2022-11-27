@@ -89,7 +89,8 @@ public class Client3ControllerTest {
   @Test
   @DisplayName("getUserInformation() WORKS")
   void getUserInformationGood() throws Exception {
-    when(client3Service.getUserInformation(any(Long.class))).thenReturn(userExportReturn);
+    when(client3Service.getUserInformation(any(Long.class), any(Long.class))).thenReturn(
+        userExportReturn);
     mvc.perform(get("/client3-rest/userexport?userid=1")
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(userExportReturn)))
@@ -100,7 +101,8 @@ public class Client3ControllerTest {
   @Test
   @DisplayName("getUserInformation() route FAILS, as expected")
   void getUserInformationBad() throws Exception {
-    when(client3Service.getUserInformation(any(Long.class))).thenReturn(userExportReturn);
+    when(client3Service.getUserInformation(any(Long.class), any(Long.class))).thenReturn(
+        userExportReturn);
     mvc.perform(get("/client3-rest/userexport?songid=1"))
         .andExpect(status().isBadRequest());
   }

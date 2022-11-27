@@ -2,7 +2,6 @@ package com.example.musictonic.repository;
 
 import com.example.musictonic.model.Analytics;
 import com.example.musictonic.model.AnalyticsPlaylist;
-import com.example.musictonic.model.AnalyticsSong;
 import com.example.musictonic.model.Playlist;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;

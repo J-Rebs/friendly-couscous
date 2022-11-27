@@ -3,10 +3,14 @@ package com.example.musictonic.services;
 
 import com.example.musictonic.model.Analytics;
 import com.example.musictonic.model.AnalyticsUser;
+import com.example.musictonic.model.Client;
+import com.example.musictonic.model.ClientUser;
 import com.example.musictonic.model.Playlist;
 import com.example.musictonic.model.User;
 import com.example.musictonic.repository.AnalyticsRepository;
 import com.example.musictonic.repository.AnalyticsUserRepository;
+import com.example.musictonic.repository.ClientRepository;
+import com.example.musictonic.repository.ClientUserRepository;
 import com.example.musictonic.repository.PlaylistRepository;
 import com.example.musictonic.repository.UserRepository;
 import com.example.musictonic.utils.AnalyticsInfoBasic;
@@ -46,15 +50,44 @@ public class Client3Service {
   @Autowired
   AnalyticsRepository analyticsRepo;
 
+  @Autowired
+  ClientUserRepository clientUserRepo;
+
+  @Autowired
+  ClientRepository clientRepo;
+
   /**
    * Get and return information (i.e., playlists and analytics history) for this client.
    *
-   * @param userId - the unique ID for this client (i.e., user)
+   * @param userId   - the unique ID for this client (i.e., user)
+   * @param clientId - the ID for the client that has the user in question
    * @return a UserExportReturn object containing the playlists and analytics history
    */
-  public UserExportReturn getUserInformation(Long userId) {
+  public UserExportReturn getUserInformation(Long userId, Long clientId)
+      throws IllegalAccessException {
+    // client information
+    Client client = clientRepo.findByClientId(clientId);
 
+    // user information
     User user = userRepo.findByUserId(userId);
+    List<ClientUser> usersForClient = clientUserRepo.findAllByClient(client);
+
+    // check that user exists for client; else throw exception
+    boolean clientUserMatch = false;
+    for (ClientUser cl : usersForClient) {
+      if (cl.getUser().getUserId() == userId && cl.getClient().getClientId() == clientId) {
+        clientUserMatch = true;
+        break;
+      }
+    }
+
+    if (!clientUserMatch) {
+      throw new IllegalAccessException("user doesn't exist for this client");
+    }
+
+    // assume all playlists that owned by user are available to client
+    // same applies to analytics -- assumption is user entry unique to client, so, therefore analytics
+    // entries also belong to client
     List<Playlist> playlists = playlistRepo.findAllByOwner(userId);
     List<AnalyticsUser> analyticsUserList = analyticsUserRepo.findByUser(user);
     List<Analytics> analytics = new ArrayList<>();

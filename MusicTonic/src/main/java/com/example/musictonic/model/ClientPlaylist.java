@@ -46,6 +46,11 @@ public class ClientPlaylist implements Serializable {
     this.playlist = playlist;
   }
 
+  public ClientPlaylist(Client client, Playlist playlist) {
+    this.client = client;
+    this.playlist = playlist;
+  }
+
   public Long getId() {
     return id;
   }

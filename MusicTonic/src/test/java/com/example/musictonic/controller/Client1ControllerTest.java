@@ -101,7 +101,8 @@ class Client1ControllerTest {
   @Test
   @DisplayName("/client1-rest/playsong POST route WORKS")
   void createAnalyticalSongGood() throws Exception {
-    when(client1Service.playSong(any(Long.class), any(Long.class), any(Long.class))).thenReturn(a);
+    when(client1Service.playSong(any(Long.class), any(Long.class), any(Long.class),
+        any(Long.class))).thenReturn(a);
     mvc.perform(post("/client1-rest/playsong?userid=1&songid=1&playlistid=1")
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(response)))
@@ -120,9 +121,9 @@ class Client1ControllerTest {
   @DisplayName("/client1-rest/likesong PUT route WORKS")
   void likeSongGood() throws Exception {
     Integer check = song.getSongLikesCount() + 1;
-    when(client1Service.likeSong(any(Long.class), any(Long.class))).thenReturn(
+    when(client1Service.likeSong(any(Long.class), any(Long.class), any(Long.class))).thenReturn(
         song.getSongLikesCount() + 1);
-    mvc.perform(put("/client1-rest/likeSong?userid=1&songid=1")
+    mvc.perform(put("/client1-rest/likeSong?userid=1&songid=1&clientid=1")
             .contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$", is(check)));
@@ -132,8 +133,9 @@ class Client1ControllerTest {
   @DisplayName("/client1-rest/likesong PUT route FAILS, as expected")
   void likeSongBad() throws Exception {
     IllegalArgumentException exception = new IllegalArgumentException();
-    when(client1Service.likeSong(any(Long.class), any(Long.class))).thenThrow(exception);
-    ResultActions result = mvc.perform(put("/client1-rest/likeSong?userid=1&songid=100")
+    when(client1Service.likeSong(any(Long.class), any(Long.class), any(Long.class))).thenThrow(
+        exception);
+    ResultActions result = mvc.perform(put("/client1-rest/likeSong?userid=1&songid=100&clientid=1")
             .contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().isBadRequest());
   }

@@ -42,5 +42,12 @@ public class Client {
   protected Client() {
   }
 
+  public Client(Long clientId) {
+    this.clientId = clientId;
+  }
+
+  public Long getClientId() {
+    return clientId;
+  }
 
 }

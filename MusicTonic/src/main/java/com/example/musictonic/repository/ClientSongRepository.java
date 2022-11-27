@@ -1,7 +1,8 @@
 package com.example.musictonic.repository;
 
-import com.example.musictonic.model.Analytics;
-import com.example.musictonic.model.AnalyticsSong;
+import com.example.musictonic.model.Client;
+import com.example.musictonic.model.ClientSong;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /*
@@ -17,12 +18,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * */
 
 /**
- * Interface for AnalyticsSongRepository.
+ * Interface for UserRepository.
  */
-public interface AnalyticsSongRepository extends JpaRepository<AnalyticsSong, Long> {
+public interface ClientSongRepository extends JpaRepository<ClientSong, Long> {
 
-  //Note: your naming conventions must match how you establish the entity
-  //e.g., code will fail if you write findByReal_Name;
+  List<ClientSong> findAllByClient(Client client);
 
-  AnalyticsSong findByAnalytics(Analytics a);
 }
