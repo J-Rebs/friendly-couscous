@@ -10,12 +10,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class IntegrationTest {
   @Autowired
   private TestRestTemplate testRestTemplate = new TestRestTemplate();
+
 
   @Test
   public void getUsers() {
@@ -25,7 +27,8 @@ public class IntegrationTest {
     // if we need input parameter
     // UriComponents builder = UriComponentsBuilder.fromHttpUrl(url).queryParam("param", "key").build();
     HttpEntity<String> req = new HttpEntity<>(null, null);
-    ResponseEntity<String> response = testRestTemplate.exchange(builder.toString(), HttpMethod.GET, req, String.class);
+    ResponseEntity<String> response =
+        testRestTemplate.exchange(builder.toString(), HttpMethod.GET, req, String.class);
 
     System.out.println(response.getBody());
 
