@@ -91,7 +91,7 @@ public class Client3ControllerTest {
   void getUserInformationGood() throws Exception {
     when(client3Service.getUserInformation(any(Long.class), any(Long.class))).thenReturn(
         userExportReturn);
-    mvc.perform(get("/client3-rest/userexport?userid=1")
+    mvc.perform(get("/client3-rest/userexport?userid=1&clientid=1")
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(userExportReturn)))
         .andExpect(status().isOk())

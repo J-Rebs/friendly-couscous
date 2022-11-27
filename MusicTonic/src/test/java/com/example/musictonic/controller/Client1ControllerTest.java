@@ -103,7 +103,7 @@ class Client1ControllerTest {
   void createAnalyticalSongGood() throws Exception {
     when(client1Service.playSong(any(Long.class), any(Long.class), any(Long.class),
         any(Long.class))).thenReturn(a);
-    mvc.perform(post("/client1-rest/playsong?userid=1&songid=1&playlistid=1")
+    mvc.perform(post("/client1-rest/playsong?userid=1&songid=1&playlistid=1&clientid=1")
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(response)))
         .andExpect(status().isCreated())
