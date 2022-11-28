@@ -89,12 +89,13 @@ public class IntegrationTest {
     assertEquals(HttpStatus.CREATED, response.getStatusCode());
   }
 
+  /*
   @Test
   public void deleteUsers() {
     String url = "https://music-tonic.herokuapp.com/client1-rest/deleteUser";
 
     UriComponents builder = UriComponentsBuilder.fromHttpUrl(url)
-        .queryParam("id", "9")
+        .queryParam("id", "10")
         .queryParam("clientId", "1").build();
     HttpEntity<String> req = new HttpEntity<>(null, null);
 
@@ -104,7 +105,7 @@ public class IntegrationTest {
     System.out.println(response.getBody());
     assertEquals(HttpStatus.OK, response.getStatusCode());
   }
-
+  */
 
   // client 2
   @Test
