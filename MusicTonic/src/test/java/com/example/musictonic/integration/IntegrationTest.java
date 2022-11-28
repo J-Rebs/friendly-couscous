@@ -94,7 +94,7 @@ public class IntegrationTest {
     String url = "https://music-tonic.herokuapp.com/client1-rest/deleteUser";
 
     UriComponents builder = UriComponentsBuilder.fromHttpUrl(url)
-        .queryParam("id", "11")
+        .queryParam("id", "9")
         .queryParam("clientId", "1").build();
     HttpEntity<String> req = new HttpEntity<>(null, null);
 
