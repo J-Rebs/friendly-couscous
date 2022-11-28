@@ -4,7 +4,8 @@
 
 ## Public Access Point: https://music-tonic.herokuapp.com/
 
-## Demo Client: https://mean-rice.vercel.app/
+## Demo Client: https://mean-rice.vercel.app/  
+## Demo Client Repository: https://github.com/J-Rebs/Mean-Rice
 
 ### Team Members
 
