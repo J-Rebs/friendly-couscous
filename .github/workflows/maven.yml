@@ -22,20 +22,20 @@ jobs:
         distribution: 'adopt'
         cache: maven
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
-#      run: mvn -B package --file pom.xml -Dmaven.test.skip=true
-#    - name: Client1 Controller Test
-#      run: mvn -Dtest=Client1ControllerTest test
-#    - name: Client2 Controller Test
-#      run: mvn -Dtest=Client2ControllerTest test
-#    - name: Client3 Controller Test
-#      run: mvn -Dtest=Client3ControllerTest test
-#    - name: Client1 Service Test
-#      run: mvn -Dtest=Client1ServiceTest test
-#    - name: Client2 Service Test
-#      run: mvn -Dtest=Client2ServiceTest test
-#    - name: Integration Test
-#      run: mvn -Dtest=IntegrationTest test
+#      run: mvn -B package --file pom.xml
+      run: mvn -X -B package --file pom.xml -Dmaven.test.skip=true
+    - name: Client1 Controller Test
+      run: mvn -X -Dtest=Client1ControllerTest test
+    - name: Client2 Controller Test
+      run: mvn -Dtest=Client2ControllerTest test
+    - name: Client3 Controller Test
+      run: mvn -Dtest=Client3ControllerTest test
+    - name: Client1 Service Test
+      run: mvn -Dtest=Client1ServiceTest test
+    - name: Client2 Service Test
+      run: mvn -Dtest=Client2ServiceTest test
+    - name: Integration Test
+      run: mvn -X -Dtest=IntegrationTest test
     - name: Show the report
       uses: actions/upload-artifact@v3
       with:
