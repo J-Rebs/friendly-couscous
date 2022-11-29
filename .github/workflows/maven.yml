@@ -21,21 +21,29 @@ jobs:
         distribution: 'adopt'
         cache: maven
     - name: Build with Maven
-#     run: mvn -B package --file pom.xml
-      run: mvn -X -B package --file pom.xml -Dmaven.test.skip=true
-    - name: Client1 Controller Test
-      run: mvn -X -Dtest=Client1ControllerTest test
-    - name: Client2 Controller Test
-      run: mvn -Dtest=Client2ControllerTest test
-    - name: Client3 Controller Test
-      run: mvn -Dtest=Client3ControllerTest test
-    - name: Client1 Service Test
-      run: mvn -Dtest=Client1ServiceTest test
-    - name: Client2 Service Test
-      run: mvn -Dtest=Client2ServiceTest test
-    - name: Integration Test
-      run: mvn -X -Dtest=IntegrationTest test
-    - name: Full Tests with JaCoCo
-      run: mvn test -f pom.xml
+      run: mvn -B package --file pom.xml
+    - name: Generate JaCoCo badge
+      id: jacoco
+      uses: cicirello/jacoco-badge-generator@v2
+      with:
+        badges-directory: badges
+        generate-branches-badge: true
+        generate-summary: true
+        jacoco-csv-file:  /home/runner/work/friendly-couscous/friendly-couscous/MusicTonic/target/site/jacoco/jacoco.csv
+ 
+#      run: mvn -X -B package --file pom.xml -Dmaven.test.skip=true
+#    - name: Client1 Controller Test
+#      run: mvn -X -Dtest=Client1ControllerTest test
+#    - name: Client2 Controller Test
+#      run: mvn -Dtest=Client2ControllerTest test
+#    - name: Client3 Controller Test
+#      run: mvn -Dtest=Client3ControllerTest test
+#    - name: Client1 Service Test
+#      run: mvn -Dtest=Client1ServiceTest test
+#    - name: Client2 Service Test
+#      run: mvn -Dtest=Client2ServiceTest test
+#    - name: Integration Test
+#      run: mvn -X -Dtest=IntegrationTest test
+#    - name: Full Tests with JaCoCo
+#      run: mvn test -f pom.xml
 
-  
