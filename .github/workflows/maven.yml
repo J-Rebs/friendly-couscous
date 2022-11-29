@@ -35,6 +35,8 @@ jobs:
       run: mvn -Dtest=Client2ServiceTest test
     - name: Integration Test
       run: mvn -X -Dtest=IntegrationTest test
+    - name: Full test life cycle with JaCoCO
+      run: mvn test -f pom.xml
     - name: Show the report
       uses: actions/upload-artifact@v3
       with:
