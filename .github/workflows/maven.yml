@@ -25,11 +25,18 @@ jobs:
       run: mvn -B package --file pom.xml -Dmaven.test.skip=true
     - name: Test with Maven
       run: mvn -X test --file pom.xml
+    - name: Generate JaCoCo badge
+      id: jacoco
+      uses: cicirello/jacoco-badge-generator@v2
+      with:
+        badges-directory: badges
+        generate-branches-badge: true
+        generate-summary: true
     - name: Show the report
       uses: actions/upload-artifact@v3
       with:
         name: report
-        path: /home/runner/work/friendly-couscous/friendly-couscous
+        path: ./target/site
     - name: Download the report
       uses: actions/download-artifact@v3
 #    - name: Client1 Controller Test
