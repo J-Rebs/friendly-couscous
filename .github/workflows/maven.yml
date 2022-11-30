@@ -45,10 +45,10 @@ jobs:
         reporttypes: Html;PngChart;Badges
     - name: Push JaCoCo to repository 
       run: |
-       git config --global user.name "user mane"
-       git config --global user.email "user email"
+       git config --global user.name "J-Rebs"
+       git config --global user.email "jr4162@columbia.edu"
 
-       git add /home/runner/work/friendly-couscous/friendly-couscous/MusicTonic/target/site/jacoco; git commit -m "JaCoCo reports"
+       git add -f /home/runner/work/friendly-couscous/friendly-couscous/MusicTonic/target/site/jacoco; git commit -m "JaCoCo reports"
        git push
 #    - name: Client1 Controller Test
 #      run: mvn -X -Dtest=Client1ControllerTest test
