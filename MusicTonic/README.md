@@ -1,8 +1,9 @@
 # COMS W4156 - Advanced Software Engineering
 
 ## Final Project: MusicTonic Service
-![coverage_combined](https://raw.githubusercontent.com/J-Rebs/friendly-couscous/main/MusicTonic/target/site/jacoco/badge_branchcoverage.svg)
+![coverage_branch](https://raw.githubusercontent.com/J-Rebs/friendly-couscous/main/MusicTonic/target/site/jacoco/badge_branchcoverage.svg) ![coverage_combined](https://raw.githubusercontent.com/J-Rebs/friendly-couscous/main/MusicTonic/target/site/jacoco/badge_combined.svg)
 ## Public Access Point: https://music-tonic.herokuapp.com/
+
 
 ## Demo Client: https://mean-rice.vercel.app/  
 ## Demo Client Repository: https://github.com/J-Rebs/Mean-Rice
