@@ -42,7 +42,7 @@ jobs:
       with:
         reports: /home/runner/work/friendly-couscous/friendly-couscous/MusicTonic/target/site/jacoco/jacoco.xml
         targetdir: /home/runner/work/friendly-couscous/friendly-couscous/MusicTonic/target/site/jacoco
-        reporttypes: MarkdownSummary;PngChart
+        reporttypes: MarkdownSummary;PngChart;Badges
     - name: Push JaCoCo to repository 
       run: |
        git config --global user.name "J-Rebs"
