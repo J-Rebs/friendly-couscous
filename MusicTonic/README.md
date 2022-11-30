@@ -1,7 +1,7 @@
 # COMS W4156 - Advanced Software Engineering
 
 ## Final Project: MusicTonic Service
-
+![coverage_combined](https://raw.githubusercontent.com/J-Rebs/friendly-couscous/main/MusicTonic/target/site/jacoco/badge_branchcoverage.svg)
 ## Public Access Point: https://music-tonic.herokuapp.com/
 
 ## Demo Client: https://mean-rice.vercel.app/  
@@ -85,7 +85,13 @@ look [here](https://github.com/J-Rebs/friendly-couscous/tree/main/MusicTonic/src
 See CheckStyle Report from October 30th, 2022
 [here](https://htmlpreview.github.io/?https://github.com/J-Rebs/friendly-couscous/blob/main/MusicTonic/SiteReports/site%2030_October_2022/checkstyle.html)
 
-## 5. Build, Run, Test Instructions
+## 5. Coverage
+
+We use JaCoCo and [ReportGenerator](https://github.com/marketplace/actions/reportgenerator) to automate coverage reporting as part of our Continous Integration in GitHub Actions. A full summary report available from the latest push to this repository is [here](https://github.com/J-Rebs/friendly-couscous/blob/main/MusicTonic/target/site/jacoco/Summary.md#summary). 
+
+Summary badges are included at the top of this repository. 
+
+## 6. Build, Run, Test Instructions
 
 To run the project, we recommend downloading IntelliJ, see [here](https://www.jetbrains.com/idea/). From here deployment
 can be done by click `run` on MusicTonicApplication. This will build and run the application. Tests can be run
