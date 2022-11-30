@@ -32,11 +32,11 @@ jobs:
     #    badges-directory: badges
      #   generate-branches-badge: true
       #  generate-summary: true
-    - name: Show the report
+    - name: Show the report for JaCoCo
       uses: actions/upload-artifact@v3
       with:
         name: report
-        path: ./target/site
+        path: /home/runner/work/friendly-couscous/friendly-couscous/MusicTonic/target/site/jacoco/jacoco.csv
     - name: Download the report
       uses: actions/download-artifact@v3
 #    - name: Client1 Controller Test
