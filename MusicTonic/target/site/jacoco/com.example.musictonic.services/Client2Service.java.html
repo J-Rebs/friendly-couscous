@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Client2Service.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">MusicTonic</a> &gt; <a href="index.source.html" class="el_package">com.example.musictonic.services</a> &gt; <span class="el_source">Client2Service.java</span></div><h1>Client2Service.java</h1><pre class="source lang-java linenums">package com.example.musictonic.services;
+
+/*
+ *
+ *  WANT TO HAVE:
+ *  - want a few analytics functions like
+ *  - top 10 most played songs (if we have time, will add ability to do by timeframe)
+ *  - average # of songs per user played per day
+ *  - top 5 most subscribed playlists (tbd if have time)
+ *  DEPEND ON:
+ *  - having functional database
+ *  - loading some example data
+ * */
+
+import com.example.musictonic.model.Song;
+import com.example.musictonic.repository.PlaylistToSongRepository;
+import com.example.musictonic.repository.SongRepository;
+import com.example.musictonic.repository.UserRepository;
+import com.example.musictonic.utils.PopularSongsReturn;
+import java.util.ArrayList;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+/**
+ * Class for Client2Service.
+ */
+@Service
+<span class="fc" id="L29">public class Client2Service {</span>
+  @Autowired
+  SongRepository songRepo;
+
+  @Autowired
+  UserRepository userRepo;
+
+  @Autowired
+  PlaylistToSongRepository playlistToSongRepo;
+
+  /**
+   * Method to return the top three most popular songs.
+   *
+   * @return ArrayList consisting of the top three most popular songs
+   */
+  public PopularSongsReturn getMostPopularSongs() {
+    // get all songs in order of popularity
+<span class="fc" id="L46">    List&lt;Song&gt; allSongs = songRepo.findTop3ByOrderBySongLikesCountDesc();</span>
+    // keep only the top 3
+<span class="fc" id="L48">    List&lt;Song&gt; top3Songs = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L49" title="All 2 branches covered.">    for (int i = 0; i &lt; 3; i++) {</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">      if (i &lt; allSongs.size()) {</span>
+<span class="fc" id="L51">        top3Songs.add(allSongs.get(i));</span>
+      }
+    }
+    // for each song count how many playlists they appear in, return the average
+<span class="fc" id="L55">    Double totalCount = 0.0;</span>
+<span class="fc bfc" id="L56" title="All 2 branches covered.">    for (Song s : top3Songs) {</span>
+<span class="fc" id="L57">      totalCount += playlistToSongRepo.findAllBySong(s).size();</span>
+<span class="fc" id="L58">    }</span>
+
+<span class="fc" id="L60">    Double averagePlaylists = totalCount / 3;</span>
+
+<span class="fc" id="L62">    return new PopularSongsReturn(top3Songs, averagePlaylists);</span>
+  }
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

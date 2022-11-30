@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AnalyticsSong.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">MusicTonic</a> &gt; <a href="index.source.html" class="el_package">com.example.musictonic.model</a> &gt; <span class="el_source">AnalyticsSong.java</span></div><h1>AnalyticsSong.java</h1><pre class="source lang-java linenums">package com.example.musictonic.model;
+
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+/**
+ * &lt;h3&gt;This is the analytics song entity.&lt;/h3&gt;
+ * Note: required for compliance with checkstyle
+ */
+@Entity
+@Table(name = &quot;analytics_song&quot;)
+public class AnalyticsSong implements Serializable {
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  Long id;
+
+  @OneToOne
+  @JoinColumn(name = &quot;analyticsId&quot;)
+  private Analytics analytics;
+
+  @ManyToOne
+  @JoinColumn(name = &quot;songId&quot;)
+  private Song song;
+
+<span class="fc" id="L33">  protected AnalyticsSong() {</span>
+
+<span class="fc" id="L35">  }</span>
+
+  /**
+   * Parameterized constructor for the class AnalyticsSong.
+   *
+   * @param id        - the unique ID for this AnalyticsSong entry
+   * @param analytics - the corresponding entity for Analytics entry
+   * @param song      - the corresponding entity for Song
+   */
+<span class="nc" id="L44">  public AnalyticsSong(Long id, Analytics analytics, Song song) {</span>
+<span class="nc" id="L45">    this.id = id;</span>
+<span class="nc" id="L46">    this.analytics = analytics;</span>
+<span class="nc" id="L47">    this.song = song;</span>
+<span class="nc" id="L48">  }</span>
+
+<span class="fc" id="L50">  public AnalyticsSong(Analytics a, Song song) {</span>
+<span class="fc" id="L51">    this.analytics = a;</span>
+<span class="fc" id="L52">    this.song = song;</span>
+<span class="fc" id="L53">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
