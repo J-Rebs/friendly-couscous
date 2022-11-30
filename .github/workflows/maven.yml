@@ -40,7 +40,7 @@ jobs:
     - name: Generate additional JaCoCo reports
       uses: danielpalme/ReportGenerator-GitHub-Action@5.1.12
       with:
-        reports: /home/runner/work/friendly-couscous/friendly-couscous/MusicTonic/target/site/jacoco/jacoco.csv
+        reports: /home/runner/work/friendly-couscous/friendly-couscous/MusicTonic/target/site/jacoco/jacoco.xml
         targetdir: /home/runner/work/friendly-couscous/friendly-couscous/MusicTonic/target/site/jacoco
         reporttypes: MarkdownSummary
     - name: Push JaCoCo to repository 
