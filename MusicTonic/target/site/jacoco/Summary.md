@@ -1,39 +1,39 @@
 # Summary
 |||
 |:---|:---|
-| Generated on: | 12/01/2022 - 05:26:32 |
-| Coverage date: | 12/01/2022 - 05:26:13 |
+| Generated on: | 12/01/2022 - 05:40:50 |
+| Coverage date: | 12/01/2022 - 05:40:25 |
 | Parser: | JaCoCo |
 | Assemblies: | 7 |
 | Classes: | 45 |
 | Files: | 45 |
-| **Line coverage:** | 50% (316 of 631) |
+| **Line coverage:** | 48.4% (316 of 652) |
 | Covered lines: | 316 |
-| Uncovered lines: | 315 |
-| Coverable lines: | 631 |
+| Uncovered lines: | 336 |
+| Coverable lines: | 652 |
 | Total lines: | 0 |
-| **Branch coverage:** | 41.4% (34 of 82) |
+| **Branch coverage:** | 38.6% (34 of 88) |
 | Covered branches: | 34 |
-| Total branches: | 82 |
-| **Method coverage:** | 46.6% (98 of 210) |
+| Total branches: | 88 |
+| **Method coverage:** | 44.9% (98 of 218) |
 | Covered methods: | 98 |
-| Total methods: | 210 |
-| Tag: | 80_3589780289 |
+| Total methods: | 218 |
+| Tag: | 82_3589848904 |
 
 |**Name**|**Covered**|**Uncovered**|**Coverable**|**Total**|**Line coverage**|**Covered**|**Total**|**Branch coverage**|**Covered**|**Total**|**Method coverage**|
 |:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 |**com/example/musictonic**|**1**|**2**|**3**|**0**|**33.3%**|**0**|**0**|****|**1**|**2**|**50%**|
 |com/example/musictonic/MusicTonicApplication|1|2|3|0|33.3%|0|0||1|2|50%|
-|**com/example/musictonic/controller**|**20**|**30**|**50**|**0**|**40%**|**0**|**2**|**0%**|**8**|**13**|**61.5%**|
+|**com/example/musictonic/controller**|**20**|**34**|**54**|**0**|**37%**|**0**|**2**|**0%**|**8**|**14**|**57.1%**|
 |com/example/musictonic/controller/BaseController|1|1|2|0|50%|0|0||1|2|50%|
 |com/example/musictonic/controller/Client1Controller|12|20|32|0|37.5%|0|0||3|6|50%|
-|com/example/musictonic/controller/Client2Controller|3|2|5|0|60%|0|0||2|2|100%|
+|com/example/musictonic/controller/Client2Controller|3|6|9|0|33.3%|0|0||2|3|66.6%|
 |com/example/musictonic/controller/Client3Controller|4|7|11|0|36.3%|0|2|0%|2|3|66.6%|
-|**com/example/musictonic/model**|**152**|**175**|**327**|**0**|**46.4%**|**0**|**0**|****|**63**|**151**|**41.7%**|
+|**com/example/musictonic/model**|**152**|**184**|**336**|**0**|**45.2%**|**0**|**0**|****|**63**|**157**|**40.1%**|
 |com/example/musictonic/model/Analytics|13|19|32|0|40.6%|0|0||7|16|43.7%|
 |com/example/musictonic/model/AnalyticsGroup|2|5|7|0|28.5%|0|0||1|2|50%|
 |com/example/musictonic/model/AnalyticsPlaylist|6|5|11|0|54.5%|0|0||2|3|66.6%|
-|com/example/musictonic/model/AnalyticsSong|6|5|11|0|54.5%|0|0||2|3|66.6%|
+|com/example/musictonic/model/AnalyticsSong|6|14|20|0|30%|0|0||2|9|22.2%|
 |com/example/musictonic/model/AnalyticsUser|6|15|21|0|28.5%|0|0||2|10|20%|
 |com/example/musictonic/model/Client|6|0|6|0|100%|0|0||3|3|100%|
 |com/example/musictonic/model/ClientGroup|2|15|17|0|11.7%|0|0||1|9|11.1%|
@@ -63,9 +63,9 @@
 |com/example/musictonic/repository/PlaylistToSubscriberRepository|0|0|0|0||0|0||0|0||
 |com/example/musictonic/repository/SongRepository|0|0|0|0||0|0||0|0||
 |com/example/musictonic/repository/UserRepository|0|0|0|0||0|0||0|0||
-|**com/example/musictonic/services**|**115**|**76**|**191**|**0**|**60.2%**|**34**|**80**|**42.5%**|**12**|**13**|**92.3%**|
+|**com/example/musictonic/services**|**115**|**84**|**199**|**0**|**57.7%**|**34**|**86**|**39.5%**|**12**|**14**|**85.7%**|
 |com/example/musictonic/services/Client1Service|102|48|150|0|68%|28|60|46.6%|9|9|100%|
-|com/example/musictonic/services/Client2Service|12|0|12|0|100%|6|6|100%|2|2|100%|
+|com/example/musictonic/services/Client2Service|12|8|20|0|60%|6|12|50%|2|3|66.6%|
 |com/example/musictonic/services/Client3Service|1|28|29|0|3.4%|0|14|0%|1|2|50%|
 |**com/example/musictonic/utils**|**28**|**29**|**57**|**0**|**49.1%**|**0**|**0**|****|**14**|**29**|**48.2%**|
 |com/example/musictonic/utils/AnalyticsInfoBasic|8|8|16|0|50%|0|0||4|8|50%|

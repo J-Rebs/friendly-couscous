@@ -12,7 +12,15 @@
  *  - loading some example data
  * */
 
+import com.example.musictonic.model.Analytics;
+import com.example.musictonic.model.AnalyticsSong;
+import com.example.musictonic.model.AnalyticsUser;
+import com.example.musictonic.model.ClientSong;
 import com.example.musictonic.model.Song;
+import com.example.musictonic.model.User;
+import com.example.musictonic.repository.AnalyticsRepository;
+import com.example.musictonic.repository.AnalyticsSongRepository;
+import com.example.musictonic.repository.AnalyticsUserRepository;
 import com.example.musictonic.repository.PlaylistToSongRepository;
 import com.example.musictonic.repository.SongRepository;
 import com.example.musictonic.repository.UserRepository;
@@ -26,7 +34,7 @@ import org.springframework.stereotype.Service;
  * Class for Client2Service.
  */
 @Service
-<span class="fc" id="L29">public class Client2Service {</span>
+<span class="fc" id="L37">public class Client2Service {</span>
   @Autowired
   SongRepository songRepo;
 
@@ -36,6 +44,15 @@ import org.springframework.stereotype.Service;
   @Autowired
   PlaylistToSongRepository playlistToSongRepo;
 
+  @Autowired
+  AnalyticsRepository analyticsRepo;
+
+  @Autowired
+  AnalyticsUserRepository analyticsUserRepo;
+
+  @Autowired
+  AnalyticsSongRepository analyticsSongRepo;
+
   /**
    * Method to return the top three most popular songs.
    *
@@ -43,25 +60,37 @@ import org.springframework.stereotype.Service;
    */
   public PopularSongsReturn getMostPopularSongs() {
     // get all songs in order of popularity
-<span class="fc" id="L46">    List&lt;Song&gt; allSongs = songRepo.findTop3ByOrderBySongLikesCountDesc();</span>
+<span class="fc" id="L63">    List&lt;Song&gt; allSongs = songRepo.findTop3ByOrderBySongLikesCountDesc();</span>
     // keep only the top 3
-<span class="fc" id="L48">    List&lt;Song&gt; top3Songs = new ArrayList&lt;&gt;();</span>
-<span class="fc bfc" id="L49" title="All 2 branches covered.">    for (int i = 0; i &lt; 3; i++) {</span>
-<span class="fc bfc" id="L50" title="All 2 branches covered.">      if (i &lt; allSongs.size()) {</span>
-<span class="fc" id="L51">        top3Songs.add(allSongs.get(i));</span>
+<span class="fc" id="L65">    List&lt;Song&gt; top3Songs = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L66" title="All 2 branches covered.">    for (int i = 0; i &lt; 3; i++) {</span>
+<span class="fc bfc" id="L67" title="All 2 branches covered.">      if (i &lt; allSongs.size()) {</span>
+<span class="fc" id="L68">        top3Songs.add(allSongs.get(i));</span>
       }
     }
     // for each song count how many playlists they appear in, return the average
-<span class="fc" id="L55">    Double totalCount = 0.0;</span>
-<span class="fc bfc" id="L56" title="All 2 branches covered.">    for (Song s : top3Songs) {</span>
-<span class="fc" id="L57">      totalCount += playlistToSongRepo.findAllBySong(s).size();</span>
-<span class="fc" id="L58">    }</span>
+<span class="fc" id="L72">    Double totalCount = 0.0;</span>
+<span class="fc bfc" id="L73" title="All 2 branches covered.">    for (Song s : top3Songs) {</span>
+<span class="fc" id="L74">      totalCount += playlistToSongRepo.findAllBySong(s).size();</span>
+<span class="fc" id="L75">    }</span>
 
-<span class="fc" id="L60">    Double averagePlaylists = totalCount / 3;</span>
+<span class="fc" id="L77">    Double averagePlaylists = totalCount / 3;</span>
 
-<span class="fc" id="L62">    return new PopularSongsReturn(top3Songs, averagePlaylists);</span>
+<span class="fc" id="L79">    return new PopularSongsReturn(top3Songs, averagePlaylists);</span>
   }
 
+  public Integer getNumberOfUsersInAgeRange(Integer from, Integer to) {
+<span class="nc" id="L83">    List&lt;User&gt; allUsers = userRepo.findAll();</span>
+<span class="nc" id="L84">    List&lt;User&gt; allUsersInRange = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L85" title="All 2 branches missed.">    for (User user : allUsers) {</span>
+<span class="nc" id="L86">      Integer userAge = user.getAge();</span>
+<span class="nc bnc" id="L87" title="All 4 branches missed.">      if ((userAge &gt;= from) &amp;&amp; (userAge &lt;= to)) {</span>
+<span class="nc" id="L88">        allUsersInRange.add(user);</span>
+      }
+<span class="nc" id="L90">    }</span>
 
+<span class="nc" id="L92">    return allUsersInRange.size();</span>
+
+  }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
