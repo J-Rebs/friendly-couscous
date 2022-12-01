@@ -51,4 +51,28 @@ public class AnalyticsSong implements Serializable {
     this.analytics = a;
     this.song = song;
   }
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public Analytics getAnalytics() {
+    return analytics;
+  }
+
+  public void setAnalytics(Analytics analytics) {
+    this.analytics = analytics;
+  }
+
+  public Song getSong() {
+    return song;
+  }
+
+  public void setSong(Song song) {
+    this.song = song;
+  }
 }

@@ -12,7 +12,15 @@ package com.example.musictonic.services;
  *  - loading some example data
  * */
 
+import com.example.musictonic.model.Analytics;
+import com.example.musictonic.model.AnalyticsSong;
+import com.example.musictonic.model.AnalyticsUser;
+import com.example.musictonic.model.ClientSong;
 import com.example.musictonic.model.Song;
+import com.example.musictonic.model.User;
+import com.example.musictonic.repository.AnalyticsRepository;
+import com.example.musictonic.repository.AnalyticsSongRepository;
+import com.example.musictonic.repository.AnalyticsUserRepository;
 import com.example.musictonic.repository.PlaylistToSongRepository;
 import com.example.musictonic.repository.SongRepository;
 import com.example.musictonic.repository.UserRepository;
@@ -35,6 +43,15 @@ public class Client2Service {
 
   @Autowired
   PlaylistToSongRepository playlistToSongRepo;
+
+  @Autowired
+  AnalyticsRepository analyticsRepo;
+
+  @Autowired
+  AnalyticsUserRepository analyticsUserRepo;
+
+  @Autowired
+  AnalyticsSongRepository analyticsSongRepo;
 
   /**
    * Method to return the top three most popular songs.
@@ -62,5 +79,17 @@ public class Client2Service {
     return new PopularSongsReturn(top3Songs, averagePlaylists);
   }
 
+  public Integer getNumberOfUsersInAgeRange(Integer from, Integer to) {
+    List<User> allUsers = userRepo.findAll();
+    List<User> allUsersInRange = new ArrayList<>();
+    for (User user : allUsers) {
+      Integer userAge = user.getAge();
+      if ((userAge >= from) && (userAge <= to)) {
+        allUsersInRange.add(user);
+      }
+    }
 
+    return allUsersInRange.size();
+
+  }
 }

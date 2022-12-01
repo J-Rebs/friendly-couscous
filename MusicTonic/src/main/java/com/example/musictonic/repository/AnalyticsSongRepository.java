@@ -2,6 +2,7 @@ package com.example.musictonic.repository;
 
 import com.example.musictonic.model.Analytics;
 import com.example.musictonic.model.AnalyticsSong;
+import com.example.musictonic.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /*
@@ -25,4 +26,5 @@ public interface AnalyticsSongRepository extends JpaRepository<AnalyticsSong, Lo
   //e.g., code will fail if you write findByReal_Name;
 
   AnalyticsSong findByAnalytics(Analytics a);
+
 }
