@@ -1,0 +1,2 @@
+# friendly-couscous
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/84dd87aa07b04401805ab185110ee055)](https://app.codacy.com/gh/J-Rebs/friendly-couscous?utm_source=github.com&utm_medium=referral&utm_content=J-Rebs/friendly-couscous&utm_campaign=Badge_Grade_Settings)
