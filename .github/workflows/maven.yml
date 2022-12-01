@@ -50,6 +50,13 @@ jobs:
 
        git add -f /home/runner/work/friendly-couscous/friendly-couscous/MusicTonic/target/site/jacoco; git commit -m "JaCoCo reports"
        git push
+    - name: Run Codacy Analysis CLI
+      uses: codacy/codacy-analysis-cli-action@master
+      with:
+        tool: SpotBugs
+        project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+        upload: true
+        max-allowed-issues: 2147483647
 #    - name: Client1 Controller Test
 #      run: mvn -X -Dtest=Client1ControllerTest test
 #    - name: Client2 Controller Test
