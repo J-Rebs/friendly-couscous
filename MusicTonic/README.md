@@ -95,7 +95,7 @@ Summary badges are included at the top of this repository.
 
 ## 6. Static Analysis
 
-We use [Coday](https://docs.codacy.com/) to run static analysis on every push as part of our repository. The quality of our code (i.e., issues found) is shown via the code quality badge at the top of this ReadMe. To learn more about how these grades are calculated see [here](https://docs.codacy.com/v4.0/faq/repositories/what-are-the-different-grades-and-how-are-they-calculated/). 
+We use [Codacy](https://docs.codacy.com/) to run static analysis on every push as part of our repository. The quality of our code (i.e., issues found) is shown via the code quality badge at the top of this ReadMe. To learn more about how these grades are calculated see [here](https://docs.codacy.com/v4.0/faq/repositories/what-are-the-different-grades-and-how-are-they-calculated/). 
 
 Our analysis is run using the SpotBugs standard pattern selection from Codacy. See a screenshot below of our dashboard that shows this election. We don't use Codacy to run style checks or coverage checks, and those are covered in earlier sections of this README. We also don't use Codacy to review report websites and related content (e.g., things in the site folder or similar). 
 ![image](https://user-images.githubusercontent.com/84640075/204974059-5e829569-013c-47b2-b7a2-d368da18b0ec.png)
