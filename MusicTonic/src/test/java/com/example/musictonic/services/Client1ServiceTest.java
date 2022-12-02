@@ -129,7 +129,7 @@ class Client1ServiceTest {
 
   private Analytics a;
 
-  private List<User> list = new ArrayList<>();
+  private List<User> userList = new ArrayList<>();
 
   private AnalyticsUser analyticsUser;
   private AnalyticsSong analyticsSong;
@@ -147,7 +147,7 @@ class Client1ServiceTest {
     clientUser = new ClientUser(1L, client, user);
     clientUser2 = new ClientUser(2L, client2, user);
     clientUserList.add(clientUser);
-    clientUserList.add(clientUser2);
+
 
     clientSong = new ClientSong(1L, client, song);
     clientSongList.add(clientSong);
@@ -155,7 +155,7 @@ class Client1ServiceTest {
     clientPlaylistList.add(clientPlaylist);
 
 
-    list.add(user);
+    userList.add(user);
 
     analyticsUser = new AnalyticsUser(a, user);
     analyticsSong = new AnalyticsSong(a, song);
@@ -242,7 +242,7 @@ class Client1ServiceTest {
     when(clientRepo.findByClientId(any(Long.class))).thenReturn(client);
     when(clientUserRepo.findAllByClient(any(Client.class))).thenReturn(clientUserList);
     List<User> returnedList = client1Service.getAllUsers(1L);
-    assertEquals(returnedList, list);
+    assertEquals(returnedList, userList);
   }
 
   @Test
@@ -251,7 +251,7 @@ class Client1ServiceTest {
     List<User> fakeList = new ArrayList<>();
     // when(userRepo.findAll()).thenReturn(fakeList);
     List<User> returnedList = client1Service.getAllUsers(1L);
-    assertNotEquals(returnedList, list);
+    assertNotEquals(returnedList, userList);
   }
 
   @Test
@@ -274,6 +274,7 @@ class Client1ServiceTest {
   @DisplayName("deleteUser() WORKS with regular lists")
   void deleteUserGood() throws IllegalAccessException {
     when(userRepo.findByUserId(any(Long.class))).thenReturn(user);
+    clientUserList.add(clientUser2); // supplement list for branch testing
     when(clientUserRepo.findAllByUser(any(User.class))).thenReturn(clientUserList);
 
 
