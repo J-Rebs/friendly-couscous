@@ -128,9 +128,9 @@ terminal, run the following code:
 2. [x] [POST] https://music-tonic.herokuapp.com/client1-rest/playsong?userid=1&songid=1&playlistid=1&clientid=1
 3. [x] [GET]  https://music-tonic.herokuapp.com/client3-rest/userexport?userid=1&clientid=1  
 In the above end-to-end test, client 1 first updated the user with userid=1 who played the song with songid=1 twice, and then client 3 then exported this user's profile. In the screenshot below, we can see that playsong generates two analytics with unique ids and timestamps, and when client 3 exports this user's profile, we can see that in the analyticsList part of the user's profile, the analyticsId and timestampString matched with these numbers generated previously.  
-<img src="./testScreenShots/test_1/play_song_1.JPG" width="500px">
-<img src="./testScreenShots/test_1/play_song_2.JPG" width="500px">
-<img src="./testScreenShots/test_1/import_user.JPG" width="500px">
+<img src="./testScreenShots/test_1/play_song_1.JPG" width="600px">
+<img src="./testScreenShots/test_1/play_song_2.JPG" width="600px">
+<img src="./testScreenShots/test_1/import_user.JPG" width="600px">
 
 
 ### Test 2
@@ -141,12 +141,12 @@ In the above end-to-end test, client 1 first updated the user with userid=1 who 
 5. [x] [GET] https://music-tonic.herokuapp.com/client3-rest/listSongs
 6. [x] [GET] https://music-tonic.herokuapp.com/client2-rest/top3songs
 In the above end-to-end test, client 3 first requested to list all the songs, then client 2 request to list top 3 songs. After that, client 1 called likeSong with userid=1 and songid=4 for 10 times. Then client 3 and client 2 called listSongs and top3songs again. We can see that songLikesCount for song 4 is increased by 10 (from 2 to 12) in listSongs, and song 4 (12 likes) surpasses song 2 (10 likes) and becomes top 3 songs. It matches with the result we got.  
-<img src="./testScreenShots/test_2/list_song_1.JPG" width="500px">
-<img src="./testScreenShots/test_2/top3song_2.JPG" width="500px">
-<img src="./testScreenShots/test_2/like_song_3.JPG" width="500px">
-<img src="./testScreenShots/test_2/like_song_4.JPG" width="500px">
-<img src="./testScreenShots/test_2/list_song_5.JPG" width="500px">
-<img src="./testScreenShots/test_2/top3song_6.JPG" width="500px">
+<img src="./testScreenShots/test_2/list_song_1.JPG" width="600px">
+<img src="./testScreenShots/test_2/top3song_2.JPG" width="600px">
+<img src="./testScreenShots/test_2/like_song_3.JPG" width="600px">
+<img src="./testScreenShots/test_2/like_song_4.JPG" width="600px">
+<img src="./testScreenShots/test_2/list_song_5.JPG" width="600px">
+<img src="./testScreenShots/test_2/top3song_6.JPG" width="600px">
 
 ## By Team Grey Orange
 
