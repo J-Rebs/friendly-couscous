@@ -136,7 +136,7 @@ In the above end-to-end test, client 1 first updated the user with userid=1 who 
 4. [x] same likeSong for 10 times
 5. [x] [GET] https://music-tonic.herokuapp.com/client3-rest/listSongs
 6. [x] [GET] https://music-tonic.herokuapp.com/client2-rest/top3songs
-
+In the above end-to-end test, client 3 first requested to list all the songs, then client 2 request to list top 3 songs. After that, client 1 called likeSong with userid=1 and songid=4 for 10 times. Then client 3 and client 2 called listSongs and top3songs again. We can see that songLikesCount for song 4 is increased by 10 (from 2 to 12) in listSongs, and song 4 (12 likes) surpasses song 2 (10 likes) and becomes top 3 songs. It matches with the result we got.
 
 ## By Team Grey Orange
 
