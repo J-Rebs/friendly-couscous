@@ -130,7 +130,6 @@
                         <exclude>com/example/musictonic/model</exclude>
                         <exclude>com/example/musictonic/utils</exclude>
                         <exclude>com/example/musictonic/config</exclude>
-                        <exclude>com/example/musictonic/repository</exclude>
                     </excludes>
                 </configuration>
             </plugin>
