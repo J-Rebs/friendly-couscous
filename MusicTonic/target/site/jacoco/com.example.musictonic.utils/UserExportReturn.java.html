@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserExportReturn.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">MusicTonic</a> &gt; <a href="index.source.html" class="el_package">com.example.musictonic.utils</a> &gt; <span class="el_source">UserExportReturn.java</span></div><h1>UserExportReturn.java</h1><pre class="source lang-java linenums">package com.example.musictonic.utils;
+
+import com.example.musictonic.model.Playlist;
+import com.example.musictonic.model.User;
+import java.util.List;
+
+/**
+ * Class for UserExportReturn.
+ */
+public class UserExportReturn {
+  private User user;
+  private List&lt;Playlist&gt; playlistList;
+  private List&lt;AnalyticsInfoBasic&gt; analyticsList;
+
+<span class="nc" id="L15">  protected UserExportReturn() {</span>
+
+<span class="nc" id="L17">  }</span>
+
+  /**
+   * Parameterized constructor for UserExportReturn object.
+   *
+   * @param user          - the user object that this object is being generated for
+   * @param playlistList  - list of playlists associated with this user
+   * @param analyticsList - list of analytics associated with this user
+   */
+  public UserExportReturn(User user, List&lt;Playlist&gt; playlistList,
+<span class="fc" id="L27">                          List&lt;AnalyticsInfoBasic&gt; analyticsList) {</span>
+<span class="fc" id="L28">    this.user = user;</span>
+<span class="fc" id="L29">    this.playlistList = playlistList;</span>
+<span class="fc" id="L30">    this.analyticsList = analyticsList;</span>
+<span class="fc" id="L31">  }</span>
+
+  public User getUser() {
+<span class="fc" id="L34">    return user;</span>
+  }
+
+  public void setUser(User user) {
+<span class="nc" id="L38">    this.user = user;</span>
+<span class="nc" id="L39">  }</span>
+
+  public List&lt;Playlist&gt; getPlaylistList() {
+<span class="fc" id="L42">    return playlistList;</span>
+  }
+
+  public void setPlaylistList(List&lt;Playlist&gt; playlistList) {
+<span class="nc" id="L46">    this.playlistList = playlistList;</span>
+<span class="nc" id="L47">  }</span>
+
+  public List&lt;AnalyticsInfoBasic&gt; getAnalyticsList() {
+<span class="fc" id="L50">    return analyticsList;</span>
+  }
+
+  public void setAnalyticsList(List&lt;AnalyticsInfoBasic&gt; analyticsList) {
+<span class="nc" id="L54">    this.analyticsList = analyticsList;</span>
+<span class="nc" id="L55">  }</span>
+
+  @Override
+  public String toString() {
+<span class="nc" id="L59">    return &quot;UserExportReturn{&quot;</span>
+        + &quot;user=&quot; + user
+        + &quot;, playlistList=&quot; + playlistList
+        + &quot;, analyticsList=&quot; + analyticsList
+        + '}';
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
