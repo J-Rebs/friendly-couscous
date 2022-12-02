@@ -12,10 +12,6 @@ package com.example.musictonic.services;
  *  - loading some example data
  * */
 
-import com.example.musictonic.model.Analytics;
-import com.example.musictonic.model.AnalyticsSong;
-import com.example.musictonic.model.AnalyticsUser;
-import com.example.musictonic.model.ClientSong;
 import com.example.musictonic.model.Song;
 import com.example.musictonic.model.User;
 import com.example.musictonic.repository.AnalyticsRepository;

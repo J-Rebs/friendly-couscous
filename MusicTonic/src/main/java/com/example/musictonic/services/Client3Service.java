@@ -86,7 +86,8 @@ public class Client3Service {
     }
 
     // assume all playlists that owned by user are available to client
-    // same applies to analytics -- assumption is user entry unique to client, so, therefore analytics
+    // same applies to analytics --
+    // assumption is user entry unique to client, so, therefore analytics
     // entries also belong to client
     List<Playlist> playlists = playlistRepo.findAllByOwner(userId);
     List<AnalyticsUser> analyticsUserList = analyticsUserRepo.findByUser(user);

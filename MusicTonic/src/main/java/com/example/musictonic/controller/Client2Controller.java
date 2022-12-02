@@ -1,10 +1,8 @@
 package com.example.musictonic.controller;
 
 
-import com.example.musictonic.model.User;
 import com.example.musictonic.services.Client2Service;
 import com.example.musictonic.utils.PopularSongsReturn;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

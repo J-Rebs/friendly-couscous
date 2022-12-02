@@ -1,12 +1,14 @@
-# COMS W4156 - Advanced Software Engineering  
+# COMS W4156 - Advanced Software Engineering
 
 ## Final Project: MusicTonic Service
+
 ![coverage_branch](https://raw.githubusercontent.com/J-Rebs/friendly-couscous/main/MusicTonic/target/site/jacoco/badge_branchcoverage.svg) ![coverage_combined](https://raw.githubusercontent.com/J-Rebs/friendly-couscous/main/MusicTonic/target/site/jacoco/badge_combined.svg)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/f50cfaab0bb34082b597755dcb55739f)](https://www.codacy.com/gh/J-Rebs/friendly-couscous/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=J-Rebs/friendly-couscous&amp;utm_campaign=Badge_Grade)
+
 ## Public Access Point: https://music-tonic.herokuapp.com/
 
+## Demo Client: https://mean-rice.vercel.app/
 
-## Demo Client: https://mean-rice.vercel.app/   
 ## Demo Client Repository: https://github.com/J-Rebs/Mean-Rice
 
 ### Team Members
@@ -89,18 +91,25 @@ See CheckStyle Report from October 30th, 2022
 
 ## 5. Coverage
 
-We use JaCoCo and [ReportGenerator](https://github.com/marketplace/actions/reportgenerator) to automate coverage reporting as part of our Continous Integration in GitHub Actions. A full summary report available from the latest push to this repository is [here](https://github.com/J-Rebs/friendly-couscous/blob/main/MusicTonic/target/site/jacoco/Summary.md#summary). 
+We use JaCoCo and [ReportGenerator](https://github.com/marketplace/actions/reportgenerator) to automate coverage
+reporting as part of our Continous Integration in GitHub Actions. A full summary report available from the latest push
+to this repository
+is [here](https://github.com/J-Rebs/friendly-couscous/blob/main/MusicTonic/target/site/jacoco/Summary.md#summary).
 
-Summary badges are included at the top of this repository. 
+Summary badges are included at the top of this repository.
 
 ## 6. Static Analysis
 
-We use [Codacy](https://docs.codacy.com/) to run static analysis on every push as part of our repository. The quality of our code (i.e., issues found) is shown via the code quality badge at the top of this ReadMe. To learn more about how these grades are calculated see [here](https://docs.codacy.com/v4.0/faq/repositories/what-are-the-different-grades-and-how-are-they-calculated/). 
+We use [Codacy](https://docs.codacy.com/) to run static analysis on every push as part of our repository. The quality of
+our code (i.e., issues found) is shown via the code quality badge at the top of this ReadMe. To learn more about how
+these grades are calculated
+see [here](https://docs.codacy.com/v4.0/faq/repositories/what-are-the-different-grades-and-how-are-they-calculated/).
 
-Our analysis is run using the SpotBugs standard pattern selection from Codacy. See a screenshot below of our dashboard that shows this election. We don't use Codacy to run style checks or coverage checks, and those are covered in earlier sections of this README. We also don't use Codacy to review report websites and related content (e.g., things in the site folder or similar). 
+Our analysis is run using the SpotBugs standard pattern selection from Codacy. See a screenshot below of our dashboard
+that shows this election. We don't use Codacy to run style checks or coverage checks, and those are covered in earlier
+sections of this README. We also don't use Codacy to review report websites and related content (e.g., things in the
+site folder or similar).
 ![image](https://user-images.githubusercontent.com/84640075/204974059-5e829569-013c-47b2-b7a2-d368da18b0ec.png)
-
-
 
 ## 7. Build, Run, Test Instructions
 
@@ -124,29 +133,38 @@ terminal, run the following code:
 ## 8. End-to-End Tests
 
 ### Test 1
+
 1. [x] [POST] https://music-tonic.herokuapp.com/client1-rest/playsong?userid=1&songid=1&playlistid=1&clientid=1
 2. [x] [POST] https://music-tonic.herokuapp.com/client1-rest/playsong?userid=1&songid=1&playlistid=1&clientid=1
 3. [x] [GET]  https://music-tonic.herokuapp.com/client3-rest/userexport?userid=1&clientid=1  
-In the above end-to-end test, client 1 first updated the user with userid=1 who played the song with songid=1 twice, and then client 3 then exported this user's profile. In the screenshot below, we can see that playsong generates two analytics with unique ids and timestamps, and when client 3 exports this user's profile, we can see that in the analyticsList part of the user's profile, the analyticsId and timestampString matched with these numbers generated previously.  
-<img src="./testScreenShots/test_1/play_song_1.JPG" width="600px">
-<img src="./testScreenShots/test_1/play_song_2.JPG" width="600px">
-<img src="./testScreenShots/test_1/import_user.JPG" width="600px">
-
+   In the above end-to-end test, client 1 first updated the user with userid=1 who played the song with songid=1 twice,
+   and then client 3 then exported this user's profile. In the screenshot below, we can see that playsong generates two
+   analytics with unique ids and timestamps, and when client 3 exports this user's profile, we can see that in the
+   analyticsList part of the user's profile, the analyticsId and timestampString matched with these numbers generated
+   previously.  
+   <img src="./testScreenShots/test_1/play_song_1.JPG" width="600px">
+   <img src="./testScreenShots/test_1/play_song_2.JPG" width="600px">
+   <img src="./testScreenShots/test_1/import_user.JPG" width="600px">
 
 ### Test 2
+
 1. [x] [GET] https://music-tonic.herokuapp.com/client3-rest/listSongs
 2. [x] [GET] https://music-tonic.herokuapp.com/client2-rest/top3songs
 3. [x] [PUT] https://music-tonic.herokuapp.com/client1-rest/likeSong?userid=1&songid=4&clientid=1
 4. [x] same likeSong for 10 times
 5. [x] [GET] https://music-tonic.herokuapp.com/client3-rest/listSongs
 6. [x] [GET] https://music-tonic.herokuapp.com/client2-rest/top3songs
-In the above end-to-end test, client 3 first requested to list all the songs, then client 2 request to list top 3 songs. After that, client 1 called likeSong with userid=1 and songid=4 for 10 times. Then client 3 and client 2 called listSongs and top3songs again. We can see that songLikesCount for song 4 is increased by 10 (from 2 to 12) in listSongs, and song 4 (12 likes) surpasses song 2 (10 likes) and becomes top 3 songs. It matches with the result we got.  
-<img src="./testScreenShots/test_2/list_song_1.JPG" width="600px">
-<img src="./testScreenShots/test_2/top3song_2.JPG" width="600px">
-<img src="./testScreenShots/test_2/like_song_3.JPG" width="600px">
-<img src="./testScreenShots/test_2/like_song_4.JPG" width="600px">
-<img src="./testScreenShots/test_2/list_song_5.JPG" width="600px">
-<img src="./testScreenShots/test_2/top3song_6.JPG" width="600px">
+   In the above end-to-end test, client 3 first requested to list all the songs, then client 2 request to list top 3
+   songs. After that, client 1 called likeSong with userid=1 and songid=4 for 10 times. Then client 3 and client 2
+   called listSongs and top3songs again. We can see that songLikesCount for song 4 is increased by 10 (from 2 to 12) in
+   listSongs, and song 4 (12 likes) surpasses song 2 (10 likes) and becomes top 3 songs. It matches with the result we
+   got.  
+   <img src="./testScreenShots/test_2/list_song_1.JPG" width="600px">
+   <img src="./testScreenShots/test_2/top3song_2.JPG" width="600px">
+   <img src="./testScreenShots/test_2/like_song_3.JPG" width="600px">
+   <img src="./testScreenShots/test_2/like_song_4.JPG" width="600px">
+   <img src="./testScreenShots/test_2/list_song_5.JPG" width="600px">
+   <img src="./testScreenShots/test_2/top3song_6.JPG" width="600px">
 
 ## By Team Grey Orange
 

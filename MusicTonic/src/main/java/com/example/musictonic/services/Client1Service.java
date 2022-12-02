@@ -102,21 +102,7 @@ public class Client1Service {
 
   // helper method, tested within used methods
 
-  /**
-   * Note:
-   * <p>
-   * Our service requires a client to register that it has access to a user, playlist, and song
-   * independently of anything else. That means a client must have access to both a user and a song to like a song
-   * or play a song.
-   * <p>
-   * Furthermore, a user, song, or playlist can in theory belong to multiple clients from a data model perspective.
-   * That means for example a user could exist for two separate clients, but only one client may have access to the songs a user wants to play. However, in our implementation,
-   * we assume a client will have to create its own unique user entry for a given individual (see createUser method). In other words, Johnny might be one person, but he will exist as separate
-   * user entries for each client that has him as a user. Also, for testing, we instantiate a single song library (a few songs) accessible to all clients,
-   * but this is done by registering all songs with all test clients in an import.sql file.
-   * <p>
-   * If this system were put into production, this approach could be kept or modified.
-   */
+
   private boolean validUserSong(Long userId, Long songId, Long clientId)
       throws IllegalAccessException {
     // client information
@@ -170,7 +156,8 @@ public class Client1Service {
     List<ClientPlaylist> playlistsForClient = clientPlaylistRepo.findAllByClient(client);
 
     for (ClientPlaylist cp : playlistsForClient) {
-      if (cp.getPlaylist().getPlaylistId() == playlistId &&
+      if (cp.getPlaylist().getPlaylistId() == playlistId
+          &&
           cp.getClient().getClientId() == clientId) {
         clientPlaylistMatch = true;
         break;
@@ -196,7 +183,8 @@ public class Client1Service {
       }
     }
 
-    // if the user doesn't have a default playlist under the client in question, make one, otherwise return the default playlist
+    // if the user doesn't have a default playlist under the client in question,
+    // make one, otherwise return the default playlist
     if (defaultPlaylist == null) {
       defaultPlaylist = new Playlist(userId, "DefaultPlaylist", true);
       // save the playlist to the appropriate table
@@ -332,9 +320,7 @@ public class Client1Service {
    * @param mainGenre - The main genre for a user, (i.e., country, pop, rap, etc...)
    * @param age       - the age of the user
    * @param clientId  -  client for which the user will be created
-   * @return the newly created User object that was added to the User table. Method assumes client
-   * will only to try to create a new user when appropriate. Clients don't have knowledge of other clients' users,
-   * so a client may create another user entry for the same individual real user but which contains information for only this client.
+   * @return the newly created User object that was added to the User table.
    */
 
   public User createUser(String realName, UserType type, String mainGenre, Integer age,

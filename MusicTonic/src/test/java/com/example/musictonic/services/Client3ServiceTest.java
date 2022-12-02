@@ -14,24 +14,17 @@ import com.example.musictonic.model.AnalyticsUser;
 import com.example.musictonic.model.Client;
 import com.example.musictonic.model.ClientUser;
 import com.example.musictonic.model.Playlist;
-import com.example.musictonic.model.PlaylistToSongs;
 import com.example.musictonic.model.Song;
 import com.example.musictonic.model.User;
 import com.example.musictonic.model.UserType;
-import com.example.musictonic.repository.AnalyticsPlaylistRepository;
 import com.example.musictonic.repository.AnalyticsRepository;
-import com.example.musictonic.repository.AnalyticsSongRepository;
 import com.example.musictonic.repository.AnalyticsUserRepository;
 import com.example.musictonic.repository.ClientRepository;
 import com.example.musictonic.repository.ClientUserRepository;
 import com.example.musictonic.repository.PlaylistRepository;
-import com.example.musictonic.repository.PlaylistToSongRepository;
-import com.example.musictonic.repository.SongRepository;
 import com.example.musictonic.repository.UserRepository;
 import com.example.musictonic.utils.AnalyticsInfoBasic;
-import com.example.musictonic.utils.PopularSongsReturn;
 import com.example.musictonic.utils.UserExportReturn;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import java.sql.Timestamp;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -44,41 +37,28 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.web.servlet.MockMvc;
 
 @ExtendWith(MockitoExtension.class)
 public class Client3ServiceTest {
 
+  @InjectMocks
+  Client3Service client3Service;
   @Mock
   private ClientRepository clientRepo;
   @Mock
   private PlaylistRepository playlistRepo;
-
   @Mock
   private AnalyticsRepository analyticsRepo;
-
   @Mock
   private ClientUserRepository clientUserRepo;
-
   @Mock
   private AnalyticsUserRepository analyticsUserRepo;
-
-
   @Mock
   private Client2Service client2Service;
-
   @Mock
   private Client1Service client1Service;
-
   @Mock
   private UserRepository userRepo;
-
-  @InjectMocks
-  Client3Service client3Service;
-
-
   private Client client;
 
   private ClientUser clientUser;
