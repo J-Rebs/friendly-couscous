@@ -129,6 +129,15 @@ terminal, run the following code:
 3. [x] [GET]  https://music-tonic.herokuapp.com/client3-rest/userexport?userid=1&clientid=1  
 In the above end-to-end test, client 1 first updated the user with userid=1 who played the song with songid=1 twice, and then client 3 then exported this user's profile. In the screenshot below, we can see that playsong generates two analytics with unique ids and timestamps, and when client 3 exports this user's profile, we can see that in the analyticsList part of the user's profile, the analyticsId and timestampString matched with these numbers generated previously.
 
+### Test 2
+1. [x] [GET] https://music-tonic.herokuapp.com/client3-rest/listSongs
+2. [x] [GET] https://music-tonic.herokuapp.com/client2-rest/top3songs
+3. [x] [PUT] https://music-tonic.herokuapp.com/client1-rest/likeSong?userid=1&songid=4&clientid=1
+4. [x] same likeSong for 10 times
+5. [x] [GET] https://music-tonic.herokuapp.com/client3-rest/listSongs
+6. [x] [GET] https://music-tonic.herokuapp.com/client2-rest/top3songs
+
+
 ## By Team Grey Orange
 
 <p align="center">
