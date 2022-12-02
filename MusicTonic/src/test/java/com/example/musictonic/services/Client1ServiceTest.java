@@ -114,7 +114,11 @@ class Client1ServiceTest {
 
   private Client client;
 
+  private Client client2;
+
   private ClientUser clientUser;
+  private ClientUser clientUser2;
+
   private List<ClientUser> clientUserList = new ArrayList<>();
 
   private ClientSong clientSong;
@@ -139,8 +143,12 @@ class Client1ServiceTest {
     song = new Song(1L, "SongySongyPopPop", 2, "CoolestArtist", "YaYaMerchMakesYou COOL", 10);
     playlist = new Playlist(1L, 1L, "TheBEST", false);
     client = new Client(1L);
+    client2 = new Client(1L);
     clientUser = new ClientUser(1L, client, user);
+    clientUser2 = new ClientUser(2L, client2, user);
     clientUserList.add(clientUser);
+    clientUserList.add(clientUser2);
+
     clientSong = new ClientSong(1L, client, song);
     clientSongList.add(clientSong);
     clientPlaylist = new ClientPlaylist(1L, client, playlist);
@@ -263,9 +271,11 @@ class Client1ServiceTest {
   }
 
   @Test
-  @DisplayName("deleteUser() WORKS")
+  @DisplayName("deleteUser() WORKS with regular lists")
   void deleteUserGood() throws IllegalAccessException {
     when(userRepo.findByUserId(any(Long.class))).thenReturn(user);
+    when(clientUserRepo.findAllByUser(any(User.class))).thenReturn(clientUserList);
+
 
     List<AnalyticsUser> list1 = new ArrayList<>();
     when(analyticsUserRepo.findByUser(any(User.class))).thenReturn(list1);
@@ -279,6 +289,27 @@ class Client1ServiceTest {
     client1Service.deleteUser(1L, 1L);
     verify(userRepo, times(1)).delete(user);
   }
+
+  @Test
+  @DisplayName("deleteUser() WORKS with null lists")
+  void deleteUserGoodSimple() throws IllegalAccessException {
+    when(userRepo.findByUserId(any(Long.class))).thenReturn(user);
+    when(clientUserRepo.findAllByUser(any(User.class))).thenReturn(new ArrayList<>());
+
+
+    List<AnalyticsUser> list1 = new ArrayList<>();
+    when(analyticsUserRepo.findByUser(any(User.class))).thenReturn(new ArrayList<>());
+
+    List<PlaylistToSubscriber> list2 = new ArrayList<>();
+    when(playlistToSubscriberRepo.findAllByUser(any(User.class))).thenReturn(new ArrayList<>());
+
+    List<Playlist> list3 = new ArrayList<>();
+    when(playlistRepo.findAllByOwner(any(Long.class))).thenReturn(new ArrayList<>());
+
+    client1Service.deleteUser(1L, 1L);
+    verify(userRepo, times(1)).delete(user);
+  }
+
 
   @Test
   @DisplayName("deleteUser() FAILS, as expected")
