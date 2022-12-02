@@ -45,7 +45,32 @@ public class Client2Controller {
       @RequestParam(name = "from") Integer fromAge,
       @RequestParam(name = "to") Integer toAge) {
     try {
-      Integer averageSongDuration = client2Service.getNumberOfUsersInAgeRange(fromAge, toAge);
+      Integer numberOfUsersInAgeRange = client2Service.getNumberOfUsersInAgeRange(fromAge, toAge);
+      return new ResponseEntity<>(numberOfUsersInAgeRange, HttpStatus.OK);
+    } catch (Exception e) {
+      return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+    }
+  }
+
+  @GetMapping("/averageSongDurationForUsersInAgeRange")
+  public ResponseEntity<Integer> averageSongDurationForUsersInAgeRange(
+      @RequestParam(name = "from") Integer fromAge,
+      @RequestParam(name = "to") Integer toAge) {
+    try {
+      Integer averageSongDuration =
+          client2Service.getAverageSongDurationForUsersInAgeRange(fromAge, toAge);
+      return new ResponseEntity<>(averageSongDuration, HttpStatus.OK);
+    } catch (Exception e) {
+      return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+    }
+  }
+
+  @GetMapping("/getTotalSongDurationForUser")
+  public ResponseEntity<Integer> getTotalSongDurationForUser(
+      @RequestParam(name = "userId") Integer userId) {
+    try {
+      Integer averageSongDuration =
+          client2Service.getTotalSongDurationForUser(1L);
       return new ResponseEntity<>(averageSongDuration, HttpStatus.OK);
     } catch (Exception e) {
       return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
