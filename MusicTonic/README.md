@@ -101,15 +101,16 @@ Summary badges are included at the top of this repository.
 ## 6. Static Analysis
 
 We use [Codacy](https://docs.codacy.com/) to run static analysis on every push as part of our repository. The quality of
-our code (i.e., issues found) is shown via the code quality badge at the top of this ReadMe. To learn more about how
+our code (i.e., issues found) is shown via the code quality badge at the top of this README. To learn more about how
 these grades are calculated
 see [here](https://docs.codacy.com/v4.0/faq/repositories/what-are-the-different-grades-and-how-are-they-calculated/).
 
-Our analysis is run using the SpotBugs standard pattern selection from Codacy. See a screenshot below of our dashboard
-that shows this election. We don't use Codacy to run style checks or coverage checks, and those are covered in earlier
-sections of this README. We also don't use Codacy to review report websites and related content (e.g., things in the
+Our analysis is run using SpotBugs from Codacy. We test 338 rules, which is based on Codacy's standard selection for SpotBugs. We disabled one to two patterns related to [exposing internal representations](https://stackoverflow.com/questions/18954873/malicious-code-vulnerability-may-expose-internal-representation-by-incorporati), as we didn't feel these errors were substantive enough to change our overall code logic. Furthermore, it is something easy to modify in the future if further advice were given that such updates should be added. 
+
+See a screenshot below of our dashboard that shows the number of SpotBugs rules enabled. We don't use Codacy to review report websites and related content (e.g., things in the
 site folder or similar).
-![image](https://user-images.githubusercontent.com/84640075/204974059-5e829569-013c-47b2-b7a2-d368da18b0ec.png)
+
+![image](https://user-images.githubusercontent.com/84640075/205412210-58a94f21-7aa0-4d58-b6f4-24d84fd71753.png)
 
 ## 7. Build, Run, Test Instructions
 
