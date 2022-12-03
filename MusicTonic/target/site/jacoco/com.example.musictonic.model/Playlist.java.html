@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Playlist.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">MusicTonic</a> &gt; <a href="index.source.html" class="el_package">com.example.musictonic.model</a> &gt; <span class="el_source">Playlist.java</span></div><h1>Playlist.java</h1><pre class="source lang-java linenums">package com.example.musictonic.model;
+
+import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+
+/**
+ * &lt;h3&gt;This is the playlist entity.&lt;/h3&gt;
+ * Note: required for compliance with checkstyle
+ */
+@Entity
+@Table(name = &quot;playlists&quot;)
+public class Playlist {
+
+  // definition of entity
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long playlistId;
+
+  @Column(name = &quot;owner&quot;)
+  private Long owner;
+
+  @Column(name = &quot;name&quot;)
+  private String name;
+
+  @Column(name = &quot;isDefault&quot;)
+  private Boolean isDefault;
+
+  @OneToMany(mappedBy = &quot;playlist&quot;)
+  private Set&lt;PlaylistToSubscriber&gt; playlistToSubscriber;
+
+  @OneToMany(mappedBy = &quot;playlist&quot;)
+  private Set&lt;PlaylistToSongs&gt; playlistToSongs;
+
+  @OneToMany(mappedBy = &quot;playlist&quot;)
+  private Set&lt;AnalyticsPlaylist&gt; analyticsPlaylists;
+
+
+  // constructors
+  // add default constructor for sake of JPA
+<span class="fc" id="L47">  protected Playlist() {</span>
+<span class="fc" id="L48">  }</span>
+
+  /**
+   * Parameterized constructor for Playlist.
+   *
+   * @param playlistId - the unique ID for this groupId
+   * @param owner      - the userId corresponding to the owner of this Playlist
+   * @param name       - the name of this playlist
+   * @param isDefault  - true if this playlist is the default &quot;likes&quot; playlist, else false
+   */
+<span class="fc" id="L58">  public Playlist(Long playlistId, Long owner, String name, Boolean isDefault) {</span>
+<span class="fc" id="L59">    this.playlistId = playlistId;</span>
+<span class="fc" id="L60">    this.owner = owner;</span>
+<span class="fc" id="L61">    this.name = name;</span>
+<span class="fc" id="L62">    this.isDefault = isDefault;</span>
+<span class="fc" id="L63">  }</span>
+
+  /**
+   * Parameterized constructor for Playlist.
+   *
+   * @param owner     - the userId corresponding to the owner of this Playlist
+   * @param name      - the name of this playlist
+   * @param isDefault - true if this playlist is the default &quot;likes&quot; playlist, else false
+   */
+<span class="fc" id="L72">  public Playlist(Long owner, String name, Boolean isDefault) {</span>
+<span class="fc" id="L73">    this.owner = owner;</span>
+<span class="fc" id="L74">    this.name = name;</span>
+<span class="fc" id="L75">    this.isDefault = isDefault;</span>
+<span class="fc" id="L76">  }</span>
+
+  // getters and setters
+  public Long getPlaylistId() {
+<span class="fc" id="L80">    return playlistId;</span>
+  }
+
+  public void setPlaylistId(Long playlistId) {
+<span class="nc" id="L84">    playlistId = playlistId;</span>
+<span class="nc" id="L85">  }</span>
+
+  public Long getOwner() {
+<span class="fc" id="L88">    return owner;</span>
+  }
+
+  public void setOwner(Long owner) {
+<span class="nc" id="L92">    this.owner = owner;</span>
+<span class="nc" id="L93">  }</span>
+
+  public String getName() {
+<span class="fc" id="L96">    return name;</span>
+  }
+
+  public void setName(String name) {
+<span class="nc" id="L100">    this.name = name;</span>
+<span class="nc" id="L101">  }</span>
+
+  public Boolean getDefault() {
+<span class="fc" id="L104">    return isDefault;</span>
+  }
+
+  public void setDefault(Boolean isDefault) {
+<span class="nc" id="L108">    isDefault = isDefault;</span>
+<span class="nc" id="L109">  }</span>
+
+  @Override
+  public String toString() {
+<span class="nc" id="L113">    return &quot;Playlist{&quot;</span>
+        + &quot;PlaylistId=&quot; + playlistId
+        + &quot;, owner='&quot; + owner + '\''
+        + &quot;, name='&quot; + name + '\''
+        + &quot;, isDefault=&quot; + isDefault
+        + '}';
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
