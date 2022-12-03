@@ -8,6 +8,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import com.example.musictonic.jwt.JwtController;
+import com.example.musictonic.jwt.JwtService;
 import com.example.musictonic.model.Song;
 import com.example.musictonic.repository.SongRepository;
 import com.example.musictonic.repository.UserRepository;
@@ -36,10 +38,10 @@ public class Client2ControllerTest {
   private MockMvc mvc;
 
   @MockBean
-  private UserController userController;
+  private JwtController userController;
 
   @MockBean
-  private UserService userService;
+  private JwtService userService;
   @Autowired
   private ObjectMapper objectMapper;
 
