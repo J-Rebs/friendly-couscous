@@ -20,13 +20,13 @@ import org.springframework.web.bind.annotation.RestController;
   @PostMapping(&quot;/signin&quot;)
   public String login(//
                       @RequestParam(name = &quot;username&quot;) String username,
-                      @RequestParam(name = &quot;username&quot;) String password) throws Exception {
+                      @RequestParam(name = &quot;password&quot;) String password) throws Exception {
 <span class="nc" id="L24">    return jwtService.signin(username, password);</span>
   }
 
   @PostMapping(&quot;/signup&quot;)
   public String signup(@RequestParam(name = &quot;username&quot;) String username,
-                       @RequestParam(name = &quot;username&quot;) String password) throws Exception {
+                       @RequestParam(name = &quot;password&quot;) String password) throws Exception {
 <span class="nc" id="L30">    return jwtService.signup(username, password);</span>
   }
 

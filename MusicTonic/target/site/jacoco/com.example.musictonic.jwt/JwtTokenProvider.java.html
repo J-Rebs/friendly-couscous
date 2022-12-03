@@ -48,7 +48,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 
 <span class="nc" id="L49">    Claims claims = Jwts.claims().setSubject(username);</span>
 
-<span class="nc" id="L51">    claims.put(&quot;auth&quot;, new SimpleGrantedAuthority(&quot;validated&quot;));</span>
+<span class="nc" id="L51">    claims.put(&quot;auth&quot;, new SimpleGrantedAuthority(ClientRole.ROLE_ADMIN.getAuthority()));</span>
 
 <span class="nc" id="L53">    Date now = new Date();</span>
 <span class="nc" id="L54">    Date validity = new Date(now.getTime() + validityInMilliseconds);</span>

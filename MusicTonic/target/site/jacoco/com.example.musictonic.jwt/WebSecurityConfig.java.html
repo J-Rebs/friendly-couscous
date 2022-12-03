@@ -33,8 +33,8 @@ import org.springframework.security.web.SecurityFilterChain;
 
     // Entry points
 <span class="fc" id="L35">    http.authorizeRequests()//</span>
-<span class="fc" id="L36">        .antMatchers(&quot;/users/signin&quot;).permitAll()//</span>
-<span class="fc" id="L37">        .antMatchers(&quot;/users/signup&quot;).permitAll()//</span>
+<span class="fc" id="L36">        .antMatchers(&quot;/client-auth/signin&quot;).permitAll()//</span>
+<span class="fc" id="L37">        .antMatchers(&quot;/client-auth/signup&quot;).permitAll()//</span>
 <span class="fc" id="L38">        .antMatchers(&quot;/&quot;).permitAll()//</span>
         // Disallow everything else..
 <span class="fc" id="L40">        .anyRequest().authenticated();</span>

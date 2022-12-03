@@ -1,24 +1,24 @@
 # Summary
 |||
 |:---|:---|
-| Generated on: | 12/03/2022 - 20:06:15 |
-| Coverage date: | 12/03/2022 - 20:05:52 |
+| Generated on: | 12/03/2022 - 20:16:40 |
+| Coverage date: | 12/03/2022 - 20:16:04 |
 | Parser: | JaCoCo |
 | Assemblies: | 8 |
 | Classes: | 55 |
 | Files: | 55 |
-| **Line coverage:** | 49.7% (383 of 770) |
+| **Line coverage:** | 49.6% (383 of 772) |
 | Covered lines: | 383 |
-| Uncovered lines: | 387 |
-| Coverable lines: | 770 |
+| Uncovered lines: | 389 |
+| Coverable lines: | 772 |
 | Total lines: | 0 |
 | **Branch coverage:** | 47% (47 of 100) |
 | Covered branches: | 47 |
 | Total branches: | 100 |
-| **Method coverage:** | 45.9% (114 of 248) |
+| **Method coverage:** | 45.7% (114 of 249) |
 | Covered methods: | 114 |
-| Total methods: | 248 |
-| Tag: | 118_3610034419 |
+| Total methods: | 249 |
+| Tag: | 119_3610072296 |
 
 |**Name**|**Covered**|**Uncovered**|**Coverable**|**Total**|**Line coverage**|**Covered**|**Total**|**Branch coverage**|**Covered**|**Total**|**Method coverage**|
 |:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
@@ -29,8 +29,8 @@
 |com/example/musictonic/controller/Client1Controller|10|32|42|0|23.8%|0|0||3|6|50%|
 |com/example/musictonic/controller/Client2Controller|3|8|11|0|27.2%|0|0||2|3|66.6%|
 |com/example/musictonic/controller/Client3Controller|4|9|13|0|30.7%|0|2|0%|2|3|66.6%|
-|**com/example/musictonic/jwt**|**29**|**57**|**86**|**0**|**33.7%**|**0**|**12**|**0%**|**12**|**24**|**50%**|
-|com/example/musictonic/jwt/ClientRole|0|1|1|0|0%|0|0||0|1|0%|
+|**com/example/musictonic/jwt**|**29**|**59**|**88**|**0**|**32.9%**|**0**|**12**|**0%**|**12**|**25**|**48%**|
+|com/example/musictonic/jwt/ClientRole|0|3|3|0|0%|0|0||0|2|0%|
 |com/example/musictonic/jwt/JwtController|1|2|3|0|33.3%|0|0||1|3|33.3%|
 |com/example/musictonic/jwt/JwtService|1|11|12|0|8.3%|0|2|0%|1|3|33.3%|
 |com/example/musictonic/jwt/JwtTokenFilter|3|10|13|0|23%|0|4|0%|1|2|50%|

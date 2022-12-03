@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @CrossOrigin
 @RestController
-@PreAuthorize(&quot;hasRole('validated')&quot;)
+@PreAuthorize(&quot;hasRole('ROLE_ADMIN')&quot;)
 @RequestMapping(&quot;client1-rest&quot;)
 <span class="fc" id="L33">public class Client1Controller {</span>
   // [1.1, 1.2] Import our service - business functionality - playSong, subscribeToPlaylist

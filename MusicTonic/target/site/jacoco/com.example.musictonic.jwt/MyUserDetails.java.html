@@ -27,7 +27,7 @@ import org.springframework.stereotype.Service;
 <span class="nc" id="L27">    return org.springframework.security.core.userdetails.User//</span>
 <span class="nc" id="L28">        .withUsername(username)//</span>
 <span class="nc" id="L29">        .password(appUser.getPassword())//</span>
-<span class="nc" id="L30">        .authorities(&quot;validated&quot;)//</span>
+<span class="nc" id="L30">        .authorities(ClientRole.ROLE_ADMIN)//</span>
 <span class="nc" id="L31">        .accountExpired(false)//</span>
 <span class="nc" id="L32">        .accountLocked(false)//</span>
 <span class="nc" id="L33">        .credentialsExpired(false)//</span>
