@@ -20,13 +20,13 @@ public class JwtController {
   @PostMapping("/signin")
   public String login(//
                       @RequestParam(name = "username") String username,
-                      @RequestParam(name = "username") String password) throws Exception {
+                      @RequestParam(name = "password") String password) throws Exception {
     return jwtService.signin(username, password);
   }
 
   @PostMapping("/signup")
   public String signup(@RequestParam(name = "username") String username,
-                       @RequestParam(name = "username") String password) throws Exception {
+                       @RequestParam(name = "password") String password) throws Exception {
     return jwtService.signup(username, password);
   }
 

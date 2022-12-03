@@ -33,8 +33,8 @@ public class WebSecurityConfig {
 
     // Entry points
     http.authorizeRequests()//
-        .antMatchers("/users/signin").permitAll()//
-        .antMatchers("/users/signup").permitAll()//
+        .antMatchers("/client-auth/signin").permitAll()//
+        .antMatchers("/client-auth/signup").permitAll()//
         .antMatchers("/").permitAll()//
         // Disallow everything else..
         .anyRequest().authenticated();
