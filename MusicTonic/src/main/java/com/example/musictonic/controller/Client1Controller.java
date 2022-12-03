@@ -65,6 +65,8 @@ public class Client1Controller {
       PlaySongReturn response =
           new PlaySongReturn(analytics.getAnalyticsId(), analytics.getTimestamp());
       return new ResponseEntity<>(response, HttpStatus.CREATED);
+    } catch (RuntimeException e) {
+      throw e;
     } catch (Exception e) {
       return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
     }
@@ -91,6 +93,8 @@ public class Client1Controller {
           client1Service.likeSong(Long.parseLong(userId), Long.parseLong(songId),
               Long.parseLong(clientId));
       return new ResponseEntity<>(likedSongCount, HttpStatus.OK);
+    } catch (RuntimeException e) {
+      throw e;
     } catch (Exception e) {
       return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
     }
@@ -109,6 +113,8 @@ public class Client1Controller {
       Long id = Long.parseLong(clientId);
       List<User> userList = client1Service.getAllUsers(id);
       return new ResponseEntity<>(userList, HttpStatus.OK);
+    } catch (RuntimeException e) {
+      throw e;
     } catch (Exception e) {
       return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
     }
@@ -142,6 +148,8 @@ public class Client1Controller {
       Long clientIdLong = Long.parseLong(clientId);
       User user = client1Service.createUser(realName, type, mainGenre, ageInt, clientIdLong);
       return new ResponseEntity<>(user, HttpStatus.CREATED);
+    } catch (RuntimeException e) {
+      throw e;
     } catch (Exception e) {
       return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
     }
@@ -168,6 +176,8 @@ public class Client1Controller {
       Long clientIdLong = Long.parseLong(clientId);
       User toDelete = client1Service.deleteUser(id, clientIdLong);
       return new ResponseEntity<>(toDelete, HttpStatus.OK);
+    } catch (RuntimeException e) {
+      throw e;
     } catch (Exception e) {
       return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
     }

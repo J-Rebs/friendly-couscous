@@ -45,6 +45,8 @@ public class Client3Controller {
       UserExportReturn response =
           client3Service.getUserInformation(Long.parseLong(userId), Long.parseLong(clientId));
       return new ResponseEntity<>(response, HttpStatus.OK);
+    } catch (RuntimeException e) {
+      throw e;
     } catch (Exception e) {
       return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
     }

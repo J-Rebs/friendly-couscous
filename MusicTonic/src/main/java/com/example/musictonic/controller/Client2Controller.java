@@ -33,6 +33,8 @@ public class Client2Controller {
     try {
       PopularSongsReturn response = client2Service.getMostPopularSongs();
       return new ResponseEntity<>(response, HttpStatus.OK);
+    } catch (RuntimeException e) {
+      throw e;
     } catch (Exception e) {
       return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
     }

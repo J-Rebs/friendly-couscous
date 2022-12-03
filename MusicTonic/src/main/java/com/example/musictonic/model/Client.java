@@ -1,12 +1,17 @@
 package com.example.musictonic.model;
 
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -23,8 +28,9 @@ public class Client {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long clientId;
 
-  @Column(name = "clientName")
-  private String clientName;
+  @OneToOne(fetch = FetchType.LAZY)
+  @MapsId
+  private ClientLogin clientLogin;
 
   @OneToMany(mappedBy = "client")
   private Set<ClientSong> clientSong;
