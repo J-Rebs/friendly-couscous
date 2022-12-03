@@ -8,6 +8,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import com.example.musictonic.jwt.UserController;
+import com.example.musictonic.jwt.UserService;
 import com.example.musictonic.model.Playlist;
 import com.example.musictonic.model.User;
 import com.example.musictonic.model.UserType;
@@ -28,12 +30,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 @WebMvcTest
+@AutoConfigureMockMvc(addFilters = false)
 public class Client3ControllerTest {
 
   @Autowired
@@ -41,6 +45,12 @@ public class Client3ControllerTest {
 
   @Autowired
   private ObjectMapper objectMapper;
+
+  @MockBean
+  private UserController userController;
+
+  @MockBean
+  private UserService userService;
 
   @MockBean
   private SongRepository songRepo;
