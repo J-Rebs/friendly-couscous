@@ -9,4 +9,7 @@ public interface ClientLoginRepository extends JpaRepository<ClientLogin, Long> 
 
   ClientLogin findByClientNameAndPassword(String clientName, String password);
 
+  boolean existsByClientName(String clientName);
+
+  ClientLogin findByClientName(String username);
 }
