@@ -3,3 +3,6 @@
 /SiteReports
 img.png
 /PostmanScreenshots
+/target
+.github/workflows
+.gitignore
