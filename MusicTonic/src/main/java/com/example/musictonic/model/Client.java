@@ -28,9 +28,12 @@ public class Client {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long clientId;
 
-  @OneToOne(fetch = FetchType.LAZY)
-  @MapsId
-  private ClientLogin clientLogin;
+  @Column(name = "client_name")
+  private String clientName;
+
+  // @OneToOne(fetch = FetchType.LAZY)
+  // @MapsId
+  // private ClientLogin clientLogin;
 
   @OneToMany(mappedBy = "client")
   private Set<ClientSong> clientSong;
@@ -46,6 +49,10 @@ public class Client {
 
   // constructors
   protected Client() {
+  }
+
+  public Client(String clientName) {
+    this.clientName = clientName;
   }
 
   public Client(Long clientId) {
