@@ -120,6 +120,7 @@ class Client1ServiceTest {
   private ClientUser clientUser2;
 
   private List<ClientUser> clientUserList = new ArrayList<>();
+  private List<ClientUser> clientUserListGETONLY = new ArrayList<>();
 
   private ClientSong clientSong;
   private List<ClientSong> clientSongList = new ArrayList<>();
@@ -143,10 +144,14 @@ class Client1ServiceTest {
     song = new Song(1L, "SongySongyPopPop", 2, "CoolestArtist", "YaYaMerchMakesYou COOL", 10);
     playlist = new Playlist(1L, 1L, "TheBEST", false);
     client = new Client(1L);
-    client2 = new Client(1L);
+    client2 = new Client(2L);
     clientUser = new ClientUser(1L, client, user);
     clientUser2 = new ClientUser(2L, client2, user);
+
+    clientUserListGETONLY.add(clientUser);
+
     clientUserList.add(clientUser);
+    clientUserList.add(clientUser2);
 
 
     clientSong = new ClientSong(1L, client, song);
@@ -240,7 +245,7 @@ class Client1ServiceTest {
   @DisplayName("getAllUsers() WORKS")
   void getAllUsersGood() throws IllegalAccessException {
     when(clientRepo.findByClientId(any(Long.class))).thenReturn(client);
-    when(clientUserRepo.findAllByClient(any(Client.class))).thenReturn(clientUserList);
+    when(clientUserRepo.findAllByClient(any(Client.class))).thenReturn(clientUserListGETONLY);
     List<User> returnedList = client1Service.getAllUsers(1L);
     assertEquals(returnedList, userList);
   }
