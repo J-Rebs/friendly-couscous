@@ -51,6 +51,14 @@ Ryan Soeyadi [rs4163], Joseph Rebagliati [jr4162], Yuhao Dong [yd2626], Madison 
         - `200 OK` if succeeds
         - `400 bad request` if fails
     - FUTURE Development: N/A
+    
+- TYPE OF REQUEST: `GET`
+    - ROUTE: `/client2-rest/numberOfUsersInAgeRange?from={int}&to={int}`
+    - PURPOSE: gets the number of users in the supplied age range (inclusive) that are in the database.
+    - RETURN TYPES:
+        - `200 OK` if succeeds
+        - `400 bad request` if fails
+    - FUTURE Development: N/A
 
 ### DATA SHARING SERVICES  (Client type three in our proposal)
 
