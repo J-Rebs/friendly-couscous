@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -51,6 +52,9 @@ public class WebSecurityConfig {
         .antMatchers("/client-auth/signin").permitAll()//
         .antMatchers("/client-auth/signup").permitAll()//
         .antMatchers("/").permitAll()//
+        .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+
+
         // Disallow everything else..
         .anyRequest().authenticated();
 
