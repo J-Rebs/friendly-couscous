@@ -1,23 +1,19 @@
 package com.example.musictonic.jwt;
 
 import java.io.IOException;
-
-import java.net.http.HttpRequest;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.filter.GenericFilterBean;
-
 import org.springframework.web.filter.OncePerRequestFilter;
 
-// We should use OncePerRequestFilter since we are doing a database call, there is no point in doing this more than once
+// Src for Jwt folder:  https://github.com/murraco/spring-boot-jwt
+
+/**
+ * Filter that controls authentication / authorization.
+ */
 public class JwtTokenFilter extends OncePerRequestFilter {
 
   private JwtTokenProvider jwtTokenProvider;

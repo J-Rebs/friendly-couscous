@@ -1,6 +1,6 @@
 /* client generation */
-INSERT INTO clients (client_name) VALUES ('clientest');
-INSERT INTO clients (client_name) VALUES ('second test client');
+INSERT INTO clients (client_name) VALUES ('client-1');
+INSERT INTO clients (client_name) VALUES ('client-2');
 
 /* user generation for LISTENERS */
 INSERT INTO users (age, main_genre, real_name, user_type) VALUES (27, 'pop', 'Joe', 2);

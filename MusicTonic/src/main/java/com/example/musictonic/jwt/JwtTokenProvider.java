@@ -1,32 +1,29 @@
 package com.example.musictonic.jwt;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtException;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import java.util.Base64;
 import java.util.Date;
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
-
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.JwtException;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
-
+/**
+ * Generate tokens for use.
+ */
 @Component
 public class JwtTokenProvider {
 
   /**
+   * Comment from Src: https://github.com/murraco/spring-boot-jwt
    * THIS IS NOT A SECURE PRACTICE! For simplicity, we are storing a static key here. Ideally, in a
    * microservices environment, this key would be kept on a config-server.
    */
@@ -44,6 +41,13 @@ public class JwtTokenProvider {
     secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
   }
 
+  /**
+   * Generate JWT bearer token.
+   *
+   * @param username - client username
+   * @param password - client password
+   * @return JWT token.
+   */
   public String createToken(String username, String password) {
 
     Claims claims = Jwts.claims().setSubject(username);
@@ -61,15 +65,33 @@ public class JwtTokenProvider {
         .compact();
   }
 
+  /**
+   * Add authentication of authorities.
+   *
+   * @param token - String for processing
+   * @return UsernamePasswordAuthenticationToken object based on user Authorities.
+   */
   public Authentication getAuthentication(String token) {
     UserDetails userDetails = myUserDetails.loadUserByUsername(getUsername(token));
     return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
   }
 
+  /**
+   * Get username.
+   *
+   * @param token - String for processing
+   * @return parsed username string.
+   */
   public String getUsername(String token) {
     return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
   }
 
+  /**
+   * Resolve Token.
+   *
+   * @param req - HttpServletRequest request
+   * @return see if Bearer token properly provided or return null.
+   */
   public String resolveToken(HttpServletRequest req) {
     String bearerToken = req.getHeader("Authorization");
     if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
@@ -78,6 +100,12 @@ public class JwtTokenProvider {
     return null;
   }
 
+  /**
+   * Validate token.
+   *
+   * @param token - String for processing
+   * @return check token is valid or throw exception.
+   */
   public boolean validateToken(String token) throws Exception {
     try {
       Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);

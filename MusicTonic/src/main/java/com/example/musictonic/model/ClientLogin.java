@@ -2,11 +2,15 @@ package com.example.musictonic.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
+/**
+ * <h3>This is the client login entity.</h3>
+ * Note: required for compliance with checkstyle.
+ * Client logins correspond to when a client manually entered into the MusicTonic
+ * DB choose to sign up for authentication.
+ * This prevents clients from signing-up who the MusicTonic owners don't want to have access.
+ */
 @Entity
 public class ClientLogin {
 
