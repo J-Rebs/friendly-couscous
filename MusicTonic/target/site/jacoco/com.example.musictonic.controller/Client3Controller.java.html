@@ -9,6 +9,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,8 +22,9 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @CrossOrigin
 @RestController
+@PreAuthorize(&quot;hasRole('ROLE_ADMIN')&quot;)
 @RequestMapping(&quot;client3-rest&quot;)
-<span class="fc" id="L25">public class Client3Controller {</span>
+<span class="fc" id="L27">public class Client3Controller {</span>
   @Autowired
   Client3Service client3Service;
 
@@ -42,23 +44,23 @@ import org.springframework.web.bind.annotation.RestController;
       @RequestParam(name = &quot;userid&quot;) String userId,
       @RequestParam(name = &quot;clientid&quot;) String clientId) {
     try {
-<span class="fc" id="L45">      UserExportReturn response =</span>
-<span class="fc" id="L46">          client3Service.getUserInformation(Long.parseLong(userId), Long.parseLong(clientId));</span>
-<span class="fc" id="L47">      return new ResponseEntity&lt;&gt;(response, HttpStatus.OK);</span>
-<span class="nc" id="L48">    } catch (RuntimeException e) {</span>
-<span class="nc" id="L49">      throw e;</span>
-<span class="nc" id="L50">    } catch (Exception e) {</span>
-<span class="nc" id="L51">      return new ResponseEntity&lt;&gt;(null, HttpStatus.BAD_REQUEST);</span>
+<span class="fc" id="L47">      UserExportReturn response =</span>
+<span class="fc" id="L48">          client3Service.getUserInformation(Long.parseLong(userId), Long.parseLong(clientId));</span>
+<span class="fc" id="L49">      return new ResponseEntity&lt;&gt;(response, HttpStatus.OK);</span>
+<span class="nc" id="L50">    } catch (RuntimeException e) {</span>
+<span class="nc" id="L51">      throw e;</span>
+<span class="nc" id="L52">    } catch (Exception e) {</span>
+<span class="nc" id="L53">      return new ResponseEntity&lt;&gt;(null, HttpStatus.BAD_REQUEST);</span>
     }
   }
 
   @GetMapping(&quot;/listSongs&quot;)
   List&lt;Song&gt; listSongs() {
-<span class="nc" id="L57">    List&lt;Song&gt; l = new ArrayList&lt;&gt;();</span>
-<span class="nc bnc" id="L58" title="All 2 branches missed.">    for (Song s : songRepo.findAll()) {</span>
-<span class="nc" id="L59">      l.add(s);</span>
-<span class="nc" id="L60">    }</span>
-<span class="nc" id="L61">    return l;</span>
+<span class="nc" id="L59">    List&lt;Song&gt; l = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L60" title="All 2 branches missed.">    for (Song s : songRepo.findAll()) {</span>
+<span class="nc" id="L61">      l.add(s);</span>
+<span class="nc" id="L62">    }</span>
+<span class="nc" id="L63">    return l;</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

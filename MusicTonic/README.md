@@ -131,7 +131,13 @@ terminal, run the following code:
 
 ![image](https://user-images.githubusercontent.com/84640075/197677593-b653a00f-21d8-45eb-8775-ffed29003ab1.png)
 
-## 8. End-to-End Tests
+## 8. Authentication / Authorization
+
+We implemented JWT bearer tokens based on this [example](https://github.com/murraco/spring-boot-jwt). For the most part, we copied the code, but we added some modifications based on deprecation and our business logic. Notes are included in-line. The `/client-auth/signup` route (taking as parameters username and password) will allow a client to sign up for the first time to recieve a bearer token. Post first authentication, clients can ping `/client-auth/signup` with their username and password to recieve new tokens. Tokens are set to a lifetime of one hour. We don't include the JWT related package in our coverage testing as we consider it based on standard patterns and the imported JWT / Spring Security libraries. The client's username is verified against a separate list of clients kept by MusicTonic to ensure not any client can authenticate into MusicTonic. Separation of client data post authorization is still based on manual selection of the correct ID. Future work could automate this to further improve security, but we maintain separation of client data within our routes and we implement some form of authentication as is.  
+
+
+
+## 9. End-to-End Tests
 
 ### Test 1
 

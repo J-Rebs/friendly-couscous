@@ -1,24 +1,24 @@
 # Summary
 |||
 |:---|:---|
-| Generated on: | 12/04/2022 - 01:12:28 |
-| Coverage date: | 12/04/2022 - 01:11:59 |
+| Generated on: | 12/04/2022 - 03:38:50 |
+| Coverage date: | 12/04/2022 - 03:38:16 |
 | Parser: | JaCoCo |
 | Assemblies: | 8 |
 | Classes: | 55 |
 | Files: | 55 |
-| **Line coverage:** | 49.4% (383 of 775) |
+| **Line coverage:** | 49.3% (383 of 776) |
 | Covered lines: | 383 |
-| Uncovered lines: | 392 |
-| Coverable lines: | 775 |
+| Uncovered lines: | 393 |
+| Coverable lines: | 776 |
 | Total lines: | 0 |
-| **Branch coverage:** | 47% (47 of 100) |
+| **Branch coverage:** | 46% (47 of 102) |
 | Covered branches: | 47 |
-| Total branches: | 100 |
+| Total branches: | 102 |
 | **Method coverage:** | 45.6% (114 of 250) |
 | Covered methods: | 114 |
 | Total methods: | 250 |
-| Tag: | 120_3611044282 |
+| Tag: | 122_3611538840 |
 
 |**Name**|**Covered**|**Uncovered**|**Coverable**|**Total**|**Line coverage**|**Covered**|**Total**|**Branch coverage**|**Covered**|**Total**|**Method coverage**|
 |:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
@@ -29,10 +29,10 @@
 |com/example/musictonic/controller/Client1Controller|10|32|42|0|23.8%|0|0||3|6|50%|
 |com/example/musictonic/controller/Client2Controller|3|8|11|0|27.2%|0|0||2|3|66.6%|
 |com/example/musictonic/controller/Client3Controller|4|9|13|0|30.7%|0|2|0%|2|3|66.6%|
-|**com/example/musictonic/jwt**|**29**|**59**|**88**|**0**|**32.9%**|**0**|**12**|**0%**|**12**|**25**|**48%**|
+|**com/example/musictonic/jwt**|**29**|**60**|**89**|**0**|**32.5%**|**0**|**14**|**0%**|**12**|**25**|**48%**|
 |com/example/musictonic/jwt/ClientRole|0|3|3|0|0%|0|0||0|2|0%|
 |com/example/musictonic/jwt/JwtController|1|2|3|0|33.3%|0|0||1|3|33.3%|
-|com/example/musictonic/jwt/JwtService|1|11|12|0|8.3%|0|2|0%|1|3|33.3%|
+|com/example/musictonic/jwt/JwtService|1|12|13|0|7.6%|0|4|0%|1|3|33.3%|
 |com/example/musictonic/jwt/JwtTokenFilter|3|10|13|0|23%|0|4|0%|1|2|50%|
 |com/example/musictonic/jwt/JwtTokenFilterConfigurer|6|0|6|0|100%|0|0||2|2|100%|
 |com/example/musictonic/jwt/JwtTokenProvider|4|21|25|0|16%|0|4|0%|2|7|28.5%|

@@ -2,11 +2,8 @@
 
 import com.example.musictonic.model.ClientLogin;
 import com.example.musictonic.repository.ClientLoginRepository;
-import javax.servlet.http.HttpServletRequest;
-
-
+import com.example.musictonic.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
@@ -14,6 +11,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
+/**
+ * Authentication service that allows clients to sign up and login for bearer tokens.
+ */
 @Service
 <span class="fc" id="L18">public class JwtService {</span>
 
@@ -27,27 +27,52 @@ import org.springframework.stereotype.Service;
   private JwtTokenProvider jwtTokenProvider;
 
   @Autowired
+  private ClientRepository clientRepo;
+
+  @Autowired
   private AuthenticationManager authenticationManager;
 
+  /**
+   * Sign in after initial sign up for authentication.
+   *
+   * @param username - client name
+   * @param password - client password
+   * @return JWT token on sign in after first sign up
+   * @throws Exception if invalid username/password
+   */
   public String signin(String username, String password) throws Exception {
     try {
-<span class="nc" id="L34">      authenticationManager.authenticate(</span>
+<span class="nc" id="L45">      authenticationManager.authenticate(</span>
           new UsernamePasswordAuthenticationToken(username, password));
-<span class="nc" id="L36">      return jwtTokenProvider.createToken(username, password);</span>
-<span class="nc" id="L37">    } catch (AuthenticationException e) {</span>
-<span class="nc" id="L38">      throw new Exception(&quot;Invalid username/password supplied&quot;);</span>
+<span class="nc" id="L47">      return jwtTokenProvider.createToken(username,</span>
+          password);
+<span class="nc" id="L49">    } catch (AuthenticationException e) {</span>
+<span class="nc" id="L50">      throw new Exception(&quot;Invalid username/password supplied&quot;);</span>
     }
   }
 
+  /**
+   * Sign up and receiving first bearer token if exist in separate manual list of allowed clients
+   * and don't violate uniqueness constraints.
+   *
+   * @param username - client name
+   * @param password - client password
+   * @return JWT token on first sign up
+   * @throws Exception if not valid sign up
+   */
   public String signup(String username, String password) throws Exception {
-<span class="nc bnc" id="L43" title="All 2 branches missed.">    if (!clientLoginRepository.existsByClientName(username)) {</span>
-<span class="nc" id="L44">      ClientLogin registeredClient = new ClientLogin(username, password);</span>
-<span class="nc" id="L45">      registeredClient.setPassword(passwordEncoder.encode(registeredClient.getPassword()));</span>
-<span class="nc" id="L46">      clientLoginRepository.save(registeredClient);</span>
-<span class="nc" id="L47">      return jwtTokenProvider.createToken(registeredClient.getClientName(),</span>
-<span class="nc" id="L48">          registeredClient.getPassword());</span>
+    // Assume core client list is separately maintained by
+    // MusicTonic to prevent people from signing up who should not
+<span class="nc" id="L66">    boolean isClientAvailable = clientRepo.existsByClientName(username);</span>
+<span class="nc bnc" id="L67" title="All 4 branches missed.">    if (!clientLoginRepository.existsByClientName(username) &amp;&amp; isClientAvailable) {</span>
+<span class="nc" id="L68">      ClientLogin registeredClient = new ClientLogin(username, password);</span>
+<span class="nc" id="L69">      registeredClient.setPassword(passwordEncoder.encode(registeredClient.getPassword()));</span>
+<span class="nc" id="L70">      clientLoginRepository.save(registeredClient);</span>
+<span class="nc" id="L71">      return jwtTokenProvider.createToken(registeredClient.getClientName(),</span>
+<span class="nc" id="L72">          registeredClient.getPassword());</span>
     } else {
-<span class="nc" id="L50">      throw new Exception(&quot;Username is already in use&quot;);</span>
+<span class="nc" id="L74">      throw new Exception(</span>
+          &quot;Username is already in use or is not registered with the core client list&quot;);
     }
   }
 

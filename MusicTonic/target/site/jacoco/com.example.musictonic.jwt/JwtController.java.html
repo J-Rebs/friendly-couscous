@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>JwtController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">MusicTonic</a> &gt; <a href="index.source.html" class="el_package">com.example.musictonic.jwt</a> &gt; <span class="el_source">JwtController.java</span></div><h1>JwtController.java</h1><pre class="source lang-java linenums">package com.example.musictonic.jwt;
 
-import com.example.musictonic.model.ClientLogin;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,25 +7,44 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
+/**
+ * Client authentication controller.
+ */
 @RestController
 @RequestMapping(&quot;/client-auth&quot;)
-<span class="fc" id="L14">public class JwtController {</span>
+<span class="fc" id="L15">public class JwtController {</span>
 
   @Autowired
   private JwtService jwtService;
 
+  /**
+   * Sign in route.
+   *
+   * @param username - client username
+   * @param password - client password
+   * @return JWT token
+   * @throws Exception cannot sign in
+   */
 
   @PostMapping(&quot;/signin&quot;)
   public String login(//
                       @RequestParam(name = &quot;username&quot;) String username,
                       @RequestParam(name = &quot;password&quot;) String password) throws Exception {
-<span class="nc" id="L24">    return jwtService.signin(username, password);</span>
+<span class="nc" id="L33">    return jwtService.signin(username, password);</span>
   }
 
+  /**
+   * Sign up route.
+   *
+   * @param username - client username
+   * @param password - client password
+   * @return JWT token
+   * @throws Exception cannot sign up
+   */
   @PostMapping(&quot;/signup&quot;)
   public String signup(@RequestParam(name = &quot;username&quot;) String username,
                        @RequestParam(name = &quot;password&quot;) String password) throws Exception {
-<span class="nc" id="L30">    return jwtService.signup(username, password);</span>
+<span class="nc" id="L47">    return jwtService.signup(username, password);</span>
   }
 
 
