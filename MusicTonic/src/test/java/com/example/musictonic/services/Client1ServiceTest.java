@@ -147,7 +147,7 @@ class Client1ServiceTest {
     client2 = new Client(2L);
     clientUser = new ClientUser(1L, client, user);
     clientUser2 = new ClientUser(2L, client2, user);
-
+    // extra list
     clientUserListGETONLY.add(clientUser);
 
     clientUserList.add(clientUser);
