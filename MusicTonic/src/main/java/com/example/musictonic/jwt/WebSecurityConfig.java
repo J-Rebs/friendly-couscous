@@ -86,7 +86,11 @@ public class WebSecurityConfig {
   CorsConfigurationSource corsConfigurationSource() {
     CorsConfiguration configuration = new CorsConfiguration();
     configuration.setAllowedOrigins(List.of("*"));
-    configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
+    configuration.setAllowedMethods(
+        Arrays.asList("HEAD", "GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
+    configuration.setExposedHeaders(
+        Arrays.asList("X-Auth-Token", "Authorization", "Access-Control-Allow-Origin",
+            "Access-Control-Allow-Credentials"));
     configuration.setAllowedHeaders(Collections.singletonList("*"));
     UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
     source.registerCorsConfiguration("/**", configuration);
