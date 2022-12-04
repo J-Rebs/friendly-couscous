@@ -360,7 +360,7 @@ import org.springframework.transaction.annotation.Transactional;
 <span class="fc" id="L360">      List&lt;ClientUser&gt; clientUserList = clientUserRepo.findAllByUser(toDelete);</span>
       // check only removing for client in question
 <span class="fc bfc" id="L362" title="All 2 branches covered.">      for (ClientUser cu : clientUserList) {</span>
-<span class="pc bpc" id="L363" title="1 of 2 branches missed.">        if (cu.getClient().getClientId() == clientId) {</span>
+<span class="fc bfc" id="L363" title="All 2 branches covered.">        if (cu.getClient().getClientId() == clientId) {</span>
 <span class="fc" id="L364">          clientUserRepo.delete(cu);</span>
         }
 <span class="fc" id="L366">      }</span>
