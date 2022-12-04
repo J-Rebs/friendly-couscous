@@ -1,50 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>JwtTokenFilter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">MusicTonic</a> &gt; <a href="index.source.html" class="el_package">com.example.musictonic.jwt</a> &gt; <span class="el_source">JwtTokenFilter.java</span></div><h1>JwtTokenFilter.java</h1><pre class="source lang-java linenums">package com.example.musictonic.jwt;
 
 import java.io.IOException;
-
-import java.net.http.HttpRequest;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.filter.GenericFilterBean;
-
 import org.springframework.web.filter.OncePerRequestFilter;
 
-// We should use OncePerRequestFilter since we are doing a database call, there is no point in doing this more than once
+// Src for Jwt folder:  https://github.com/murraco/spring-boot-jwt
+
+/**
+ * Filter that controls authentication / authorization.
+ */
 public class JwtTokenFilter extends OncePerRequestFilter {
 
   private JwtTokenProvider jwtTokenProvider;
 
-<span class="fc" id="L25">  public JwtTokenFilter(JwtTokenProvider jwtTokenProvider) {</span>
-<span class="fc" id="L26">    this.jwtTokenProvider = jwtTokenProvider;</span>
-<span class="fc" id="L27">  }</span>
+<span class="fc" id="L21">  public JwtTokenFilter(JwtTokenProvider jwtTokenProvider) {</span>
+<span class="fc" id="L22">    this.jwtTokenProvider = jwtTokenProvider;</span>
+<span class="fc" id="L23">  }</span>
 
   @Override
   protected void doFilterInternal(HttpServletRequest httpServletRequest,
                                   HttpServletResponse httpServletResponse, FilterChain filterChain)
       throws ServletException, IOException {
-<span class="nc" id="L33">    String token = jwtTokenProvider.resolveToken(httpServletRequest);</span>
+<span class="nc" id="L29">    String token = jwtTokenProvider.resolveToken(httpServletRequest);</span>
     try {
-<span class="nc bnc" id="L35" title="All 4 branches missed.">      if (token != null &amp;&amp; jwtTokenProvider.validateToken(token)) {</span>
-<span class="nc" id="L36">        Authentication auth = jwtTokenProvider.getAuthentication(token);</span>
-<span class="nc" id="L37">        SecurityContextHolder.getContext().setAuthentication(auth);</span>
+<span class="nc bnc" id="L31" title="All 4 branches missed.">      if (token != null &amp;&amp; jwtTokenProvider.validateToken(token)) {</span>
+<span class="nc" id="L32">        Authentication auth = jwtTokenProvider.getAuthentication(token);</span>
+<span class="nc" id="L33">        SecurityContextHolder.getContext().setAuthentication(auth);</span>
       }
-<span class="nc" id="L39">    } catch (Exception ex) {</span>
+<span class="nc" id="L35">    } catch (Exception ex) {</span>
       //this is very important, since it guarantees the user is not authenticated at all
-<span class="nc" id="L41">      SecurityContextHolder.clearContext();</span>
+<span class="nc" id="L37">      SecurityContextHolder.clearContext();</span>
       // httpServletResponse.sendError(HttpStatus.BAD_REQUEST, ex.getMessage());
-<span class="nc" id="L43">      return;</span>
-<span class="nc" id="L44">    }</span>
+<span class="nc" id="L39">      return;</span>
+<span class="nc" id="L40">    }</span>
 
-<span class="nc" id="L46">    filterChain.doFilter(httpServletRequest, httpServletResponse);</span>
-<span class="nc" id="L47">  }</span>
+<span class="nc" id="L42">    filterChain.doFilter(httpServletRequest, httpServletResponse);</span>
+<span class="nc" id="L43">  }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

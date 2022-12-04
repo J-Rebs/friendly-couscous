@@ -2,11 +2,15 @@
 
 import org.springframework.security.core.GrantedAuthority;
 
-<span class="nc" id="L5">public enum ClientRole implements GrantedAuthority {</span>
-<span class="nc" id="L6">  ROLE_ADMIN, ROLE_CLIENT;</span>
+/**
+ * &lt;h3&gt;This is the client role -- used for controlling permissions.&lt;/h3&gt;
+ * Note: required for compliance with checkstyle
+ */
+<span class="nc" id="L9">public enum ClientRole implements GrantedAuthority {</span>
+<span class="nc" id="L10">  ROLE_ADMIN, ROLE_CLIENT;</span>
 
   public String getAuthority() {
-<span class="nc" id="L9">    return name();</span>
+<span class="nc" id="L13">    return name();</span>
   }
 
 }

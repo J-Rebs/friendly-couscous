@@ -5,20 +5,23 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.DefaultSecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+/**
+ * Config for authentication / authorization filter.
+ */
 public class JwtTokenFilterConfigurer
     extends SecurityConfigurerAdapter&lt;DefaultSecurityFilterChain, HttpSecurity&gt; {
 
   private JwtTokenProvider jwtTokenProvider;
 
-<span class="fc" id="L13">  public JwtTokenFilterConfigurer(JwtTokenProvider jwtTokenProvider) {</span>
-<span class="fc" id="L14">    this.jwtTokenProvider = jwtTokenProvider;</span>
-<span class="fc" id="L15">  }</span>
+<span class="fc" id="L16">  public JwtTokenFilterConfigurer(JwtTokenProvider jwtTokenProvider) {</span>
+<span class="fc" id="L17">    this.jwtTokenProvider = jwtTokenProvider;</span>
+<span class="fc" id="L18">  }</span>
 
   @Override
   public void configure(HttpSecurity http) throws Exception {
-<span class="fc" id="L19">    JwtTokenFilter customFilter = new JwtTokenFilter(jwtTokenProvider);</span>
-<span class="fc" id="L20">    http.addFilterBefore(customFilter, UsernamePasswordAuthenticationFilter.class);</span>
-<span class="fc" id="L21">  }</span>
+<span class="fc" id="L22">    JwtTokenFilter customFilter = new JwtTokenFilter(jwtTokenProvider);</span>
+<span class="fc" id="L23">    http.addFilterBefore(customFilter, UsernamePasswordAuthenticationFilter.class);</span>
+<span class="fc" id="L24">  }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

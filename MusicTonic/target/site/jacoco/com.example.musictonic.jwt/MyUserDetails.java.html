@@ -10,29 +10,32 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 
+/**
+ * Class that holds authorities and related details for client logins.
+ */
 @Service
-<span class="fc" id="L14">public class MyUserDetails implements UserDetailsService {</span>
+<span class="fc" id="L17">public class MyUserDetails implements UserDetailsService {</span>
 
   @Autowired
   ClientLoginRepository clientLoginRepo;
 
   @Override
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-<span class="nc" id="L21">    final ClientLogin appUser = clientLoginRepo.findByClientName(username);</span>
+<span class="nc" id="L24">    final ClientLogin appUser = clientLoginRepo.findByClientName(username);</span>
 
-<span class="nc bnc" id="L23" title="All 2 branches missed.">    if (appUser == null) {</span>
-<span class="nc" id="L24">      throw new UsernameNotFoundException(&quot;User '&quot; + username + &quot;' not found&quot;);</span>
+<span class="nc bnc" id="L26" title="All 2 branches missed.">    if (appUser == null) {</span>
+<span class="nc" id="L27">      throw new UsernameNotFoundException(&quot;User '&quot; + username + &quot;' not found&quot;);</span>
     }
 
-<span class="nc" id="L27">    return org.springframework.security.core.userdetails.User//</span>
-<span class="nc" id="L28">        .withUsername(username)//</span>
-<span class="nc" id="L29">        .password(appUser.getPassword())//</span>
-<span class="nc" id="L30">        .authorities(ClientRole.ROLE_ADMIN)//</span>
-<span class="nc" id="L31">        .accountExpired(false)//</span>
-<span class="nc" id="L32">        .accountLocked(false)//</span>
-<span class="nc" id="L33">        .credentialsExpired(false)//</span>
-<span class="nc" id="L34">        .disabled(false)//</span>
-<span class="nc" id="L35">        .build();</span>
+<span class="nc" id="L30">    return org.springframework.security.core.userdetails.User//</span>
+<span class="nc" id="L31">        .withUsername(username)//</span>
+<span class="nc" id="L32">        .password(appUser.getPassword())//</span>
+<span class="nc" id="L33">        .authorities(ClientRole.ROLE_ADMIN)//</span>
+<span class="nc" id="L34">        .accountExpired(false)//</span>
+<span class="nc" id="L35">        .accountLocked(false)//</span>
+<span class="nc" id="L36">        .credentialsExpired(false)//</span>
+<span class="nc" id="L37">        .disabled(false)//</span>
+<span class="nc" id="L38">        .build();</span>
   }
 
 }

@@ -2,11 +2,15 @@
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
+/**
+ * &lt;h3&gt;This is the client login entity.&lt;/h3&gt;
+ * Note: required for compliance with checkstyle.
+ * Client logins correspond to when a client manually entered into the MusicTonic
+ * DB choose to sign up for authentication.
+ * This prevents clients from signing-up who the MusicTonic owners don't want to have access.
+ */
 @Entity
 public class ClientLogin {
 
@@ -18,29 +22,29 @@ public class ClientLogin {
   private String password;
 
 
-<span class="nc" id="L21">  public ClientLogin(String clientName, String password) {</span>
-<span class="nc" id="L22">    this.clientName = clientName;</span>
-<span class="nc" id="L23">    this.password = password;</span>
-<span class="nc" id="L24">  }</span>
-
-<span class="nc" id="L26">  public ClientLogin() {</span>
-
+<span class="nc" id="L25">  public ClientLogin(String clientName, String password) {</span>
+<span class="nc" id="L26">    this.clientName = clientName;</span>
+<span class="nc" id="L27">    this.password = password;</span>
 <span class="nc" id="L28">  }</span>
 
+<span class="nc" id="L30">  public ClientLogin() {</span>
+
+<span class="nc" id="L32">  }</span>
+
   public String getClientName() {
-<span class="nc" id="L31">    return clientName;</span>
+<span class="nc" id="L35">    return clientName;</span>
   }
 
   public void setClientName(String clientName) {
-<span class="nc" id="L35">    this.clientName = clientName;</span>
-<span class="nc" id="L36">  }</span>
+<span class="nc" id="L39">    this.clientName = clientName;</span>
+<span class="nc" id="L40">  }</span>
 
   public String getPassword() {
-<span class="nc" id="L39">    return password;</span>
+<span class="nc" id="L43">    return password;</span>
   }
 
   public void setPassword(String password) {
-<span class="nc" id="L43">    this.password = password;</span>
-<span class="nc" id="L44">  }</span>
+<span class="nc" id="L47">    this.password = password;</span>
+<span class="nc" id="L48">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

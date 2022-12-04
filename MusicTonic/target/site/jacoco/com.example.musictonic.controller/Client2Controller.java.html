@@ -6,6 +6,7 @@ import com.example.musictonic.utils.PopularSongsReturn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,8 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @CrossOrigin
 @RestController
+@PreAuthorize(&quot;hasRole('ROLE_ADMIN')&quot;)
 @RequestMapping(&quot;client2-rest&quot;)
-<span class="fc" id="L21">public class Client2Controller {</span>
+<span class="fc" id="L23">public class Client2Controller {</span>
 
   @Autowired
   Client2Service client2Service;
@@ -31,24 +33,29 @@ import org.springframework.web.bind.annotation.RestController;
   @GetMapping(&quot;/top3songs&quot;)
   public ResponseEntity&lt;PopularSongsReturn&gt; getTopThreeSongs() {
     try {
-<span class="fc" id="L34">      PopularSongsReturn response = client2Service.getMostPopularSongs();</span>
-<span class="fc" id="L35">      return new ResponseEntity&lt;&gt;(response, HttpStatus.OK);</span>
-<span class="nc" id="L36">    } catch (RuntimeException e) {</span>
-<span class="nc" id="L37">      throw e;</span>
-<span class="nc" id="L38">    } catch (Exception e) {</span>
-<span class="nc" id="L39">      return new ResponseEntity&lt;&gt;(null, HttpStatus.BAD_REQUEST);</span>
+<span class="fc" id="L36">      PopularSongsReturn response = client2Service.getMostPopularSongs();</span>
+<span class="fc" id="L37">      return new ResponseEntity&lt;&gt;(response, HttpStatus.OK);</span>
+<span class="nc" id="L38">    } catch (RuntimeException e) {</span>
+<span class="nc" id="L39">      throw e;</span>
+<span class="nc" id="L40">    } catch (Exception e) {</span>
+<span class="nc" id="L41">      return new ResponseEntity&lt;&gt;(null, HttpStatus.BAD_REQUEST);</span>
     }
   }
 
+  /**
+   * @param fromAge -
+   * @param toAge   -
+   * @return stub TBD if to keep
+   */
   @GetMapping(&quot;/numberOfUsersInAgeRange&quot;)
   public ResponseEntity&lt;Integer&gt; numberOfUsersInAgeRange(
       @RequestParam(name = &quot;from&quot;) Integer fromAge,
       @RequestParam(name = &quot;to&quot;) Integer toAge) {
     try {
-<span class="nc" id="L48">      Integer averageSongDuration = client2Service.getNumberOfUsersInAgeRange(fromAge, toAge);</span>
-<span class="nc" id="L49">      return new ResponseEntity&lt;&gt;(averageSongDuration, HttpStatus.OK);</span>
-<span class="nc" id="L50">    } catch (Exception e) {</span>
-<span class="nc" id="L51">      return new ResponseEntity&lt;&gt;(null, HttpStatus.BAD_REQUEST);</span>
+<span class="nc" id="L55">      Integer averageSongDuration = client2Service.getNumberOfUsersInAgeRange(fromAge, toAge);</span>
+<span class="nc" id="L56">      return new ResponseEntity&lt;&gt;(averageSongDuration, HttpStatus.OK);</span>
+<span class="nc" id="L57">    } catch (Exception e) {</span>
+<span class="nc" id="L58">      return new ResponseEntity&lt;&gt;(null, HttpStatus.BAD_REQUEST);</span>
     }
   }
 
