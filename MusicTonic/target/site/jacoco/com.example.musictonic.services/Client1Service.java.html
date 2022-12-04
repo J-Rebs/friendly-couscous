@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Client1Service.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">MusicTonic</a> &gt; <a href="index.source.html" class="el_package">com.example.musictonic.services</a> &gt; <span class="el_source">Client1Service.java</span></div><h1>Client1Service.java</h1><pre class="source lang-java linenums">package com.example.musictonic.services;
+
+import com.example.musictonic.model.Analytics;
+import com.example.musictonic.model.AnalyticsPlaylist;
+import com.example.musictonic.model.AnalyticsSong;
+import com.example.musictonic.model.AnalyticsUser;
+import com.example.musictonic.model.Client;
+import com.example.musictonic.model.ClientPlaylist;
+import com.example.musictonic.model.ClientSong;
+import com.example.musictonic.model.ClientUser;
+import com.example.musictonic.model.Playlist;
+import com.example.musictonic.model.PlaylistToSongs;
+import com.example.musictonic.model.PlaylistToSubscriber;
+import com.example.musictonic.model.Song;
+import com.example.musictonic.model.User;
+import com.example.musictonic.model.UserType;
+import com.example.musictonic.repository.AnalyticsPlaylistRepository;
+import com.example.musictonic.repository.AnalyticsRepository;
+import com.example.musictonic.repository.AnalyticsSongRepository;
+import com.example.musictonic.repository.AnalyticsUserRepository;
+import com.example.musictonic.repository.ClientPlaylistRepository;
+import com.example.musictonic.repository.ClientRepository;
+import com.example.musictonic.repository.ClientSongRepository;
+import com.example.musictonic.repository.ClientUserRepository;
+import com.example.musictonic.repository.PlaylistRepository;
+import com.example.musictonic.repository.PlaylistToSongRepository;
+import com.example.musictonic.repository.PlaylistToSubscriberRepository;
+import com.example.musictonic.repository.SongRepository;
+import com.example.musictonic.repository.UserRepository;
+import java.sql.Timestamp;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+/*
+ *
+ *  WANT TO HAVE:
+ *  - ability to modify and retrieve (e.g., registering users, making groups, etc. etc.) from
+ *    database as well as a function to:
+ *  - like a song (creates if not exists default playlist by user and adds to that),
+ *  - play a song (triggers an entry in analytics)
+ *  - maybe nice to have authorization in round 2 if we have time
+ *  DEPEND ON:
+ *  - finish the models,
+ *  - exceptions,
+ *  - controllers, and repositories for rest of our ER diagram,
+ *  - write a function for liking a song and playing a song
+ *
+ *  USER: Johnny --&gt; CLIENT INTERFACE: Spotify &lt;---&gt; MusicTonic &lt;---&gt; communicates with database
+ *  Johnny playing a song ~ in postman to doing a post route for a song
+ *
+ * */
+
+/**
+ * Class for Client1Service.
+ */
+@Service
+<span class="fc" id="L62">public class Client1Service {</span>
+  // Repositories - analytics, song, user
+  @Autowired
+  UserRepository userRepo;
+  @Autowired
+  AnalyticsRepository analyticsRepo;
+
+  @Autowired
+  AnalyticsSongRepository analyticsSongRepo;
+
+  @Autowired
+  AnalyticsUserRepository analyticsUserRepo;
+
+  @Autowired
+  AnalyticsPlaylistRepository analyticsPlaylistRepo;
+
+  @Autowired
+  SongRepository songRepo;
+
+  @Autowired
+  PlaylistRepository playlistRepo;
+
+  @Autowired
+  PlaylistToSongRepository playlistToSongsRepo;
+
+  @Autowired
+  PlaylistToSubscriberRepository playlistToSubscriberRepo;
+
+  @Autowired
+  ClientRepository clientRepo;
+
+  @Autowired
+  ClientUserRepository clientUserRepo;
+
+  @Autowired
+  ClientSongRepository clientSongRepo;
+
+  @Autowired
+  ClientPlaylistRepository clientPlaylistRepo;
+
+  // helper method, tested within used methods
+
+
+  private boolean validUserSong(Long userId, Long songId, Long clientId)
+      throws IllegalAccessException {
+    // client information
+<span class="fc" id="L108">    Client client = clientRepo.findByClientId(clientId);</span>
+
+    // user information
+<span class="fc" id="L111">    User user = userRepo.findByUserId(userId);</span>
+<span class="fc" id="L112">    List&lt;ClientUser&gt; usersForClient = clientUserRepo.findAllByClient(client);</span>
+
+    // song information
+<span class="fc" id="L115">    Song song = songRepo.findBySongId(songId);</span>
+<span class="fc" id="L116">    List&lt;ClientSong&gt; songsForClient = clientSongRepo.findAllByClient(client);</span>
+
+    // check that user exists for client; else throw exception
+<span class="fc" id="L119">    boolean clientUserMatch = false;</span>
+<span class="fc bfc" id="L120" title="All 2 branches covered.">    for (ClientUser cl : usersForClient) {</span>
+<span class="pc bpc" id="L121" title="2 of 4 branches missed.">      if (cl.getUser().getUserId() == userId &amp;&amp; cl.getClient().getClientId() == clientId) {</span>
+<span class="fc" id="L122">        clientUserMatch = true;</span>
+<span class="fc" id="L123">        break;</span>
+      }
+<span class="nc" id="L125">    }</span>
+    // check that song exists for client; else throw exception
+<span class="fc" id="L127">    boolean songClientMatch = false;</span>
+<span class="fc bfc" id="L128" title="All 2 branches covered.">    for (ClientSong cs : songsForClient) {</span>
+<span class="fc" id="L129">      Long csIdSong = cs.getSong().getSongId();</span>
+<span class="fc" id="L130">      Long csIdClient = cs.getClient().getClientId();</span>
+<span class="pc bpc" id="L131" title="2 of 4 branches missed.">      if (csIdSong == songId &amp;&amp; csIdClient == clientId) {</span>
+<span class="fc" id="L132">        songClientMatch = true;</span>
+<span class="fc" id="L133">        break;</span>
+      }
+<span class="nc" id="L135">    }</span>
+
+    // if haven't matched either song or user to client, throw exception
+<span class="fc bfc" id="L138" title="All 2 branches covered.">    if (!clientUserMatch) {</span>
+<span class="fc" id="L139">      throw new IllegalAccessException(&quot;user not matched to client&quot;);</span>
+    }
+
+<span class="pc bpc" id="L142" title="1 of 2 branches missed.">    if (!songClientMatch) {</span>
+<span class="nc" id="L143">      throw new IllegalAccessException(&quot;song not matched to client&quot;);</span>
+    }
+
+    // otherwise return true
+
+<span class="fc" id="L148">    return true;</span>
+  }
+
+  // helper method, in methods used in
+  private boolean validPlaylist(Long playlistId, Long clientId) throws IllegalAccessException {
+<span class="fc" id="L153">    boolean clientPlaylistMatch = false;</span>
+<span class="fc" id="L154">    Client client = clientRepo.findByClientId(clientId);</span>
+<span class="fc" id="L155">    List&lt;ClientPlaylist&gt; playlistsForClient = clientPlaylistRepo.findAllByClient(client);</span>
+
+<span class="pc bpc" id="L157" title="1 of 2 branches missed.">    for (ClientPlaylist cp : playlistsForClient) {</span>
+<span class="pc bpc" id="L158" title="1 of 2 branches missed.">      if (cp.getPlaylist().getPlaylistId() == playlistId</span>
+          &amp;&amp;
+<span class="pc bpc" id="L160" title="1 of 2 branches missed.">          cp.getClient().getClientId() == clientId) {</span>
+<span class="fc" id="L161">        clientPlaylistMatch = true;</span>
+<span class="fc" id="L162">        break;</span>
+      }
+<span class="nc" id="L164">    }</span>
+
+<span class="pc bpc" id="L166" title="1 of 2 branches missed.">    if (!clientPlaylistMatch) {</span>
+<span class="nc" id="L167">      throw new IllegalAccessException(&quot;playlist not available for this client&quot;);</span>
+    }
+
+<span class="fc" id="L170">    return true;</span>
+  }
+
+  // helper method, tested within used methods
+  private Playlist subscribeDefaultPlaylist(Long userId, Client client) {
+
+    // see if the user has a default playlist
+<span class="fc" id="L177">    Playlist defaultPlaylist = null;</span>
+<span class="pc bpc" id="L178" title="1 of 2 branches missed.">    for (Playlist p : playlistRepo.findAllByOwner(userId)) {</span>
+<span class="nc bnc" id="L179" title="All 2 branches missed.">      if (p.getDefault()) {</span>
+        // assume that if user has playlist as owner, then client has access
+<span class="nc" id="L181">        defaultPlaylist = p;</span>
+      }
+<span class="nc" id="L183">    }</span>
+
+    // if the user doesn't have a default playlist under the client in question,
+    // make one, otherwise return the default playlist
+<span class="pc bpc" id="L187" title="1 of 2 branches missed.">    if (defaultPlaylist == null) {</span>
+<span class="fc" id="L188">      defaultPlaylist = new Playlist(userId, &quot;DefaultPlaylist&quot;, true);</span>
+      // save the playlist to the appropriate table
+      /* NOTE: not saving to playlistToSubscribers because by default owner is not subscriber
+       * for simplicity
+       */
+<span class="fc" id="L193">      playlistRepo.save(defaultPlaylist);</span>
+<span class="fc" id="L194">      ClientPlaylist cpDefault = new ClientPlaylist(client, defaultPlaylist);</span>
+<span class="fc" id="L195">      clientPlaylistRepo.save(cpDefault);</span>
+    }
+
+<span class="fc" id="L198">    return defaultPlaylist;</span>
+  }
+
+  /**
+   * Method to like a song.
+   *
+   * @param userId   - the unique ID for this client (i.e., user)
+   * @param songId   - the unique ID for this song
+   * @param clientId - song and user should be available to client
+   * @return the count of liked songs
+   * @throws IllegalAccessException if the song is null (i.e., not in the database)
+   */
+  public Integer likeSong(Long userId, Long songId, Long clientId) throws IllegalAccessException {
+
+    // try getting the client, if it doesn't exist, then nothing to do
+<span class="fc" id="L213">    Client client = clientRepo.findByClientId(clientId);</span>
+<span class="pc bpc" id="L214" title="1 of 2 branches missed.">    if (client == null) {</span>
+<span class="nc" id="L215">      throw new IllegalAccessException(&quot;client does not exist&quot;);</span>
+    }
+
+    // validate user and song for client -- otherwise throw an exception
+<span class="fc" id="L219">    validUserSong(userId, songId, clientId);</span>
+
+    // if validated user and song as available to client, proceed with liking song
+<span class="fc" id="L222">    Song likedSong = songRepo.findBySongId(songId);</span>
+
+    // get the appropriate playlist (note already verified user belongs to client at this point)
+<span class="fc" id="L225">    Playlist defaultPlaylist = subscribeDefaultPlaylist(userId, client);</span>
+
+    // register the song-playlist combination if it doesn't already exist
+<span class="pc bpc" id="L228" title="1 of 2 branches missed.">    if (playlistToSongsRepo.findBySong(likedSong) == null</span>
+<span class="pc bpc" id="L229" title="1 of 2 branches missed.">        &amp;&amp; playlistToSongsRepo.findByPlaylist(defaultPlaylist) == null) {</span>
+<span class="fc" id="L230">      PlaylistToSongs registeredSong = new PlaylistToSongs(likedSong, defaultPlaylist);</span>
+<span class="fc" id="L231">      playlistToSongsRepo.save(registeredSong);</span>
+    }
+
+    // increment like count on song
+<span class="fc" id="L235">    Integer songLikesCount = likedSong.getSongLikesCount();</span>
+<span class="fc" id="L236">    songLikesCount += 1;</span>
+<span class="fc" id="L237">    likedSong.setSongLikesCount(songLikesCount);</span>
+<span class="fc" id="L238">    songRepo.save(likedSong);</span>
+
+    // return the current liked songs count
+<span class="fc" id="L241">    return songLikesCount;</span>
+  }
+
+  /**
+   * Method to play a song.
+   *
+   * @param userId     - the unique ID for this client (i.e., user)
+   * @param songId     - the unique ID for this song
+   * @param playlistId - the unique ID for this playlist
+   * @param clientId   - song, user, and playlist should be available to client
+   * @return the Analytics entry/object that was created and added to the Analytics table
+   */
+  // post operation -- play songs
+  public Analytics playSong(Long userId, Long songId, Long playlistId, Long clientId)
+      throws IllegalAccessException {
+
+    // validate client has access to user, song, playlist
+<span class="fc" id="L258">    validUserSong(userId, songId, clientId);</span>
+<span class="fc" id="L259">    validPlaylist(playlistId, clientId);</span>
+    // insert into analytics (or returns the id)
+<span class="fc" id="L261">    Date date = new Date();</span>
+<span class="fc" id="L262">    Timestamp timestamp = new Timestamp(date.getTime());</span>
+    // Src: https://www.baeldung.com/java-string-to-timestamp
+<span class="fc" id="L264">    DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;</span>
+<span class="fc" id="L265">    String timestampString = formatter.format(timestamp.toLocalDateTime());</span>
+
+<span class="fc" id="L267">    Analytics a = analyticsRepo.save(new Analytics(timestampString));</span>
+
+    // insert into analytics song with the parameters of song id and new analytics id
+<span class="fc" id="L270">    Song song = songRepo.findBySongId(songId);</span>
+<span class="fc" id="L271">    AnalyticsSong analyticsSong = new AnalyticsSong(a, song);</span>
+<span class="fc" id="L272">    analyticsSongRepo.save(analyticsSong);</span>
+
+    // insert into analytics user with the parameters of user id and new analytics id
+<span class="fc" id="L275">    User user = userRepo.findByUserId(userId);</span>
+<span class="fc" id="L276">    AnalyticsUser analyticsUser = new AnalyticsUser(a, user);</span>
+<span class="fc" id="L277">    analyticsUserRepo.save(analyticsUser);</span>
+
+    // insert into analytics playlist with the parameters of playlist id and new analytics id
+<span class="fc" id="L280">    Playlist playlist = playlistRepo.findByPlaylistId(playlistId);</span>
+<span class="fc" id="L281">    AnalyticsPlaylist analyticsPlaylist = new AnalyticsPlaylist(a, playlist);</span>
+<span class="fc" id="L282">    analyticsPlaylistRepo.save(analyticsPlaylist);</span>
+
+    try {
+<span class="fc" id="L285">      a.setAnalyticsUser(analyticsUser);</span>
+<span class="fc" id="L286">      a.setAnalyticsSong(analyticsSong);</span>
+<span class="fc" id="L287">      a.setAnalyticsPlaylist(analyticsPlaylist);</span>
+<span class="nc" id="L288">    } catch (Exception e) {</span>
+<span class="nc" id="L289">      return a;</span>
+<span class="fc" id="L290">    }</span>
+
+<span class="fc" id="L292">    return a;</span>
+  }
+
+
+  /**
+   * Method to return a list of all users.
+   *
+   * @param clientId - the client for which a user list will be retrieved
+   * @return a list of all users for a client
+   */
+
+  // Src: https://github.com/rcoppy/demo-persistent-data-api/blob/main/src/main/java/com/alexrupp/persistentdataapi/controllers/ChatUserController.java
+  public List&lt;User&gt; getAllUsers(Long clientId) {
+<span class="fc" id="L305">    Client client = clientRepo.findByClientId(clientId);</span>
+<span class="fc" id="L306">    List&lt;User&gt; l = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L307">    List&lt;ClientUser&gt; cuList = clientUserRepo.findAllByClient(client);</span>
+<span class="fc bfc" id="L308" title="All 2 branches covered.">    for (ClientUser cu : cuList) {</span>
+<span class="fc" id="L309">      l.add(cu.getUser());</span>
+<span class="fc" id="L310">    }</span>
+<span class="fc" id="L311">    return l;</span>
+  }
+
+  /**
+   * Method to create a user.
+   *
+   * @param realName  - the name of the user (i.e., Sam)
+   * @param type      - user is one of the following types: ARTIST, LISTENER, ADMIN, SCIENTIST
+   * @param mainGenre - The main genre for a user, (i.e., country, pop, rap, etc...)
+   * @param age       - the age of the user
+   * @param clientId  -  client for which the user will be created
+   * @return the newly created User object that was added to the User table.
+   */
+
+  public User createUser(String realName, UserType type, String mainGenre, Integer age,
+                         Long clientId) throws Exception {
+    try {
+      // validate client exists to create user for
+<span class="fc bfc" id="L329" title="All 2 branches covered.">      if (clientRepo.findByClientId(clientId) == null) {</span>
+<span class="fc" id="L330">        throw new IllegalAccessException(&quot;Bad request will be returned in controller&quot;);</span>
+      } else {
+        // create user and client relationship
+<span class="fc" id="L333">        Client client = clientRepo.findByClientId(clientId);</span>
+<span class="fc" id="L334">        User user = userRepo.save(new User(realName, type, mainGenre, age));</span>
+<span class="fc" id="L335">        clientUserRepo.save(new ClientUser(client, user));</span>
+<span class="fc" id="L336">        return user;</span>
+      }
+<span class="fc" id="L338">    } catch (Exception e) {</span>
+<span class="fc" id="L339">      throw new IllegalAccessException(&quot;failure detected in createUser&quot;);</span>
+    }
+  }
+
+  /**
+   * Method to delete a user. Also deletes all playlists where user is owner, removes
+   * user as subscriber from playlists where not owner and deletes all analytics entries
+   * for said user.
+   *
+   * @param userId   - the Id of the user to be deleted
+   * @param clientId - the Id for which we want to remove a user
+   * @return the User object corresponding to the deleted entry in the User table
+   */
+  @Transactional
+  // Src: https://stackoverflow.com/questions/32269192/spring-no-entitymanager-with-actual-transaction-available-for-current-thread
+  public User deleteUser(Long userId, Long clientId) {
+    try {
+      // get user to be deleted
+<span class="fc" id="L357">      User toDelete = userRepo.findByUserId(userId);</span>
+
+      // dereference user for client
+<span class="fc" id="L360">      List&lt;ClientUser&gt; clientUserList = clientUserRepo.findAllByUser(toDelete);</span>
+      // check only removing for client in question
+<span class="fc bfc" id="L362" title="All 2 branches covered.">      for (ClientUser cu : clientUserList) {</span>
+<span class="pc bpc" id="L363" title="1 of 2 branches missed.">        if (cu.getClient().getClientId() == clientId) {</span>
+<span class="fc" id="L364">          clientUserRepo.delete(cu);</span>
+        }
+<span class="fc" id="L366">      }</span>
+
+      // find and delete all corresponding entries for user related to analytics
+      // first, get a list of all analyticsUser entries
+<span class="fc" id="L370">      List&lt;AnalyticsUser&gt; analyticsUserList = analyticsUserRepo.findByUser(toDelete);</span>
+<span class="pc bpc" id="L371" title="1 of 2 branches missed.">      for (AnalyticsUser au : analyticsUserList) {</span>
+        // then get the analytics entity for all entries found
+<span class="nc" id="L373">        Analytics a = au.getAnalytics();</span>
+        // try to delete analyticsUser
+<span class="nc" id="L375">        analyticsUserRepo.delete(au);</span>
+        // try to delete analyticsPlaylist
+<span class="nc" id="L377">        AnalyticsPlaylist ap = analyticsPlaylistRepo.findByAnalytics(a);</span>
+<span class="nc" id="L378">        analyticsPlaylistRepo.delete(ap);</span>
+        // try to delete analyticsSong
+<span class="nc" id="L380">        AnalyticsSong as = analyticsSongRepo.findByAnalytics(a);</span>
+<span class="nc" id="L381">        analyticsSongRepo.delete(as);</span>
+        // then delete analytics entry
+<span class="nc" id="L383">        analyticsRepo.delete(a);</span>
+<span class="nc" id="L384">      }</span>
+
+
+      // find and delete all corresponding entries for a user related to playlistToSubscriber
+<span class="fc" id="L388">      List&lt;PlaylistToSubscriber&gt; playlistToSubscriberList =</span>
+<span class="fc" id="L389">          playlistToSubscriberRepo.findAllByUser(toDelete);</span>
+<span class="pc bpc" id="L390" title="1 of 2 branches missed.">      for (PlaylistToSubscriber ps : playlistToSubscriberList) {</span>
+<span class="nc" id="L391">        playlistToSubscriberRepo.delete(ps);</span>
+<span class="nc" id="L392">      }</span>
+
+      // find and delete all playlists where user is the owner
+<span class="fc" id="L395">      List&lt;Playlist&gt; userOwnedPlaylists = playlistRepo.findAllByOwner(userId);</span>
+<span class="pc bpc" id="L396" title="1 of 2 branches missed.">      for (Playlist p : userOwnedPlaylists) {</span>
+        // also need to remove all the songs in the playlist, along with any subscriber entries,
+        // AND all analytics entries
+        // subscribers
+<span class="nc" id="L400">        List&lt;PlaylistToSubscriber&gt; subscriberList =</span>
+<span class="nc" id="L401">            playlistToSubscriberRepo.findAllByPlaylist(p);</span>
+
+<span class="nc bnc" id="L403" title="All 2 branches missed.">        for (PlaylistToSubscriber ps : subscriberList) {</span>
+<span class="nc" id="L404">          playlistToSubscriberRepo.delete(ps);</span>
+<span class="nc" id="L405">        }</span>
+        // songs
+<span class="nc" id="L407">        List&lt;PlaylistToSongs&gt; songList =</span>
+<span class="nc" id="L408">            playlistToSongsRepo.findAllByPlaylist(p);</span>
+<span class="nc bnc" id="L409" title="All 2 branches missed.">        for (PlaylistToSongs ps : songList) {</span>
+<span class="nc" id="L410">          playlistToSongsRepo.delete(ps);</span>
+<span class="nc" id="L411">        }</span>
+        // analytics
+<span class="nc" id="L413">        List&lt;AnalyticsPlaylist&gt; analyticsList =</span>
+<span class="nc" id="L414">            analyticsPlaylistRepo.findAllByPlaylist(p);</span>
+<span class="nc bnc" id="L415" title="All 2 branches missed.">        for (AnalyticsPlaylist ap : analyticsList) {</span>
+<span class="nc" id="L416">          analyticsPlaylistRepo.delete(ap);</span>
+<span class="nc" id="L417">        }</span>
+        // remove references for playlist in client
+<span class="nc" id="L419">        List&lt;ClientPlaylist&gt; clientPlaylistList = clientPlaylistRepo.findAllByPlaylist(p);</span>
+<span class="nc bnc" id="L420" title="All 2 branches missed.">        for (ClientPlaylist cp : clientPlaylistList) {</span>
+<span class="nc bnc" id="L421" title="All 2 branches missed.">          if (cp.getClient().getClientId() == clientId) {</span>
+<span class="nc" id="L422">            clientPlaylistRepo.delete(cp);</span>
+          }
+<span class="nc" id="L424">        }</span>
+        // the can delete the playlist itself
+<span class="nc" id="L426">        playlistRepo.delete(p);</span>
+<span class="nc" id="L427">      }</span>
+
+      // delete the user from database and return the deleted user object
+<span class="fc" id="L430">      userRepo.delete(toDelete);</span>
+<span class="fc" id="L431">      return toDelete;</span>
+<span class="nc" id="L432">    } catch (Exception e) {</span>
+<span class="nc" id="L433">      throw e;</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
