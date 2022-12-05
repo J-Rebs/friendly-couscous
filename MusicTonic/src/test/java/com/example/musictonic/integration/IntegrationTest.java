@@ -79,7 +79,7 @@ public class IntegrationTest {
         testRestTemplate.exchange(builder.toString(), HttpMethod.POST, req, String.class);
 
     System.out.println(response.getBody());
-    assertEquals(HttpStatus.CREATED, response.getStatusCode());
+    assertEquals(HttpStatus.OK, response.getStatusCode());
   }
 
   @Test
@@ -129,7 +129,7 @@ public class IntegrationTest {
         testRestTemplate.exchange(builder.toString(), HttpMethod.POST, req, String.class);
 
     System.out.println(response.getBody());
-    assertEquals(HttpStatus.CREATED, response.getStatusCode());
+    assertEquals(HttpStatus.OK, response.getStatusCode());
   }
 
   /*
