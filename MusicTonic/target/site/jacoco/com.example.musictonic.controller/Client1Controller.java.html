@@ -174,10 +174,10 @@ import org.springframework.web.bind.annotation.RestController;
       @RequestParam(name = &quot;id&quot;) String userId,
       @RequestParam(name = &quot;clientId&quot;) String clientId) {
     try {
-<span class="nc" id="L177">      Long id = Long.parseLong(userId);</span>
-<span class="nc" id="L178">      Long clientIdLong = Long.parseLong(clientId);</span>
-<span class="nc" id="L179">      User toDelete = client1Service.deleteUser(id, clientIdLong);</span>
-<span class="nc" id="L180">      return new ResponseEntity&lt;&gt;(toDelete, HttpStatus.OK);</span>
+<span class="fc" id="L177">      Long id = Long.parseLong(userId);</span>
+<span class="fc" id="L178">      Long clientIdLong = Long.parseLong(clientId);</span>
+<span class="fc" id="L179">      User toDelete = client1Service.deleteUser(id, clientIdLong);</span>
+<span class="fc" id="L180">      return new ResponseEntity&lt;&gt;(toDelete, HttpStatus.OK);</span>
 <span class="nc" id="L181">    } catch (RuntimeException e) {</span>
 <span class="nc" id="L182">      throw e;</span>
 <span class="nc" id="L183">    } catch (Exception e) {</span>

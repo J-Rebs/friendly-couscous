@@ -1,32 +1,32 @@
 # Summary
 |||
 |:---|:---|
-| Generated on: | 12/05/2022 - 03:31:46 |
-| Coverage date: | 12/05/2022 - 03:30:02 |
+| Generated on: | 12/05/2022 - 03:45:25 |
+| Coverage date: | 12/05/2022 - 03:43:27 |
 | Parser: | JaCoCo |
 | Assemblies: | 8 |
 | Classes: | 55 |
 | Files: | 55 |
-| **Line coverage:** | 56% (444 of 792) |
-| Covered lines: | 444 |
-| Uncovered lines: | 348 |
+| **Line coverage:** | 56.5% (448 of 792) |
+| Covered lines: | 448 |
+| Uncovered lines: | 344 |
 | Coverable lines: | 792 |
 | Total lines: | 0 |
 | **Branch coverage:** | 55.8% (57 of 102) |
 | Covered branches: | 57 |
 | Total branches: | 102 |
-| **Method coverage:** | 48% (121 of 252) |
-| Covered methods: | 121 |
+| **Method coverage:** | 48.4% (122 of 252) |
+| Covered methods: | 122 |
 | Total methods: | 252 |
-| Tag: | 140_3616662734 |
+| Tag: | 141_3616723949 |
 
 |**Name**|**Covered**|**Uncovered**|**Coverable**|**Total**|**Line coverage**|**Covered**|**Total**|**Branch coverage**|**Covered**|**Total**|**Method coverage**|
 |:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 |**com/example/musictonic**|**1**|**2**|**3**|**0**|**33.3%**|**0**|**0**|****|**1**|**2**|**50%**|
 |com/example/musictonic/MusicTonicApplication|1|2|3|0|33.3%|0|0||1|2|50%|
-|**com/example/musictonic/controller**|**18**|**50**|**68**|**0**|**26.4%**|**0**|**2**|**0%**|**8**|**14**|**57.1%**|
+|**com/example/musictonic/controller**|**22**|**46**|**68**|**0**|**32.3%**|**0**|**2**|**0%**|**9**|**14**|**64.2%**|
 |com/example/musictonic/controller/BaseController|1|1|2|0|50%|0|0||1|2|50%|
-|com/example/musictonic/controller/Client1Controller|10|32|42|0|23.8%|0|0||3|6|50%|
+|com/example/musictonic/controller/Client1Controller|14|28|42|0|33.3%|0|0||4|6|66.6%|
 |com/example/musictonic/controller/Client2Controller|3|8|11|0|27.2%|0|0||2|3|66.6%|
 |com/example/musictonic/controller/Client3Controller|4|9|13|0|30.7%|0|2|0%|2|3|66.6%|
 |**com/example/musictonic/jwt**|**41**|**60**|**101**|**0**|**40.5%**|**0**|**14**|**0%**|**13**|**26**|**50%**|
