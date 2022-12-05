@@ -3,7 +3,7 @@ MusicTonic,com.example.musictonic,MusicTonicApplication,5,3,0,0,2,1,1,1,1,1
 MusicTonic,com.example.musictonic.services,Client2Service,0,66,0,6,0,12,0,5,0,2
 MusicTonic,com.example.musictonic.services,Client3Service,0,131,0,14,0,29,0,9,0,2
 MusicTonic,com.example.musictonic.services,Client1Service,64,585,17,43,18,132,15,24,0,9
-MusicTonic,com.example.musictonic.controller,Client1Controller,50,113,0,0,20,22,0,6,0,6
+MusicTonic,com.example.musictonic.controller,Client1Controller,44,119,0,0,16,26,0,6,0,6
 MusicTonic,com.example.musictonic.controller,Client3Controller,10,42,0,2,4,9,0,4,0,3
 MusicTonic,com.example.musictonic.controller,Client2Controller,10,13,0,0,4,3,0,2,0,2
 MusicTonic,com.example.musictonic.controller,BaseController,2,3,0,0,1,1,1,1,1,1
