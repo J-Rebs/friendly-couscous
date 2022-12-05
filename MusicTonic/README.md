@@ -114,7 +114,8 @@ look [here](https://github.com/J-Rebs/friendly-couscous/tree/main/MusicTonic/src
 
 ### Integration Tests using Java SpringBoot
 
-[here](https://github.com/J-Rebs/friendly-couscous/tree/main/MusicTonic/src/test/java/com/example/musictonic/integration)
+File contains the integration tests can be found [here](https://github.com/J-Rebs/friendly-couscous/tree/main/MusicTonic/src/test/java/com/example/musictonic/integration)  
+Results of the integration tests are shown in the continuous integration page (see section 10)
 
 ## 4. Style Compliant
 
@@ -206,6 +207,11 @@ We implemented JWT bearer tokens based on this [example](https://github.com/murr
    <hr><img src="./testScreenShots/test_2/like_song_5.JPG">
    <hr><img src="./testScreenShots/test_2/list_songs_6.JPG">
    <hr><img src="./testScreenShots/test_2/top3songs_7.JPG">
+
+## 10. Continuous Integration
+The yml file that generates the Github Action Continuous Integration can be found [here](https://github.com/J-Rebs/friendly-couscous/tree/main/.github/workflows)
+
+The Maven is automatically called during CI, and the unit tests, integration tests, coverage tests, and static analysis bug finder tools are all running automatically during CI. The Github CI reports can be found [here](https://github.com/J-Rebs/friendly-couscous/actions)
 
 ## By Team Grey Orange
 
