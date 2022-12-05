@@ -86,7 +86,7 @@ public class Client3ControllerTest {
     user = new User(1L, "Not so cool Guy", UserType.LISTENER, "heavy metal", 84);
 
     song = new Song("pathetique sonata", 20, "Beethoven", "n/a", 3000);
-    song2 = new Song("waldstein sonata", 20, "Beethoven", "n/a", 2000);
+    song2 = new Song("waldstein sonata", 20, "Baethoven", "n/a", 2000);
     song3 = new Song("appassionata sonata", 25, "Beethoven", "n/a", 1000);
 
     listOfSongs = new ArrayList<>();
