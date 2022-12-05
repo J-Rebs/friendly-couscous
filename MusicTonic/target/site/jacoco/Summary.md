@@ -1,24 +1,24 @@
 # Summary
 |||
 |:---|:---|
-| Generated on: | 12/04/2022 - 21:57:36 |
-| Coverage date: | 12/04/2022 - 21:57:01 |
+| Generated on: | 12/05/2022 - 00:08:58 |
+| Coverage date: | 12/05/2022 - 00:08:28 |
 | Parser: | JaCoCo |
 | Assemblies: | 8 |
 | Classes: | 55 |
 | Files: | 55 |
-| **Line coverage:** | 50.1% (395 of 788) |
-| Covered lines: | 395 |
-| Uncovered lines: | 393 |
+| **Line coverage:** | 50.2% (396 of 788) |
+| Covered lines: | 396 |
+| Uncovered lines: | 392 |
 | Coverable lines: | 788 |
 | Total lines: | 0 |
-| **Branch coverage:** | 47% (48 of 102) |
-| Covered branches: | 48 |
+| **Branch coverage:** | 49% (50 of 102) |
+| Covered branches: | 50 |
 | Total branches: | 102 |
 | **Method coverage:** | 45.8% (115 of 251) |
 | Covered methods: | 115 |
 | Total methods: | 251 |
-| Tag: | 127_3615245215 |
+| Tag: | 128_3615712642 |
 
 |**Name**|**Covered**|**Uncovered**|**Coverable**|**Total**|**Line coverage**|**Covered**|**Total**|**Branch coverage**|**Covered**|**Total**|**Method coverage**|
 |:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
@@ -74,10 +74,10 @@
 |com/example/musictonic/repository/PlaylistToSubscriberRepository|0|0|0|0||0|0||0|0||
 |com/example/musictonic/repository/SongRepository|0|0|0|0||0|0||0|0||
 |com/example/musictonic/repository/UserRepository|0|0|0|0||0|0||0|0||
-|**com/example/musictonic/services**|**145**|**54**|**199**|**0**|**72.8%**|**48**|**86**|**55.8%**|**13**|**14**|**92.8%**|
+|**com/example/musictonic/services**|**146**|**53**|**199**|**0**|**73.3%**|**50**|**86**|**58.1%**|**13**|**14**|**92.8%**|
 |com/example/musictonic/services/Client1Service|105|45|150|0|70%|31|60|51.6%|9|9|100%|
 |com/example/musictonic/services/Client2Service|12|8|20|0|60%|6|12|50%|2|3|66.6%|
-|com/example/musictonic/services/Client3Service|28|1|29|0|96.5%|11|14|78.5%|2|2|100%|
+|com/example/musictonic/services/Client3Service|29|0|29|0|100%|13|14|92.8%|2|2|100%|
 |**com/example/musictonic/utils**|**28**|**29**|**57**|**0**|**49.1%**|**0**|**0**|****|**14**|**29**|**48.2%**|
 |com/example/musictonic/utils/AnalyticsInfoBasic|8|8|16|0|50%|0|0||4|8|50%|
 |com/example/musictonic/utils/PlaySongReturn|6|6|12|0|50%|0|0||3|6|50%|
