@@ -67,8 +67,8 @@ import org.springframework.web.bind.annotation.RestController;
 <span class="fc" id="L67">      PlaySongReturn response =</span>
 <span class="fc" id="L68">          new PlaySongReturn(analytics.getAnalyticsId(), analytics.getTimestamp());</span>
 <span class="fc" id="L69">      return new ResponseEntity&lt;&gt;(response, HttpStatus.CREATED);</span>
-<span class="nc" id="L70">    } catch (RuntimeException e) {</span>
-<span class="nc" id="L71">      throw e;</span>
+<span class="fc" id="L70">    } catch (RuntimeException e) {</span>
+<span class="fc" id="L71">      throw e;</span>
 <span class="nc" id="L72">    } catch (Exception e) {</span>
 <span class="nc" id="L73">      return new ResponseEntity&lt;&gt;(null, HttpStatus.BAD_REQUEST);</span>
     }
@@ -95,8 +95,8 @@ import org.springframework.web.bind.annotation.RestController;
 <span class="fc" id="L95">          client1Service.likeSong(Long.parseLong(userId), Long.parseLong(songId),</span>
 <span class="fc" id="L96">              Long.parseLong(clientId));</span>
 <span class="fc" id="L97">      return new ResponseEntity&lt;&gt;(likedSongCount, HttpStatus.OK);</span>
-<span class="nc" id="L98">    } catch (RuntimeException e) {</span>
-<span class="nc" id="L99">      throw e;</span>
+<span class="fc" id="L98">    } catch (RuntimeException e) {</span>
+<span class="fc" id="L99">      throw e;</span>
 <span class="nc" id="L100">    } catch (Exception e) {</span>
 <span class="nc" id="L101">      return new ResponseEntity&lt;&gt;(null, HttpStatus.BAD_REQUEST);</span>
     }

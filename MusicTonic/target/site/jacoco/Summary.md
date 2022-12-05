@@ -1,15 +1,15 @@
 # Summary
 |||
 |:---|:---|
-| Generated on: | 12/05/2022 - 16:15:14 |
-| Coverage date: | 12/05/2022 - 16:13:18 |
+| Generated on: | 12/05/2022 - 16:29:32 |
+| Coverage date: | 12/05/2022 - 16:28:01 |
 | Parser: | JaCoCo |
 | Assemblies: | 4 |
 | Classes: | 23 |
 | Files: | 23 |
-| **Line coverage:** | 80.2% (207 of 258) |
-| Covered lines: | 207 |
-| Uncovered lines: | 51 |
+| **Line coverage:** | 81.7% (211 of 258) |
+| Covered lines: | 211 |
+| Uncovered lines: | 47 |
 | Coverable lines: | 258 |
 | Total lines: | 0 |
 | **Branch coverage:** | 76.8% (63 of 82) |
@@ -18,15 +18,15 @@
 | **Method coverage:** | 92.8% (26 of 28) |
 | Covered methods: | 26 |
 | Total methods: | 28 |
-| Tag: | 159_3621859560 |
+| Tag: | 160_3621981456 |
 
 |**Name**|**Covered**|**Uncovered**|**Coverable**|**Total**|**Line coverage**|**Covered**|**Total**|**Branch coverage**|**Covered**|**Total**|**Method coverage**|
 |:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 |**com/example/musictonic**|**1**|**2**|**3**|**0**|**33.3%**|**0**|**0**|****|**1**|**2**|**50%**|
 |com/example/musictonic/MusicTonicApplication|1|2|3|0|33.3%|0|0||1|2|50%|
-|**com/example/musictonic/controller**|**35**|**29**|**64**|**0**|**54.6%**|**2**|**2**|**100%**|**12**|**13**|**92.3%**|
+|**com/example/musictonic/controller**|**39**|**25**|**64**|**0**|**60.9%**|**2**|**2**|**100%**|**12**|**13**|**92.3%**|
 |com/example/musictonic/controller/BaseController|1|1|2|0|50%|0|0||1|2|50%|
-|com/example/musictonic/controller/Client1Controller|22|20|42|0|52.3%|0|0||6|6|100%|
+|com/example/musictonic/controller/Client1Controller|26|16|42|0|61.9%|0|0||6|6|100%|
 |com/example/musictonic/controller/Client2Controller|3|4|7|0|42.8%|0|0||2|2|100%|
 |com/example/musictonic/controller/Client3Controller|9|4|13|0|69.2%|2|2|100%|3|3|100%|
 |**com/example/musictonic/repository**|**0**|**0**|**0**|**0**|****|**0**|**0**|****|**0**|**0**|****|
