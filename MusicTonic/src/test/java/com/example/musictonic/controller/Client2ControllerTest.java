@@ -62,7 +62,7 @@ public class Client2ControllerTest {
   private Song song1;
   private Song song2;
   private Song song3;
-  private List<Song> top3 = new ArrayList<>();
+  private final List<Song> top3 = new ArrayList<>();
 
   private PopularSongsReturn expectedResult;
 
@@ -99,6 +99,14 @@ public class Client2ControllerTest {
     mvc.perform(put("/client2-rest/top3songs")
             .contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().isMethodNotAllowed());
+  }
+
+  @Test
+  @DisplayName("getNumberOfUsersInAgeRange() WORKS")
+  void getNumberOfUsersInAgeRangeGood() throws Exception {
+    mvc.perform(get("/client2-rest/numberOfUsersInAgeRange?from=0&to=100")
+            .contentType(MediaType.APPLICATION_JSON))
+        .andExpect(status().isOk());
   }
 
 }
