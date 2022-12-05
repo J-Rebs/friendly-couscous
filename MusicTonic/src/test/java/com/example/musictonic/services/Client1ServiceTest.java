@@ -4,8 +4,10 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -109,8 +111,10 @@ class Client1ServiceTest {
   Client1Service client1Service;
 
   private User user;
+  private User user2;
   private Song song;
   private Playlist playlist;
+  private Playlist playlist2;
 
   private Client client;
 
@@ -138,11 +142,15 @@ class Client1ServiceTest {
 
   private Timestamp timestamp;
 
+  private Playlist playlistMock;
+
   @BeforeEach
   void init() {
     user = new User(1L, "Cool Guy", UserType.ARTIST, "country", 27);
+    user2 = new User(2L, "Cool Guy", UserType.ARTIST, "country", 27);
     song = new Song(1L, "SongySongyPopPop", 2, "CoolestArtist", "YaYaMerchMakesYou COOL", 10);
     playlist = new Playlist(1L, 1L, "TheBEST", false);
+    playlistMock = new Playlist(2L, 2L, "TheBEST", true);
     client = new Client(1L);
     client2 = new Client(2L);
     clientUser = new ClientUser(1L, client, user);
@@ -171,7 +179,7 @@ class Client1ServiceTest {
     DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
     String timestampString = formatter.format(timestamp.toLocalDateTime());
     a = new Analytics(1L, timestampString);
-
+//    a = analyticsRepo.save(new Analytics(timestampString));
   }
 
   @Test
@@ -203,6 +211,25 @@ class Client1ServiceTest {
     assertThrows(IllegalAccessException.class, () -> client1Service.playSong(1L, 1L, 1L, 1L));
   }
 
+//  @Test
+//  @DisplayName("playSong() FAILS, as expected")
+//  void playSongBad2() throws IllegalAccessException {
+//    doThrow(new IllegalAccessException()).when(a.setAnalyticsUser(any(AnalyticsUser.class)));
+//  }
+
+  @Test
+  @DisplayName("validPlaylist() FAILS, as expected")
+  void validPlaylistBad() throws IllegalAccessException {
+    assertThrows(IllegalAccessException.class, () -> client1Service.validPlaylist(1L, 1L, 1L));
+  }
+
+//  @Test
+//  @DisplayName("validPlaylist() FAILS, as expected")
+//  void defaultPlaylistBad() throws IllegalAccessException {
+//    when(playlist.getDefault()).thenReturn(true);
+//    assertThrows(IllegalAccessException.class, () -> client1Service.validPlaylist(1L, 1L, 1L));
+//  }
+
   @Test
   @DisplayName("likeSong() WORKS")
   void likeSongGood() throws IllegalAccessException {
@@ -223,7 +250,7 @@ class Client1ServiceTest {
   }
 
   @Test
-  @DisplayName("likeSong() FAILS, as expected")
+  @DisplayName("likeSong() WORKS")
   void likeSongBad() throws IllegalAccessException {
     when(songRepo.findBySongId(any(Long.class))).thenReturn(song);
     when(clientRepo.findByClientId(any(Long.class))).thenReturn(client);
@@ -238,7 +265,15 @@ class Client1ServiceTest {
     }
     Integer songLikesCount = client1Service.likeSong(1L, 1L, 1L);
 
-    assertNotEquals(originalSongLikesCount + 8, songLikesCount);
+    assertEquals(originalSongLikesCount + 10, songLikesCount);
+  }
+
+  @Test
+  @DisplayName("likeSong() FAILS - due to null client, as expected")
+  void likeSongBad2() throws IllegalAccessException {
+    when(clientRepo.findByClientId(any(Long.class))).thenReturn(null);
+
+    assertThrows(IllegalAccessException.class, () -> client1Service.likeSong(1L, 1L, 1L));
   }
 
   @Test
@@ -321,12 +356,41 @@ class Client1ServiceTest {
 
 
   @Test
-  @DisplayName("deleteUser() FAILS, as expected")
-  void deleteUserBad() throws ObjectNotFoundException {
+  @DisplayName("deleteUser() FAILS - due to null User, as expected")
+  void deleteUserBad1() throws ObjectNotFoundException {
     when(userRepo.findByUserId(any(Long.class))).thenReturn(null);
 
     User user1 = client1Service.deleteUser(1L, 1L);
     assertNotEquals(user1, user);
   }
+
+//  @Test
+//  @DisplayName("deleteUser() FAILS - due to null List<PlaylistToSubscriber>, as expected")
+//  void deleteUserBad2() throws ObjectNotFoundException {
+//    when(userRepo.findByUserId(any(Long.class))).thenReturn(user);
+//    clientUserList.add(clientUser2); // supplement list for branch testing
+//    when(clientUserRepo.findAllByUser(any(User.class))).thenReturn(clientUserList);
+//
+//    List<AnalyticsUser> list1 = new ArrayList<>();
+//    list1.add(analyticsUser);
+//    when(analyticsUserRepo.findByUser(any(User.class))).thenReturn(list1);
+//
+//    List<PlaylistToSubscriber> list2 = new ArrayList<>();
+//    list2.add(new PlaylistToSubscriber(1L,user,playlist));
+//    when(playlistToSubscriberRepo.findAllByUser(any(User.class))).thenReturn(list2);
+//
+//    List<Playlist> list3 = new ArrayList<>();
+//    list3.add(playlist);
+//    when(playlistRepo.findAllByOwner(any(Long.class))).thenReturn(list3);
+//
+//    List<PlaylistToSubscriber> list4 = new ArrayList<>();
+//    when(playlistToSubscriberRepo.findAllByPlaylist(any(Playlist.class))).thenReturn(list4);
+//
+////    List<PlaylistToSubscriber> listBad = playlistToSubscriberRepo.findAllByPlaylist(playlist);
+////    assertThat(listBad.size()).isEqualTo(0);
+//
+//    User user1 = client1Service.deleteUser(1L, 1L);
+////    assertNotEquals(user1, user);
+//  }
 
 }
