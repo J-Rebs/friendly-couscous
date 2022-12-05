@@ -2,8 +2,8 @@
 
 ## Final Project: MusicTonic Service
 
-![coverage_branch](https://raw.githubusercontent.com/J-Rebs/friendly-couscous/main/MusicTonic/target/site/jacoco/badge_branchcoverage.svg) ![coverage_combined](https://raw.githubusercontent.com/J-Rebs/friendly-couscous/main/MusicTonic/target/site/jacoco/badge_combined.svg)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/f50cfaab0bb34082b597755dcb55739f)](https://www.codacy.com/gh/J-Rebs/friendly-couscous/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=J-Rebs/friendly-couscous&amp;utm_campaign=Badge_Grade)
+![coverage_branch](https://github.com/J-Rebs/friendly-couscous/blob/main/MusicTonic/target/site/jacoco/badge_branchcoverage.svg)
+
 
 ### Public Access Point: https://music-tonic.herokuapp.com/
 
