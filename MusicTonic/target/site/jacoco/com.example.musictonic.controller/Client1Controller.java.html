@@ -112,9 +112,9 @@ import org.springframework.web.bind.annotation.RestController;
   @GetMapping(&quot;/listUsers&quot;)
   public ResponseEntity&lt;List&lt;User&gt;&gt; listUsers(@RequestParam(name = &quot;clientid&quot;) String clientId) {
     try {
-<span class="nc" id="L115">      Long id = Long.parseLong(clientId);</span>
-<span class="nc" id="L116">      List&lt;User&gt; userList = client1Service.getAllUsers(id);</span>
-<span class="nc" id="L117">      return new ResponseEntity&lt;&gt;(userList, HttpStatus.OK);</span>
+<span class="fc" id="L115">      Long id = Long.parseLong(clientId);</span>
+<span class="fc" id="L116">      List&lt;User&gt; userList = client1Service.getAllUsers(id);</span>
+<span class="fc" id="L117">      return new ResponseEntity&lt;&gt;(userList, HttpStatus.OK);</span>
 <span class="nc" id="L118">    } catch (RuntimeException e) {</span>
 <span class="nc" id="L119">      throw e;</span>
 <span class="nc" id="L120">    } catch (Exception e) {</span>

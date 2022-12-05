@@ -94,7 +94,7 @@ import org.springframework.stereotype.Service;
 <span class="fc" id="L94">    List&lt;Analytics&gt; analytics = new ArrayList&lt;&gt;();</span>
 <span class="fc" id="L95">    List&lt;AnalyticsInfoBasic&gt; analyticsInfoList = new ArrayList&lt;&gt;();</span>
 
-<span class="pc bpc" id="L97" title="1 of 2 branches missed.">    if (analyticsUserList.size() &gt; 0) {</span>
+<span class="fc bfc" id="L97" title="All 2 branches covered.">    if (analyticsUserList.size() &gt; 0) {</span>
 <span class="fc bfc" id="L98" title="All 2 branches covered.">      for (AnalyticsUser au : analyticsUserList) {</span>
 <span class="fc" id="L99">        analytics.add(analyticsRepo.findByAnalyticsUser(au));</span>
 <span class="fc" id="L100">      }</span>
