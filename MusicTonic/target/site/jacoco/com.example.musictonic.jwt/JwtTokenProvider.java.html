@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>JwtTokenProvider.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">MusicTonic</a> &gt; <a href="index.source.html" class="el_package">com.example.musictonic.jwt</a> &gt; <span class="el_source">JwtTokenProvider.java</span></div><h1>JwtTokenProvider.java</h1><pre class="source lang-java linenums">package com.example.musictonic.jwt;
+
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtException;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import java.util.Base64;
+import java.util.Date;
+import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
+
+/**
+ * Generate tokens for use.
+ */
+@Component
+<span class="fc" id="L23">public class JwtTokenProvider {</span>
+
+  /**
+   * Comment from Src: https://github.com/murraco/spring-boot-jwt
+   * THIS IS NOT A SECURE PRACTICE! For simplicity, we are storing a static key here. Ideally, in a
+   * microservices environment, this key would be kept on a config-server.
+   */
+  @Value(&quot;${security.jwt.token.secret-key:secret-key}&quot;)
+  private String secretKey;
+
+<span class="fc" id="L33">  @Value(&quot;${security.jwt.token.expire-length:3600000}&quot;)</span>
+  private long validityInMilliseconds = 3600000; // 1h
+
+  @Autowired
+  private MyUserDetails myUserDetails;
+
+  @PostConstruct
+  protected void init() {
+<span class="fc" id="L41">    secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());</span>
+<span class="fc" id="L42">  }</span>
+
+  /**
+   * Generate JWT bearer token.
+   *
+   * @param username - client username
+   * @param password - client password
+   * @return JWT token.
+   */
+  public String createToken(String username, String password) {
+
+<span class="nc" id="L53">    Claims claims = Jwts.claims().setSubject(username);</span>
+
+<span class="nc" id="L55">    claims.put(&quot;auth&quot;, new SimpleGrantedAuthority(ClientRole.ROLE_ADMIN.getAuthority()));</span>
+
+<span class="nc" id="L57">    Date now = new Date();</span>
+<span class="nc" id="L58">    Date validity = new Date(now.getTime() + validityInMilliseconds);</span>
+
+<span class="nc" id="L60">    return Jwts.builder()//</span>
+<span class="nc" id="L61">        .setClaims(claims)//</span>
+<span class="nc" id="L62">        .setIssuedAt(now)//</span>
+<span class="nc" id="L63">        .setExpiration(validity)//</span>
+<span class="nc" id="L64">        .signWith(SignatureAlgorithm.HS256, secretKey)//</span>
+<span class="nc" id="L65">        .compact();</span>
+  }
+
+  /**
+   * Add authentication of authorities.
+   *
+   * @param token - String for processing
+   * @return UsernamePasswordAuthenticationToken object based on user Authorities.
+   */
+  public Authentication getAuthentication(String token) {
+<span class="nc" id="L75">    UserDetails userDetails = myUserDetails.loadUserByUsername(getUsername(token));</span>
+<span class="nc" id="L76">    return new UsernamePasswordAuthenticationToken(userDetails, &quot;&quot;, userDetails.getAuthorities());</span>
+  }
+
+  /**
+   * Get username.
+   *
+   * @param token - String for processing
+   * @return parsed username string.
+   */
+  public String getUsername(String token) {
+<span class="nc" id="L86">    return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();</span>
+  }
+
+  /**
+   * Resolve Token.
+   *
+   * @param req - HttpServletRequest request
+   * @return see if Bearer token properly provided or return null.
+   */
+  public String resolveToken(HttpServletRequest req) {
+<span class="nc" id="L96">    String bearerToken = req.getHeader(&quot;Authorization&quot;);</span>
+<span class="nc bnc" id="L97" title="All 4 branches missed.">    if (bearerToken != null &amp;&amp; bearerToken.startsWith(&quot;Bearer &quot;)) {</span>
+<span class="nc" id="L98">      return bearerToken.substring(7);</span>
+    }
+<span class="nc" id="L100">    return null;</span>
+  }
+
+  /**
+   * Validate token.
+   *
+   * @param token - String for processing
+   * @return check token is valid or throw exception.
+   */
+  public boolean validateToken(String token) throws Exception {
+    try {
+<span class="nc" id="L111">      Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);</span>
+<span class="nc" id="L112">      return true;</span>
+<span class="nc" id="L113">    } catch (JwtException | IllegalArgumentException e) {</span>
+<span class="nc" id="L114">      throw new Exception(&quot;Expired or invalid JWT token&quot;);</span>
+    }
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

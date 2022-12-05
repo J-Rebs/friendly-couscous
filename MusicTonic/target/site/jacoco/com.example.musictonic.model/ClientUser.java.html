@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ClientUser.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">MusicTonic</a> &gt; <a href="index.source.html" class="el_package">com.example.musictonic.model</a> &gt; <span class="el_source">ClientUser.java</span></div><h1>ClientUser.java</h1><pre class="source lang-java linenums">package com.example.musictonic.model;
+
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+
+/**
+ * &lt;h3&gt;This is the client user entity.&lt;/h3&gt;
+ * Note: required for compliance with checkstyle
+ */
+@Entity
+@Table(name = &quot;client_user&quot;)
+public class ClientUser implements Serializable {
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  Long id;
+
+  @ManyToOne
+  @JoinColumn(name = &quot;clientId&quot;)
+  private Client client;
+
+  @ManyToOne
+  @JoinColumn(name = &quot;userId&quot;)
+  private User user;
+
+<span class="fc" id="L33">  protected ClientUser() {</span>
+<span class="fc" id="L34">  }</span>
+
+  /**
+   * Parameterized constructor for ClientUser.
+   *
+   * @param id     - the unique ID for this ClientUser entry
+   * @param client - the Client object
+   * @param user   - the User object
+   */
+<span class="fc" id="L43">  public ClientUser(Long id, Client client, User user) {</span>
+<span class="fc" id="L44">    this.id = id;</span>
+<span class="fc" id="L45">    this.client = client;</span>
+<span class="fc" id="L46">    this.user = user;</span>
+<span class="fc" id="L47">  }</span>
+
+<span class="fc" id="L49">  public ClientUser(Client client, User user) {</span>
+<span class="fc" id="L50">    this.client = client;</span>
+<span class="fc" id="L51">    this.user = user;</span>
+<span class="fc" id="L52">  }</span>
+
+  public Long getId() {
+<span class="nc" id="L55">    return id;</span>
+  }
+
+  public void setId(Long id) {
+<span class="nc" id="L59">    this.id = id;</span>
+<span class="nc" id="L60">  }</span>
+
+  public Client getClient() {
+<span class="fc" id="L63">    return client;</span>
+  }
+
+  public void setClient(Client client) {
+<span class="nc" id="L67">    this.client = client;</span>
+<span class="nc" id="L68">  }</span>
+
+  public User getUser() {
+<span class="fc" id="L71">    return user;</span>
+  }
+
+  public void setUser(User user) {
+<span class="nc" id="L75">    this.user = user;</span>
+<span class="nc" id="L76">  }</span>
+
+  @Override
+  public String toString() {
+<span class="nc" id="L80">    return &quot;ClientUser{&quot;</span>
+        + &quot;id=&quot; + id
+        + &quot;, client=&quot; + client
+        + &quot;, user=&quot; + user
+        + '}';
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
