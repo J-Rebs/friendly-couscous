@@ -47,8 +47,9 @@ public class IntegrationTest {
 
   @Test
   public void getUsers() {
-    if(token.length() == 0){
-      token = getToken();
+    token = getToken();
+    if(!Character.isLetter(token.charAt(0))){
+      token = getToken_signin();
     }
 
     String url = "https://music-tonic.herokuapp.com/client1-rest/listUsers?clientid=1";
@@ -69,7 +70,8 @@ public class IntegrationTest {
 
   @Test
   public void playSong() {
-    if(token.length() == 0){
+    token = getToken();
+    if(!Character.isLetter(token.charAt(0))){
       token = getToken_signin();
     }
 
@@ -94,7 +96,8 @@ public class IntegrationTest {
 
   @Test
   public void likeSong() {
-    if(token.length() == 0){
+    token = getToken();
+    if(!Character.isLetter(token.charAt(0))){
       token = getToken_signin();
     }
 
@@ -118,7 +121,8 @@ public class IntegrationTest {
 
   @Test
   public void createUsers() {
-    if(token.length() == 0){
+    token = getToken();
+    if(!Character.isLetter(token.charAt(0))){
       token = getToken_signin();
     }
 
@@ -163,7 +167,8 @@ public class IntegrationTest {
   // client 2
   @Test
   public void top3Songs() {
-    if(token.length() == 0){
+    token = getToken();
+    if(!Character.isLetter(token.charAt(0))){
       token = getToken_signin();
     }
 
@@ -185,7 +190,8 @@ public class IntegrationTest {
   // Client 3
   @Test
   public void exportUsers() {
-    if(token.length() == 0){
+    token = getToken();
+    if(!Character.isLetter(token.charAt(0))){
       token = getToken_signin();
     }
 
@@ -208,7 +214,8 @@ public class IntegrationTest {
 
   @Test
   public void listSongs() {
-    if(token.length() == 0){
+    token = getToken();
+    if(!Character.isLetter(token.charAt(0))){
       token = getToken_signin();
     }
 
