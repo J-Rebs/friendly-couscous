@@ -225,9 +225,9 @@ class Client1ServiceTest {
 
 //  @Test
 //  @DisplayName("validPlaylist() FAILS, as expected")
-//  void defaultPlaylistBad() throws IllegalAccessException {
+//  void subscribeDefaultPlaylistBad() throws IllegalAccessException {
 //    when(playlist.getDefault()).thenReturn(true);
-//    assertThrows(IllegalAccessException.class, () -> client1Service.validPlaylist(1L, 1L, 1L));
+//    assertThrows(IllegalAccessException.class, () -> client1Service.subscribeDefaultPlaylist(1L, client);
 //  }
 
   @Test

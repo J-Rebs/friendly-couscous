@@ -149,12 +149,12 @@ import org.springframework.transaction.annotation.Transactional;
   }
 
   // helper method, in methods used in
-  private boolean validPlaylist(Long playlistId, Long clientId) throws IllegalAccessException {
+  boolean validPlaylist(Long playlistId, Long clientId, long l) throws IllegalAccessException {
 <span class="fc" id="L153">    boolean clientPlaylistMatch = false;</span>
 <span class="fc" id="L154">    Client client = clientRepo.findByClientId(clientId);</span>
 <span class="fc" id="L155">    List&lt;ClientPlaylist&gt; playlistsForClient = clientPlaylistRepo.findAllByClient(client);</span>
 
-<span class="pc bpc" id="L157" title="1 of 2 branches missed.">    for (ClientPlaylist cp : playlistsForClient) {</span>
+<span class="fc bfc" id="L157" title="All 2 branches covered.">    for (ClientPlaylist cp : playlistsForClient) {</span>
 <span class="pc bpc" id="L158" title="1 of 2 branches missed.">      if (cp.getPlaylist().getPlaylistId() == playlistId</span>
           &amp;&amp;
 <span class="pc bpc" id="L160" title="1 of 2 branches missed.">          cp.getClient().getClientId() == clientId) {</span>
@@ -163,8 +163,8 @@ import org.springframework.transaction.annotation.Transactional;
       }
 <span class="nc" id="L164">    }</span>
 
-<span class="pc bpc" id="L166" title="1 of 2 branches missed.">    if (!clientPlaylistMatch) {</span>
-<span class="nc" id="L167">      throw new IllegalAccessException(&quot;playlist not available for this client&quot;);</span>
+<span class="fc bfc" id="L166" title="All 2 branches covered.">    if (!clientPlaylistMatch) {</span>
+<span class="fc" id="L167">      throw new IllegalAccessException(&quot;playlist not available for this client&quot;);</span>
     }
 
 <span class="fc" id="L170">    return true;</span>
@@ -211,8 +211,8 @@ import org.springframework.transaction.annotation.Transactional;
 
     // try getting the client, if it doesn't exist, then nothing to do
 <span class="fc" id="L213">    Client client = clientRepo.findByClientId(clientId);</span>
-<span class="pc bpc" id="L214" title="1 of 2 branches missed.">    if (client == null) {</span>
-<span class="nc" id="L215">      throw new IllegalAccessException(&quot;client does not exist&quot;);</span>
+<span class="fc bfc" id="L214" title="All 2 branches covered.">    if (client == null) {</span>
+<span class="fc" id="L215">      throw new IllegalAccessException(&quot;client does not exist&quot;);</span>
     }
 
     // validate user and song for client -- otherwise throw an exception
@@ -256,7 +256,7 @@ import org.springframework.transaction.annotation.Transactional;
 
     // validate client has access to user, song, playlist
 <span class="fc" id="L258">    validUserSong(userId, songId, clientId);</span>
-<span class="fc" id="L259">    validPlaylist(playlistId, clientId);</span>
+<span class="fc" id="L259">    validPlaylist(playlistId, clientId, 1L);</span>
     // insert into analytics (or returns the id)
 <span class="fc" id="L261">    Date date = new Date();</span>
 <span class="fc" id="L262">    Timestamp timestamp = new Timestamp(date.getTime());</span>
