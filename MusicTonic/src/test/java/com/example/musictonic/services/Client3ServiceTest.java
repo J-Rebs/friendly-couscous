@@ -75,6 +75,7 @@ public class Client3ServiceTest {
   private User user2;
   private List<Playlist> playlistList;
   private List<AnalyticsUser> analyticsUserList = new ArrayList<>();
+  private List<AnalyticsUser> analyticsUserList2 = new ArrayList<>();
   private List<AnalyticsInfoBasic> analyticsInfoBasicList;
 
   private Analytics a;
@@ -183,6 +184,19 @@ public class Client3ServiceTest {
     when(userRepo.findByUserId(any(Long.class))).thenReturn(user);
     when(clientUserRepo.findAllByClient(any(Client.class))).thenReturn(clientUserList3);
     assertThrows(IllegalAccessException.class, () -> client3Service.getUserInformation(1L, 1L));
+  }
+
+  @Test
+  @DisplayName("getUserInformation() FAILS because clientUserList.size == 0, as expected")
+  void getUserInformationBad4() throws IllegalAccessException {
+    when(clientRepo.findByClientId(any(Long.class))).thenReturn(client);
+    when(userRepo.findByUserId(any(Long.class))).thenReturn(user);
+    when(clientUserRepo.findAllByClient(any(Client.class))).thenReturn(clientUserList);
+    when(playlistRepo.findAllByOwner(any(Long.class))).thenReturn(playlistList);
+    when(analyticsUserRepo.findByUser(any(User.class))).thenReturn(analyticsUserList2);
+    UserExportReturn res =
+        client3Service.getUserInformation(2L, 1L);
+    assertThat(res.getAnalyticsList().size()).isEqualTo(0);
   }
 
 }
