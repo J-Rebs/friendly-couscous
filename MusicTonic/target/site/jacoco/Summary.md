@@ -1,24 +1,24 @@
 # Summary
 |||
 |:---|:---|
-| Generated on: | 12/05/2022 - 01:24:45 |
-| Coverage date: | 12/05/2022 - 01:24:09 |
+| Generated on: | 12/05/2022 - 01:37:18 |
+| Coverage date: | 12/05/2022 - 01:36:49 |
 | Parser: | JaCoCo |
 | Assemblies: | 8 |
 | Classes: | 55 |
 | Files: | 55 |
-| **Line coverage:** | 50.2% (396 of 788) |
-| Covered lines: | 396 |
-| Uncovered lines: | 392 |
-| Coverable lines: | 788 |
+| **Line coverage:** | 56% (444 of 792) |
+| Covered lines: | 444 |
+| Uncovered lines: | 348 |
+| Coverable lines: | 792 |
 | Total lines: | 0 |
-| **Branch coverage:** | 49% (50 of 102) |
-| Covered branches: | 50 |
+| **Branch coverage:** | 55.8% (57 of 102) |
+| Covered branches: | 57 |
 | Total branches: | 102 |
-| **Method coverage:** | 45.8% (115 of 251) |
-| Covered methods: | 115 |
-| Total methods: | 251 |
-| Tag: | 135_3616034504 |
+| **Method coverage:** | 48% (121 of 252) |
+| Covered methods: | 121 |
+| Total methods: | 252 |
+| Tag: | 136_3616092430 |
 
 |**Name**|**Covered**|**Uncovered**|**Coverable**|**Total**|**Line coverage**|**Covered**|**Total**|**Branch coverage**|**Covered**|**Total**|**Method coverage**|
 |:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
@@ -38,12 +38,12 @@
 |com/example/musictonic/jwt/JwtTokenProvider|4|21|25|0|16%|0|4|0%|2|7|28.5%|
 |com/example/musictonic/jwt/MyUserDetails|1|12|13|0|7.6%|0|2|0%|1|2|50%|
 |com/example/musictonic/jwt/WebSecurityConfig|25|0|25|0|100%|0|0||5|5|100%|
-|**com/example/musictonic/model**|**162**|**189**|**351**|**0**|**46.1%**|**0**|**0**|****|**66**|**164**|**40.2%**|
-|com/example/musictonic/model/Analytics|22|10|32|0|68.7%|0|0||9|16|56.2%|
+|**com/example/musictonic/model**|**187**|**168**|**355**|**0**|**52.6%**|**0**|**0**|****|**72**|**165**|**43.6%**|
+|com/example/musictonic/model/Analytics|26|10|36|0|72.2%|0|0||10|17|58.8%|
 |com/example/musictonic/model/AnalyticsGroup|2|5|7|0|28.5%|0|0||1|2|50%|
-|com/example/musictonic/model/AnalyticsPlaylist|6|5|11|0|54.5%|0|0||2|3|66.6%|
-|com/example/musictonic/model/AnalyticsSong|6|14|20|0|30%|0|0||2|9|22.2%|
-|com/example/musictonic/model/AnalyticsUser|7|14|21|0|33.3%|0|0||3|10|30%|
+|com/example/musictonic/model/AnalyticsPlaylist|11|0|11|0|100%|0|0||3|3|100%|
+|com/example/musictonic/model/AnalyticsSong|11|9|20|0|55%|0|0||3|9|33.3%|
+|com/example/musictonic/model/AnalyticsUser|13|8|21|0|61.9%|0|0||5|10|50%|
 |com/example/musictonic/model/Client|6|3|9|0|66.6%|0|0||3|4|75%|
 |com/example/musictonic/model/ClientGroup|2|15|17|0|11.7%|0|0||1|9|11.1%|
 |com/example/musictonic/model/ClientLogin|0|12|12|0|0%|0|0||0|6|0%|
@@ -53,7 +53,7 @@
 |com/example/musictonic/model/Group|2|19|21|0|9.5%|0|0||1|11|9%|
 |com/example/musictonic/model/Playlist|17|9|26|0|65.3%|0|0||7|12|58.3%|
 |com/example/musictonic/model/PlaylistToSongs|6|15|21|0|28.5%|0|0||2|10|20%|
-|com/example/musictonic/model/PlaylistToSubscriber|2|5|7|0|28.5%|0|0||1|2|50%|
+|com/example/musictonic/model/PlaylistToSubscriber|7|0|7|0|100%|0|0||2|2|100%|
 |com/example/musictonic/model/Song|25|11|36|0|69.4%|0|0||10|16|62.5%|
 |com/example/musictonic/model/User|20|13|33|0|60.6%|0|0||8|15|53.3%|
 |com/example/musictonic/model/UserToGroupMember|2|15|17|0|11.7%|0|0||1|9|11.1%|
@@ -74,8 +74,8 @@
 |com/example/musictonic/repository/PlaylistToSubscriberRepository|0|0|0|0||0|0||0|0||
 |com/example/musictonic/repository/SongRepository|0|0|0|0||0|0||0|0||
 |com/example/musictonic/repository/UserRepository|0|0|0|0||0|0||0|0||
-|**com/example/musictonic/services**|**146**|**53**|**199**|**0**|**73.3%**|**50**|**86**|**58.1%**|**13**|**14**|**92.8%**|
-|com/example/musictonic/services/Client1Service|105|45|150|0|70%|31|60|51.6%|9|9|100%|
+|**com/example/musictonic/services**|**169**|**30**|**199**|**0**|**84.9%**|**57**|**86**|**66.2%**|**13**|**14**|**92.8%**|
+|com/example/musictonic/services/Client1Service|128|22|150|0|85.3%|38|60|63.3%|9|9|100%|
 |com/example/musictonic/services/Client2Service|12|8|20|0|60%|6|12|50%|2|3|66.6%|
 |com/example/musictonic/services/Client3Service|29|0|29|0|100%|13|14|92.8%|2|2|100%|
 |**com/example/musictonic/utils**|**28**|**29**|**57**|**0**|**49.1%**|**0**|**0**|****|**14**|**29**|**48.2%**|
