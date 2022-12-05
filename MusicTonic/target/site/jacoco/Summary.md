@@ -1,24 +1,24 @@
 # Summary
 |||
 |:---|:---|
-| Generated on: | 12/05/2022 - 15:27:56 |
-| Coverage date: | 12/05/2022 - 15:26:07 |
+| Generated on: | 12/05/2022 - 15:31:56 |
+| Coverage date: | 12/05/2022 - 15:30:00 |
 | Parser: | JaCoCo |
-| Assemblies: | 8 |
-| Classes: | 55 |
-| Files: | 55 |
-| **Line coverage:** | 26.2% (205 of 780) |
+| Assemblies: | 4 |
+| Classes: | 23 |
+| Files: | 23 |
+| **Line coverage:** | 79.4% (205 of 258) |
 | Covered lines: | 205 |
-| Uncovered lines: | 575 |
-| Coverable lines: | 780 |
+| Uncovered lines: | 53 |
+| Coverable lines: | 258 |
 | Total lines: | 0 |
-| **Branch coverage:** | 62.5% (60 of 96) |
+| **Branch coverage:** | 73.1% (60 of 82) |
 | Covered branches: | 60 |
-| Total branches: | 96 |
-| **Method coverage:** | 10.4% (26 of 250) |
+| Total branches: | 82 |
+| **Method coverage:** | 92.8% (26 of 28) |
 | Covered methods: | 26 |
-| Total methods: | 250 |
-| Tag: | 155_3621469909 |
+| Total methods: | 28 |
+| Tag: | 156_3621497747 |
 
 |**Name**|**Covered**|**Uncovered**|**Coverable**|**Total**|**Line coverage**|**Covered**|**Total**|**Branch coverage**|**Covered**|**Total**|**Method coverage**|
 |:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
@@ -29,35 +29,6 @@
 |com/example/musictonic/controller/Client1Controller|22|20|42|0|52.3%|0|0||6|6|100%|
 |com/example/musictonic/controller/Client2Controller|3|4|7|0|42.8%|0|0||2|2|100%|
 |com/example/musictonic/controller/Client3Controller|9|4|13|0|69.2%|2|2|100%|3|3|100%|
-|**com/example/musictonic/jwt**|**0**|**101**|**101**|**0**|**0%**|**0**|**14**|**0%**|**0**|**26**|**0%**|
-|com/example/musictonic/jwt/ClientRole|0|3|3|0|0%|0|0||0|2|0%|
-|com/example/musictonic/jwt/JwtController|0|3|3|0|0%|0|0||0|3|0%|
-|com/example/musictonic/jwt/JwtService|0|13|13|0|0%|0|4|0%|0|3|0%|
-|com/example/musictonic/jwt/JwtTokenFilter|0|13|13|0|0%|0|4|0%|0|2|0%|
-|com/example/musictonic/jwt/JwtTokenFilterConfigurer|0|6|6|0|0%|0|0||0|2|0%|
-|com/example/musictonic/jwt/JwtTokenProvider|0|25|25|0|0%|0|4|0%|0|7|0%|
-|com/example/musictonic/jwt/MyUserDetails|0|13|13|0|0%|0|2|0%|0|2|0%|
-|com/example/musictonic/jwt/WebSecurityConfig|0|25|25|0|0%|0|0||0|5|0%|
-|**com/example/musictonic/model**|**0**|**355**|**355**|**0**|**0%**|**0**|**0**|****|**0**|**165**|**0%**|
-|com/example/musictonic/model/Analytics|0|36|36|0|0%|0|0||0|17|0%|
-|com/example/musictonic/model/AnalyticsGroup|0|7|7|0|0%|0|0||0|2|0%|
-|com/example/musictonic/model/AnalyticsPlaylist|0|11|11|0|0%|0|0||0|3|0%|
-|com/example/musictonic/model/AnalyticsSong|0|20|20|0|0%|0|0||0|9|0%|
-|com/example/musictonic/model/AnalyticsUser|0|21|21|0|0%|0|0||0|10|0%|
-|com/example/musictonic/model/Client|0|9|9|0|0%|0|0||0|4|0%|
-|com/example/musictonic/model/ClientGroup|0|17|17|0|0%|0|0||0|9|0%|
-|com/example/musictonic/model/ClientLogin|0|12|12|0|0%|0|0||0|6|0%|
-|com/example/musictonic/model/ClientPlaylist|0|21|21|0|0%|0|0||0|10|0%|
-|com/example/musictonic/model/ClientSong|0|17|17|0|0%|0|0||0|9|0%|
-|com/example/musictonic/model/ClientUser|0|21|21|0|0%|0|0||0|10|0%|
-|com/example/musictonic/model/Group|0|21|21|0|0%|0|0||0|11|0%|
-|com/example/musictonic/model/Playlist|0|26|26|0|0%|0|0||0|12|0%|
-|com/example/musictonic/model/PlaylistToSongs|0|21|21|0|0%|0|0||0|10|0%|
-|com/example/musictonic/model/PlaylistToSubscriber|0|7|7|0|0%|0|0||0|2|0%|
-|com/example/musictonic/model/Song|0|36|36|0|0%|0|0||0|16|0%|
-|com/example/musictonic/model/User|0|33|33|0|0%|0|0||0|15|0%|
-|com/example/musictonic/model/UserToGroupMember|0|17|17|0|0%|0|0||0|9|0%|
-|com/example/musictonic/model/UserType|0|2|2|0|0%|0|0||0|1|0%|
 |**com/example/musictonic/repository**|**0**|**0**|**0**|**0**|****|**0**|**0**|****|**0**|**0**|****|
 |com/example/musictonic/repository/AnalyticsPlaylistRepository|0|0|0|0||0|0||0|0||
 |com/example/musictonic/repository/AnalyticsRepository|0|0|0|0||0|0||0|0||
@@ -78,10 +49,3 @@
 |com/example/musictonic/services/Client1Service|128|22|150|0|85.3%|38|60|63.3%|9|9|100%|
 |com/example/musictonic/services/Client2Service|12|0|12|0|100%|6|6|100%|2|2|100%|
 |com/example/musictonic/services/Client3Service|29|0|29|0|100%|14|14|100%|2|2|100%|
-|**com/example/musictonic/utils**|**0**|**57**|**57**|**0**|**0%**|**0**|**0**|****|**0**|**29**|**0%**|
-|com/example/musictonic/utils/AnalyticsInfoBasic|0|16|16|0|0%|0|0||0|8|0%|
-|com/example/musictonic/utils/PlaySongReturn|0|12|12|0|0%|0|0||0|6|0%|
-|com/example/musictonic/utils/PopularSongsReturn|0|12|12|0|0%|0|0||0|6|0%|
-|com/example/musictonic/utils/UserExportReturn|0|17|17|0|0%|0|0||0|9|0%|
-|**config**|**0**|**9**|**9**|**0**|**0%**|**0**|**0**|****|**0**|**2**|**0%**|
-|config/SecurityConfig|0|9|9|0|0%|0|0||0|2|0%|
