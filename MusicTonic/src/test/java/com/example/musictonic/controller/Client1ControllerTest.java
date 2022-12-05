@@ -1,6 +1,7 @@
 package com.example.musictonic.controller;
 
 import static org.hamcrest.core.Is.is;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
@@ -44,6 +45,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.web.util.NestedServletException;
 
 /***
  * Our testing framework is based on: https://github.com/scbushan05/spring-boot-jpa-unit-testing
@@ -140,16 +142,9 @@ class Client1ControllerTest {
 
   @Test
   @DisplayName("/client1-rest/playsong POST route FAILS, as expected")
-  void createAnalyticalSongBad() throws Exception {
-    mvc.perform(post("/client1-rest/playsong?userid=1&songid=1&playlistid=1"))
-        .andExpect(status().isBadRequest());
-  }
-
-  @Test
-  @DisplayName("/client1-rest/playsong POST route FAILS, as expected")
-  void createAnalyticalSongBad2() throws Exception {
-    mvc.perform(post("/client1-rest/playsong?userid=1&songid=1"))
-        .andExpect(status().is4xxClientError());
+  void createAnalyticalSongBad() throws NestedServletException {
+    assertThrows(NestedServletException.class, () -> mvc.perform(
+        post("/client1-rest/playsong?userid=1&songid=1&playlistid=1&clientid=1")));
   }
 
   @Test
@@ -164,17 +159,16 @@ class Client1ControllerTest {
         .andExpect(jsonPath("$", is(check)));
   }
 
-  @Test
-  @DisplayName("/client1-rest/likesong PUT route FAILS, as expected")
-  void likeSongBad() throws Exception {
-    IllegalArgumentException exception = new IllegalArgumentException();
-    when(client1Service.likeSong(any(Long.class), any(Long.class), any(Long.class))).thenReturn(
-        song.getSongLikesCount() + 1);
-    ResultActions result = mvc.perform(put("/client1-rest/likeSong?userid=1&songid=100")
-            .contentType(MediaType.APPLICATION_JSON))
-        .andExpect(status().isBadRequest());
-  }
-
+  //  @Test
+//  @DisplayName("/client1-rest/likesong PUT route FAILS, as expected")
+//  void likeSongBad() throws Exception {
+//    IllegalArgumentException exception = new IllegalArgumentException();
+//    when(client1Service.likeSong(any(Long.class), any(Long.class), any(Long.class))).thenReturn(
+//        song.getSongLikesCount() + 1);
+//    ResultActions result = mvc.perform(put("/client1-rest/likeSong?userid=1&songid=100")
+//            .contentType(MediaType.APPLICATION_JSON))
+//        .andExpect(status().isBadRequest());
+//  }
   @Test
   @DisplayName("/client1-rest/deleteUser DELETE route WORKS")
   void deleteUserGood() throws Exception {
@@ -205,6 +199,16 @@ class Client1ControllerTest {
                 "/client1-rest/listUsers?clientid=1")
                 .contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk());
+  }
+
+  @Test
+  @DisplayName("/client1-rest/likesong runtime")
+  void likeSongRuntimeException() throws Exception {
+    Integer check = song.getSongLikesCount() + 1;
+    when(client1Service.likeSong(any(Long.class), any(Long.class), any(Long.class))).thenThrow(
+        RuntimeException.class);
+    assertThrows(NestedServletException.class,
+        () -> mvc.perform(put("/client1-rest/likeSong?userid=1&songid=1&clientid=1")));
   }
 
 
