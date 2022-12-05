@@ -74,19 +74,5 @@ import org.springframework.stereotype.Service;
 
 <span class="fc" id="L75">    return new PopularSongsReturn(top3Songs, averagePlaylists);</span>
   }
-
-  public Integer getNumberOfUsersInAgeRange(Integer from, Integer to) {
-<span class="nc" id="L79">    List&lt;User&gt; allUsers = userRepo.findAll();</span>
-<span class="nc" id="L80">    List&lt;User&gt; allUsersInRange = new ArrayList&lt;&gt;();</span>
-<span class="nc bnc" id="L81" title="All 2 branches missed.">    for (User user : allUsers) {</span>
-<span class="nc" id="L82">      Integer userAge = user.getAge();</span>
-<span class="nc bnc" id="L83" title="All 4 branches missed.">      if ((userAge &gt;= from) &amp;&amp; (userAge &lt;= to)) {</span>
-<span class="nc" id="L84">        allUsersInRange.add(user);</span>
-      }
-<span class="nc" id="L86">    }</span>
-
-<span class="nc" id="L88">    return allUsersInRange.size();</span>
-
-  }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

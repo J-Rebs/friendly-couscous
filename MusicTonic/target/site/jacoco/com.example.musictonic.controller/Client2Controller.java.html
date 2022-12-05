@@ -42,29 +42,5 @@ import org.springframework.web.bind.annotation.RestController;
     }
   }
 
-  /**
-   * @param fromAge -
-   * @param toAge   -
-   * @return stub TBD if to keep
-   */
-  @GetMapping(&quot;/numberOfUsersInAgeRange&quot;)
-  public ResponseEntity&lt;Integer&gt; numberOfUsersInAgeRange(
-      @RequestParam(name = &quot;from&quot;) Integer fromAge,
-      @RequestParam(name = &quot;to&quot;) Integer toAge) {
-    try {
-<span class="nc" id="L55">      Integer averageSongDuration = client2Service.getNumberOfUsersInAgeRange(fromAge, toAge);</span>
-<span class="nc" id="L56">      return new ResponseEntity&lt;&gt;(averageSongDuration, HttpStatus.OK);</span>
-<span class="nc" id="L57">    } catch (Exception e) {</span>
-<span class="nc" id="L58">      return new ResponseEntity&lt;&gt;(null, HttpStatus.BAD_REQUEST);</span>
-    }
-  }
-
-  /**
-   * TODO: (ideas to possibly implement)
-   *       - average song duration for listeners in an age range
-   *       - average number of songs played per day per user
-   *       - average song duration for a given artist
-   *       - total number of registered listeners and registered artists
-   */
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
