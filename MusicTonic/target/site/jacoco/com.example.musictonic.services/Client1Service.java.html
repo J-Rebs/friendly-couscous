@@ -175,16 +175,16 @@ import org.springframework.transaction.annotation.Transactional;
 
     // see if the user has a default playlist
 <span class="fc" id="L177">    Playlist defaultPlaylist = null;</span>
-<span class="pc bpc" id="L178" title="1 of 2 branches missed.">    for (Playlist p : playlistRepo.findAllByOwner(userId)) {</span>
-<span class="nc bnc" id="L179" title="All 2 branches missed.">      if (p.getDefault()) {</span>
+<span class="fc bfc" id="L178" title="All 2 branches covered.">    for (Playlist p : playlistRepo.findAllByOwner(userId)) {</span>
+<span class="fc bfc" id="L179" title="All 2 branches covered.">      if (p.getDefault()) {</span>
         // assume that if user has playlist as owner, then client has access
-<span class="nc" id="L181">        defaultPlaylist = p;</span>
+<span class="fc" id="L181">        defaultPlaylist = p;</span>
       }
-<span class="nc" id="L183">    }</span>
+<span class="fc" id="L183">    }</span>
 
     // if the user doesn't have a default playlist under the client in question,
     // make one, otherwise return the default playlist
-<span class="pc bpc" id="L187" title="1 of 2 branches missed.">    if (defaultPlaylist == null) {</span>
+<span class="fc bfc" id="L187" title="All 2 branches covered.">    if (defaultPlaylist == null) {</span>
 <span class="fc" id="L188">      defaultPlaylist = new Playlist(userId, &quot;DefaultPlaylist&quot;, true);</span>
       // save the playlist to the appropriate table
       /* NOTE: not saving to playlistToSubscribers because by default owner is not subscriber

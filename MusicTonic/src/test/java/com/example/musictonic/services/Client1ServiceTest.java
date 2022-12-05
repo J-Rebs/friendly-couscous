@@ -233,14 +233,17 @@ class Client1ServiceTest {
   }
 
   @Test
-  @DisplayName("subscribeDefaultPlaylist() WORKS given default playlist, as expected")
+  @DisplayName("subscribeDefaultPlaylist() WORKS given a list of playlists where one playlist is default, as expected")
   void subscribeDefaultPlaylistGood() throws IllegalAccessException {
     when(songRepo.findBySongId(any(Long.class))).thenReturn(song2);
     when(clientRepo.findByClientId(any(Long.class))).thenReturn(client2);
     when(userRepo.findByUserId(any(Long.class))).thenReturn(user2);
     when(clientUserRepo.findAllByClient(any(Client.class))).thenReturn(clientUserList);
     when(clientSongRepo.findAllByClient(any(Client.class))).thenReturn(clientSongList);
-
+    List<Playlist> list = new ArrayList<>();
+    list.add(playlist);
+    list.add(playlist2);
+    when(playlistRepo.findAllByOwner(any(Long.class))).thenReturn(list);
 
     Integer originalSongLikesCount = song.getSongLikesCount();
     for (int i = 0; i < 9; i++) {
