@@ -40,6 +40,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
@@ -142,6 +143,15 @@ class Client1ControllerTest {
   void createAnalyticalSongBad() throws Exception {
     mvc.perform(post("/client1-rest/playsong?userid=1&songid=1&playlistid=1"))
         .andExpect(status().isBadRequest());
+  }
+
+  @Test
+  @DisplayName("/client1-rest/playsong POST route FAILS, as expected")
+  void createAnalyticalSongBad2() throws Exception {
+    when(client1Service.playSong(any(Long.class), any(Long.class), any(Long.class),
+        any(Long.class))).thenThrow(new RuntimeException("Runtime Error occurred"));
+    mvc.perform(post("/client1-rest/playsong?userid=1&songid=1&playlistid=1"))
+        .andExpect(status().is4xxClientError());
   }
 
   @Test
