@@ -5,11 +5,11 @@
 ![coverage_branch](https://raw.githubusercontent.com/J-Rebs/friendly-couscous/main/MusicTonic/target/site/jacoco/badge_branchcoverage.svg) ![coverage_combined](https://raw.githubusercontent.com/J-Rebs/friendly-couscous/main/MusicTonic/target/site/jacoco/badge_combined.svg)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/f50cfaab0bb34082b597755dcb55739f)](https://www.codacy.com/gh/J-Rebs/friendly-couscous/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=J-Rebs/friendly-couscous&amp;utm_campaign=Badge_Grade)
 
-## Public Access Point: https://music-tonic.herokuapp.com/
+### Public Access Point: https://music-tonic.herokuapp.com/
 
-## Demo Client: https://mean-rice.vercel.app/
+### Demo Client: https://mean-rice.vercel.app/
 
-## Demo Client Repository: https://github.com/J-Rebs/Mean-Rice
+### Demo Client Repository: https://github.com/J-Rebs/Mean-Rice
 
 ### Team Members
 
@@ -17,29 +17,39 @@ Ryan Soeyadi [rs4163], Joseph Rebagliati [jr4162], Yuhao Dong [yd2626], Madison 
 
 ## 1. Documented API
 
-### MUSIC PLATFORM SERVICES (Client type one in our proposal)
+### MUSIC PLATFORM SERVICES (Client type one in our proposal) -- routes reflect those considered ready for deployment
 
 - TYPE OF REQUEST: `GET`
-    - ROUTE: `/client1-rest/listUsers`
-    - PURPOSE: Gets list of users
+    - ROUTE: `/client1-rest/listUsers?clientid={id}`
+    - PURPOSE: Gets list of users for a given client
     - RETURN TYPES:
-        - `List<String>` if succeeds
-    - FUTURE Development: Add Client Authentication and HTTP response
+        - `200 OK` if succeeds
+        - `400 bad request` if fails / may be `200 OK` if authentication succeeds but route fails / `403 forbidden` if authentication fails
 - TYPE OF REQUEST: `POST`
-    - ROUTE: `/client1-rest/playsong?userid={id}&songid={id}&playlistid={id}`
-    - PURPOSE: Registers a song played in the analytics relation for a given user, song, and playlist
+    - ROUTE: `/client1-rest/playsong?userid={id}&songid={id}&playlistid={id}&clientid={id}`
+    - PURPOSE: Registers a song played in the analytics relation for a given user, song, and playlist all of which should belong to a client
     - RETURN TYPES:
         - `201 created` if succeeds
-        - `400 bad request` if fails
-    - FUTURE Development: Add Client Authentication
+        - `400 bad request` if fails / may be `200 OK` if authentication succeeds but route fails / `403 forbidden` if authentication fails
 - TYPE OF REQUEST: `PUT`
-    - ROUTE: `/client1-rest/likesong?userid={id}&songid={id}`
-    - PURPOSE: registers songs to a default playlist for a user, creates default playlist if it does not exist, and
+    - ROUTE: `/client1-rest/likesong?userid={id}&songid={id}&clientid={id}`
+    - PURPOSE: registers songs to a default playlist for a user all of which should belong to a client, creates default playlist if it does not exist, and
       increments and returns the like count for a song.
     - RETURN TYPES:
         - `200 OK` if succeeds
-        - `400 bad request` if fails
-    - FUTURE Development: Add Client Authentication
+        - `400 bad request` if fails / may be `200 OK` if authentication succeeds but route fails / `403 forbidden` if authentication fails
+- TYPE OF REQUEST: `POST`
+    - ROUTE: `/client1-rest/createUser?realname={realName: String}&usertype={UserType: ARTIST, LISTENER, ADMIN, SCIENTIST}&maingenre={mainGenre: string}&age={age: integer as string}&clientid={id}`
+    - PURPOSE: creates a user for a given client.
+    - RETURN TYPES:
+        - `201 created` if succeeds
+        - `400 bad request` if fails / may be `200 OK` if authentication succeeds but route fails / `403 forbidden` if authentication fails
+- TYPE OF REQUEST: `DELETE`
+    - ROUTE: `/client1-rest/deleteUser?id={deleteId}&clientId={clientId}`
+    - PURPOSE: deletes a user for a given client and includes logic to ensure user unsubscribed from playlists, playlists where user is owner is deleted, and logic to ensure all analytics retained about said user is also removed.
+    - RETURN TYPES:
+        - `200 OK` if succeeds
+        - `400 bad request` if fails / may be `200 OK` if authentication succeeds but route fails / `403 forbidden` if authentication fails
 
 ### MUSIC ANALYTICS SERVICES (Client type two in our proposal)
 
@@ -49,19 +59,17 @@ Ryan Soeyadi [rs4163], Joseph Rebagliati [jr4162], Yuhao Dong [yd2626], Madison 
       overall.
     - RETURN TYPES:
         - `200 OK` if succeeds
-        - `400 bad request` if fails
-    - FUTURE Development: N/A
+        - `400 bad request` if fails / may be `200 OK` if authentication succeeds but route fails / `403 forbidden` if authentication fails
 
 ### DATA SHARING SERVICES  (Client type three in our proposal)
 
 - TYPE OF REQUEST: `GET`
-    - ROUTE: `/client3-rest/userexport`
+    - ROUTE: `/client3-restuserexport?userid={id}&clientid={id}`
     - PURPOSE: provides an export of user data including the user and associated fields, the playlists the user owns,
       and all analytics entries for that user.
     - RETURN TYPES:
         - `200 OK` if succeeds
-        - `400 bad request` if fails
-    - FUTURE Development: N/A
+        - `400 bad request` if fails / may be `200 OK` if authentication succeeds but route fails / `403 forbidden` if authentication fails
 
 ## 2. Unit Tests
 
