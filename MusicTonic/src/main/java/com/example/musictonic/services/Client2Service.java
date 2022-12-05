@@ -74,18 +74,4 @@ public class Client2Service {
 
     return new PopularSongsReturn(top3Songs, averagePlaylists);
   }
-
-  public Integer getNumberOfUsersInAgeRange(Integer from, Integer to) {
-    List<User> allUsers = userRepo.findAll();
-    List<User> allUsersInRange = new ArrayList<>();
-    for (User user : allUsers) {
-      Integer userAge = user.getAge();
-      if ((userAge >= from) && (userAge <= to)) {
-        allUsersInRange.add(user);
-      }
-    }
-
-    return allUsersInRange.size();
-
-  }
 }
