@@ -4,6 +4,7 @@ import static org.hamcrest.core.Is.is;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -28,7 +29,9 @@ import com.example.musictonic.utils.PlaySongReturn;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.sql.Timestamp;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -78,6 +81,12 @@ class Client1ControllerTest {
   @MockBean
   private UserRepository userRepo;
   private User user;
+  private User user2;
+
+  private User user3;
+
+  private List<User> listOfUsers;
+
   private Song song;
   private Playlist playlist;
   private Analytics a;
@@ -92,6 +101,13 @@ class Client1ControllerTest {
   @BeforeEach
   void init() {
     user = new User(1L, "Cool Guy", UserType.ARTIST, "country", 27);
+    user2 = new User(1L, "John Bobstin", UserType.ARTIST, "kpop", 12);
+    user3 = new User(1L, "Bobstin Johnstin", UserType.LISTENER, "metal", 94);
+    listOfUsers = new ArrayList<>();
+    listOfUsers.add(user);
+    listOfUsers.add(user2);
+    listOfUsers.add(user3);
+
     song = new Song(1L, "SongySongyPopPop", 2, "CoolestArtist", "YaYaMerchMakesYou COOL", 10);
     playlist = new Playlist(1L, 1L, "TheBEST", false);
 
@@ -170,6 +186,17 @@ class Client1ControllerTest {
                 "/client1-rest/createUser?realname=johnbobstin&usertype=LISTENER&maingenre=metal&age=38&clientid=38")
                 .contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().isCreated());
+  }
+
+  @Test
+  @DisplayName("/client1-rest/listUsers GET route WORKS")
+  void listUsersGood() throws Exception {
+    when(client1Service.getAllUsers(any(Long.class))).thenReturn(listOfUsers);
+    mvc.perform(
+            get(
+                "/client1-rest/listUsers?clientid=1")
+                .contentType(MediaType.APPLICATION_JSON))
+        .andExpect(status().isOk());
   }
 
 
