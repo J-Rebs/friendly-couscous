@@ -100,13 +100,6 @@ public class Client2ControllerTest {
             .contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().isMethodNotAllowed());
   }
-
-  @Test
-  @DisplayName("getNumberOfUsersInAgeRange() WORKS")
-  void getNumberOfUsersInAgeRangeGood() throws Exception {
-    mvc.perform(get("/client2-rest/numberOfUsersInAgeRange?from=0&to=99")
-            .contentType(MediaType.APPLICATION_JSON))
-        .andExpect(status().isOk());
-  }
+  
 
 }
