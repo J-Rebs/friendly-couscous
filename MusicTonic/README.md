@@ -127,15 +127,15 @@ Results of the integration tests are shown in the continuous integration page (s
 
 ## 4. Style Compliant
 
-See CheckStyle Report from October 30th, 2022
-[here](https://htmlpreview.github.io/?https://github.com/J-Rebs/friendly-couscous/blob/main/MusicTonic/SiteReports/site%2030_October_2022/checkstyle.html)
+See CheckStyle Report from December 5th, 2022
+[here](https://htmlpreview.github.io/?https://github.com/J-Rebs/friendly-couscous/blob/main/MusicTonic/SiteReports/site_5_December_2022/checkstyle.html)
 
 ## 5. Coverage
 
 We use JaCoCo and [ReportGenerator](https://github.com/marketplace/actions/reportgenerator) to automate coverage
 reporting as part of our Continous Integration in GitHub Actions. A full summary report available from the latest push
 to this repository
-is [here](https://github.com/J-Rebs/friendly-couscous/blob/main/MusicTonic/target/site/jacoco/Summary.md#summary).
+is [here](https://github.com/J-Rebs/friendly-couscous/blob/main/MusicTonic/target/site/jacoco/Summary.md#summary). 
 
 Summary badges are included at the top of this repository.
 
