@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Group.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">MusicTonic</a> &gt; <a href="index.source.html" class="el_package">com.example.musictonic.model</a> &gt; <span class="el_source">Group.java</span></div><h1>Group.java</h1><pre class="source lang-java linenums">package com.example.musictonic.model;
+
+import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+
+/**
+ * &lt;h3&gt;This is the group entity.&lt;/h3&gt;
+ * Note: required for compliance with checkstyle
+ */
+@Entity
+@Table(name = &quot;groups&quot;)
+public class Group {
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long groupId;
+
+  @Column(name = &quot;admin&quot;)
+  private String admin;
+
+  @Column(name = &quot;group_name&quot;)
+  private String groupName;
+
+  @Column(name = &quot;description&quot;)
+  private String description;
+
+  @OneToMany(mappedBy = &quot;group&quot;)
+  private Set&lt;UserToGroupMember&gt; userToGroupMembers;
+
+  @OneToMany(mappedBy = &quot;group&quot;)
+  private Set&lt;AnalyticsGroup&gt; analyticsGroups;
+
+  // constructors
+<span class="nc" id="L41">  protected Group() {</span>
+<span class="nc" id="L42">  }</span>
+
+  /**
+   * Parameterized constructor for Group.
+   *
+   * @param groupId     - the unique ID for this groupId
+   * @param admin       - the admin of this group
+   * @param groupName   - the name of this group
+   * @param description - description of this group
+   */
+<span class="nc" id="L52">  public Group(Long groupId, String admin, String groupName, String description) {</span>
+<span class="nc" id="L53">    this.groupId = groupId;</span>
+<span class="nc" id="L54">    this.admin = admin;</span>
+<span class="nc" id="L55">    this.groupName = groupName;</span>
+<span class="nc" id="L56">    this.description = description;</span>
+<span class="nc" id="L57">  }</span>
+
+
+  // getters and setters
+  public Long getGroupId() {
+<span class="nc" id="L62">    return groupId;</span>
+  }
+
+  public void setGroupId(Long groupId) {
+<span class="nc" id="L66">    this.groupId = groupId;</span>
+<span class="nc" id="L67">  }</span>
+
+  public String getAdmin() {
+<span class="nc" id="L70">    return admin;</span>
+  }
+
+  public void setAdmin(String admin) {
+<span class="nc" id="L74">    this.admin = admin;</span>
+<span class="nc" id="L75">  }</span>
+
+  public String getGroupName() {
+<span class="nc" id="L78">    return groupName;</span>
+  }
+
+  public void setGroupName(String groupName) {
+<span class="nc" id="L82">    this.groupName = groupName;</span>
+<span class="nc" id="L83">  }</span>
+
+  public String getDescription() {
+<span class="nc" id="L86">    return description;</span>
+  }
+
+  public void setDescription(String description) {
+<span class="nc" id="L90">    this.description = description;</span>
+<span class="nc" id="L91">  }</span>
+
+  @Override
+  public String toString() {
+<span class="nc" id="L95">    return &quot;Group{&quot;</span>
+        + &quot;groupId=&quot; + groupId
+        + &quot;, admin='&quot; + admin + '\''
+        + &quot;, groupName='&quot; + groupName + '\''
+        + &quot;, description='&quot; + description + '\''
+        + '}';
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

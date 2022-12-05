@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Client1Controller.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">MusicTonic</a> &gt; <a href="index.source.html" class="el_package">com.example.musictonic.controller</a> &gt; <span class="el_source">Client1Controller.java</span></div><h1>Client1Controller.java</h1><pre class="source lang-java linenums">package com.example.musictonic.controller;
+
+import com.example.musictonic.model.Analytics;
+import com.example.musictonic.model.User;
+import com.example.musictonic.model.UserType;
+import com.example.musictonic.repository.UserRepository;
+import com.example.musictonic.services.Client1Service;
+import com.example.musictonic.utils.PlaySongReturn;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+//import org.springframework.boot.configurationprocessor.json;
+//import org.springframework.web.bind.annotation.PostMapping;
+
+/**
+ * Request handler for client type 1 (e.g., CRUD functionality).
+ */
+@CrossOrigin
+@RestController
+@PreAuthorize(&quot;hasRole('ROLE_ADMIN')&quot;)
+@RequestMapping(&quot;client1-rest&quot;)
+<span class="fc" id="L33">public class Client1Controller {</span>
+  // [1.1, 1.2] Import our service - business functionality - playSong, subscribeToPlaylist
+  // Autowired client1Controller
+  // Implement routes
+  // POST request for playing song
+  // POST request for subscribing to a playlist
+  @Autowired
+  Client1Service client1Service;
+
+  @Autowired
+  UserRepository userRepo;
+
+
+  // reference: https://www.baeldung.com/spring-request-param
+
+  /**
+   * This method is called when the client &quot;plays a song,&quot; such that it invokes the client1Service
+   * method playSong(...) and returns the associated analyticsId.
+   *
+   * @param userId     - the unique ID for this client (i.e., user)
+   * @param songId     - the unique ID for this song
+   * @param playlistId - the unique ID for this song
+   * @return a PlaySongReturn object, which consists of the analyticsId and the timestamp
+   */
+  @PostMapping(&quot;/playsong&quot;)
+  @ResponseBody
+  public ResponseEntity&lt;PlaySongReturn&gt; createAnalyticalSongs(
+      @RequestParam(name = &quot;userid&quot;) String userId,
+      @RequestParam(name = &quot;songid&quot;) String songId,
+      @RequestParam(name = &quot;playlistid&quot;) String playlistId,
+      @RequestParam(name = &quot;clientid&quot;) String clientId) {
+    try {
+<span class="fc" id="L65">      Analytics analytics = client1Service.playSong(Long.parseLong(userId), Long.parseLong(songId),</span>
+<span class="fc" id="L66">          Long.parseLong(playlistId), Long.parseLong(clientId));</span>
+<span class="fc" id="L67">      PlaySongReturn response =</span>
+<span class="fc" id="L68">          new PlaySongReturn(analytics.getAnalyticsId(), analytics.getTimestamp());</span>
+<span class="fc" id="L69">      return new ResponseEntity&lt;&gt;(response, HttpStatus.CREATED);</span>
+<span class="nc" id="L70">    } catch (RuntimeException e) {</span>
+<span class="nc" id="L71">      throw e;</span>
+<span class="nc" id="L72">    } catch (Exception e) {</span>
+<span class="nc" id="L73">      return new ResponseEntity&lt;&gt;(null, HttpStatus.BAD_REQUEST);</span>
+    }
+  }
+
+  /**
+   * This method is invoked when the client &quot;likes a song,&quot; such that it adds the corresponding
+   * song to the client's default &quot;likes&quot; playlist (to be implemented) and returns the (updated)
+   * number of liked songs associated with this client.
+   *
+   * @param userId   - the unique ID for this client (i.e., user)
+   * @param songId   - the unique ID for this song
+   * @param clientId - the ID for the client in question
+   * @return - if OK, then the number of liked songs; else, BAD_REQUEST
+   */
+  @PutMapping(&quot;/likeSong&quot;)
+  @ResponseBody
+  public ResponseEntity&lt;Integer&gt; likeSong(
+      @RequestParam(name = &quot;userid&quot;) String userId,
+      @RequestParam(name = &quot;songid&quot;) String songId,
+      @RequestParam(name = &quot;clientid&quot;) String clientId) {
+    try {
+<span class="fc" id="L94">      Integer likedSongCount =</span>
+<span class="fc" id="L95">          client1Service.likeSong(Long.parseLong(userId), Long.parseLong(songId),</span>
+<span class="fc" id="L96">              Long.parseLong(clientId));</span>
+<span class="fc" id="L97">      return new ResponseEntity&lt;&gt;(likedSongCount, HttpStatus.OK);</span>
+<span class="nc" id="L98">    } catch (RuntimeException e) {</span>
+<span class="nc" id="L99">      throw e;</span>
+<span class="nc" id="L100">    } catch (Exception e) {</span>
+<span class="nc" id="L101">      return new ResponseEntity&lt;&gt;(null, HttpStatus.BAD_REQUEST);</span>
+    }
+  }
+
+  /**
+   * This method is invoked to return a list of all Users.
+   *
+   * @param clientId - the ID for the client in question
+   * @return - if OK, then a list of all users for a given client; else, BAD_REQUEST
+   */
+  // for testing - list all users
+  @GetMapping(&quot;/listUsers&quot;)
+  public ResponseEntity&lt;List&lt;User&gt;&gt; listUsers(@RequestParam(name = &quot;clientid&quot;) String clientId) {
+    try {
+<span class="fc" id="L115">      Long id = Long.parseLong(clientId);</span>
+<span class="fc" id="L116">      List&lt;User&gt; userList = client1Service.getAllUsers(id);</span>
+<span class="fc" id="L117">      return new ResponseEntity&lt;&gt;(userList, HttpStatus.OK);</span>
+<span class="nc" id="L118">    } catch (RuntimeException e) {</span>
+<span class="nc" id="L119">      throw e;</span>
+<span class="nc" id="L120">    } catch (Exception e) {</span>
+<span class="nc" id="L121">      return new ResponseEntity&lt;&gt;(null, HttpStatus.BAD_REQUEST);</span>
+    }
+  }
+
+  // commenting out for now, don't think we want to give the ability to set the userid because
+  // this is an autogenerated primary key -- we can re-add if needed.
+
+  /**
+   * This method creates a user for a client.
+   *
+   * @param realName  - the name of the user (i.e., Sam)
+   * @param userType  - user is one of the following types: ARTIST, LISTENER, ADMIN, SCIENTIST
+   * @param mainGenre - The main genre for a user, (i.e., country, pop, rap, etc...)
+   * @param age       - the age of the user
+   * @param clientId  - the ID for the client in question
+   * @return - if Created, then return new User; else, BAD_REQUEST
+   */
+
+  @PostMapping(&quot;/createUser&quot;)
+  @ResponseBody
+  public ResponseEntity&lt;User&gt; createUser(
+      @RequestParam(name = &quot;realname&quot;) String realName,
+      @RequestParam(name = &quot;usertype&quot;) String userType,
+      @RequestParam(name = &quot;maingenre&quot;) String mainGenre,
+      @RequestParam(name = &quot;age&quot;) String age,
+      @RequestParam(name = &quot;clientid&quot;) String clientId) {
+    try {
+<span class="fc" id="L148">      UserType type = UserType.valueOf(userType);</span>
+<span class="fc" id="L149">      Integer ageInt = Integer.parseInt(age);</span>
+<span class="fc" id="L150">      Long clientIdLong = Long.parseLong(clientId);</span>
+<span class="fc" id="L151">      User user = client1Service.createUser(realName, type, mainGenre, ageInt, clientIdLong);</span>
+<span class="fc" id="L152">      return new ResponseEntity&lt;&gt;(user, HttpStatus.CREATED);</span>
+<span class="nc" id="L153">    } catch (RuntimeException e) {</span>
+<span class="nc" id="L154">      throw e;</span>
+<span class="nc" id="L155">    } catch (Exception e) {</span>
+<span class="nc" id="L156">      return new ResponseEntity&lt;&gt;(null, HttpStatus.BAD_REQUEST);</span>
+    }
+  }
+
+
+  /**
+   * Method to delete a user. Also deletes all playlists where user is owner, removes
+   * user as subscriber from playlists where not owner and deletes all analytics entries
+   * for said user.
+   *
+   * @param userId   - the ID for the user to be deleted
+   * @param clientId - the ID for the client from which the user will be deleted
+   * @return - if OK, User corresponding to deleted User entry in table; else, BAD_REQUEST
+   */
+
+  @DeleteMapping(&quot;/deleteUser&quot;)
+  @ResponseBody
+  public ResponseEntity&lt;User&gt; deleteUser(
+      @RequestParam(name = &quot;id&quot;) String userId,
+      @RequestParam(name = &quot;clientId&quot;) String clientId) {
+    try {
+<span class="fc" id="L177">      Long id = Long.parseLong(userId);</span>
+<span class="fc" id="L178">      Long clientIdLong = Long.parseLong(clientId);</span>
+<span class="fc" id="L179">      User toDelete = client1Service.deleteUser(id, clientIdLong);</span>
+<span class="fc" id="L180">      return new ResponseEntity&lt;&gt;(toDelete, HttpStatus.OK);</span>
+<span class="nc" id="L181">    } catch (RuntimeException e) {</span>
+<span class="nc" id="L182">      throw e;</span>
+<span class="nc" id="L183">    } catch (Exception e) {</span>
+<span class="nc" id="L184">      return new ResponseEntity&lt;&gt;(null, HttpStatus.BAD_REQUEST);</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
