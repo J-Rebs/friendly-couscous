@@ -3,6 +3,7 @@ package com.example.musictonic.controller;
 import static org.hamcrest.core.Is.is;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -149,6 +150,16 @@ class Client1ControllerTest {
     ResultActions result = mvc.perform(put("/client1-rest/likeSong?userid=1&songid=100")
             .contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().isBadRequest());
+  }
+
+  @Test
+  @DisplayName("/client1-rest/deleteUser DELETE route WORKS")
+  void deleteUserGood() throws Exception {
+    IllegalArgumentException exception = new IllegalArgumentException();
+    when(client1Service.deleteUser(any(Long.class), any(Long.class))).thenReturn(user);
+    mvc.perform(delete("/client1-rest/deleteUser?id=1&clientId=1")
+            .contentType(MediaType.APPLICATION_JSON))
+        .andExpect(status().isOk());
   }
 
 
