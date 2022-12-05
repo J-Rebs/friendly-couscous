@@ -150,10 +150,10 @@ We implemented JWT bearer tokens based on this [example](https://github.com/murr
    analytics with unique ids and timestamps, and when client 3 exports this user's profile, we can see that in the
    analyticsList part of the user's profile, the analyticsId and timestampString matched with these numbers generated
    previously.  
-   <img src="./testScreenShots/test_1/register_1.JPG" width="700px">
-   <hr><img src="./testScreenShots/test_1/play_song_2.JPG" width="600px">
-   <hr><img src="./testScreenShots/test_1/play_song_3.JPG" width="600px">
-   <hr><img src="./testScreenShots/test_1/export_user_4.JPG" width="600px">
+   <img src="./testScreenShots/test_1/register_1.JPG">
+   <hr><img src="./testScreenShots/test_1/play_song_2.JPG">
+   <hr><img src="./testScreenShots/test_1/play_song_3.JPG">
+   <hr><img src="./testScreenShots/test_1/export_user_4.JPG">
 
 ### Test 2
 1. [x] [POST] https://music-tonic.herokuapp.com/client-auth/signup?username=client-2&password=supercool
@@ -167,13 +167,13 @@ We implemented JWT bearer tokens based on this [example](https://github.com/murr
    songs. After these requests are made, client 1 called likeSong with userid=1 and songid=3 for 10 times. Then client 3 and client 2
    called listSongs and top3songs again. We can see that songLikesCount for song 3 is increased by 10 (from 21 to 31) in
    listSongs. This change is also reflected on the top3songs.  
-   <img src="./testScreenShots/test_2/register_1.JPG" width="700px">
-   <hr><img src="./testScreenShots/test_2/list_songs_2.JPG" width="600px">
-   <hr><img src="./testScreenShots/test_2/top3songs_3.JPG" width="600px">
-   <hr><img src="./testScreenShots/test_2/like_song_4.JPG" width="600px">
-   <hr><img src="./testScreenShots/test_2/like_song_5.JPG" width="600px">
-   <hr><img src="./testScreenShots/test_2/list_songs_6.JPG" width="600px">
-   <hr><img src="./testScreenShots/test_2/top3songs_7.JPG" width="600px">
+   <img src="./testScreenShots/test_2/register_1.JPG">
+   <hr><img src="./testScreenShots/test_2/list_songs_2.JPG">
+   <hr><img src="./testScreenShots/test_2/top3songs_3.JPG">
+   <hr><img src="./testScreenShots/test_2/like_song_4.JPG">
+   <hr><img src="./testScreenShots/test_2/like_song_5.JPG">
+   <hr><img src="./testScreenShots/test_2/list_songs_6.JPG">
+   <hr><img src="./testScreenShots/test_2/top3songs_7.JPG">
 
 ## By Team Grey Orange
 
