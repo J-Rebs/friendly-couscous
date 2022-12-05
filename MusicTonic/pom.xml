@@ -123,6 +123,14 @@
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.8.8</version>
+                <configuration>
+                    <excludes>
+                        <exclude>**/*model.*</exclude>
+                        <exclude>**/*jwt.*</exclude>
+                        <exclude>**/*repository.*</exclude>
+                        <exclude>**/*utils.*</exclude>
+                    </excludes>
+                </configuration>
                 <executions>
                     <execution>
                         <goals>
@@ -138,14 +146,6 @@
                         </goals>
                     </execution>
                 </executions>
-                <configuration>
-                    <excludes>
-                        <exclude>com/example/musictonic/model</exclude>
-                        <exclude>com/example/musictonic/utils</exclude>
-                        <exclude>com/example/musictonic/config</exclude>
-                        <exclude>com/example/musictonic/jwt</exclude>
-                    </excludes>
-                </configuration>
             </plugin>
         </plugins>
     </build>
