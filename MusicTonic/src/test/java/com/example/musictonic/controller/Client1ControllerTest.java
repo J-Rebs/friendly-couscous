@@ -148,9 +148,7 @@ class Client1ControllerTest {
   @Test
   @DisplayName("/client1-rest/playsong POST route FAILS, as expected")
   void createAnalyticalSongBad2() throws Exception {
-    when(client1Service.playSong(any(Long.class), any(Long.class), any(Long.class),
-        any(Long.class))).thenThrow(new RuntimeException("Runtime Error occurred"));
-    mvc.perform(post("/client1-rest/playsong?userid=1&songid=1&playlistid=1"))
+    mvc.perform(post("/client1-rest/playsong?userid=1&songid=1"))
         .andExpect(status().is4xxClientError());
   }
 
