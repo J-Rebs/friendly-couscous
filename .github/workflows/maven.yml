@@ -30,8 +30,24 @@ jobs:
         project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
         upload: true
         max-allowed-issues: 2147483647
-    - name: Test with Maven
-      run: mvn -X test --file pom.xml
+    #- name: Test with Maven
+    #  run: mvn -X test --file pom.xml
+    
+    - name: Client1 Controller Test
+      run: mvn -X -Dtest=Client1ControllerTest test
+    - name: Client2 Controller Test
+      run: mvn -Dtest=Client2ControllerTest test
+    - name: Client3 Controller Test
+      run: mvn -Dtest=Client3ControllerTest test
+    - name: Client1 Service Test
+      run: mvn -Dtest=Client1ServiceTest test
+    - name: Client2 Service Test
+      run: mvn -Dtest=Client2ServiceTest test
+    - name: Integration Test
+      run: mvn -X -Dtest=IntegrationTest test
+    - name: Full Tests with JaCoCo
+      run: mvn test -f pom.xml
+
     - name: Show the report for JaCoCo
       uses: actions/upload-artifact@v3
       with:
