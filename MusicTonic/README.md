@@ -112,6 +112,9 @@ look [here](https://github.com/J-Rebs/friendly-couscous/tree/main/MusicTonic/src
 
 ![image](PostmanScreenshots/test_9.png)
 
+### Integration Tests using Java SpringBoot
+
+[here](https://github.com/J-Rebs/friendly-couscous/tree/main/MusicTonic/src/test/java/com/example/musictonic/integration)
 
 ## 4. Style Compliant
 
