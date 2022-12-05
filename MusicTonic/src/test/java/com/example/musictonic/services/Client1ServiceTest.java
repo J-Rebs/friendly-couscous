@@ -162,15 +162,15 @@ class Client1ServiceTest {
 
     userList.add(user);
 
-    analyticsUser = new AnalyticsUser(a, user);
-    analyticsSong = new AnalyticsSong(a, song);
-    analyticsPlaylist = new AnalyticsPlaylist(a, playlist);
+    analyticsUser = new AnalyticsUser(1L, a, user);
+    analyticsSong = new AnalyticsSong(1L, a, song);
+    analyticsPlaylist = new AnalyticsPlaylist(1L, a, playlist);
 
     Date date = new Date();
     timestamp = new Timestamp(date.getTime());
     DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
     String timestampString = formatter.format(timestamp.toLocalDateTime());
-    a = new Analytics(timestampString);
+    a = new Analytics(1L, timestampString);
 
   }
 
@@ -284,12 +284,15 @@ class Client1ServiceTest {
 
 
     List<AnalyticsUser> list1 = new ArrayList<>();
+    list1.add(analyticsUser);
     when(analyticsUserRepo.findByUser(any(User.class))).thenReturn(list1);
 
     List<PlaylistToSubscriber> list2 = new ArrayList<>();
+    list2.add(new PlaylistToSubscriber(1L,user,playlist));
     when(playlistToSubscriberRepo.findAllByUser(any(User.class))).thenReturn(list2);
 
     List<Playlist> list3 = new ArrayList<>();
+    list3.add(playlist);
     when(playlistRepo.findAllByOwner(any(Long.class))).thenReturn(list3);
 
     client1Service.deleteUser(1L, 1L);

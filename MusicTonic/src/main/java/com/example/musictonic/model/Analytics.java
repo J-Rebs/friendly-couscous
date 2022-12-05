@@ -63,6 +63,11 @@ public class Analytics {
     this.analyticsGroup = analyticsGroup;
   }
 
+  public Analytics(Long analyticsId, String timestamp) {
+    this.analyticsId = analyticsId;
+    this.timestamp = timestamp;
+  }
+
   public Analytics(String timestamp) {
     this.timestamp = timestamp;
   }
