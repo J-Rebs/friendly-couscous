@@ -78,11 +78,40 @@ look [here](https://github.com/J-Rebs/friendly-couscous/tree/main/MusicTonic/src
 
 ### Postman Tests
 
-![image](PostmanScreenshots/Screenshot_2022-10-30_at_2.00.02_PM.png)
-![image](PostmanScreenshots/Screenshot_2022-10-30_at_2.00.38_PM.png)
-![image](PostmanScreenshots/Screenshot_2022-10-30_at_2.01.58_PM.png)
-![image](PostmanScreenshots/Screenshot_2022-10-30_at_2.02.48_PM.png)
-![image](PostmanScreenshots/Screenshot_2022-10-30_at_2.03.54_PM.png)
+![image](PostmanScreenshots/test_1.png)
+
+<hr>
+
+![image](PostmanScreenshots/test_2.png)
+
+<hr>
+
+![image](PostmanScreenshots/test_3.png)
+
+<hr>
+
+![image](PostmanScreenshots/test_4.png)
+
+<hr>
+
+![image](PostmanScreenshots/test_5.png)
+
+<hr>
+
+![image](PostmanScreenshots/test_6.png)
+
+<hr>
+
+![image](PostmanScreenshots/test_7.png)
+
+<hr>
+
+![image](PostmanScreenshots/test_8.png)
+
+<hr>
+
+![image](PostmanScreenshots/test_9.png)
+
 
 ## 4. Style Compliant
 
