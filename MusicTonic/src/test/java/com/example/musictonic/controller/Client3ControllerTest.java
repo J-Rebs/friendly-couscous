@@ -11,6 +11,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.example.musictonic.jwt.JwtController;
 import com.example.musictonic.jwt.JwtService;
 import com.example.musictonic.model.Playlist;
+import com.example.musictonic.model.Song;
 import com.example.musictonic.model.User;
 import com.example.musictonic.model.UserType;
 import com.example.musictonic.repository.SongRepository;
@@ -69,6 +70,11 @@ public class Client3ControllerTest {
   private User user;
   private List<Playlist> playlistList;
 
+  private Song song;
+  private Song song2;
+  private Song song3;
+  private List<Song> listOfSongs;
+
   private List<AnalyticsInfoBasic> analyticsList;
 
   private Timestamp timestamp;
@@ -78,6 +84,15 @@ public class Client3ControllerTest {
   @BeforeEach
   void init() {
     user = new User(1L, "Not so cool Guy", UserType.LISTENER, "heavy metal", 84);
+
+    song = new Song("pathetique sonata", 20, "Beethoven", "n/a", 3000);
+    song2 = new Song("waldstein sonata", 20, "Beethoven", "n/a", 2000);
+    song3 = new Song("appassionata sonata", 25, "Beethoven", "n/a", 1000);
+
+    listOfSongs = new ArrayList<>();
+    listOfSongs.add(song);
+    listOfSongs.add(song2);
+    listOfSongs.add(song3);
 
     playlistList = new ArrayList<>();
     Playlist playlist1 = new Playlist(1L, 1L, "a dumb playlist", false);
@@ -115,6 +130,14 @@ public class Client3ControllerTest {
         userExportReturn);
     mvc.perform(get("/client3-rest/userexport?songid=1"))
         .andExpect(status().isBadRequest());
+  }
+
+  @Test
+  @DisplayName("listSongs() route WORKS, as expected")
+  void listSongsGood() throws Exception {
+    when(songRepo.findAll()).thenReturn(listOfSongs);
+    mvc.perform(get("/client3-rest/listSongs"))
+        .andExpect(status().isOk());
   }
 
 
