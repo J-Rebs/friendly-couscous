@@ -104,7 +104,7 @@ public class Client2ControllerTest {
   @Test
   @DisplayName("getNumberOfUsersInAgeRange() WORKS")
   void getNumberOfUsersInAgeRangeGood() throws Exception {
-    mvc.perform(get("/client2-rest/numberOfUsersInAgeRange?from=0&to=100")
+    mvc.perform(get("/client2-rest/numberOfUsersInAgeRange?from=0&to=99")
             .contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk());
   }
