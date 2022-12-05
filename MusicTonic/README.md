@@ -114,7 +114,7 @@ look [here](https://github.com/J-Rebs/friendly-couscous/tree/main/MusicTonic/src
 
 ### Integration Tests using Java SpringBoot
 
-File contains the integration tests can be found here[here](https://github.com/J-Rebs/friendly-couscous/tree/main/MusicTonic/src/test/java/com/example/musictonic/integration)  
+File contains the integration tests can be found [here](https://github.com/J-Rebs/friendly-couscous/tree/main/MusicTonic/src/test/java/com/example/musictonic/integration)  
 Results of the integration tests are shown in the continuous integration page (see section 10)
 
 ## 4. Style Compliant
