@@ -113,6 +113,7 @@ class Client1ServiceTest {
   private User user;
   private User user2;
   private Song song;
+  private Song song2;
   private Playlist playlist;
   private Playlist playlist2;
 
@@ -127,10 +128,13 @@ class Client1ServiceTest {
   private List<ClientUser> clientUserListGETONLY = new ArrayList<>();
 
   private ClientSong clientSong;
+  private ClientSong clientSong2;
   private List<ClientSong> clientSongList = new ArrayList<>();
 
   private ClientPlaylist clientPlaylist;
+  private ClientPlaylist clientPlaylist2;
   private List<ClientPlaylist> clientPlaylistList = new ArrayList<>();
+  private List<ClientPlaylist> clientPlaylistList2 = new ArrayList<>();
 
   private Analytics a;
 
@@ -142,21 +146,21 @@ class Client1ServiceTest {
 
   private Timestamp timestamp;
 
-  private Playlist playlistMock;
-
   @BeforeEach
   void init() {
     user = new User(1L, "Cool Guy", UserType.ARTIST, "country", 27);
     user2 = new User(2L, "Cool Guy", UserType.ARTIST, "country", 27);
     song = new Song(1L, "SongySongyPopPop", 2, "CoolestArtist", "YaYaMerchMakesYou COOL", 10);
+    song2 = new Song(2L, "second song", 2, "CoolestArtist", "YaYaMerchMakesYou COOL", 10);
     playlist = new Playlist(1L, 1L, "TheBEST", false);
-    playlistMock = new Playlist(2L, 2L, "TheBEST", true);
+    playlist2 = new Playlist(2L, 2L, "TheBEST", true);
     client = new Client(1L);
     client2 = new Client(2L);
     clientUser = new ClientUser(1L, client, user);
-    clientUser2 = new ClientUser(2L, client2, user);
+    clientUser2 = new ClientUser(2L, client2, user2);
     // extra list
     clientUserListGETONLY.add(clientUser);
+    clientUserListGETONLY.add(clientUser2);
 
     clientUserList.add(clientUser);
     clientUserList.add(clientUser2);
@@ -164,11 +168,16 @@ class Client1ServiceTest {
 
     clientSong = new ClientSong(1L, client, song);
     clientSongList.add(clientSong);
+    clientSong2 = new ClientSong(2L, client2, song2);
+    clientSongList.add(clientSong2);
     clientPlaylist = new ClientPlaylist(1L, client, playlist);
     clientPlaylistList.add(clientPlaylist);
+    clientPlaylist2 = new ClientPlaylist(2L, client2, playlist2);
+    clientPlaylistList2.add(clientPlaylist2);
 
 
     userList.add(user);
+    userList.add(user2);
 
     analyticsUser = new AnalyticsUser(1L, a, user);
     analyticsSong = new AnalyticsSong(1L, a, song);
@@ -223,12 +232,24 @@ class Client1ServiceTest {
     assertThrows(IllegalAccessException.class, () -> client1Service.validPlaylist(1L, 1L, 1L));
   }
 
-//  @Test
-//  @DisplayName("validPlaylist() FAILS, as expected")
-//  void subscribeDefaultPlaylistBad() throws IllegalAccessException {
-//    when(playlist.getDefault()).thenReturn(true);
-//    assertThrows(IllegalAccessException.class, () -> client1Service.subscribeDefaultPlaylist(1L, client);
-//  }
+  @Test
+  @DisplayName("subscribeDefaultPlaylist() WORKS given default playlist, as expected")
+  void subscribeDefaultPlaylistGood() throws IllegalAccessException {
+    when(songRepo.findBySongId(any(Long.class))).thenReturn(song2);
+    when(clientRepo.findByClientId(any(Long.class))).thenReturn(client2);
+    when(userRepo.findByUserId(any(Long.class))).thenReturn(user2);
+    when(clientUserRepo.findAllByClient(any(Client.class))).thenReturn(clientUserList);
+    when(clientSongRepo.findAllByClient(any(Client.class))).thenReturn(clientSongList);
+
+
+    Integer originalSongLikesCount = song.getSongLikesCount();
+    for (int i = 0; i < 9; i++) {
+      client1Service.likeSong(1L, 1L, 1L);
+    }
+    Integer songLikesCount = client1Service.likeSong(2L, 2L, 2L);
+
+    assertEquals(originalSongLikesCount + 10, songLikesCount);
+  }
 
   @Test
   @DisplayName("likeSong() WORKS")
