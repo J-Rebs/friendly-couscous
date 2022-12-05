@@ -1,24 +1,24 @@
 # Summary
 |||
 |:---|:---|
-| Generated on: | 12/05/2022 - 15:39:47 |
-| Coverage date: | 12/05/2022 - 15:38:20 |
+| Generated on: | 12/05/2022 - 16:15:14 |
+| Coverage date: | 12/05/2022 - 16:13:18 |
 | Parser: | JaCoCo |
 | Assemblies: | 4 |
 | Classes: | 23 |
 | Files: | 23 |
-| **Line coverage:** | 79.4% (205 of 258) |
-| Covered lines: | 205 |
-| Uncovered lines: | 53 |
+| **Line coverage:** | 80.2% (207 of 258) |
+| Covered lines: | 207 |
+| Uncovered lines: | 51 |
 | Coverable lines: | 258 |
 | Total lines: | 0 |
-| **Branch coverage:** | 73.1% (60 of 82) |
-| Covered branches: | 60 |
+| **Branch coverage:** | 76.8% (63 of 82) |
+| Covered branches: | 63 |
 | Total branches: | 82 |
 | **Method coverage:** | 92.8% (26 of 28) |
 | Covered methods: | 26 |
 | Total methods: | 28 |
-| Tag: | 157_3621574252 |
+| Tag: | 159_3621859560 |
 
 |**Name**|**Covered**|**Uncovered**|**Coverable**|**Total**|**Line coverage**|**Covered**|**Total**|**Branch coverage**|**Covered**|**Total**|**Method coverage**|
 |:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
@@ -45,7 +45,7 @@
 |com/example/musictonic/repository/PlaylistToSubscriberRepository|0|0|0|0||0|0||0|0||
 |com/example/musictonic/repository/SongRepository|0|0|0|0||0|0||0|0||
 |com/example/musictonic/repository/UserRepository|0|0|0|0||0|0||0|0||
-|**com/example/musictonic/services**|**169**|**22**|**191**|**0**|**88.4%**|**58**|**80**|**72.5%**|**13**|**13**|**100%**|
-|com/example/musictonic/services/Client1Service|128|22|150|0|85.3%|38|60|63.3%|9|9|100%|
+|**com/example/musictonic/services**|**171**|**20**|**191**|**0**|**89.5%**|**61**|**80**|**76.2%**|**13**|**13**|**100%**|
+|com/example/musictonic/services/Client1Service|130|20|150|0|86.6%|41|60|68.3%|9|9|100%|
 |com/example/musictonic/services/Client2Service|12|0|12|0|100%|6|6|100%|2|2|100%|
 |com/example/musictonic/services/Client3Service|29|0|29|0|100%|14|14|100%|2|2|100%|

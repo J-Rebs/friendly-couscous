@@ -149,7 +149,7 @@ public class Client1Service {
   }
 
   // helper method, in methods used in
-  private boolean validPlaylist(Long playlistId, Long clientId) throws IllegalAccessException {
+  boolean validPlaylist(Long playlistId, Long clientId, long l) throws IllegalAccessException {
     boolean clientPlaylistMatch = false;
     Client client = clientRepo.findByClientId(clientId);
     List<ClientPlaylist> playlistsForClient = clientPlaylistRepo.findAllByClient(client);
@@ -256,7 +256,7 @@ public class Client1Service {
 
     // validate client has access to user, song, playlist
     validUserSong(userId, songId, clientId);
-    validPlaylist(playlistId, clientId);
+    validPlaylist(playlistId, clientId, 1L);
     // insert into analytics (or returns the id)
     Date date = new Date();
     Timestamp timestamp = new Timestamp(date.getTime());
