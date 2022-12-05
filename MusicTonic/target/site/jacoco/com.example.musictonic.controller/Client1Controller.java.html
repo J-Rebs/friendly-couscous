@@ -145,11 +145,11 @@ import org.springframework.web.bind.annotation.RestController;
       @RequestParam(name = &quot;age&quot;) String age,
       @RequestParam(name = &quot;clientid&quot;) String clientId) {
     try {
-<span class="nc" id="L148">      UserType type = UserType.valueOf(userType);</span>
-<span class="nc" id="L149">      Integer ageInt = Integer.parseInt(age);</span>
-<span class="nc" id="L150">      Long clientIdLong = Long.parseLong(clientId);</span>
-<span class="nc" id="L151">      User user = client1Service.createUser(realName, type, mainGenre, ageInt, clientIdLong);</span>
-<span class="nc" id="L152">      return new ResponseEntity&lt;&gt;(user, HttpStatus.CREATED);</span>
+<span class="fc" id="L148">      UserType type = UserType.valueOf(userType);</span>
+<span class="fc" id="L149">      Integer ageInt = Integer.parseInt(age);</span>
+<span class="fc" id="L150">      Long clientIdLong = Long.parseLong(clientId);</span>
+<span class="fc" id="L151">      User user = client1Service.createUser(realName, type, mainGenre, ageInt, clientIdLong);</span>
+<span class="fc" id="L152">      return new ResponseEntity&lt;&gt;(user, HttpStatus.CREATED);</span>
 <span class="nc" id="L153">    } catch (RuntimeException e) {</span>
 <span class="nc" id="L154">      throw e;</span>
 <span class="nc" id="L155">    } catch (Exception e) {</span>
@@ -174,10 +174,10 @@ import org.springframework.web.bind.annotation.RestController;
       @RequestParam(name = &quot;id&quot;) String userId,
       @RequestParam(name = &quot;clientId&quot;) String clientId) {
     try {
-<span class="nc" id="L177">      Long id = Long.parseLong(userId);</span>
-<span class="nc" id="L178">      Long clientIdLong = Long.parseLong(clientId);</span>
-<span class="nc" id="L179">      User toDelete = client1Service.deleteUser(id, clientIdLong);</span>
-<span class="nc" id="L180">      return new ResponseEntity&lt;&gt;(toDelete, HttpStatus.OK);</span>
+<span class="fc" id="L177">      Long id = Long.parseLong(userId);</span>
+<span class="fc" id="L178">      Long clientIdLong = Long.parseLong(clientId);</span>
+<span class="fc" id="L179">      User toDelete = client1Service.deleteUser(id, clientIdLong);</span>
+<span class="fc" id="L180">      return new ResponseEntity&lt;&gt;(toDelete, HttpStatus.OK);</span>
 <span class="nc" id="L181">    } catch (RuntimeException e) {</span>
 <span class="nc" id="L182">      throw e;</span>
 <span class="nc" id="L183">    } catch (Exception e) {</span>

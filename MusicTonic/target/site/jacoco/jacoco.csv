@@ -35,7 +35,7 @@ MusicTonic,com.example.musictonic.model,Analytics,35,60,0,0,10,26,7,10,7,10
 MusicTonic,com.example.musictonic.model,Playlist,24,42,0,0,9,17,5,7,5,7
 MusicTonic,com.example.musictonic.model,Client,6,12,0,0,3,6,1,3,1,3
 MusicTonic,com.example.musictonic.model,AnalyticsUser,23,30,0,0,8,13,5,5,5,5
-MusicTonic,com.example.musictonic.controller,Client1Controller,111,52,0,0,32,10,3,3,3,3
+MusicTonic,com.example.musictonic.controller,Client1Controller,65,98,0,0,23,19,1,5,1,5
 MusicTonic,com.example.musictonic.controller,Client2Controller,29,13,0,0,8,3,1,2,1,2
 MusicTonic,com.example.musictonic.controller,Client3Controller,33,19,2,0,9,4,2,2,1,2
 MusicTonic,com.example.musictonic.controller,BaseController,2,3,0,0,1,1,1,1,1,1

@@ -3,6 +3,7 @@ package com.example.musictonic.controller;
 import static org.hamcrest.core.Is.is;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -28,6 +29,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.sql.Timestamp;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -75,8 +77,6 @@ class Client1ControllerTest {
 
   @MockBean
   private UserRepository userRepo;
-
-
   private User user;
   private Song song;
   private Playlist playlist;
@@ -149,6 +149,27 @@ class Client1ControllerTest {
     ResultActions result = mvc.perform(put("/client1-rest/likeSong?userid=1&songid=100")
             .contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().isBadRequest());
+  }
+
+  @Test
+  @DisplayName("/client1-rest/deleteUser DELETE route WORKS")
+  void deleteUserGood() throws Exception {
+    when(client1Service.deleteUser(any(Long.class), any(Long.class))).thenReturn(user);
+    mvc.perform(delete("/client1-rest/deleteUser?id=1&clientId=1")
+            .contentType(MediaType.APPLICATION_JSON))
+        .andExpect(status().isOk());
+  }
+
+  @Test
+  @DisplayName("/client1-rest/createUser POST route WORKS")
+  void createUserGood() throws Exception {
+    when(client1Service.createUser(any(String.class), any(UserType.class), any(String.class), any(
+        Integer.class), any(Long.class))).thenReturn(user);
+    mvc.perform(
+            post(
+                "/client1-rest/createUser?realname=johnbobstin&usertype=LISTENER&maingenre=metal&age=38&clientid=38")
+                .contentType(MediaType.APPLICATION_JSON))
+        .andExpect(status().isCreated());
   }
 
 
