@@ -2,6 +2,7 @@ package com.example.musictonic.services;
 
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
@@ -60,11 +61,18 @@ public class Client3ServiceTest {
   @Mock
   private UserRepository userRepo;
   private Client client;
+  private Client client2;
 
   private ClientUser clientUser;
+  private ClientUser client2User;
+  private ClientUser clientUser2;
+  private ClientUser client2User2;
 
   private List<ClientUser> clientUserList = new ArrayList<>();
+  private List<ClientUser> clientUserList2 = new ArrayList<>();
+  private List<ClientUser> clientUserList3 = new ArrayList<>();
   private User user;
+  private User user2;
   private List<Playlist> playlistList;
   private List<AnalyticsUser> analyticsUserList = new ArrayList<>();
   private List<AnalyticsInfoBasic> analyticsInfoBasicList;
@@ -84,6 +92,7 @@ public class Client3ServiceTest {
   @BeforeEach
   void init() {
     user = new User(1L, "Not so cool Guy", UserType.LISTENER, "heavy metal", 84);
+    user2 = new User(2L, "Not so cool Guy", UserType.LISTENER, "heavy metal", 84);
     song = new Song(1L, "SongySongyPopPop", 2, "CoolestArtist", "YaYaMerchMakesYou COOL", 10);
 
     playlistList = new ArrayList<>();
@@ -111,8 +120,18 @@ public class Client3ServiceTest {
     analyticsUserList.add(analyticsUser);
 
     client = new Client(1L);
-    clientUser = new ClientUser(client, user);
+    client2 = new Client(2L);
+    clientUser = new ClientUser(1L, client, user);
+    clientUser2 = new ClientUser(2L, client, user2);
+    client2User2 = new ClientUser(3L, client2, user2);
+    client2User = new ClientUser(4L, client2, user);
     clientUserList.add(clientUser);
+    clientUserList.add(clientUser2);
+    clientUserList.add(client2User2);
+
+    clientUserList2.add(client2User2);
+    clientUserList3.add(client2User);
+
 
     userExportReturn = new UserExportReturn(user, playlistList, analyticsInfoBasicList);
   }
@@ -122,6 +141,7 @@ public class Client3ServiceTest {
   void getUserInformationGood() throws IllegalAccessException {
     when(clientRepo.findByClientId(any(Long.class))).thenReturn(client);
     when(userRepo.findByUserId(any(Long.class))).thenReturn(user);
+
     when(clientUserRepo.findAllByClient(any(Client.class))).thenReturn(clientUserList);
     when(playlistRepo.findAllByOwner(any(Long.class))).thenReturn(playlistList);
     when(analyticsUserRepo.findByUser(any(User.class))).thenReturn(analyticsUserList);
@@ -138,7 +158,7 @@ public class Client3ServiceTest {
 
   @Test
   @DisplayName("getUserInformation() FAILS, as expected")
-  void getUserInformationBad() throws IllegalAccessException {
+  void getUserInformationBad1() throws IllegalAccessException {
     when(clientRepo.findByClientId(any(Long.class))).thenReturn(client);
     when(userRepo.findByUserId(any(Long.class))).thenReturn(user);
     List<ClientUser> clientUserListBad = new ArrayList<>();
@@ -147,5 +167,22 @@ public class Client3ServiceTest {
 
   }
 
+  @Test
+  @DisplayName("getUserInformation() FAILS because clientId is not equal, as expected")
+  void getUserInformationBad2() throws IllegalAccessException {
+    when(clientRepo.findByClientId(any(Long.class))).thenReturn(client);
+    when(userRepo.findByUserId(any(Long.class))).thenReturn(user);
+    when(clientUserRepo.findAllByClient(any(Client.class))).thenReturn(clientUserList2);
+    assertThrows(IllegalAccessException.class, () -> client3Service.getUserInformation(1L, 1L));
+  }
+
+  @Test
+  @DisplayName("getUserInformation() FAILS because clientId is not equal, as expected")
+  void getUserInformationBad3() throws IllegalAccessException {
+    when(clientRepo.findByClientId(any(Long.class))).thenReturn(client);
+    when(userRepo.findByUserId(any(Long.class))).thenReturn(user);
+    when(clientUserRepo.findAllByClient(any(Client.class))).thenReturn(clientUserList3);
+    assertThrows(IllegalAccessException.class, () -> client3Service.getUserInformation(1L, 1L));
+  }
 
 }
