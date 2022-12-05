@@ -35,6 +35,16 @@ public class IntegrationTest {
     return response.getBody();
   }
 
+  private String getToken_signin(){
+    String url = "https://music-tonic.herokuapp.com/client-auth/signin?username=client-1&password=supercool";
+    UriComponents builder = UriComponentsBuilder.fromHttpUrl(url).build();
+    HttpEntity<String> req = new HttpEntity<>(null, null);
+    ResponseEntity<String> response =
+        testRestTemplate.exchange(builder.toString(), HttpMethod.POST, req, String.class);
+
+    return response.getBody();
+  }
+
   @Test
   public void getUsers() {
     if(token.length() == 0){
@@ -60,7 +70,7 @@ public class IntegrationTest {
   @Test
   public void playSong() {
     if(token.length() == 0){
-      token = getToken();
+      token = getToken_signin();
     }
 
     String url = "https://music-tonic.herokuapp.com/client1-rest/playsong";
@@ -79,13 +89,13 @@ public class IntegrationTest {
         testRestTemplate.exchange(builder.toString(), HttpMethod.POST, req, String.class);
 
     System.out.println(response.getBody());
-    assertEquals(HttpStatus.OK, response.getStatusCode());
+    assertEquals(HttpStatus.CREATED, response.getStatusCode());
   }
 
   @Test
   public void likeSong() {
     if(token.length() == 0){
-      token = getToken();
+      token = getToken_signin();
     }
 
     String url = "https://music-tonic.herokuapp.com/client1-rest/likeSong";
@@ -109,7 +119,7 @@ public class IntegrationTest {
   @Test
   public void createUsers() {
     if(token.length() == 0){
-      token = getToken();
+      token = getToken_signin();
     }
 
     String url = "https://music-tonic.herokuapp.com/client1-rest/createUser";
@@ -129,7 +139,7 @@ public class IntegrationTest {
         testRestTemplate.exchange(builder.toString(), HttpMethod.POST, req, String.class);
 
     System.out.println(response.getBody());
-    assertEquals(HttpStatus.OK, response.getStatusCode());
+    assertEquals(HttpStatus.CREATED, response.getStatusCode());
   }
 
   /*
@@ -154,7 +164,7 @@ public class IntegrationTest {
   @Test
   public void top3Songs() {
     if(token.length() == 0){
-      token = getToken();
+      token = getToken_signin();
     }
 
     String url = "https://music-tonic.herokuapp.com/client2-rest/top3songs";
@@ -176,7 +186,7 @@ public class IntegrationTest {
   @Test
   public void exportUsers() {
     if(token.length() == 0){
-      token = getToken();
+      token = getToken_signin();
     }
 
     String url = "https://music-tonic.herokuapp.com/client3-rest/userexport";
@@ -199,7 +209,7 @@ public class IntegrationTest {
   @Test
   public void listSongs() {
     if(token.length() == 0){
-      token = getToken();
+      token = getToken_signin();
     }
 
     String url = "https://music-tonic.herokuapp.com/client3-rest/listSongs";
