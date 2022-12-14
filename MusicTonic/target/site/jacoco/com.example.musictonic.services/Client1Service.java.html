@@ -118,7 +118,7 @@ import org.springframework.transaction.annotation.Transactional;
     // check that user exists for client; else throw exception
 <span class="fc" id="L119">    boolean clientUserMatch = false;</span>
 <span class="fc bfc" id="L120" title="All 2 branches covered.">    for (ClientUser cl : usersForClient) {</span>
-<span class="pc bpc" id="L121" title="1 of 4 branches missed.">      if (cl.getUser().getUserId() == userId &amp;&amp; cl.getClient().getClientId() == clientId) {</span>
+<span class="fc bfc" id="L121" title="All 4 branches covered.">      if (cl.getUser().getUserId() == userId &amp;&amp; cl.getClient().getClientId() == clientId) {</span>
 <span class="fc" id="L122">        clientUserMatch = true;</span>
 <span class="fc" id="L123">        break;</span>
       }
