@@ -118,7 +118,7 @@ import org.springframework.transaction.annotation.Transactional;
     // check that user exists for client; else throw exception
 <span class="fc" id="L119">    boolean clientUserMatch = false;</span>
 <span class="fc bfc" id="L120" title="All 2 branches covered.">    for (ClientUser cl : usersForClient) {</span>
-<span class="fc bfc" id="L121" title="All 4 branches covered.">      if (cl.getUser().getUserId() == userId &amp;&amp; cl.getClient().getClientId() == clientId) {</span>
+<span class="pc bpc" id="L121" title="1 of 4 branches missed.">      if (cl.getUser().getUserId() == userId &amp;&amp; cl.getClient().getClientId() == clientId) {</span>
 <span class="fc" id="L122">        clientUserMatch = true;</span>
 <span class="fc" id="L123">        break;</span>
       }
@@ -128,7 +128,7 @@ import org.springframework.transaction.annotation.Transactional;
 <span class="fc bfc" id="L128" title="All 2 branches covered.">    for (ClientSong cs : songsForClient) {</span>
 <span class="fc" id="L129">      Long csIdSong = cs.getSong().getSongId();</span>
 <span class="fc" id="L130">      Long csIdClient = cs.getClient().getClientId();</span>
-<span class="fc bfc" id="L131" title="All 4 branches covered.">      if (csIdSong == songId &amp;&amp; csIdClient == clientId) {</span>
+<span class="pc bpc" id="L131" title="1 of 4 branches missed.">      if (csIdSong == songId &amp;&amp; csIdClient == clientId) {</span>
 <span class="fc" id="L132">        songClientMatch = true;</span>
 <span class="fc" id="L133">        break;</span>
       }
@@ -225,7 +225,7 @@ import org.springframework.transaction.annotation.Transactional;
 <span class="fc" id="L225">    Playlist defaultPlaylist = subscribeDefaultPlaylist(userId, client);</span>
 
     // register the song-playlist combination if it doesn't already exist
-<span class="fc bfc" id="L228" title="All 2 branches covered.">    if (playlistToSongsRepo.findBySong(likedSong) == null</span>
+<span class="pc bpc" id="L228" title="1 of 2 branches missed.">    if (playlistToSongsRepo.findBySong(likedSong) == null</span>
 <span class="fc bfc" id="L229" title="All 2 branches covered.">        &amp;&amp; playlistToSongsRepo.findByPlaylist(defaultPlaylist) == null) {</span>
 <span class="fc" id="L230">      PlaylistToSongs registeredSong = new PlaylistToSongs(likedSong, defaultPlaylist);</span>
 <span class="fc" id="L231">      playlistToSongsRepo.save(registeredSong);</span>
