@@ -225,7 +225,7 @@ import org.springframework.transaction.annotation.Transactional;
 <span class="fc" id="L225">    Playlist defaultPlaylist = subscribeDefaultPlaylist(userId, client);</span>
 
     // register the song-playlist combination if it doesn't already exist
-<span class="pc bpc" id="L228" title="1 of 2 branches missed.">    if (playlistToSongsRepo.findBySong(likedSong) == null</span>
+<span class="fc bfc" id="L228" title="All 2 branches covered.">    if (playlistToSongsRepo.findBySong(likedSong) == null</span>
 <span class="fc bfc" id="L229" title="All 2 branches covered.">        &amp;&amp; playlistToSongsRepo.findByPlaylist(defaultPlaylist) == null) {</span>
 <span class="fc" id="L230">      PlaylistToSongs registeredSong = new PlaylistToSongs(likedSong, defaultPlaylist);</span>
 <span class="fc" id="L231">      playlistToSongsRepo.save(registeredSong);</span>
