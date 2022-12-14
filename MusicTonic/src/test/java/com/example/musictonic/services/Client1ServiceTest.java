@@ -477,6 +477,7 @@ class Client1ServiceTest {
     when(analyticsPlaylistRepo.findAllByPlaylist(any(Playlist.class))).thenReturn(list6);
 
     List<ClientPlaylist> list7 = new ArrayList<>();
+    list7.add(new ClientPlaylist(client,playlist));
     list7.add(new ClientPlaylist(client2,playlist));
     when(clientPlaylistRepo.findAllByPlaylist(any(Playlist.class))).thenReturn(list7);
 
