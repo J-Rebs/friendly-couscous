@@ -21,6 +21,7 @@ import com.example.musictonic.model.ClientPlaylist;
 import com.example.musictonic.model.ClientSong;
 import com.example.musictonic.model.ClientUser;
 import com.example.musictonic.model.Playlist;
+import com.example.musictonic.model.PlaylistToSongs;
 import com.example.musictonic.model.PlaylistToSubscriber;
 import com.example.musictonic.model.Song;
 import com.example.musictonic.model.User;
@@ -72,6 +73,9 @@ class Client1ServiceTest {
 
   @Mock
   PlaylistToSubscriberRepository playlistToSubscriberRepo;
+
+  @Mock
+  PlaylistToSongRepository playlistToSongsRepo;
 
   @Mock
   UserRepository userRepo;
@@ -131,6 +135,8 @@ class Client1ServiceTest {
   private ClientSong clientSong2;
   private List<ClientSong> clientSongList = new ArrayList<>();
 
+  private PlaylistToSongs playlistSong;
+
   private ClientPlaylist clientPlaylist;
   private ClientPlaylist clientPlaylist2;
   private List<ClientPlaylist> clientPlaylistList = new ArrayList<>();
@@ -175,6 +181,7 @@ class Client1ServiceTest {
     clientPlaylist2 = new ClientPlaylist(2L, client2, playlist2);
     clientPlaylistList2.add(clientPlaylist2);
 
+    playlistSong = new PlaylistToSongs(song, playlist);
 
     userList.add(user);
     userList.add(user2);
@@ -274,7 +281,28 @@ class Client1ServiceTest {
   }
 
   @Test
-  @DisplayName("likeSong() WORKS")
+  @DisplayName(
+      "likeSong() WORKS when playlistToSongsRepo.findBySong() returns a valid PlaylistSong object"
+  )
+  void likeSongGood2() throws IllegalAccessException {
+    when(songRepo.findBySongId(any(Long.class))).thenReturn(song);
+    when(clientRepo.findByClientId(any(Long.class))).thenReturn(client);
+    when(userRepo.findByUserId(any(Long.class))).thenReturn(user);
+    when(clientUserRepo.findAllByClient(any(Client.class))).thenReturn(clientUserList);
+    when(clientSongRepo.findAllByClient(any(Client.class))).thenReturn(clientSongList);
+    when(playlistToSongsRepo.findBySong(any(Song.class))).thenReturn(playlistSong);
+
+    Integer originalSongLikesCount = song.getSongLikesCount();
+    for (int i = 0; i < 9; i++) {
+      client1Service.likeSong(1L, 1L, 1L);
+    }
+    Integer songLikesCount = client1Service.likeSong(1L, 1L, 1L);
+
+    assertEquals(originalSongLikesCount + 10, songLikesCount);
+  }
+
+  @Test
+  @DisplayName("likeSong() FAILS as expected")
   void likeSongBad() throws IllegalAccessException {
     when(songRepo.findBySongId(any(Long.class))).thenReturn(song);
     when(clientRepo.findByClientId(any(Long.class))).thenReturn(client);

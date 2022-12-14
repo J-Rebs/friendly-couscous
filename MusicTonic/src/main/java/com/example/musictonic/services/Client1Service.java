@@ -171,7 +171,7 @@ public class Client1Service {
   }
 
   // helper method, tested within used methods
-  private Playlist subscribeDefaultPlaylist(Long userId, Client client) {
+  Playlist subscribeDefaultPlaylist(Long userId, Client client) {
 
     // see if the user has a default playlist
     Playlist defaultPlaylist = null;

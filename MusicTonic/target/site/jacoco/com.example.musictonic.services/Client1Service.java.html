@@ -171,7 +171,7 @@ import org.springframework.transaction.annotation.Transactional;
   }
 
   // helper method, tested within used methods
-  private Playlist subscribeDefaultPlaylist(Long userId, Client client) {
+  Playlist subscribeDefaultPlaylist(Long userId, Client client) {
 
     // see if the user has a default playlist
 <span class="fc" id="L177">    Playlist defaultPlaylist = null;</span>
@@ -225,7 +225,7 @@ import org.springframework.transaction.annotation.Transactional;
 <span class="fc" id="L225">    Playlist defaultPlaylist = subscribeDefaultPlaylist(userId, client);</span>
 
     // register the song-playlist combination if it doesn't already exist
-<span class="pc bpc" id="L228" title="1 of 2 branches missed.">    if (playlistToSongsRepo.findBySong(likedSong) == null</span>
+<span class="fc bfc" id="L228" title="All 2 branches covered.">    if (playlistToSongsRepo.findBySong(likedSong) == null</span>
 <span class="pc bpc" id="L229" title="1 of 2 branches missed.">        &amp;&amp; playlistToSongsRepo.findByPlaylist(defaultPlaylist) == null) {</span>
 <span class="fc" id="L230">      PlaylistToSongs registeredSong = new PlaylistToSongs(likedSong, defaultPlaylist);</span>
 <span class="fc" id="L231">      playlistToSongsRepo.save(registeredSong);</span>
