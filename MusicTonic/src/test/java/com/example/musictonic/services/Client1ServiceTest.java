@@ -200,6 +200,15 @@ class Client1ServiceTest {
   }
 
   @Test
+  @DisplayName("validUserSong() FAILS due to no client-song match")
+  void validUserSongBad() throws IllegalAccessException {
+    when(clientRepo.findByClientId(any(Long.class))).thenReturn(client);
+    when(clientSongRepo.findAllByClient(any(Client.class))).thenReturn(clientSongList);
+    when(clientUserRepo.findAllByClient(any(Client.class))).thenReturn(clientUserListGETONLY);
+    assertThrows(IllegalAccessException.class, () -> client1Service.validUserSong(1L, 2L, 1L));
+  }
+
+  @Test
   @DisplayName("playSong() WORKS")
   void playSongGood() throws IllegalAccessException {
     when(userRepo.findByUserId(any(Long.class))).thenReturn(user);
