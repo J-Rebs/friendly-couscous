@@ -102,7 +102,7 @@ public class Client1Service {
   // helper method, tested within used methods
 
 
-  private boolean validUserSong(Long userId, Long songId, Long clientId)
+  boolean validUserSong(Long userId, Long songId, Long clientId)
       throws IllegalAccessException {
     // client information
     Client client = clientRepo.findByClientId(clientId);
