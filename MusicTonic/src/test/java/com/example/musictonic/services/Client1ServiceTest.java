@@ -290,7 +290,8 @@ class Client1ServiceTest {
     when(userRepo.findByUserId(any(Long.class))).thenReturn(user);
     when(clientUserRepo.findAllByClient(any(Client.class))).thenReturn(clientUserList);
     when(clientSongRepo.findAllByClient(any(Client.class))).thenReturn(clientSongList);
-    when(playlistToSongsRepo.findBySong(any(Song.class))).thenReturn(playlistSong);
+    when(playlistToSongsRepo.findBySong(any(Song.class))).thenReturn(null);
+    when(playlistToSongsRepo.findByPlaylist(any(Playlist.class))).thenReturn(playlistSong);
 
     Integer originalSongLikesCount = song.getSongLikesCount();
     for (int i = 0; i < 9; i++) {
