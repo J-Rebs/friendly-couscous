@@ -155,13 +155,13 @@ import org.springframework.transaction.annotation.Transactional;
 <span class="fc" id="L155">    List&lt;ClientPlaylist&gt; playlistsForClient = clientPlaylistRepo.findAllByClient(client);</span>
 
 <span class="fc bfc" id="L157" title="All 2 branches covered.">    for (ClientPlaylist cp : playlistsForClient) {</span>
-<span class="pc bpc" id="L158" title="1 of 2 branches missed.">      if (cp.getPlaylist().getPlaylistId() == playlistId</span>
+<span class="fc bfc" id="L158" title="All 2 branches covered.">      if (cp.getPlaylist().getPlaylistId() == playlistId</span>
           &amp;&amp;
-<span class="pc bpc" id="L160" title="1 of 2 branches missed.">          cp.getClient().getClientId() == clientId) {</span>
+<span class="fc bfc" id="L160" title="All 2 branches covered.">          cp.getClient().getClientId() == clientId) {</span>
 <span class="fc" id="L161">        clientPlaylistMatch = true;</span>
 <span class="fc" id="L162">        break;</span>
       }
-<span class="nc" id="L164">    }</span>
+<span class="fc" id="L164">    }</span>
 
 <span class="fc bfc" id="L166" title="All 2 branches covered.">    if (!clientPlaylistMatch) {</span>
 <span class="fc" id="L167">      throw new IllegalAccessException(&quot;playlist not available for this client&quot;);</span>

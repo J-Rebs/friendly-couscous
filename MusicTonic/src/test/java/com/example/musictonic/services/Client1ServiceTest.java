@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -236,7 +237,17 @@ class Client1ServiceTest {
   @Test
   @DisplayName("validPlaylist() FAILS, as expected")
   void validPlaylistBad() throws IllegalAccessException {
-    assertThrows(IllegalAccessException.class, () -> client1Service.validPlaylist(1L, 1L, 1L));
+    when(clientRepo.findByClientId(any(Long.class))).thenReturn(client);
+    when(clientPlaylistRepo.findAllByClient(client)).thenReturn(clientPlaylistList);
+    assertThrows(IllegalAccessException.class, () -> client1Service.validPlaylist(2L, 1L, 1L));
+  }
+
+  @Test
+  @DisplayName("validPlaylist() FAILS because clientId parameter does not match id of Client object returned")
+  void validPlaylistBad2() throws IllegalAccessException {
+    when(clientRepo.findByClientId(any(Long.class))).thenReturn(client);
+    when(clientPlaylistRepo.findAllByClient(client)).thenReturn(clientPlaylistList);
+    assertThrows(IllegalAccessException.class, () -> client1Service.validPlaylist(1L, 2L, 1L));
   }
 
   @Test
