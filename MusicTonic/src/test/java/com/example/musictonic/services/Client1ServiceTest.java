@@ -330,6 +330,7 @@ class Client1ServiceTest {
     when(userRepo.findByUserId(any(Long.class))).thenReturn(user);
     when(clientUserRepo.findAllByClient(any(Client.class))).thenReturn(clientUserList);
     when(clientSongRepo.findAllByClient(any(Client.class))).thenReturn(clientSongList);
+    when(playlistToSongsRepo.findBySong(any(Song.class))).thenReturn(playlistSong);
 
 
     Integer originalSongLikesCount = song.getSongLikesCount();
