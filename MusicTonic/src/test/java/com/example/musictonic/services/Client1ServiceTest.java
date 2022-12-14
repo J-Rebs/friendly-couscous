@@ -390,7 +390,6 @@ class Client1ServiceTest {
     clientUserList.add(clientUser2); // supplement list for branch testing
     when(clientUserRepo.findAllByUser(any(User.class))).thenReturn(clientUserList);
 
-
     List<AnalyticsUser> list1 = new ArrayList<>();
     list1.add(analyticsUser);
     when(analyticsUserRepo.findByUser(any(User.class))).thenReturn(list1);
@@ -427,43 +426,52 @@ class Client1ServiceTest {
     verify(userRepo, times(1)).delete(user);
   }
 
-
   @Test
   @DisplayName("deleteUser() FAILS - due to null User, as expected")
-  void deleteUserBad1() throws ObjectNotFoundException {
+  void deleteUserBad() throws ObjectNotFoundException {
     when(userRepo.findByUserId(any(Long.class))).thenReturn(null);
 
     User user1 = client1Service.deleteUser(1L, 1L);
     assertNotEquals(user1, user);
   }
 
-//  @Test
-//  @DisplayName("deleteUser() FAILS - due to null List<PlaylistToSubscriber>, as expected")
-//  void deleteUserBad2() throws ObjectNotFoundException {
-//    when(userRepo.findByUserId(any(Long.class))).thenReturn(user);
-//    clientUserList.add(clientUser2); // supplement list for branch testing
-//    when(clientUserRepo.findAllByUser(any(User.class))).thenReturn(clientUserList);
-//
-//    List<AnalyticsUser> list1 = new ArrayList<>();
-//    list1.add(analyticsUser);
-//    when(analyticsUserRepo.findByUser(any(User.class))).thenReturn(list1);
-//
-//    List<PlaylistToSubscriber> list2 = new ArrayList<>();
-//    list2.add(new PlaylistToSubscriber(1L,user,playlist));
-//    when(playlistToSubscriberRepo.findAllByUser(any(User.class))).thenReturn(list2);
-//
-//    List<Playlist> list3 = new ArrayList<>();
-//    list3.add(playlist);
-//    when(playlistRepo.findAllByOwner(any(Long.class))).thenReturn(list3);
-//
-//    List<PlaylistToSubscriber> list4 = new ArrayList<>();
-//    when(playlistToSubscriberRepo.findAllByPlaylist(any(Playlist.class))).thenReturn(list4);
-//
-////    List<PlaylistToSubscriber> listBad = playlistToSubscriberRepo.findAllByPlaylist(playlist);
-////    assertThat(listBad.size()).isEqualTo(0);
-//
-//    User user1 = client1Service.deleteUser(1L, 1L);
-////    assertNotEquals(user1, user);
-//  }
+  @Test
+  @DisplayName("deleteUser() WORKS when all repo calls return valid objects")
+  void deleteUserGood2() throws IllegalAccessException {
+    when(userRepo.findByUserId(any(Long.class))).thenReturn(user);
+    clientUserList.add(clientUser2); // supplement list for branch testing
+    when(clientUserRepo.findAllByUser(any(User.class))).thenReturn(clientUserList);
+
+    List<AnalyticsUser> list1 = new ArrayList<>();
+    list1.add(analyticsUser);
+    when(analyticsUserRepo.findByUser(any(User.class))).thenReturn(list1);
+
+    List<PlaylistToSubscriber> list2 = new ArrayList<>();
+    list2.add(new PlaylistToSubscriber(1L,user,playlist));
+    when(playlistToSubscriberRepo.findAllByUser(any(User.class))).thenReturn(list2);
+
+    List<Playlist> list3 = new ArrayList<>();
+    list3.add(playlist);
+    when(playlistRepo.findAllByOwner(any(Long.class))).thenReturn(list3);
+
+    List<PlaylistToSubscriber> list4 = new ArrayList<>();
+    list4.add(new PlaylistToSubscriber(2L,user2,playlist));
+    when(playlistToSubscriberRepo.findAllByPlaylist(any(Playlist.class))).thenReturn(list4);
+
+    List<PlaylistToSongs> list5 = new ArrayList<>();
+    list5.add(new PlaylistToSongs(song,playlist));
+    when(playlistToSongsRepo.findAllByPlaylist(any(Playlist.class))).thenReturn(list5);
+
+    List<AnalyticsPlaylist> list6 = new ArrayList<>();
+    list6.add(new AnalyticsPlaylist(a,playlist));
+    when(analyticsPlaylistRepo.findAllByPlaylist(any(Playlist.class))).thenReturn(list6);
+
+    List<ClientPlaylist> list7 = new ArrayList<>();
+    list7.add(new ClientPlaylist(client,playlist));
+    when(clientPlaylistRepo.findAllByPlaylist(any(Playlist.class))).thenReturn(list7);
+
+    client1Service.deleteUser(1L, 1L);
+    verify(userRepo, times(1)).delete(user);
+  }
 
 }

@@ -400,28 +400,28 @@ import org.springframework.transaction.annotation.Transactional;
 <span class="fc" id="L400">        List&lt;PlaylistToSubscriber&gt; subscriberList =</span>
 <span class="fc" id="L401">            playlistToSubscriberRepo.findAllByPlaylist(p);</span>
 
-<span class="pc bpc" id="L403" title="1 of 2 branches missed.">        for (PlaylistToSubscriber ps : subscriberList) {</span>
-<span class="nc" id="L404">          playlistToSubscriberRepo.delete(ps);</span>
-<span class="nc" id="L405">        }</span>
+<span class="fc bfc" id="L403" title="All 2 branches covered.">        for (PlaylistToSubscriber ps : subscriberList) {</span>
+<span class="fc" id="L404">          playlistToSubscriberRepo.delete(ps);</span>
+<span class="fc" id="L405">        }</span>
         // songs
 <span class="fc" id="L407">        List&lt;PlaylistToSongs&gt; songList =</span>
 <span class="fc" id="L408">            playlistToSongsRepo.findAllByPlaylist(p);</span>
-<span class="pc bpc" id="L409" title="1 of 2 branches missed.">        for (PlaylistToSongs ps : songList) {</span>
-<span class="nc" id="L410">          playlistToSongsRepo.delete(ps);</span>
-<span class="nc" id="L411">        }</span>
+<span class="fc bfc" id="L409" title="All 2 branches covered.">        for (PlaylistToSongs ps : songList) {</span>
+<span class="fc" id="L410">          playlistToSongsRepo.delete(ps);</span>
+<span class="fc" id="L411">        }</span>
         // analytics
 <span class="fc" id="L413">        List&lt;AnalyticsPlaylist&gt; analyticsList =</span>
 <span class="fc" id="L414">            analyticsPlaylistRepo.findAllByPlaylist(p);</span>
-<span class="pc bpc" id="L415" title="1 of 2 branches missed.">        for (AnalyticsPlaylist ap : analyticsList) {</span>
-<span class="nc" id="L416">          analyticsPlaylistRepo.delete(ap);</span>
-<span class="nc" id="L417">        }</span>
+<span class="fc bfc" id="L415" title="All 2 branches covered.">        for (AnalyticsPlaylist ap : analyticsList) {</span>
+<span class="fc" id="L416">          analyticsPlaylistRepo.delete(ap);</span>
+<span class="fc" id="L417">        }</span>
         // remove references for playlist in client
 <span class="fc" id="L419">        List&lt;ClientPlaylist&gt; clientPlaylistList = clientPlaylistRepo.findAllByPlaylist(p);</span>
-<span class="pc bpc" id="L420" title="1 of 2 branches missed.">        for (ClientPlaylist cp : clientPlaylistList) {</span>
-<span class="nc bnc" id="L421" title="All 2 branches missed.">          if (cp.getClient().getClientId() == clientId) {</span>
-<span class="nc" id="L422">            clientPlaylistRepo.delete(cp);</span>
+<span class="fc bfc" id="L420" title="All 2 branches covered.">        for (ClientPlaylist cp : clientPlaylistList) {</span>
+<span class="pc bpc" id="L421" title="1 of 2 branches missed.">          if (cp.getClient().getClientId() == clientId) {</span>
+<span class="fc" id="L422">            clientPlaylistRepo.delete(cp);</span>
           }
-<span class="nc" id="L424">        }</span>
+<span class="fc" id="L424">        }</span>
         // the can delete the playlist itself
 <span class="fc" id="L426">        playlistRepo.delete(p);</span>
 <span class="fc" id="L427">      }</span>

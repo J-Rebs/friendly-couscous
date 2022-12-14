@@ -2,7 +2,7 @@ GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_
 MusicTonic,com.example.musictonic,MusicTonicApplication,5,3,0,0,2,1,1,1,1,1
 MusicTonic,com.example.musictonic.services,Client2Service,0,66,0,6,0,12,0,5,0,2
 MusicTonic,com.example.musictonic.services,Client3Service,0,131,0,14,0,29,0,9,0,2
-MusicTonic,com.example.musictonic.services,Client1Service,47,602,8,52,13,137,7,32,0,9
+MusicTonic,com.example.musictonic.services,Client1Service,6,643,3,57,4,146,3,36,0,9
 MusicTonic,com.example.musictonic.controller,Client1Controller,44,119,0,0,16,26,0,6,0,6
 MusicTonic,com.example.musictonic.controller,Client3Controller,10,42,0,2,4,9,0,4,0,3
 MusicTonic,com.example.musictonic.controller,Client2Controller,10,13,0,0,4,3,0,2,0,2
