@@ -1,8 +1,8 @@
 # Summary
 |||
 |:---|:---|
-| Generated on: | 12/14/2022 - 23:47:31 |
-| Coverage date: | 12/14/2022 - 23:45:55 |
+| Generated on: | 12/18/2022 - 23:28:04 |
+| Coverage date: | 12/18/2022 - 23:26:06 |
 | Parser: | JaCoCo |
 | Assemblies: | 4 |
 | Classes: | 23 |
@@ -18,7 +18,7 @@
 | **Method coverage:** | 92.8% (26 of 28) |
 | Covered methods: | 26 |
 | Total methods: | 28 |
-| Tag: | 169_3699691060 |
+| Tag: | 170_3727073310 |
 
 |**Name**|**Covered**|**Uncovered**|**Coverable**|**Total**|**Line coverage**|**Covered**|**Total**|**Branch coverage**|**Covered**|**Total**|**Method coverage**|
 |:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
