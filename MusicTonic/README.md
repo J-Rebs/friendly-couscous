@@ -64,7 +64,7 @@ Ryan Soeyadi [rs4163], Joseph Rebagliati [jr4162], Yuhao Dong [yd2626], Madison 
 ### DATA SHARING SERVICES  (Client type three in our proposal)
 
 - TYPE OF REQUEST: `GET`
-    - ROUTE: `/client3-restuserexport?userid={id}&clientid={id}`
+    - ROUTE: `/client3-rest/userexport?userid={id}&clientid={id}`
     - PURPOSE: provides an export of user data including the user and associated fields, the playlists the user owns,
       and all analytics entries for that user.
     - RETURN TYPES:
