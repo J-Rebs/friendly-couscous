@@ -1,4 +1,5 @@
 # COMS W4156 - Advanced Software Engineering
+Please note our service is no longer live in order to save on AWS and Heroku. If you would like a live demonstration, please reach out to us.
 
 ## Final Project: MusicTonic Service
 
